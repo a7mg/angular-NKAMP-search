@@ -1,0 +1,31 @@
+<section class="searchNK">
+
+
+    <app-criteria></app-criteria>
+
+    <p-progressSpinner [style]="{width: '200px', height: '200px'}" class="d-block my-5 py-5 text-center">
+    </p-progressSpinner>
+
+    <div class="row" *ngIf="!isLoading">
+      <!-- resultsBox Content  sidebar -->
+      <div *ngIf="!isNoData" class="col-12 col-sm-12 col-md-9 offset-md-2">
+        <aside class="resultsBox-content">
+
+          <!--  fillter -->
+          <app-filters></app-filters>
+          <!--  fillter end-->
+          <app-results></app-results>
+
+        </aside>
+      </div>
+
+      <!-- resultsBox Content sidebar  end-->
+
+    </div>
+
+    <ng-container>
+      <div class="searchNK-nodata no-data" >No data found</div>
+    </ng-container>
+
+
+</section>

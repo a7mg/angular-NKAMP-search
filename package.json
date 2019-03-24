@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve-ar": "ng serve --aot --base-href /ar/ --configuration=production-ar --host 0.0.0.0 --open",
+    "serve-en": "ng serve --aot --base-href /en/ --configuration=production-en --host 0.0.0.0 --open",
+    "serve-fr": "ng serve --aot --base-href /fr/ --configuration=production-fr --host 0.0.0.0 --open"
   },
   "private": true,
   "dependencies": {
@@ -16,10 +19,12 @@
     "@angular/compiler": "~7.2.0",
     "@angular/core": "~7.2.0",
     "@angular/forms": "~7.2.0",
+    "@angular/http": "^7.2.10",
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "core-js": "^2.5.4",
+    "primeng": "^7.1.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
