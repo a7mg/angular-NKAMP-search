@@ -12,5 +12,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-// test 1
-// test 2
