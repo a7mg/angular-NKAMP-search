@@ -3,7 +3,7 @@
 <!--dsfsdfsdf-->
     <app-criteria></app-criteria>
 
-    <p-progressSpinner [style]="{width: '200px', height: '200px'}" class="d-block my-5 py-5 text-center">
+    <p-progressSpinner *ngIf="isLoading" [style]="{width: '200px', height: '200px'}" class="d-block my-5 py-5 text-center">
     </p-progressSpinner>
 
     <div class="row" *ngIf="!isLoading">
