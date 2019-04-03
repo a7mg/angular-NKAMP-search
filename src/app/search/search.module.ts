@@ -9,6 +9,8 @@ import { FacetsComponent } from './facets/facets.component';
 import { GridComponent } from '../common/grid/grid.component';
 import { ListComponent } from '../common/list/list.component';
 import { FiltersComponent } from './results/filters/filters.component';
+import { ReactiveFormsModule } from "@angular/forms";
+
 
 const HeaderRoutes = [
   { path: '', component: SearchComponent }
@@ -20,6 +22,7 @@ const HeaderRoutes = [
     RouterModule.forChild(HeaderRoutes),
     CommonModule,
     ProgressSpinnerModule,
+    ReactiveFormsModule
   ]
 })
 export class SearchModule { }
