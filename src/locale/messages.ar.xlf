@@ -2,6 +2,80 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+           <trans-unit id="lblsearch_general" datatype="html">
+        <source>General</source>
+         <target>عام</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+          <trans-unit id="lblsearch_field" datatype="html">
+        <source>Allfields</source>
+        <target>الجميع</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+            
+ <trans-unit id="lblsearch_Containes" datatype="html">
+        <source>Containes</source>
+         <target>الجميع</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+               <trans-unit id="lblsearch_placeholder" datatype="html">
+        <source>Searchtext</source>
+        <target>البحث....</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+            <trans-unit id="lblsearch_errortext" datatype="html">
+        <source>Please Enter Search Text</source>
+          <target>الرجاء ادخل كلمة البحث</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+                 <trans-unit id="lblsearch" datatype="html">
+        <source>Search</source>
+        <target>البحث</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+      
+                <trans-unit id="lblsearch_simplesearch" datatype="html">
+        <source>SimpleSearch</source>
+         <target>البحث البسيط</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
+                    <trans-unit id="lblsearch_advancedSearch" datatype="html">
+        <source>AdvancedSearch</source>
+        <target>البحث المتقدم</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

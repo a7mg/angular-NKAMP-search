@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
-import { Criteria, CriteriaSearch } from '../services/criteriaModel';
+import { Criteria, CriteriaSearch, AllCriteriaSearch } from '../services/criteriaModel';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
 
@@ -22,7 +22,7 @@ export class CriteriaComponent implements OnInit {
   contain: FormControl;
   Seachtext: FormControl;
   lang:string
- // searchadd:FormArray
+  AllCriteriaSearch:AllCriteriaSearch
 
   constructor(private _SearchService:SearchService,private _GlobalsService:GlobalsService,private fb: FormBuilder) {
     this.lang=this._GlobalsService.UILanguage;
@@ -56,61 +56,84 @@ export class CriteriaComponent implements OnInit {
     })
   }
 
-  onSubmit(CriteriaSearch:CriteriaSearch){
-console.log(CriteriaSearch)
+  onSubmit(){
+    this.logValidationErrors()
+    console.log('alldata',   this.CriteriaSearch)
+//this. createFormdynamic();
   }
 
 
   createFormControls() {
-
     (this.contain =new FormControl("") ),
     (this.Seachtext = new FormControl("", Validators.required)),
       (this.general = new FormControl("")),
       (this.Feild = new FormControl(""));
-  
   }
   // ---------------------------------------------------------------------------------------------------------------------------------- //
-  // createForm() {
-  //   this.criteriaForm = new FormGroup({
-  //     contain: new FormControl(""),
-  //    // searchadd:this.criteriaForm.array
-  //     Seachtext: new FormControl("", Validators.required),
-  //     general: new FormControl(""),
-  //     Feild: new FormControl(""),
-  //   });
-  // }
-
+ 
   createFormdynamic() {
     this.criteriaForm =  this.fb.group({
-      general: [''],
+      general: [null],
     searchadd:  this.fb.array([
       this.addSearchFormGroup()
     ])
      
     });
   }
-
-
   addSearchFormGroup(){
     return this.fb.group({
       Seachtext:  ['', Validators.required],
-      contain:  [''],
-    Feild: [''],
+      contain:  [null],
+    Feild: [null],
     });
-   
   }
-
   addSearchButtonClick(): void {
-    (<FormArray>this.criteriaForm.get('searchadd')).push(this.addSearchFormGroup());
+    if((<FormArray>this.criteriaForm.get('searchadd')).length < this.GeneralData.length){
+      (<FormArray>this.criteriaForm.get('searchadd')).push(this.addSearchFormGroup());
+    }
   }
-
-
   inisalizeCriteriaobject(){
     this.CriteriaSearch=<CriteriaSearch>{};
-    this.CriteriaSearch.SeachText="";
-    this.CriteriaSearch.containes=null;
-    this.CriteriaSearch.field=null;
+    this.CriteriaSearch.search=[];
     this.CriteriaSearch.general=null;
+  }
+
+
+
+  logValidationErrors(group: FormGroup = this.criteriaForm): void {
+    Object.keys(group.controls).forEach((key: string) => {
+      const abstractControl = group.get(key);
+      if (abstractControl instanceof FormControl ) {
+        if(key == 'general'){
+          this.CriteriaSearch.general=abstractControl.value.eName
+        }else{
+         if(key =='Seachtext'){
+        this.  AllCriteriaSearch.SeachText=abstractControl.value;
+         }else if(key =='contain'){
+          this. AllCriteriaSearch.containes=abstractControl.value.eName;
+         }else{
+          this. AllCriteriaSearch.field=abstractControl.value.eName;
+         }
+        }
+
+      }
+  
+      if (abstractControl instanceof FormGroup) {
+        this.logValidationErrors(abstractControl);
+      }
+
+      if (abstractControl instanceof FormArray) {
+        for (const control of abstractControl.controls) {
+          if (control instanceof FormGroup) {
+            this. AllCriteriaSearch=<AllCriteriaSearch>{}
+            this.logValidationErrors(control);
+            this.CriteriaSearch.search.push(this.AllCriteriaSearch);
+          }
+        }
+      }
+   
+    });
+   
   }
 
 

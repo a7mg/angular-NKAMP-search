@@ -10,7 +10,14 @@ export interface Criteria {
 
 export interface CriteriaSearch {
     general:string;
+   search:AllCriteriaSearch[]
+}
+
+
+export interface AllCriteriaSearch {
     field:string;
     containes:string;
     SeachText:string;
 }
+
+
