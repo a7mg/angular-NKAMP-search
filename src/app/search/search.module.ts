@@ -10,6 +10,8 @@ import { GridComponent } from '../common/grid/grid.component';
 import { ListComponent } from '../common/list/list.component';
 import { FiltersComponent } from './results/filters/filters.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { ActiveSelectionComponent } from './active-selection/active-selection.component';
+import { GategoryComponent } from './facets/gategory/gategory.component';
 
 
 const HeaderRoutes = [
@@ -17,7 +19,7 @@ const HeaderRoutes = [
 ];
 
 @NgModule({
-  declarations: [SearchComponent, ResultsComponent, CriteriaComponent, FacetsComponent, GridComponent, ListComponent, FiltersComponent],
+  declarations: [SearchComponent, ResultsComponent, CriteriaComponent, FacetsComponent, GridComponent, ListComponent, FiltersComponent, ActiveSelectionComponent, GategoryComponent],
   imports: [
     RouterModule.forChild(HeaderRoutes),
     CommonModule,
