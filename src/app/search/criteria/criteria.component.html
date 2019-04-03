@@ -4,54 +4,70 @@
 
 
 <div class="row no-gutters">
-  <form [formGroup]="criteriaForm" (ngSubmit)="onSubmit(CriteriaSearch)">
+  <form [formGroup]="criteriaForm" (ngSubmit)="onSubmit()">
   <div class="col-12 col-md-10 col-lg-11">
 
     <div class="form-row">
         <div class="form-group col-12 col-md-2 col-lg-2">
-          <select formControlName="general" [(ngModel)]='CriteriaSearch.general' class="form-control  w-100">
-            <option [ngValue]="null" selected="selected" >General</option>
-            <option *ngFor="let general of GeneralData" [ngValue]="general"  >{{ general.eName }}</option>
+          <select formControlName="general"  class="form-control  w-100">
+            <option [ngValue]="null" selected="selected" i18n="@@lblsearch_general" >General</option>
+            <option *ngFor="let general of GeneralData" [ngValue]="general"  >
+              {{lang == 'ar'||lang=='ar-SA'  ?  general.aName :  (lang == 'fr'? general.fName :general.eName )}}
+
+            </option>
           </select>
         </div>
+        <ng-container formArrayName="searchadd" *ngFor="let search of criteriaForm.get('searchadd')['controls']; let i = index">
+            <ng-container  [formGroupName]="i">
+                <div class="form-group col-12 col-md-2 col-lg-3">
+                    <select formControlName="Feild"  class="form-control  w-100">
+                      <option [ngValue]="null" selected="selected" i18n="@@lblsearch_field" >Allfields</option>
+                      <option *ngFor="let Feild of AllFields" [ngValue]="Feild"  >
+                        {{lang == 'ar'||lang=='ar-SA'  ?  Feild.aName :  (lang == 'fr'? Feild.fName :Feild.eName )}}
+                      </option>
+                    </select>
+                  </div>
+          
+                  <div class="form-group col-12 col-md-2 col-lg-2">
+                    <select formControlName="contain"  class="form-control  w-100">
+                      <option [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes" >Containes</option>
+                      <option *ngFor="let contain of ContainsData" [ngValue]="contain"  >
+                        {{lang == 'ar'||lang=='ar-SA'  ?  contain.aName :  (lang == 'fr'? contain.fName :contain.eName )}}
+                      </option>
+                    </select>
+                  </div>
+          
+                  <div class="form-group col-12 col-md-4  pr-md-0 col-lg-4  pr-lg-0">
+                    <input type="text" formControlName="Seachtext"  class="form-control w-100" [ngClass]="{'is-invalid':  (search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)} " 
+                    i18n-placeholder="@@lblsearch_placeholder" placeholder="Searchtext">
+                    <div class="invalid-feedback" *ngIf="(search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)">
+                      <p *ngIf="search.get('Seachtext').errors['required']" i18n="@@lblsearch_errortext" >Please Enter Search Text</p>
+                    </div>
+          
+                  </div>
+            </ng-container>
+          </ng-container>
+</div>
+      
 
-        <div class="form-group col-12 col-md-2 col-lg-3">
-          <select formControlName="Feild" [(ngModel)]='CriteriaSearch.field' class="form-control  w-100">
-            <option [ngValue]="null" selected="selected" >All fields</option>
-            <option *ngFor="let Feild of AllFields" [ngValue]="Feild"  >{{ Feild.eName }}</option>
-          </select>
-        </div>
 
-        <div class="form-group col-12 col-md-2 col-lg-2">
-          <select formControlName="contain" [(ngModel)]='CriteriaSearch.containes' class="form-control  w-100">
-            <option [ngValue]="null" selected="selected" >Containes</option>
-            <option *ngFor="let contain of ContainsData" [ngValue]="contain"  >{{ contain.eName }}</option>
-          </select>
-        </div>
 
-        <div class="form-group col-12 col-md-4  pr-md-0 col-lg-4  pr-lg-0">
-          <input type="text" formControlName="Seachtext" [(ngModel)]='CriteriaSearch.SeachText' class="form-control w-100" [ngClass]="{'is-invalid':  (Seachtext.invalid && Seachtext.dirty)||(Seachtext.invalid && Seachtext.touched)} "  placeholder="Search text...">
-          <div class="invalid-feedback" *ngIf="(Seachtext.invalid && Seachtext.dirty)||(Seachtext.invalid && Seachtext.touched)">
-            <p *ngIf="Seachtext.errors['required']" >Please Enter Search Text</p>
-          </div>
-
-        </div>
         <div *ngIf="isAdvanced" class="form-group col-12 col-md-1 col-lg-1  text-center">
-          <button type="button" class="btn btn-outline-primary"> + </button>
+          <button type="button"  (click)="addSearchButtonClick()" class="btn btn-outline-primary"> + </button>
 
         </div>
 
         <div class="form-group col-12">
-          <button type="button" [disabled]="criteriaForm.invalid" class="btn btn-primary ">Search</button>
-          <button type="button" *ngIf="isAdvanced" class="btn btn-link ml-2" (click)="isAdvanced=!isAdvanced">Simple
-            Search
-          </button>
-          <button type="button" *ngIf="!isAdvanced" class="btn btn-link ml-2" (click)="isAdvanced=!isAdvanced">Advanced
-            Search</button>
+          <button type="submit" [disabled]="criteriaForm.invalid" class="btn btn-primary " i18n="@@lblsearch" >Search</button>
+          <button type="button" *ngIf="isAdvanced" class="btn btn-link ml-2"
+           (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_simplesearch" >SimpleSearch</button>
+          <button type="button" *ngIf="!isAdvanced" class="btn btn-link ml-2"
+           (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_advancedSearch" >AdvancedSearch</button>
         </div>
     </div>
-  </div>
-</form>
+  </form>
+
+
   <div class="col-12 col-md-2 col-lg-1">
 
     <a [routerLink]="['/favorite']" routerLinkActive="router-link-active" class="btn btn-link btn-icon px-0 ml-1">

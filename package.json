@@ -8,6 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build-iis:ar": "ng build --configuration=production-ar --output-path=dist/iis/ar --deploy-url /ar/",
+    "build-iis:en": "ng build --configuration=production-en --output-path=dist/iis/en --deploy-url /en/",
+    "build-iis:fr": "ng build --configuration=production-fr --output-path=dist/iis/fr --deploy-url /fr/",
+    "build-iis": "npm run build-iis:en && npm run build-iis:ar && npm run build-iis:fr",
     "serve-ar": "ng serve --aot --base-href /ar/ --configuration=production-ar --host 0.0.0.0 --open",
     "serve-en": "ng serve --aot --base-href /en/ --configuration=production-en --host 0.0.0.0 --open",
     "serve-fr": "ng serve --aot --base-href /fr/ --configuration=production-fr --host 0.0.0.0 --open"
@@ -24,7 +28,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "core-js": "^2.5.4",
-    "primeng": "^7.1.0",
+    "primeng": "^7.0.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
