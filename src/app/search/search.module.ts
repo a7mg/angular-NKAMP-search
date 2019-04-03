@@ -6,12 +6,12 @@ import { ResultsComponent } from './results/results.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FacetsComponent } from './facets/facets.component';
-import { GridComponent } from '../common/grid/grid.component';
-import { ListComponent } from '../common/list/list.component';
 import { FiltersComponent } from './results/filters/filters.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActiveSelectionComponent } from './active-selection/active-selection.component';
 import { GategoryComponent } from './facets/gategory/gategory.component';
+import { GridComponent } from '../Common/grid/grid.component';
+import { ListComponent } from '../Common/list/list.component';
 
 
 const HeaderRoutes = [
