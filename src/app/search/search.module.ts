@@ -19,7 +19,7 @@ const HeaderRoutes = [
   imports: [
     RouterModule.forChild(HeaderRoutes),
     CommonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ]
 })
 export class SearchModule { }
