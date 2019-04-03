@@ -7,7 +7,9 @@ import { CriteriaComponent } from './criteria/criteria.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FacetsComponent } from './facets/facets.component';
 import { FiltersComponent } from './results/filters/filters.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
+import { ActiveSelectionComponent } from './active-selection/active-selection.component';
+import { GategoryComponent } from './facets/gategory/gategory.component';
 import { GridComponent } from '../Common/grid/grid.component';
 import { ListComponent } from '../Common/list/list.component';
 
@@ -17,7 +19,17 @@ const HeaderRoutes = [
 ];
 
 @NgModule({
-  declarations: [SearchComponent, ResultsComponent, CriteriaComponent, FacetsComponent, GridComponent, ListComponent, FiltersComponent],
+  declarations: [
+    SearchComponent,
+     ResultsComponent,
+     CriteriaComponent,
+     FacetsComponent,
+     GridComponent,
+     ListComponent,
+     FiltersComponent,
+     ActiveSelectionComponent,
+     GategoryComponent
+    ],
   imports: [
     RouterModule.forChild(HeaderRoutes),
     CommonModule,
