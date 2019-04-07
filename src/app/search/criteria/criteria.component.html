@@ -1,95 +1,115 @@
-<p>
-  Search
-</p>
+<form [formGroup]="criteriaForm" (ngSubmit)="onSubmit()">
 
+  <div class="form-row">
 
-<div class="row no-gutters">
-  <form [formGroup]="criteriaForm" (ngSubmit)="onSubmit()">
-  <div class="col-12 col-md-10 col-lg-11">
+    <div class="mb-3 col-12 col-sm-12 col-md-2 col-lg-2">
+      <select formControlName="general" class="form-control  w-100">
+        <option [ngValue]="null" selected="selected" i18n="@@lblsearch_dataSource">Allfields</option>
+        <option *ngFor="let general of DataSources" [ngValue]="general">
+          {{lang == 'ar'||lang=='ar-SA'  ?  general.aName :  (lang == 'fr'? general.fName :general.eName )}}
 
-    <div class="form-row">
-        <div class="form-group col-12 col-md-2 col-lg-2">
-          <select formControlName="general"  class="form-control  w-100">
-            <option [ngValue]="null" selected="selected" i18n="@@lblsearch_general" >General</option>
-            <option *ngFor="let general of GeneralData" [ngValue]="general"  >
-              {{lang == 'ar'||lang=='ar-SA'  ?  general.aName :  (lang == 'fr'? general.fName :general.eName )}}
-
-            </option>
-          </select>
-        </div>
-        <ng-container formArrayName="searchadd" *ngFor="let search of criteriaForm.get('searchadd')['controls']; let i = index">
-            <ng-container  [formGroupName]="i">
-                <div class="form-group col-12 col-md-2 col-lg-3">
-                    <select formControlName="Feild"  class="form-control  w-100">
-                      <option [ngValue]="null" selected="selected" i18n="@@lblsearch_field" >Allfields</option>
-                      <option *ngFor="let Feild of AllFields" [ngValue]="Feild"  >
-                        {{lang == 'ar'||lang=='ar-SA'  ?  Feild.aName :  (lang == 'fr'? Feild.fName :Feild.eName )}}
-                      </option>
-                    </select>
-                  </div>
-          
-                  <div class="form-group col-12 col-md-2 col-lg-2">
-                    <select formControlName="contain"  class="form-control  w-100">
-                      <option [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes" >Containes</option>
-                      <option *ngFor="let contain of ContainsData" [ngValue]="contain"  >
-                        {{lang == 'ar'||lang=='ar-SA'  ?  contain.aName :  (lang == 'fr'? contain.fName :contain.eName )}}
-                      </option>
-                    </select>
-                  </div>
-          
-                  <div class="form-group col-12 col-md-4  pr-md-0 col-lg-4  pr-lg-0">
-                    <input type="text" formControlName="Seachtext"  class="form-control w-100" [ngClass]="{'is-invalid':  (search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)} " 
-                    i18n-placeholder="@@lblsearch_placeholder" placeholder="Searchtext">
-                    <div class="invalid-feedback" *ngIf="(search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)">
-                      <p *ngIf="search.get('Seachtext').errors['required']" i18n="@@lblsearch_errortext" >Please Enter Search Text</p>
-                    </div>
-          
-                  </div>
-            </ng-container>
-          </ng-container>
-</div>
-      
-
-
-
-        <div *ngIf="isAdvanced" class="form-group col-12 col-md-1 col-lg-1  text-center">
-          <button type="button"  (click)="addSearchButtonClick()" class="btn btn-outline-primary"> + </button>
-
-        </div>
-
-        <div class="form-group col-12">
-          <button type="submit" [disabled]="criteriaForm.invalid" class="btn btn-primary " i18n="@@lblsearch" >Search</button>
-          <button type="button" *ngIf="isAdvanced" class="btn btn-link ml-2"
-           (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_simplesearch" >SimpleSearch</button>
-          <button type="button" *ngIf="!isAdvanced" class="btn btn-link ml-2"
-           (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_advancedSearch" >AdvancedSearch</button>
-        </div>
+        </option>
+      </select>
     </div>
-  </form>
+
+    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+      <!-- Dynamic Form ##Start##  -->
+      <ng-container formArrayName="searchadd"
+        *ngFor="let search of criteriaForm.get('searchadd')['controls']; let formIndex = index">
+
+        <div *ngIf="isAdvanced || formIndex==0" class="form-row" [formGroupName]="formIndex">
+
+          <div *ngIf="formIndex>0"  class="form-group col-4  col-sm-3  col-md-1 col-lg-1">
+            <select formControlName="operator" class="form-control  w-100">
+              <option [ngValue]="null" selected="selected"> AND </option>
+              <option value="OR"> OR </option>
+            </select>
+          </div>
+
+          <div class="form-group" [ngClass]="{
+              'col-12 col-sm-12 col-md-4 col-lg-3': formIndex == 0 ,
+              'col-4 col-sm-4 col-md-3 col-lg-2':  formIndex > 0
+            }">
+            <select formControlName="Feild" class="form-control  w-100">
+              <option [ngValue]="null" selected="selected" i18n="@@lblsearch_field">Allfields</option>
+              <option *ngFor="let Feild of AllFields" [ngValue]="Feild">
+                {{lang == 'ar'||lang=='ar-SA'  ?  Feild.aName :  (lang == 'fr'? Feild.fName :Feild.eName )}}
+              </option>
+            </select>
+          </div>
+
+          <div
+            class="form-group col-md-3  col-lg-3"
+            [ngClass]="{ 'col-12 col-sm-12': formIndex == 0
+              ,'col-4 col-sm-4':  formIndex > 0  }">
+            <select formControlName="contain" class="form-control  w-100">
+              <option [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes">Containes</option>
+              <option *ngFor="let contain of ContainsData" [ngValue]="contain">
+                {{lang == 'ar'||lang=='ar-SA'  ?  contain.aName :  (lang == 'fr'? contain.fName :contain.eName )}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-12 "
+            [ngClass]="{
+              'col-sm-12 col-md-5 col-lg-6 ': !isAdvanced ,
+              'col-sm-11 col-md-4 col-lg-5 ': isAdvanced}">
+            <input type="text" formControlName="Seachtext" class="form-control w-100"
+              [ngClass]="{'is-invalid':  (search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)} "
+              i18n-placeholder="@@lblsearch_placeholder" placeholder="Searchtext">
+            <div class="invalid-feedback"
+              *ngIf="(search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)">
+              <p *ngIf="search.get('Seachtext').errors['required']" i18n="@@lblsearch_errortext">Please Enter
+                Search
+                Text</p>
+            </div>
+
+          </div>
+
+          <!--  *ngIf="i>0"-->
+          <div *ngIf="isAdvanced && formIndex==0"
+            class="form-group col-3 offset-9 col-sm-1 offset-sm-0 col-md-1 col-lg-1  text-center">
+            <button type="button" (click)="addSearchButtonClick()" class="btn btn-outline-primary searchNK-addFromBtn">
+              <span class="d-none d-sm-block">+</span>
+              <span class=" d-sm-none ">Add</span>
+            </button>
+          </div>
+          <div *ngIf="formIndex>0"
+            class="form-group col-3 offset-9 col-sm-1 offset-sm-0 col-md-1 col-lg-1  text-center">
+            <button type="button" (click)="removeCurrentRowClick(formIndex);"
+              class="btn btn-outline-primary searchNK-removeFromBtn">
+              <span class="d-none d-sm-block">-</span>
+              <span class="d-sm-none ">Remove</span>
+
+            </button>
+          </div>
+          <!--  -->
 
 
-  <div class="col-12 col-md-2 col-lg-1">
+        </div>
 
-    <a [routerLink]="['/favorite']" routerLinkActive="router-link-active" class="btn btn-link btn-icon px-0 ml-1">
-      <span class="">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20">
-          <g data-name="Group 56" transform="translate(-1076.221 -322)">
-            <path data-name="Path 3"
-              d="M14.975,6.3c-.219-2.592-1.925-4.473-4.059-4.473A3.991,3.991,0,0,0,7.459,3.969,3.854,3.854,0,0,0,4.084,1.826C1.95,1.826.244,3.707.025,6.3A4.951,4.951,0,0,0,.153,8,7.413,7.413,0,0,0,2.23,11.725l5.226,5.1,5.316-5.1A7.414,7.414,0,0,0,14.848,8,4.962,4.962,0,0,0,14.975,6.3Zm-.689,1.557a6.779,6.779,0,0,1-1.9,3.408L7.459,15.991,2.617,11.266a6.783,6.783,0,0,1-1.9-3.41A4.326,4.326,0,0,1,.594,6.4l0-.031C.786,4.1,2.252,2.447,4.084,2.447A3.4,3.4,0,0,1,7.192,4.778l.266.677.266-.677a3.5,3.5,0,0,1,3.193-2.331c1.832,0,3.3,1.648,3.489,3.949A4.321,4.321,0,0,1,14.286,7.856Z"
-              transform="translate(1076.22 325.174)" fill="#666" />
-            <circle data-name="Ellipse 2" cx="8" cy="8" r="8" transform="translate(1088.221 322)" fill="#f7941e" />
-            <text data-name="26" transform="translate(1096.221 333)" fill="#fff" font-size="10"
-              font-family="SegoeUI, Segoe UI">
-              <tspan x="-5.391" y="0">{{favoriteBadge}}</tspan>
-            </text>
-          </g>
-        </svg>
-      </span>
-      Favorite
-    </a>
-
+      </ng-container>
+      <!-- Dynamic Form ##End##  -->
+    </div>
   </div>
 
 
+  <div class="form-row">
 
-</div>
+    <div class="form-group col-12  col-sm-2 offset-sm-8 d-flex justify-content-end">
+
+      <button type="button" *ngIf="isAdvanced" class="btn btn-link searchNK-changeStateBtn"
+        (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_simplesearch">Simple Search</button>
+      <button type="button" *ngIf="!isAdvanced" class="btn btn-link searchNK-changeStateBtn"
+        (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_advancedSearch">Advanced Search</button>
+    </div>
+    <div class="form-group col-12 col-sm-2">
+
+      <button type="submit" [disabled]="criteriaForm.invalid" class="btn btn-primary searchNK-searchBtn"
+        i18n="@@lblsearch">Search</button>
+    </div>
+
+
+  </div>
+
+</form>

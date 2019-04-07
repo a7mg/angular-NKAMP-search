@@ -2,7 +2,7 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-           <trans-unit id="lblsearch_general" datatype="html">
+           <trans-unit id="lblsearch_dataSource" datatype="html">
         <source>General</source>
          <target>عام</target>
         <context-group purpose="location">
@@ -20,7 +20,7 @@
         </context-group>
       </trans-unit>
 
-            
+
  <trans-unit id="lblsearch_Containes" datatype="html">
         <source>Containes</source>
          <target>الجميع</target>
@@ -57,7 +57,7 @@
         </context-group>
       </trans-unit>
 
-      
+
                 <trans-unit id="lblsearch_simplesearch" datatype="html">
         <source>SimpleSearch</source>
          <target>البحث البسيط</target>
