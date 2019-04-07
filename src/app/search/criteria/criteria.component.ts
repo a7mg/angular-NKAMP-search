@@ -93,7 +93,7 @@ export class CriteriaComponent implements OnInit {
     return this.fb.group({
       Seachtext: ['', Validators.required],
       contain: [null],
-      operator: ['null'],
+      operator: ['AND'],
       Feild: [null]
     });
   }
