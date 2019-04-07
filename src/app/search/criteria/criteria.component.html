@@ -21,8 +21,8 @@
 
           <div *ngIf="formIndex>0"  class="form-group col-4  col-sm-3  col-md-1 col-lg-1">
             <select formControlName="operator" class="form-control  w-100">
-              <option [ngValue]="null" selected="selected"> AND </option>
-              <option value="OR"> OR </option>
+              <option [ngValue]="'AND'" selected="selected"> AND </option>
+              <option [ngValue]="'OR'"> OR </option>
             </select>
           </div>
 
