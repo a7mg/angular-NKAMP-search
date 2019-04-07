@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
   isLoading = false;
   favoriteBadge = 55;
+  isNoData = false;
   constructor() { }
 
   ngOnInit() {
