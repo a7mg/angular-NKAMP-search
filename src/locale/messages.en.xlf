@@ -3,7 +3,7 @@
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
 
-       <trans-unit id="lblsearch_general" datatype="html">
+       <trans-unit id="lblsearch_dataSource" datatype="html">
         <source>General</source>
          <target>General</target>
         <context-group purpose="location">
@@ -12,7 +12,7 @@
         </context-group>
       </trans-unit>
 
-           
+
     <trans-unit id="lblsearch_field" datatype="html">
         <source>Allfields</source>
         <target>All Fields</target>
@@ -22,7 +22,7 @@
         </context-group>
       </trans-unit>
 
-      
+
  <trans-unit id="lblsearch_Containes" datatype="html">
         <source>Containes</source>
          <target>Containes</target>
@@ -42,7 +42,7 @@
       </trans-unit>
 
 
-            
+
       <trans-unit id="lblsearch_errortext" datatype="html">
         <source>Please Enter Search Text</source>
           <target>Please Enter Search Text</target>
@@ -52,7 +52,7 @@
         </context-group>
       </trans-unit>
 
-      
+
            <trans-unit id="lblsearch" datatype="html">
         <source>Search</source>
         <target>Search</target>
