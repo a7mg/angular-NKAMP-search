@@ -119,9 +119,9 @@
           "allowedSearchOperations":[  
              {  
                 "id":"1111-1111-1111",
-                "aName":"يحتوى على",
-                "eName":"contain",
-                "fName":"contain"
+                "aName":"يبدأ",
+                "eName":"start",
+                "fName":"start"
              },
              {  
                 "id":"1111-1111-1111",
@@ -148,9 +148,9 @@
              },
              {  
                 "id":"1111-1111-1111",
-                "aName":"يبدأ",
-                "eName":"start",
-                "fName":"start"
+                "aName":"يحتوى على",
+                "eName":"contain",
+                "fName":"contain"
              }
           ],
           "id":"3333-3333-3333",

@@ -28,7 +28,7 @@ const HeaderRoutes = [
      ListComponent,
      FiltersComponent,
      ActiveSelectionComponent,
-     GategoryComponent
+     GategoryComponent,
     ],
   imports: [
     RouterModule.forChild(HeaderRoutes),

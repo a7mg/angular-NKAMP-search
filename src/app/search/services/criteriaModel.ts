@@ -17,3 +17,29 @@ export interface AllCriteriaSearch {
   operator: string;
   SeachText: string;
 }
+
+export interface searchKeyword{
+  id: string;
+  aName: string;
+  eName: string;
+  fName: string;
+  displayOrderNumber:number;
+  isGeneral:boolean,
+  materialTypeId:string
+  allowedSearchOperations:Criteria[];
+}
+
+
+export interface allowedSearchOperationsobj{
+  index:number;
+  allowedSearchOperations:Criteria[];
+}
+
+
+
+
+
+
+
+
+
