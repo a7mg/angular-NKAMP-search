@@ -3,7 +3,9 @@ import { SearchService } from '../services/search.service';
 import {
   Criteria,
   CriteriaSearch,
-  AllCriteriaSearch
+  AllCriteriaSearch,
+  searchKeyword,
+  allowedSearchOperationsobj
 } from '../services/criteriaModel';
 import {
   FormGroup,
@@ -33,6 +35,10 @@ export class CriteriaComponent implements OnInit {
   Seachtext: FormControl;
   lang: string;
   AllCriteriaSearch: AllCriteriaSearch;
+  searchKeyword:searchKeyword[]
+  allowedSearchOperations:allowedSearchOperationsobj[];
+  showitem:Criteria[]
+  selectFeild:searchKeyword;
 
   constructor(
     private _SearchService: SearchService,
@@ -45,6 +51,10 @@ export class CriteriaComponent implements OnInit {
     this.DataSources = [];
     this.AllFields = [];
     this.ContainsData = [];
+    this.searchKeyword=[];
+    this.allowedSearchOperations=[];
+    this.showitem=[]
+    this.selectFeild=<searchKeyword>{}
   }
 
   ngOnInit() {
@@ -65,6 +75,11 @@ export class CriteriaComponent implements OnInit {
       Data.facetFields.forEach(element => {
         this.AllFields.push(element);
       });
+
+      Data.searchKeyWords.forEach(element => {
+        this.searchKeyword.push(element);
+      });
+
     });
   }
 
@@ -92,7 +107,7 @@ export class CriteriaComponent implements OnInit {
   addSearchFormGroup() {
     return this.fb.group({
       Seachtext: ['', Validators.required],
-      contain: [null],
+      contain: [{value: null, disabled:true }],
       operator: ['AND'],
       Feild: [null]
     });
@@ -150,5 +165,23 @@ export class CriteriaComponent implements OnInit {
       }
     });
   }
+
+   onChange(indexControll:any,event): void {  
+    const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
+   var controll= currentCreteriaForms.at(indexControll) as FormGroup;
+console.log(controll);
+    const newVal = event.target.value;
+    if(newVal.split(':')[0] == 0){
+      controll.controls['contain'].disable()
+    }else{
+      controll.controls['contain'].enable()
+
+    
+    }
+ 
+  }
+
+
+
 
 }
