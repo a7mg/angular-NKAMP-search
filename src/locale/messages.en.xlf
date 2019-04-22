@@ -3,18 +3,8 @@
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
 
-       <trans-unit id="lblsearch_dataSource" datatype="html">
-        <source>General</source>
-         <target>General</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
-          <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
-
-
     <trans-unit id="lblsearch_field" datatype="html">
-        <source>Allfields</source>
+        <source>All Fields</source>
         <target>All Fields</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
