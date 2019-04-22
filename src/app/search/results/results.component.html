@@ -1,12 +1,11 @@
 <!--  fillter -->
-<app-filters></app-filters>
-<p>
-  results works!
-</p>
+<app-filters class="form-row" ></app-filters>
+
 <div class="row">
 
 <!-- col-xl-3 -->
-      <app-grid *ngFor="let item of [].constructor(10)" class="col-12 col-sm-6 col-md-4 col-lg-4"></app-grid>
+      <app-list *ngFor="let item of [].constructor(2)" class="col-12"></app-list>
+      <app-grid *ngFor="let item of [].constructor(4)" class="col-12 col-sm-6 col-md-4 col-lg-4"></app-grid>
 
 
 </div>
