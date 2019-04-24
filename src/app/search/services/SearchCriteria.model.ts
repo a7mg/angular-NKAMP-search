@@ -1,4 +1,4 @@
-export interface SearchKeyWord {
+export interface SearchKeyWordDetails {
    searchKeyWordId: string;
    materialTypeId: string;
    keyWordValue: string;
@@ -23,7 +23,7 @@ export interface SearchCriteria {
   searchProfileId: string;
   pageSize: number;
   dataSourcesId: string[];
-  searchKeyWords: SearchKeyWord[];
+  searchKeyWords: SearchKeyWordDetails[];
   facetsFilter: FacetFilter[];
   keywWordsOrderBy: KeywWordOrder[];
 }

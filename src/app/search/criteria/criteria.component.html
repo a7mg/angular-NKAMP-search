@@ -30,9 +30,7 @@
               'col-12 col-sm-12 col-md-4 col-lg-3': formIndex == 0 ,
               'col-4 col-sm-4 col-md-3 col-lg-2':  formIndex > 0
             }">
-            <!-- [(ngModel)]="selectFeild" -->
-            <select  formControlName="Feild"
-              (change)="onChange( formIndex, $event.target.value  )" class="form-control  w-100">
+            <select  formControlName="facetFC"  class="form-control  w-100">
               <option [ngValue]="null" selected="selected" i18n="@@lblsearch_field">Allfields</option>
               <option *ngFor="let Feild of searchKeyword" [ngValue]="Feild.id">
                 {{lang == 'ar'||lang=='ar-SA'  ?  Feild.aName :  (lang == 'fr'? Feild.fName :Feild.eName )}}
@@ -42,9 +40,9 @@
 
           <div class="form-group col-md-3  col-lg-3" [ngClass]="{ 'col-12 col-sm-12': formIndex == 0
               ,'col-4 col-sm-4':  formIndex > 0  }">
-            <select  formControlName="contain" class="form-control  w-100">
+            <select  formControlName="searchOperationFC" class="form-control  w-100">
               <option [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes">Containes</option>
-              <option *ngFor="let contain of getContainsData(formIndex)" [ngValue]="contain">
+              <option *ngFor="let contain of getContainsData(formIndex)" [ngValue]="contain.id">
                 {{lang == 'ar'||lang=='ar-SA'  ?  contain.aName :  (lang == 'fr'? contain.fName :contain.eName )}}
               </option>
             </select>
@@ -53,12 +51,12 @@
           <div class="form-group col-12 " [ngClass]="{
               'col-sm-12 col-md-5 col-lg-6 ': !isAdvanced ,
               'col-sm-11 col-md-4 col-lg-5 ': isAdvanced}">
-            <input type="text" formControlName="Seachtext" class="form-control w-100"
-              [ngClass]="{'is-invalid':  (search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)} "
+            <input type="text" formControlName="searchTextFC" class="form-control w-100"
+              [ngClass]="{'is-invalid':  (search.get('searchTextFC').invalid && search.get('searchTextFC').dirty)||(search.get('searchTextFC').invalid && search.get('searchTextFC').touched)} "
               i18n-placeholder="@@lblsearch_placeholder" placeholder="Searchtext">
             <div class="invalid-feedback"
-              *ngIf="(search.get('Seachtext').invalid && search.get('Seachtext').dirty)||(search.get('Seachtext').invalid && search.get('Seachtext').touched)">
-              <p *ngIf="search.get('Seachtext').errors['required']" i18n="@@lblsearch_errortext">Please Enter
+              *ngIf="(search.get('searchTextFC').invalid && search.get('searchTextFC').dirty)||(search.get('searchTextFC').invalid && search.get('searchTextFC').touched)">
+              <p *ngIf="search.get('searchTextFC').errors['required']" i18n="@@lblsearch_errortext">Please Enter
                 Search
                 Text</p>
             </div>
