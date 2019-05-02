@@ -19,6 +19,7 @@ export class FacetsComponent implements OnInit {
      this._SearchService.results$.subscribe(results =>{
       if ( results !== null ) {
           this.facetsArr = results.facetsSearchQueryStatistic;
+          console.log('facetsArr', this.facetsArr );
       }
     })
   }
