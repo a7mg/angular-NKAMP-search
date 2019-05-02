@@ -23,7 +23,7 @@ export class SearchService {
 
   getCriteriaDate(): Observable<any> {
     const body = { SearchProfile_id: 'a4819e0e-58f8-4676-b750-7808648b4ad4' };
-    return this.http.post<any>(this.Url + 'SearchConfiguration', JSON.stringify(body) ).pipe(
+    return this.http.post<any>(this.Url + 'SearchConfiguration',  body ).pipe(
       // map((data: any) => {
       //   return data;
       // }),

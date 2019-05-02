@@ -8,7 +8,7 @@ import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
   styleUrls: ['./facets.component.scss']
 })
 export class FacetsComponent implements OnInit {
-  protected facetsArr = [];
+  public   facetsArr = [];
   constructor(
     private _SearchService: SearchService,
     private _GlobalsService: GlobalsService) {
