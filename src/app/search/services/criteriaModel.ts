@@ -18,7 +18,7 @@ export interface AllCriteriaSearch {
   SeachText: string;
 }
 
-export interface SearchKeyword{
+export interface SearchKeyword {
   id: string;
   aName: string;
   eName: string;
