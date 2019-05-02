@@ -12,7 +12,6 @@ import { NkampInterceptor } from './interceptor';
   declarations: [
     AppComponent,
     DigitalLibraryComponent,
-    BookDetailsComponent,
     OrderByPipe
   ],
   imports: [
