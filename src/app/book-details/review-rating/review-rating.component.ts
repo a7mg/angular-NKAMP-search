@@ -9,7 +9,7 @@ import { BookDetailsService } from '../sevrices/book-details.service';
 })
 export class ReviewRatingComponent implements OnInit {
   commentsList =[];
-  count;
+  // count;
   constructor(private bookDetailsService: BookDetailsService) { }
   ngOnInit() {
       
@@ -23,20 +23,30 @@ export class ReviewRatingComponent implements OnInit {
   }
 
     this.bookDetailsService.getComment(commentsRequestBody).subscribe(  Data  =>{
-       
-        if(Data.Item_Operations !== null){
+        if(Data !== null){
           Data.forEach((currentElement) => {
-            for(this.count= 0; this.count<currentElement.Item_Operations.comments.length; this.count++){
-                console.log( currentElement.Item_Operations.comments[this.count]);
-                this.commentsList.push(currentElement.Item_Operations.comments[this.count]);
-            }
-            console.log(this.commentsList);
+            console.log( currentElement.Item_Operations.comments.comment);
+            this.commentsList.push(currentElement.Item_Operations.comments.comment);
           });
-         
         }
         else{
           console.log('no data');
         }
+        // old json syntax
+        // if(Data[0].Item_Operations.comments !== null){
+        //   console.log(Data[0].Item_Operations.comments.comment);
+        //   this.commentsList.push(Data[0].Item_Operations.comments.comment);
+        //   Data[0].forEach((currentElement) => {
+        //     for(this.count= 0; this.count<currentElement.Item_Operations.comments.length; this.count++){
+        //         console.log( currentElement.Item_Operations.comments[this.count]);
+        //         this.commentsList.push(currentElement.Item_Operations.comments[this.count]);
+        //     }
+        //     console.log(this.commentsList);
+        //   });       
+        // }
+        // else{
+        //   console.log('no data');
+        // }
       }
     );
   }

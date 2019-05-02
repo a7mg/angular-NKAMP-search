@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/Naseej-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
@@ -18,7 +18,29 @@ export class BookDetailsService {
   }
 
   getComment(requestBody) : Observable<any>{
-    return this.http.post<any>(this.Url + 'ItemOperation/GetItemOperationDetails', requestBody).pipe(
+    return this.http.get<any>('./assets/NkampData/BookDetails.json').pipe(
+      map((data: any) => {
+        return data;
+      }),
+      catchError((error: Error) => {
+        const errParams: any[] = [];
+        errParams.push(`API_URL = ${this.Url}`);
+        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
+        this.errorLogging.error(
+          'ItemOperation/GetItemOperationDetails',
+          `${error.name} --> ${error.message} --> ${error.stack}` ||
+          `${error.name} --> ${error.message}`,
+          errParams
+        );
+        return of([] as any[]);
+      })
+    );
+  }
+  addNewComment(requestBody) : Observable<any>{
+    return this.http.post<any>(this.Url + 'ItemOperation/AddComment', requestBody).pipe(
+      map((data: any) => {
+        return data;
+      }),
       catchError((error: Error) => {
         const errParams: any[] = [];
         errParams.push(`API_URL = ${this.Url}`);
