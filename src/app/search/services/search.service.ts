@@ -14,7 +14,8 @@ import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
 })
 export class SearchService {
   Url: string; // = "https://10.0.6.154:8245/Search10/1.0.0/SearchConfiguration";
-   public results$ = new BehaviorSubject(null);
+  public results$ = new BehaviorSubject(null);
+
   constructor(private http: HttpClient, appConfig: AppConfigService,
     public globals: GlobalsService,
     private errorLogging: ErrorLoggingService) {
@@ -23,11 +24,11 @@ export class SearchService {
 
   getCriteriaDate(): Observable<any> {
     const body = { SearchProfile_id: 'a4819e0e-58f8-4676-b750-7808648b4ad4' };
-    return this.http.post<any>(this.Url + 'SearchConfiguration',  body ).pipe(
+    return this.http.post<any>(this.Url + 'SearchConfiguration', body).pipe(
       // map((data: any) => {
       //   return data;
       // }),
-       catchError((error: Error) => {
+      catchError((error: Error) => {
         const errParams: any[] = [];
         errParams.push(`API_URL = ${this.Url}`);
         errParams.push(`UILanguage = ${this.globals.UILanguage}`);
@@ -43,7 +44,7 @@ export class SearchService {
   }
 
   getResults(serachCriteria): Observable<any> {
-    return this.http.post<any>(this.Url + 'MakeNewSearch',  serachCriteria ).pipe(
+    return this.http.post<any>(this.Url + 'MakeNewSearch', serachCriteria).pipe(
       map((data: any) => {
         return data;
       }), catchError((error: Error) => {
