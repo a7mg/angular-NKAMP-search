@@ -15,6 +15,7 @@ import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
 export class SearchService {
   Url: string; // = "https://10.0.6.154:8245/Search10/1.0.0/SearchConfiguration";
   public results$ = new BehaviorSubject(null);
+  public searchConfiguration$ = new BehaviorSubject(null);
 
   constructor(private http: HttpClient, appConfig: AppConfigService,
     public globals: GlobalsService,
@@ -22,9 +23,8 @@ export class SearchService {
     this.Url = appConfig.configdata.apiUrl;
   }
 
-  getCriteriaDate(): Observable<any> {
-    const body = { SearchProfile_id: 'a4819e0e-58f8-4676-b750-7808648b4ad4' };
-    return this.http.post<any>(this.Url + 'SearchConfiguration',  body ).pipe(
+  getSearchConfiguration(bodyRequest): Observable<any> {
+    return this.http.post<any>(this.Url + 'SearchConfiguration',  bodyRequest ).pipe(
       map((data: any) => {
         return data;
       }),
@@ -61,7 +61,5 @@ export class SearchService {
       })
     );
   }
-
-
 
 }
