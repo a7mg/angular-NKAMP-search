@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FavoriteComponent } from './favorite.component';
 import { RouterModule } from '@angular/router';
 import { FavoriteItemsComponent } from './favorite-items/favorite-items.component';
-import { FavoritSendMailComponent } from './favorit-send-mail/favorit-send-mail.component';
 import { FavoriteSearchComponent } from './favorite-search/favorite-search.component';
+import { FormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 const HeaderRoutes = [
   { path: '', component: FavoriteComponent }
 ];
@@ -12,12 +14,15 @@ const HeaderRoutes = [
   declarations: [ 
     FavoriteComponent, 
     FavoriteItemsComponent, 
-    FavoritSendMailComponent,
     FavoriteSearchComponent
+
   ],
   imports: [
     RouterModule.forChild(HeaderRoutes),
-    CommonModule
+    CommonModule,
+    FormsModule,
+    NgbModule,
+    NgbPaginationModule
   ]
 })
 export class FavoriteModule { }
