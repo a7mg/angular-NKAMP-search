@@ -62,7 +62,7 @@ export class CriteriaComponent implements OnInit {
   }
 
   getAllDataCriteria() {
-    this._SearchService.getCriteriaDate().subscribe(data => {
+    this._SearchService.searchConfiguration$.subscribe( data => {
       console.log('getAllDataCriteria => ', data);
       if (data != null) {
 

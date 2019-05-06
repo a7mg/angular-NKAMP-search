@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gategory.component.scss']
 })
 export class GategoryComponent implements OnInit {
-
+isRadioButton = true;
   constructor() { }
 
   ngOnInit() {

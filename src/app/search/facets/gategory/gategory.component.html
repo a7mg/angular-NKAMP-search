@@ -1,22 +1,36 @@
+<!-- <p-accordion>
+  <p-accordionTab header="Header 1">
+     Content 1
+  </p-accordionTab>
+  <p-accordionTab header="Header 2">
+      Content 2
+  </p-accordionTab>
+  <p-accordionTab header="Header 3">
+      Content 3
+  </p-accordionTab>
+</p-accordion> -->
 
+<div class="category-header">
+  <h5 class="">Title </h5>
+</div>
 
-   <label class="controlRC controlRC-radio d-block">
-       First radio
-           <input type="radio" name="radio" checked="checked" />
-       <div class="controlRC_indicator"></div>
-   </label>
-   <label class="controlRC controlRC-radio">
-       Second radio
-           <input type="radio" name="radio" />
-       <div class="controlRC_indicator"></div>
-   </label>
-   <label class="controlRC controlRC-radio">
-       Disabled
-           <input type="radio" name="radio2" disabled="disabled" />
-       <div class="controlRC_indicator"></div>
-   </label>
-   <label class="controlRC controlRC-radio">
-       Disabled & checked
-           <input type="radio" name="radio2" disabled="disabled" checked="checked" />
-       <div class="controlRC_indicator"></div>
-   </label>
+<label class="controlRC">
+    All
+    <input type="{{isRadioButton?'radio':'checkbox'}}" name="radio" />
+    <div class="controlRC_indicator"></div>
+</label>
+<label class="controlRC">
+    controlRC
+    <input type="{{isRadioButton?'radio':'checkbox'}}" name="radio" />
+    <div class="controlRC_indicator"></div>
+</label>
+<!-- <label class="controlRC">
+    Disabled & Not Checked
+    <input type="{{isRadioButton?'radio':'checkbox'}}" name="radio2" disabled="disabled" />
+    <div class="controlRC_indicator"></div>
+</label>
+<label class="controlRC">
+    Disabled & checked
+    <input type="{{isRadioButton?'radio':'checkbox'}}" name="radio2" disabled="disabled" checked="checked" />
+    <div class="controlRC_indicator"></div>
+</label> -->

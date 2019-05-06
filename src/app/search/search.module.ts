@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { ProgressSpinnerModule } from 'primeng/progressspinner'
-
 import { SearchComponent } from '../search/search.component';
 import { ResultsComponent } from './results/results.component';
 import { FacetsComponent } from './facets/facets.component';
@@ -14,6 +12,8 @@ import { GategoryComponent } from './facets/gategory/gategory.component';
 import { GridComponent } from '../Common/grid/grid.component';
 import { ListComponent } from '../Common/list/list.component';
 import { CriteriaComponent } from './criteria/criteria.component';
+
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 const HeaderRoutes = [
@@ -35,7 +35,7 @@ const HeaderRoutes = [
   imports: [
     RouterModule.forChild(HeaderRoutes),
     CommonModule,
-    ProgressSpinnerModule,
+     ProgressSpinnerModule,
     ReactiveFormsModule
   ]
 })
