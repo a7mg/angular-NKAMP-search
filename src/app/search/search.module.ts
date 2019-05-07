@@ -9,11 +9,11 @@ import { FacetsComponent } from './facets/facets.component';
 import { FiltersComponent } from './results/filters/filters.component';
 import { ActiveSelectionComponent } from './active-selection/active-selection.component';
 import { GategoryComponent } from './facets/gategory/gategory.component';
-import { GridComponent } from '../Common/grid/grid.component';
 import { ListComponent } from '../Common/list/list.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
 
 
 const HeaderRoutes = [
@@ -26,7 +26,6 @@ const HeaderRoutes = [
      ResultsComponent,
      CriteriaComponent,
      FacetsComponent,
-     GridComponent,
      ListComponent,
      FiltersComponent,
      ActiveSelectionComponent,
@@ -34,9 +33,9 @@ const HeaderRoutes = [
     ],
   imports: [
     RouterModule.forChild(HeaderRoutes),
-    CommonModule,
-     ProgressSpinnerModule,
-    ReactiveFormsModule
+    ProgressSpinnerModule,
+    ReactiveFormsModule,
+    NaseejSharedModule
   ]
 })
 export class SearchModule { }

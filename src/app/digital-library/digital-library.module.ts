@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { GridComponent } from '../Common/grid/grid.component';
+import { CommonModule } from '@angular/common'; 
+
+import { BrowserModule } from '@angular/platform-browser';
 
 import { SwiperModule, SwiperConfigInterface,
   SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { DigitalLibraryComponent } from './digital-library.component';
+import { RouterModule } from '@angular/router';
+import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
+
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
   direction: 'horizontal',
@@ -12,14 +18,18 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   slidesPerView: 1,
   centeredSlides: true
 };
-
+const HeaderRoutes = [
+  { path: '', component:  DigitalLibraryComponent }
+];
 @NgModule({
   declarations: [
-    GridComponent
+    DigitalLibraryComponent
+
   ],
   imports: [
-    CommonModule,
-    SwiperModule
+    RouterModule.forChild(HeaderRoutes),
+    SwiperModule,
+    NaseejSharedModule
   ],
   providers: [
     {
