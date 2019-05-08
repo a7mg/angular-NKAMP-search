@@ -18,7 +18,7 @@ export class BookDetailsService {
   }
 
   getComment(requestBody) : Observable<any>{
-    return this.http.get<any>('./assets/NkampData/BookDetails.json').pipe(
+    return this.http.get<any>('./assets/NkampData/GetItemOperationDetails.json').pipe(
       map((data: any) => {
         return data;
       }),
