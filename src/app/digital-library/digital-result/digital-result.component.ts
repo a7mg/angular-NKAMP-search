@@ -67,7 +67,7 @@ export class DigitalResultComponent implements OnInit {
     slidesPerView: 7,
     keyboard: true,
     mousewheel: true,
-    scrollbar: false,
+    scrollbar: true,
     navigation: true,
     pagination: false,
     breakpoints: {
