@@ -19,9 +19,10 @@ import {
   SharedModule
 } from "primeng/primeng";
 import { MessagesModule } from "primeng/messages";
-import { UrlSerializer } from "@angular/router";
+import { UrlSerializer, RouterModule } from "@angular/router";
 import { LowerCaseUrlSerializer } from "./services/lowercase-url-deserializer";
 import { ErrorHandlingModule } from "../Naseej-error-handling/error-handling.module";
+import { GridComponent } from '../Common/grid/grid.component';
 // ------------------------------------------------------------------------------------------------------------ //
 export const providers = [
   {
@@ -31,7 +32,11 @@ export const providers = [
 ];
 // ------------------------------------------------------------------------------------------------------------ //
 @NgModule({
+  declarations:[
+    GridComponent 
+  ],
   imports: [
+    RouterModule,
     CommonModule,
     HttpClientModule,
     FormsModule,
@@ -54,7 +59,8 @@ export const providers = [
     BlockUIModule,
     PanelModule,
     SharedModule,
-    ErrorHandlingModule
+    ErrorHandlingModule,
+    GridComponent
   ]
 })
 export class NaseejSharedModule {

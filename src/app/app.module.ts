@@ -11,15 +11,12 @@ import { NkampInterceptor } from './interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    DigitalLibraryComponent,
     OrderByPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-
-
+    HttpClientModule
   ],
   providers: [
     {

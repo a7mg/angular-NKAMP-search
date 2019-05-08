@@ -28,6 +28,7 @@
             ],
             "styles": [
               "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/swiper/dist/css/swiper.min.css",
               "src/styles.scss"
             ],
             "scripts": [],
