@@ -1,15 +1,24 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4 col-12">
-            <div class="bookDetails-image">
+            <div class="bookDetails-image" *ngIf="isOneImage == true">
                 <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
+            </div>
+            <div class="bookDetails-image imageslider" *ngIf="isOneImage == false">
+                    <!-- <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
+                            <div *ngFor="let slide of slides" class="swiper-slide">
+                               <div class="bookDetails-image-slide">
+                                    <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
+                               </div>          
+                            </div>
+                    </swiper> -->
             </div>
 
         </div>
         <div class="col-sm-8 col-12">
             <div class="oneBook">
                 <h2 class="oneBook-title no-padding no-margin">
-                    {{this.bookDetails.title}}
+                    {{bookDetails.title}}
                 </h2><!-- end title -->
                 <div class="oneBook-rating-review">
                     <div class="rating">
@@ -17,12 +26,12 @@
                         <ngb-rating [(rate)]="currentRate"></ngb-rating>
                     </div> <!-- end rating -->
                     <div class="review">
-                        <span>{{this.bookDetails.views_count}}</span>
+                        <span>{{bookDetails.views_count}}</span>
                         <span>review</span>
                     </div> <!-- end review -->
                 </div> <!-- end rating and review -->
                 <p class="oneBook-pref no-padding no-margin">
-                   {{this.bookDetails.description}}
+                   {{bookDetails.description}}
                 </p> <!-- end paragraph -->
                 <div class="oneBook-descrption">
                     <div class="row">
