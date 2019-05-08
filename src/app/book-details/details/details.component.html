@@ -2,29 +2,27 @@
     <div class="row">
         <div class="col-sm-4 col-12">
             <div class="bookDetails-image">
-                
-                <img class="img-fluid" src="./assets/Branding/images/1.png" alt="bookDetailsImage">
+                <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
             </div>
 
         </div>
         <div class="col-sm-8 col-12">
             <div class="oneBook">
                 <h2 class="oneBook-title no-padding no-margin">
-                    Title of the Item goes here and will be written in two lines
+                    {{this.bookDetails.title}}
                 </h2><!-- end title -->
                 <div class="oneBook-rating-review">
                     <div class="rating">
-                        <img class="img-fluid" src="./assets/Branding/images/r1.png" alt="bookDetailsImage">
+                        <!-- <img class="img-fluid" src="./assets/Branding/images/r1.png" alt="bookDetailsImage"> -->
+                        <ngb-rating [(rate)]="currentRate"></ngb-rating>
                     </div> <!-- end rating -->
                     <div class="review">
-                        <span>158</span>
+                        <span>{{this.bookDetails.views_count}}</span>
                         <span>review</span>
                     </div> <!-- end review -->
                 </div> <!-- end rating and review -->
                 <p class="oneBook-pref no-padding no-margin">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                   {{this.bookDetails.description}}
                 </p> <!-- end paragraph -->
                 <div class="oneBook-descrption">
                     <div class="row">

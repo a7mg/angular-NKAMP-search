@@ -36,6 +36,25 @@ export class BookDetailsService {
       })
     );
   }
+  getBookDetails(requestBody) : Observable<any>{
+    return this.http.get<any>('./assets/NkampData/GetItemOperationDetails.json').pipe(
+      map((data: any) => {
+        return data;
+      }),
+      catchError((error: Error) => {
+        const errParams: any[] = [];
+        errParams.push(`API_URL = ${this.Url}`);
+        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
+        this.errorLogging.error(
+          'ItemOperation/GetItemOperationDetails',
+          `${error.name} --> ${error.message} --> ${error.stack}` ||
+          `${error.name} --> ${error.message}`,
+          errParams
+        );
+        return of([] as any[]);
+      })
+    );
+  }
   addNewComment(requestBody) : Observable<any>{
     return this.http.post<any>(this.Url + 'ItemOperation/AddComment', requestBody).pipe(
       map((data: any) => {

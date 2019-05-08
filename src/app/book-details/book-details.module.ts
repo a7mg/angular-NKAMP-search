@@ -8,8 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { ReviewRatingComponent } from './review-rating/review-rating.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { RouterModule } from '@angular/router';
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const HeaderRoutes = [
   { path: '', component:  BookDetailsComponent }
 ];
@@ -27,7 +26,8 @@ const HeaderRoutes = [
     RouterModule.forChild(HeaderRoutes),
     CommonModule,
     FormsModule,
-    RatingModule
+    RatingModule,
+    NgbModule
   ]
 })
 export class BookDetailsModule { }
