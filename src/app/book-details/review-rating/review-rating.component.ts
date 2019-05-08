@@ -9,7 +9,7 @@ import { BookDetailsService } from '../sevrices/book-details.service';
 })
 export class ReviewRatingComponent implements OnInit {
   commentsList =[];
-  // count;
+  count;
   constructor(private bookDetailsService: BookDetailsService) { }
   ngOnInit() {
       
@@ -25,8 +25,13 @@ export class ReviewRatingComponent implements OnInit {
     this.bookDetailsService.getComment(commentsRequestBody).subscribe(  Data  =>{
         if(Data !== null){
           Data.forEach((currentElement) => {
-            console.log( currentElement.Item_Operations.comments.comment);
-            this.commentsList.push(currentElement.Item_Operations.comments.comment);
+            // console.log( currentElement.Item_Operations.comments.comment);
+            // this.commentsList.push(currentElement.Item_Operations.comments.comment);
+            for(this.count= 0; this.count<currentElement.Item_Operations.comments.length; this.count++){
+                      console.log( currentElement.Item_Operations.comments[this.count]);
+                      this.commentsList.push(currentElement.Item_Operations.comments[this.count]);
+                  }
+                  console.log(this.commentsList);
           });
         }
         else{
