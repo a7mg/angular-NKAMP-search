@@ -18,7 +18,7 @@ export class AddReviewComponent implements OnInit {
     userRating:'',
     userComment: ''
   }
-  currentRate= 0;
+  currentRate:number;
   addCommentRequestBody = {
     "primaryItemSourceId": "ggggjjjjggggg",
     "itemIndexId": "gggggggggggg",
@@ -74,17 +74,17 @@ export class AddReviewComponent implements OnInit {
     }
   }
   addRating(){
-    this.addRatingRequestBody.Rate= this.currentRate.toString();
-    console.log(this.addRatingRequestBody.Rate);
-    this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
-      if(Data.Item_Operations.msg == "updated"){
-        console.log("sucess");
-      }
-      else{
-        console.log('no data');
-      }
+    // this.addRatingRequestBody.Rate= this.currentRate.toString();
+    // console.log(this.addRatingRequestBody.Rate);
+    // this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
+    //   if(Data == "updated"){
+    //     console.log("sucess");
+    //   }
+    //   else{
+    //     console.log('no data');
+    //   }
       
-    });
+    // });
   }
 
 }
