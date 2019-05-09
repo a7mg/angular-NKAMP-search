@@ -104,17 +104,5 @@ export class DigitalResultComponent implements OnInit {
   clicked(){
     this.isClicked= !this.isClicked;
   }
-  // const slider = document.querySelector('.slider');
-  // const options = document.querySelector('.options');
 
-  // const clickHandler = () => {
-  //       const children = this.options.children
-
-  //       this.slider.classList.toggle('active');
-  //       for (let i = 0; i < 2; i++) {
-  //           children[i].classList.toggle('white');    
-  //       }
-  // }
-
-  // this.options.onClick('click', clickHandler);
 }
