@@ -1,49 +1,5 @@
-<app-active-selection></app-active-selection>
-<div class="facet">
-  <div class="facet-header">
+<p>
+  facets works!
+</p>
 
-    <p class="border-bottom d-flex facet-title mb-2">
-      <span class="col is-active p-0 text">
-        Title
-      </span>
-      <span class="col text">
-        Visual
-      </span>
-    </p>
-
-    <span class="facet-collapseIcon is-collapsed">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 9.415 6.128">
-          <path d="M4,0,0,3.925,4,8" transform="translate(0.714 4.714) rotate(-90)" fill="none" stroke-width="2" />
-        </svg>
-
-      </span>
-  </div>
-
-  <div class="facet-controls">
-    <label class="controlRC">
-      <span class="text">All</span>
-      <span class="count float-right">245102</span>
-      <input type="{{false?'radio':'checkbox'}}" name="radio" />
-      <div class="controlRC_indicator"></div>
-    </label>
-
-    <label class="controlRC">
-      <span class="text">All All All All All All All All</span>
-      <span class="count float-right">24502</span>
-      <input type="{{false?'radio':'checkbox'}}" name="radio" />
-      <div class="controlRC_indicator"></div>
-    </label>
-  </div>
-
-  <button type="button" class="btn btn-link p-0 mb-4">
-    <span>Show More </span>
-    <span>Show Less </span>
-  </button>
-
-
-  <button type="button" class="btn btn-primary w-100">
-    Apply
-  </button>
-
-</div>
-<app-gategory *ngFor="let control of facetsArr" class="controlRC-group"></app-gategory>
+<app-gategory *ngFor="let control of facetsArr" class="controlRC-group" ></app-gategory>

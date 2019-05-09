@@ -40,8 +40,8 @@ export class DetailsComponent implements OnInit {
         // console.log(Data[0].Item_Operations);
         // console.log(Data.length);
         Data.forEach(element => {
-          console.log(element.Item_Operations.addtionFieldsInDetail);
-          element.Item_Operations.addtionFieldsInDetail.forEach(element => {
+          console.log(element.addtionFieldsInDetail);
+          element.addtionFieldsInDetail.forEach(element => {
             console.log(element);
             console.log(element.inputHtmlTypeName);
             if(element.inputHtmlTypeName == "image"){
@@ -49,10 +49,10 @@ export class DetailsComponent implements OnInit {
             }
            
           });
-          this.bookDetails.title = element.Item_Operations.title;
-          this.bookDetails.coverImage = element.Item_Operations.coverImage;
-          this.bookDetails.description = element.Item_Operations.description;
-          this.bookDetails.views_count= element.Item_Operations.views_count;
+          this.bookDetails.title = element.title;
+          this.bookDetails.coverImage = element.coverImage;
+          this.bookDetails.description = element.description;
+          this.bookDetails.views_count= element.views_count;
           // console.log(this.bookDetails);
         });
       }

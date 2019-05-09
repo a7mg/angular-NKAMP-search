@@ -5,13 +5,13 @@
                 <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
             </div>
             <div class="bookDetails-image imageslider" *ngIf="isOneImage == false">
-                    <!-- <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
+                    <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
                             <div *ngFor="let slide of slides" class="swiper-slide">
                                <div class="bookDetails-image-slide">
                                     <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
                                </div>          
                             </div>
-                    </swiper> -->
+                    </swiper>
             </div>
 
         </div>
