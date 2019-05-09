@@ -11,6 +11,7 @@ import { ReviewRatingComponent } from './review-rating/review-rating.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
@@ -45,7 +46,8 @@ const HeaderRoutes = [
     CommonModule,
     FormsModule,
     RatingModule,
-    NgbModule
+    NgbModule,
+    SweetAlert2Module.forRoot()
   ]
 })
 export class BookDetailsModule { }
