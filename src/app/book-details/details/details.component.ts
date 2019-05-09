@@ -8,14 +8,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-  public slides = [
-    'First slide',
-    'Second slide',
-    'Third slide',
-    'Fourth slide',
-    'Fifth slide',
-    'Sixth slide'
-  ];
+  public slides = [];
   bookDetails = {
     title: '',
     description: '',
@@ -46,8 +39,8 @@ export class DetailsComponent implements OnInit {
             console.log(element.inputHtmlTypeName);
             if(element.inputHtmlTypeName == "image"){
                 this.isOneImage = false;
+                this.slides.push(element.insertedData);
             }
-           
           });
           this.bookDetails.title = element.title;
           this.bookDetails.coverImage = element.coverImage;
