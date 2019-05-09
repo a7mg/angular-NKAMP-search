@@ -74,8 +74,16 @@ export class AddReviewComponent implements OnInit {
     }
   }
   addRating(){
+    this.addRatingRequestBody.Rate= this.currentRate.toString();
+    console.log(this.addRatingRequestBody.Rate);
     this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
-      console.log(Data);
+      if(Data.Item_Operations.msg == "updated"){
+        console.log("sucess");
+      }
+      else{
+        console.log('no data');
+      }
+      
     });
   }
 
