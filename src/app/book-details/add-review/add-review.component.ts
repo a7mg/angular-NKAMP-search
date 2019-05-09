@@ -1,12 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+// import swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 import { BookDetailsService } from '../sevrices/book-details.service';
-import swal from 'sweetalert2';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-add-review',
   templateUrl: './add-review.component.html',
-  styleUrls: ['./add-review.component.scss']
+  styleUrls: ['./add-review.component.scss'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class AddReviewComponent implements OnInit {
   @ViewChild('formEle') formElement : NgForm;
@@ -15,7 +18,6 @@ export class AddReviewComponent implements OnInit {
     userRating:'',
     userComment: ''
   }
-  constructor(private bookDetailsService: BookDetailsService) { }
   addCommentRequestBody = {
     "primaryItemSourceId": "ggggjjjjggggg",
     "itemIndexId": "gggggggggggg",
@@ -32,11 +34,18 @@ export class AddReviewComponent implements OnInit {
         "email": "abc@xyz.com",
         "commentApprovalDate": "2019-04-03"
     }
+    
   }
+
+  constructor(private bookDetailsService: BookDetailsService,config: NgbModalConfig, private modalService: NgbModal) { 
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
+ 
   ngOnInit() {
 
   }
-  addComment(){
+  addComment(content){
     
     if(this.formElement.value.comment){
       this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
@@ -44,6 +53,7 @@ export class AddReviewComponent implements OnInit {
       this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  =>{
         if(Data.Item_Operations.msg == "updated"){
             console.log("sucess");
+            this.modalService.open(content);
         }
         else{
           console.log('no data');
