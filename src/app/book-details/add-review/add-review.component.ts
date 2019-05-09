@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BookDetailsService } from '../sevrices/book-details.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ConsoleReporter } from 'jasmine';
 
 
 @Component({
@@ -47,7 +46,9 @@ export class AddReviewComponent implements OnInit {
     "materialTypeName": "materialTypeName1",
     "Rate": "5"
   };
-  constructor(private bookDetailsService: BookDetailsService,config: NgbModalConfig, private modalService: NgbModal) { 
+  constructor(private bookDetailsService: BookDetailsService, 
+              config: NgbModalConfig, 
+              private modalService: NgbModal) { 
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -61,7 +62,7 @@ export class AddReviewComponent implements OnInit {
       // console.log(this.addCommentRequestBody);
       this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  =>{
         if(Data.Item_Operations.msg == "updated"){
-            console.log("sucess");
+            // console.log("sucess");
             this.modalService.open(content);
         }
         else{
@@ -73,7 +74,9 @@ export class AddReviewComponent implements OnInit {
     }
   }
   addRating(){
-    
+    this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
+      console.log(Data);
+    });
   }
 
 }

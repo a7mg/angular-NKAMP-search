@@ -30,9 +30,7 @@ export class ReviewRatingComponent implements OnInit {
             for(this.count= 0; this.count<currentElement.comments.length; this.count++){
                       this.commentsList.push(currentElement.comments[this.count]);
             }
-            
           });
-          console.log(this.commentsList);
         }
         else{
           console.log('no data');

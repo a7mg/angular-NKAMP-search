@@ -94,7 +94,7 @@ export class BookDetailsService {
     );
   }
   addNewRating(requestBody) : Observable<any>{
-    return this.http.post<any>(this.Url + 'ItemOperation/AddComment', requestBody).pipe(
+    return this.http.post<any>(this.Url + 'ItemOperation/RateItem', requestBody).pipe(
       map((data: any) => {
         return data;
       }),

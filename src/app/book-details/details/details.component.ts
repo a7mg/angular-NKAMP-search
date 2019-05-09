@@ -99,8 +99,8 @@ export class DetailsComponent implements OnInit {
   caculateRating(ratingList){
     let totalRating = ratingList.l1Count + ratingList.l2Count + ratingList.l3Count + ratingList.l4Count + ratingList.l5Count;
     let OverAllRating = (5*ratingList.l1Count + 4*ratingList.l2Count + 3*ratingList.l3Count + 2*ratingList.l4Count + 1*ratingList.l5Count) / (totalRating);
-    console.log(Math.round(OverAllRating));
-    this.currentRate= OverAllRating + 1;
+    // console.log(Math.round(OverAllRating));
+    this.currentRate= Math.round(OverAllRating);
   }
 
   
