@@ -1,30 +1,37 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4 col-12">
-            <div class="bookDetails-image">
-                
-                <img class="img-fluid" src="./assets/Branding/images/1.png" alt="bookDetailsImage">
+            <div class="bookDetails-image" *ngIf="isOneImage == true">
+                <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
+            </div>
+            <div class="bookDetails-image imageslider" *ngIf="isOneImage == false">
+                    <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
+                            <div *ngFor="let slide of slides" class="swiper-slide">
+                               <div class="bookDetails-image-slide">
+                                    <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
+                               </div>          
+                            </div>
+                    </swiper>
             </div>
 
         </div>
         <div class="col-sm-8 col-12">
             <div class="oneBook">
                 <h2 class="oneBook-title no-padding no-margin">
-                    Title of the Item goes here and will be written in two lines
+                    {{bookDetails.title}}
                 </h2><!-- end title -->
                 <div class="oneBook-rating-review">
                     <div class="rating">
-                        <img class="img-fluid" src="./assets/Branding/images/r1.png" alt="bookDetailsImage">
+                        <!-- <img class="img-fluid" src="./assets/Branding/images/r1.png" alt="bookDetailsImage"> -->
+                        <ngb-rating [(rate)]="currentRate"></ngb-rating>
                     </div> <!-- end rating -->
                     <div class="review">
-                        <span>158</span>
+                        <span>{{bookDetails.views_count}}</span>
                         <span>review</span>
                     </div> <!-- end review -->
                 </div> <!-- end rating and review -->
                 <p class="oneBook-pref no-padding no-margin">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                   {{bookDetails.description}}
                 </p> <!-- end paragraph -->
                 <div class="oneBook-descrption">
                     <div class="row">
