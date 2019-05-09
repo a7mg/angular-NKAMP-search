@@ -14,10 +14,10 @@
           </ng-template>
           
       <h2 class="addReview-title no-padding no-margin">Add Review</h2>
+      <div class="addReview-rating">
+          <ngb-rating [(rate)]="currentRate" [max]="5" (click)="addRating()"></ngb-rating>
+      </div>
       <form (ngSubmit)="addComment(content)" #formEle="ngForm">
-          <div class="addReview-rating">
-              <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
-          </div>
           <div class="addReview-comment">
               <textarea class="addReview-comment-area w-100 border-0"
                         name="comment" 

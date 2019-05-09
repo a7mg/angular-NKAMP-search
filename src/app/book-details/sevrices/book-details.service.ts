@@ -93,7 +93,7 @@ export class BookDetailsService {
       })
     );
   }
-  addRating(requestBody) : Observable<any>{
+  addNewRating(requestBody) : Observable<any>{
     return this.http.post<any>(this.Url + 'ItemOperation/AddComment', requestBody).pipe(
       map((data: any) => {
         return data;

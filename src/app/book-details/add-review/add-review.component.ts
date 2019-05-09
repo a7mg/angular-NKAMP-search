@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BookDetailsService } from '../sevrices/book-details.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConsoleReporter } from 'jasmine';
 
 
 @Component({
@@ -70,6 +71,9 @@ export class AddReviewComponent implements OnInit {
     }else{
       console.log("please enter data");
     }
+  }
+  addRating(){
+    
   }
 
 }
