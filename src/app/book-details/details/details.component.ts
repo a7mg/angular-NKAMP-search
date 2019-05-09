@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BookDetailsService } from '../sevrices/book-details.service';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss'],
+  providers: [NgbRatingConfig]
 })
 export class DetailsComponent implements OnInit {
   isOneImage= true;
@@ -17,8 +19,10 @@ export class DetailsComponent implements OnInit {
     coverImage: '',
     views_count: 0
   };
-  currentRate = 8;
-  constructor(private bookDetailsService: BookDetailsService) { }
+  currentRate: number;
+  constructor(private bookDetailsService: BookDetailsService, config: NgbRatingConfig) { 
+    config.readonly = true;
+  }
   ngOnInit() {
     const commentsRequestBody = {
       "primaryItemSourceId": "primaryItemSourceId1",
@@ -36,6 +40,7 @@ export class DetailsComponent implements OnInit {
           this.bookDetails.description = DataElement.description;
           this.bookDetails.views_count= DataElement.views_count;
           this.slides.push(this.bookDetails.coverImage);
+          this.caculateRating(DataElement.rating_count);
           DataElement.addtionFieldsInDetail.forEach(addtionFieldsElement => {
             if(addtionFieldsElement.inputHtmlTypeName == "image"){
               this.isOneImage = false;
@@ -89,6 +94,13 @@ export class DetailsComponent implements OnInit {
         console.log('no data');
       }
     });
+  }
+  
+  caculateRating(ratingList){
+    let totalRating = ratingList.l1Count + ratingList.l2Count + ratingList.l3Count + ratingList.l4Count + ratingList.l5Count;
+    let OverAllRating = (5*ratingList.l1Count + 4*ratingList.l2Count + 3*ratingList.l3Count + 2*ratingList.l4Count + 1*ratingList.l5Count) / (totalRating);
+    console.log(Math.round(OverAllRating));
+    this.currentRate= OverAllRating + 1;
   }
 
   

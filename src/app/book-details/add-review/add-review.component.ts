@@ -18,6 +18,7 @@ export class AddReviewComponent implements OnInit {
     userRating:'',
     userComment: ''
   }
+  currentRate= 0;
   addCommentRequestBody = {
     "primaryItemSourceId": "ggggjjjjggggg",
     "itemIndexId": "gggggggggggg",
@@ -35,8 +36,16 @@ export class AddReviewComponent implements OnInit {
         "commentApprovalDate": "2019-04-03"
     }
     
-  }
-
+  };
+  addRatingRequestBody= {
+    "primaryItemSourceId": "primaryItemSourceId1",
+    "itemIndexId": "itemIndexId1",
+    "dataSourceName": "dataSourceName1",
+    "dataSourceId": "dataSourceId1",
+    "materialTypeId": "materialTypeId1",
+    "materialTypeName": "materialTypeName1",
+    "Rate": "5"
+  };
   constructor(private bookDetailsService: BookDetailsService,config: NgbModalConfig, private modalService: NgbModal) { 
     config.backdrop = 'static';
     config.keyboard = false;
@@ -46,7 +55,6 @@ export class AddReviewComponent implements OnInit {
 
   }
   addComment(content){
-    
     if(this.formElement.value.comment){
       this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
       // console.log(this.addCommentRequestBody);
@@ -62,8 +70,6 @@ export class AddReviewComponent implements OnInit {
     }else{
       console.log("please enter data");
     }
-  
-
   }
 
 }

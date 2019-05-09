@@ -19,7 +19,7 @@
                         <span class="rateAndReview-name">{{comment.userId}}</span>
                         <span class="rateAndReview-date">{{comment.commentCreateDate}}</span>
                         <span class="rateAndReview-rating">
-                            <img class="img-fluid" src="./assets/Branding/images/r1.png" alt="bookratingImage">
+                                <ngb-rating [(rate)]="comment.ratingDegree" [max]="5"></ngb-rating>
                         </span>
                     </div>
 
