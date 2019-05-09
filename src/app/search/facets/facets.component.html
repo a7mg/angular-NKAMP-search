@@ -1,10 +1,15 @@
 <app-active-selection></app-active-selection>
-<div class="facet">
+<ng-container *ngFor="let facetOption of this.facetFieldsOptions">
+
+    <app-gategory *ngIf="facetOption.values" [facetOption]="facetOption"></app-gategory>
+
+  <!-- <div class="facet" >
+
   <div class="facet-header">
 
     <p class="border-bottom d-flex facet-title mb-2">
       <span class="col is-active p-0 text">
-        Title
+        {{facetOption.eName}}
       </span>
       <span class="col text">
         Visual
@@ -12,11 +17,11 @@
     </p>
 
     <span class="facet-collapseIcon is-collapsed">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 9.415 6.128">
-          <path d="M4,0,0,3.925,4,8" transform="translate(0.714 4.714) rotate(-90)" fill="none" stroke-width="2" />
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 9.415 6.128">
+        <path d="M4,0,0,3.925,4,8" transform="translate(0.714 4.714) rotate(-90)" fill="none" stroke-width="2" />
+      </svg>
 
-      </span>
+    </span>
   </div>
 
   <div class="facet-controls">
@@ -45,5 +50,10 @@
     Apply
   </button>
 
-</div>
-<app-gategory *ngFor="let control of facetsArr" class="controlRC-group"></app-gategory>
+</div> -->
+</ng-container>
+<!-- <button type="button" class="btn btn-primary w-100">
+    Apply
+  </button> -->
+
+
