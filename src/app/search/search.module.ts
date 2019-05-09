@@ -14,11 +14,12 @@ import { CriteriaComponent } from './criteria/criteria.component';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
+import { BookDetailsModule } from '../book-details/book-details.module';
 
 
-const HeaderRoutes = [
-  { path: '', component: SearchComponent }
-];
+// const HeaderRoutes = [
+//   { path: '', component: SearchComponent }
+// ];
 
 @NgModule({
   declarations: [
@@ -32,10 +33,11 @@ const HeaderRoutes = [
      GategoryComponent,
     ],
   imports: [
-    RouterModule.forChild(HeaderRoutes),
+    RouterModule,
     ProgressSpinnerModule,
     ReactiveFormsModule,
-    NaseejSharedModule
+    NaseejSharedModule,
+    BookDetailsModule
   ]
 })
 export class SearchModule { }
