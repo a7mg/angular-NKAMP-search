@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // import swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
-import { BookDetailsService } from '../sevrices/book-details.service';
+import { BookDetailsService } from '../services/book-details.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -36,7 +36,7 @@ export class AddReviewComponent implements OnInit {
         "email": "abc@xyz.com",
         "commentApprovalDate": "2019-04-03"
     }
-    
+
   };
   addRatingRequestBody= {
     "primaryItemSourceId": "primaryItemSourceId1",
@@ -47,13 +47,13 @@ export class AddReviewComponent implements OnInit {
     "materialTypeName": "materialTypeName1",
     "Rate": "5"
   };
-  constructor(private bookDetailsService: BookDetailsService, 
-              config: NgbModalConfig, 
-              private modalService: NgbModal) { 
+  constructor(private bookDetailsService: BookDetailsService,
+              config: NgbModalConfig,
+              private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
- 
+
   ngOnInit() {
 
   }
@@ -67,7 +67,7 @@ export class AddReviewComponent implements OnInit {
         }
         else{
           console.log('no data');
-          
+
         }
       });
     }else{
