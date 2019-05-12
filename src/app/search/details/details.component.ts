@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BookDetailsService } from '../sevrices/book-details.service';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
+import { BookDetailsService } from '../services/book-details.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class DetailsComponent implements OnInit {
     views_count: 0
   };
   currentRate: number;
-  constructor(private bookDetailsService: BookDetailsService, config: NgbRatingConfig) { 
+  constructor(private bookDetailsService: BookDetailsService, config: NgbRatingConfig) {
     config.readonly = true;
   }
   ngOnInit() {
@@ -55,7 +55,7 @@ export class DetailsComponent implements OnInit {
         console.log('no data');
       }
   });
-    
+
   }
   addToFavorites(){
     const favoritesRequestBody={
@@ -94,13 +94,13 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
-  
+
   caculateRating(ratingList){
     let totalRating = ratingList.l1Count + ratingList.l2Count + ratingList.l3Count + ratingList.l4Count + ratingList.l5Count;
     let OverAllRating = (5*ratingList.l1Count + 4*ratingList.l2Count + 3*ratingList.l3Count + 2*ratingList.l4Count + 1*ratingList.l5Count) / (totalRating);
     this.currentRate= Math.round(OverAllRating);
   }
 
-  
-  
+
+
 }

@@ -14,12 +14,20 @@ import { CriteriaComponent } from './criteria/criteria.component';
 
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
-import { BookDetailsModule } from '../book-details/book-details.module';
+import { BookDetailsComponent } from './book-details/book-details.component';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { RatingModule } from 'primeng/primeng';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddReviewComponent } from './add-review/add-review.component';
+import { ReviewRatingComponent } from './review-rating/review-rating.component';
+import { DetailsComponent } from './details/details.component';
+import { BookDetailsService } from './services/book-details.service';
 
 
-// const HeaderRoutes = [
-//   { path: '', component: SearchComponent }
-// ];
+const HeaderRoutes = [
+  { path: '', component: SearchComponent },
+  { path: 'book', component:  BookDetailsComponent  }
+];
 
 @NgModule({
   declarations: [
@@ -31,13 +39,24 @@ import { BookDetailsModule } from '../book-details/book-details.module';
      FiltersComponent,
      ActiveSelectionComponent,
      GategoryComponent,
+     BookDetailsComponent,
+     DetailsComponent,
+     ReviewRatingComponent,
+     AddReviewComponent
+    ],
+    providers: [
+      BookDetailsService,
     ],
   imports: [
-    RouterModule,
+    RouterModule.forChild(HeaderRoutes),
     ProgressSpinnerModule,
     ReactiveFormsModule,
     NaseejSharedModule,
-    BookDetailsModule
+    SwiperModule,
+    CommonModule,
+    FormsModule,
+    RatingModule,
+    NgbModule,
   ]
 })
 export class SearchModule { }

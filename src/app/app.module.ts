@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrderByPipe } from './Naseej-shared/order-by.Pipe';
 import { NkampInterceptor } from './interceptor';
+import { NaseejSharedModule } from './Naseej-shared/naseej-shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NkampInterceptor } from './interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NaseejSharedModule.forRoot()
   ],
   providers: [
     {
