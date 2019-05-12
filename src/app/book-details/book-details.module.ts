@@ -15,8 +15,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
-  keyboard: true,
-  mousewheel: true,
+  scrollbar: false,
   navigation: true,
   threshold: 50,
   observer: true,
