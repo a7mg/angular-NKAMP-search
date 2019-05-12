@@ -11,13 +11,11 @@ import { ReviewRatingComponent } from './review-rating/review-rating.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SearchComponent } from '../search/search.component';
-import { BookDetailsGuardService } from './sevrices/canActivatebook.service';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
-  keyboard: true,
-  mousewheel: true,
+  scrollbar: false,
   navigation: true,
   threshold: 50,
   observer: true,
@@ -26,7 +24,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 
 const HeaderRoutes = [
   // { path: '', redirectTo: 'item', pathMatch: 'full'  },
-  { path: '', component:  SearchComponent  },
+  { path: '', component:  BookDetailsComponent  },
   // { path: 'book', component:  BookDetailsComponent  }
 ];
 @NgModule({
@@ -45,13 +43,8 @@ const HeaderRoutes = [
     CommonModule,
     FormsModule,
     RatingModule,
-    NgbModule
-  ],
-  exports: [
-    BookDetailsComponent,
-    DetailsComponent,
-    ReviewRatingComponent,
-    AddReviewComponent
+    NgbModule,
+    SweetAlert2Module.forRoot()
   ]
 })
 export class BookDetailsModule { }

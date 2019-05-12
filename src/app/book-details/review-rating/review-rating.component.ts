@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { BookDetailsService } from '../sevrices/book-details.service';
-
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-review-rating',
   templateUrl: './review-rating.component.html',
-  styleUrls: ['./review-rating.component.scss']
+  styleUrls: ['./review-rating.component.scss'],
+  providers: [NgbRatingConfig]
 })
 export class ReviewRatingComponent implements OnInit {
   commentsList =[];
   count;
-  constructor(private bookDetailsService: BookDetailsService) { }
+  constructor(private bookDetailsService: BookDetailsService, config: NgbRatingConfig) {
+    config.readonly = true;
+  }
   ngOnInit() {
     const commentsRequestBody = {
       "primaryItemSourceId": "primaryItemSourceId1",
@@ -24,13 +27,9 @@ export class ReviewRatingComponent implements OnInit {
     this.bookDetailsService.getComment(commentsRequestBody).subscribe(  Data  =>{
         if(Data !== null){
           Data.forEach((currentElement) => {
-            // console.log( currentElement.Item_Operations.comments.comment);
-            // this.commentsList.push(currentElement.Item_Operations.comments.comment);
             for(this.count= 0; this.count<currentElement.comments.length; this.count++){
-                      // console.log( currentElement.Item_Operations.comments[this.count]);
                       this.commentsList.push(currentElement.comments[this.count]);
-                  }
-                  // console.log(this.commentsList);
+            }
           });
         }
         else{

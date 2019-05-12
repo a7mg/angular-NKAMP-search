@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-sm-4 col-12">
             <div class="bookDetails-image" *ngIf="isOneImage == true">
-                <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
+                <img class="img-fluid" [src]="this.bookDetails.coverImage" alt="bookDetailsImage">
             </div>
             <div class="bookDetails-image imageslider" *ngIf="isOneImage == false">
                     <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
                             <div *ngFor="let slide of slides" class="swiper-slide">
                                <div class="bookDetails-image-slide">
-                                    <img class="img-fluid" [(src)]="this.bookDetails.coverImage" alt="bookDetailsImage">
+                                    <img class="img-fluid" [(src)]="slide" alt="bookDetailsImage">
                                </div>          
                             </div>
                     </swiper>
@@ -23,7 +23,7 @@
                 <div class="oneBook-rating-review">
                     <div class="rating">
                         <!-- <img class="img-fluid" src="./assets/Branding/images/r1.png" alt="bookDetailsImage"> -->
-                        <ngb-rating [(rate)]="currentRate"></ngb-rating>
+                        <ngb-rating [(rate)]="currentRate" [max]="5"></ngb-rating>
                     </div> <!-- end rating -->
                     <div class="review">
                         <span>{{bookDetails.views_count}}</span>
@@ -34,50 +34,23 @@
                    {{bookDetails.description}}
                 </p> <!-- end paragraph -->
                 <div class="oneBook-descrption">
-                    <div class="row">
+                    <div class="row" *ngFor="let additonalFieldsItem of additonalFieldsItems">
                         <div class="col-3">
-                            <span class="oneBook-descrption-title">Author:</span>
+                            <span class="oneBook-descrption-title">
+                                {{additonalFieldsItem.eName}}
+                            </span>
                         </div>
                         <div class="col-8">
-                            <span>Author Name</span>
+                            <span>
+                                {{additonalFieldsItem.insertedData}}
+                            </span>
                         </div>
                     </div> <!-- end Author -->
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="oneBook-descrption-title">publish Date:</span>
-                        </div>
-                        <div class="col-8">
-                            <span>2018</span>
-                        </div>
-                    </div> <!-- end publish -->
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="oneBook-descrption-title">Type:</span>
-                        </div>
-                        <div class="col-8">
-                            <span>Type</span>
-                        </div>
-                    </div> <!-- end type -->
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="oneBook-descrption-title">Category:</span>
-                        </div>
-                        <div class="col-8">
-                            <span>Category Name</span>
-                        </div>
-                    </div> <!-- end category -->
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="oneBook-descrption-title">Publisher:</span>
-                        </div>
-                        <div class="col-8">
-                            <span>Publisher Name</span>
-                        </div>
-                    </div> <!-- end  Publisher-->
+                   
                 </div> <!-- end  description-->
                 <hr class="horizontal-line" />
                 <ul class="oneBook-features">
-                    <li>
+                    <li (click)="addToFavorites()">
                         <span class="icon features-favIcon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 15 15">
                                 <path
