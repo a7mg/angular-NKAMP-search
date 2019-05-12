@@ -18,7 +18,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
 import { RatingModule } from 'primeng/primeng';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { ReviewRatingComponent } from './review-rating/review-rating.component';
 import { DetailsComponent } from './details/details.component';
@@ -71,6 +71,7 @@ const HeaderRoutes = [
     FormsModule,
     RatingModule,
     NgbModule,
+    NgbPaginationModule
   ]
 })
 export class SearchModule { }
