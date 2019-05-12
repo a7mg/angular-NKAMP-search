@@ -47,7 +47,7 @@ export class DetailsComponent implements OnInit {
               this.slides.push(addtionFieldsElement.insertedData);
             }
             this.additonalFieldsItems.push(addtionFieldsElement);
-            this.additonalFieldsItems.sort((a, b) => (a.fieldOrderPage > b.fieldOrderPage) ? 1 : -1)
+            this.additonalFieldsItems.sort((a, b) => (a.fieldOrderPage > b.fieldOrderPage) ? 1 : -1);
           });
         });
       }
