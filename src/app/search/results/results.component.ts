@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-results',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent implements OnInit {
-
-  constructor() { }
+  itemsArr = [];
+  constructor(private _SearchService: SearchService) { }
 
   ngOnInit() {
+    this._SearchService.results$.subscribe(data => {
+      if (data !== null) {
+        data.items.forEach(element => {
+          this.itemsArr.push(element);
+        });
+        console.log("Resultrs == > items ", this.itemsArr);
+      }
+    });
   }
 
 }

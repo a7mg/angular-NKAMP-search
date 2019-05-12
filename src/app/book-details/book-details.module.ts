@@ -11,6 +11,8 @@ import { ReviewRatingComponent } from './review-rating/review-rating.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchComponent } from '../search/search.component';
+import { BookDetailsGuardService } from './sevrices/canActivatebook.service';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
@@ -23,21 +25,19 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 const HeaderRoutes = [
-  { path: '', component:  BookDetailsComponent }
+  // { path: '', redirectTo: 'item', pathMatch: 'full'  },
+  { path: '', component:  SearchComponent  },
+  // { path: 'book', component:  BookDetailsComponent  }
 ];
 @NgModule({
   declarations: [
     BookDetailsComponent,
-    DetailsComponent, 
-    ReviewRatingComponent, 
+    DetailsComponent,
+    ReviewRatingComponent,
     AddReviewComponent
   ],
-  providers:[
+  providers: [
     BookDetailsService,
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    }
   ],
   imports: [
     RouterModule.forChild(HeaderRoutes),
@@ -46,6 +46,12 @@ const HeaderRoutes = [
     FormsModule,
     RatingModule,
     NgbModule
+  ],
+  exports: [
+    BookDetailsComponent,
+    DetailsComponent,
+    ReviewRatingComponent,
+    AddReviewComponent
   ]
 })
 export class BookDetailsModule { }

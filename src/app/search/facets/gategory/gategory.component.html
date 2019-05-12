@@ -23,7 +23,7 @@
     <label class="controlRC" *ngIf="!isRadioButton">
       <span class="text">All</span>
       <span class="count float-right">{{this.totalOfAllItems}}</span>
-      <input #selectAll type="checkbox" name="radio" value="ddddd" />
+      <input type="checkbox" name="radio" value="ddddd"  (change)="allFieldMasterChanged($event)"  />
       <div class="controlRC_indicator"></div>
     </label>
 
@@ -31,7 +31,7 @@
       <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
         <span class="text">{{value.facetValue}}</span>
         <span class="count float-right">{{value.totalItems}}</span>
-        <input type="{{false?'radio':'checkbox'}}" name="radio" checked="checked" />
+        <input type="{{false?'radio':'checkbox'}}" name="radio"   [(checked)]="this.masterSelected" />
         <div class="controlRC_indicator"></div>
       </label>
     </ng-container>
