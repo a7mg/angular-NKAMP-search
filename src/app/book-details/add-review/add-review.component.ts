@@ -62,7 +62,8 @@ export class AddReviewComponent implements OnInit {
       this.isAdded=true;
       this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
       this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  =>{
-        if(Data.Item_Operations.msg == "updated"){
+        console.log(Data);
+        if(Data !== null){
             this.modalService.open(content);
         }
         else{
@@ -79,7 +80,8 @@ export class AddReviewComponent implements OnInit {
     this.addRatingRequestBody.Rate= this.currentRate.toString();
     console.log(parseInt(this.addRatingRequestBody.Rate));
     this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
-      if(Data.Item_Operations.msg == "updated"){
+      console.log(Data);
+      if(Data !==  null){
         console.log("sucess");
       }
       else{
