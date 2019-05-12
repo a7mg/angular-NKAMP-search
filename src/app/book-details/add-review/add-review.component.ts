@@ -18,7 +18,8 @@ export class AddReviewComponent implements OnInit {
     userRating:'',
     userComment: ''
   }
-  currentRate:number;
+  currentRate:number=0;
+  isAdded = false;
   addCommentRequestBody = {
     "primaryItemSourceId": "ggggjjjjggggg",
     "itemIndexId": "gggggggggggg",
@@ -58,33 +59,33 @@ export class AddReviewComponent implements OnInit {
   }
   addComment(content){
     if(this.formElement.value.comment){
+      this.isAdded=true;
       this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
-      // console.log(this.addCommentRequestBody);
       this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  =>{
         if(Data.Item_Operations.msg == "updated"){
-            // console.log("sucess");
             this.modalService.open(content);
         }
         else{
           console.log('no data');
+          
         }
       });
     }else{
-      console.log("please enter data");
+      this.isAdded=false;
+      this.modalService.open(content);
     }
   }
   addRating(){
-    // this.addRatingRequestBody.Rate= this.currentRate.toString();
-    // console.log(this.addRatingRequestBody.Rate);
-    // this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
-    //   if(Data == "updated"){
-    //     console.log("sucess");
-    //   }
-    //   else{
-    //     console.log('no data');
-    //   }
-      
-    // });
+    this.addRatingRequestBody.Rate= this.currentRate.toString();
+    console.log(parseInt(this.addRatingRequestBody.Rate));
+    this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
+      if(Data.Item_Operations.msg == "updated"){
+        console.log("sucess");
+      }
+      else{
+        console.log('no data');
+      }
+    });
   }
 
 }
