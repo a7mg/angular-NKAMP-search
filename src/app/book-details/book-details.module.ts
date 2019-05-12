@@ -23,21 +23,19 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 const HeaderRoutes = [
-  { path: '', component:  BookDetailsComponent }
+  // { path: '', redirectTo: 'item', pathMatch: 'full'  },
+  { path: '', component:  BookDetailsComponent  },
+  // { path: 'book', component:  BookDetailsComponent  }
 ];
 @NgModule({
   declarations: [
     BookDetailsComponent,
-    DetailsComponent, 
-    ReviewRatingComponent, 
+    DetailsComponent,
+    ReviewRatingComponent,
     AddReviewComponent
   ],
-  providers:[
+  providers: [
     BookDetailsService,
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    }
   ],
   imports: [
     RouterModule.forChild(HeaderRoutes),

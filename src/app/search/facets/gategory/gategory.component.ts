@@ -7,12 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GategoryComponent implements OnInit {
   isRadioButton = true;
-  totalOfAllItems = 0;
+  masterSelected: boolean;
   showAll = false;
   maxShowing = 4;
+  totalOfAllItems = 0;
 
   @Input("facetOption") facetOption;
-  constructor() { }
+  constructor() {
+    this.masterSelected = true;
+  }
 
   ngOnInit() {
     console.log('category facet', this.facetOption);
@@ -21,6 +24,11 @@ export class GategoryComponent implements OnInit {
     });
     this.isRadioButton = !this.facetOption.isAllowMultipeSelection;
 
+  }
+
+  allFieldMasterChanged(mainInput): void {
+    console.log("mainInpuxt", mainInput.target.checked);
+    this.masterSelected = mainInput.target.checked;
   }
 
 }
