@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookDetailsService } from '../sevrices/book-details.service';
+import { BookDetailsService } from '../services/book-details.service';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
