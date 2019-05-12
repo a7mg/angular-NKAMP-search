@@ -75,7 +75,7 @@ export class DetailsComponent implements OnInit {
           "addtionslFields": [
               {
                   "id": "VDt7BmoBNpoo7s4ytV8C",
-                  "aName": "7الإسم العربي هتا",
+                  "aName": "7????? ?????? ???",
                   "eName": "english name here 7",
                   "fName": "frensh name here 7",
                   "fieldOrderPage": 4,
