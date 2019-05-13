@@ -6,7 +6,7 @@ export class NkampInterceptor implements HttpInterceptor {
 
     const newReq = req.clone({
       headers: new HttpHeaders({
-        Authorization: 'Bearer c0547bc5-25ac-3ab0-bb12-17f34de10a25',
+        Authorization: 'Bearer d73dc8c5-3f4a-34bf-8629-ab317f45d830',
         'Content-Type': 'application/json'
       })
     });
