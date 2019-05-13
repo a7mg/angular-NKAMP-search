@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
       <div class="col-12">
-          <form (ngSubmit)="sendFavorite()" #formEle="ngForm">
+          <form (ngSubmit)="sendFavorite()" #formEle="ngForm"> 
              <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -21,7 +21,7 @@
                              </tr>
                            </thead>
                            <tbody class="Favorite-table-body">
-                             <tr>
+                             <tr *ngFor="let dataItem of alldate">
                                <td>
                                  <label class="controlRC controlRC-radio d-block">
                                    <!-- First radio -->
@@ -34,7 +34,7 @@
                                </td>
                                <td>
                                  <p class="Favorite-table-title">
-                                   Title of the Item goes here and will be written in two lines not more than two lines
+                                     {{dataItem.title}}
                                  </p>
                                </td>
                                <td class="hideEle">
@@ -63,12 +63,10 @@
                            </tbody>
                        </table>
                     </div>
-                </div>
-                <div class="col-12">
                     <div class="Favorite-pagination">
-                       <ngb-pagination [collectionSize]="20" [maxSize]="5" [pageSize]="2" [(page)]="page" [boundaryLinks]="true">
-                       </ngb-pagination>
-                    </div>
+                        <ngb-pagination [collectionSize]="20" [maxSize]="5" [pageSize]="2" [(page)]="page" [boundaryLinks]="true">
+                        </ngb-pagination>
+                     </div>
                 </div>
                 <div class="col-12">
                     <div class="Favorite-sendToEmail">

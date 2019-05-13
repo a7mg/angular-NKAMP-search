@@ -20,6 +20,7 @@ export class FavoriteSearchComponent implements OnInit {
   };
   startDate :number;
   endDate: number;
+  isSearch= false;
   ngOnInit() {
     
   }
@@ -30,9 +31,11 @@ export class FavoriteSearchComponent implements OnInit {
         this.getFavoriteListRequestBody.filterByTitle= this.formElement.value.searchName;
         this.getFavoriteListRequestBody.startDate= this.startDate;
         this.getFavoriteListRequestBody.endDate= this.endDate;
+        // console.log(this.getFavoriteListRequestBody);
         this.favoriteService.getFavoriteList(this.getFavoriteListRequestBody).subscribe( Data  =>{
           if(Data !== null){
             console.log(Data);
+            this.favoriteService.FavoriteList.next(Data);
           }
           else{
             console.log('no data');

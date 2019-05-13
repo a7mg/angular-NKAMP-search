@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/Naseej-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
@@ -9,6 +9,7 @@ import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
   providedIn: 'root'
 })
 export class FavoriteService {
+  FavoriteList = new Subject();
 
   Url: string; // = https://10.0.6.154:8245/Search10/1.0.0/ItemOperation/GetItemOperationDetails
 
