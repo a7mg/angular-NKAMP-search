@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { FavoriteService } from '../services/favorite.service';
 import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-favorite-search',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class FavoriteSearchComponent implements OnInit {
   @ViewChild('formEle') formElement : NgForm;
-  constructor(private favoriteService: FavoriteService) { }
+
   getFavoriteListRequestBody = {
     "userId": "Jv0b2WkB7-mpx-Tip1YF",
     "pageSize": 5,
@@ -20,7 +21,9 @@ export class FavoriteSearchComponent implements OnInit {
   };
   startDate :number;
   endDate: number;
-  isSearch= false;
+
+
+  constructor(private favoriteService: FavoriteService) { }
   ngOnInit() {
     
   }
