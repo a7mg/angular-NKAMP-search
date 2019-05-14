@@ -24,11 +24,12 @@ export class FacetsComponent implements OnInit {
         data.FacetFields.forEach(element => {
           this.facetFieldsOptions.push(element);
         });
-        // console.log('Facets Configuration => ', this.facetFieldsOptions);
+        console.log('Facets Configuration => ', this.facetFieldsOptions);
       }
     });
 
     this._SearchService.results$.subscribe(results => {
+      console.log('_SearchService.results$ ', this.facetsArr);
       if (results !== null) {
         this.facetsArr = results.facetsSearchQueryStatistic;
         // console.log('facetsArr', this.facetsArr);

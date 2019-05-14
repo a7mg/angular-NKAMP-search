@@ -35,8 +35,17 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 const HeaderRoutes = [
-  { path: '', component: SearchComponent },
-  { path: 'book', component:  BookDetailsComponent  }
+  // { path: '', component: SearchComponent },
+  {
+    path: '',
+    component: SearchComponent,
+    children: [
+      { path: 'book', component: BookDetailsComponent},
+
+    ]
+  }
+  // { path: 'book', component:  BookDetailsComponent  },
+  // { path: 'book', component:  BookDetailsComponent , outlet: 'bookDetails' }// , outlet: "bookDetails"
 ];
 
 @NgModule({

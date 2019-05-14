@@ -31,15 +31,15 @@
     </div>
 
   </header>
-  <!--dsfsdfsdf-->
+
+
   <app-criteria class="searchNK-criteria"></app-criteria>
 
   <p-progressSpinner *ngIf="isLoading" [style]="{width: '200px', height: '200px'}"
     class="d-block my-5 py-5 text-center">
   </p-progressSpinner>
 
-  <!-- <app-book-details></app-book-details> -->
-  <div class="row" *ngIf="!isLoading && !isNoData">
+  <div class="row" *ngIf="!isNoData">
     <!-- resultsBox Content  sidebar -->
     <div class="col-12 col-sm-12 col-md-3">
       <app-facets></app-facets>
@@ -58,9 +58,10 @@
 
   </div>
 
-  <ng-container>
+  <ng-container *ngIf="isNoData">
     <div class="searchNK-nodata no-data">No data found</div>
   </ng-container>
 
+  <router-outlet ></router-outlet>
 
 </section>

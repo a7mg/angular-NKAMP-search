@@ -1,13 +1,14 @@
 <!--  fillter -->
-<app-filters class="form-row" ></app-filters>
+<app-filters class="form-row"></app-filters>
 
 <div class="row">
 
-<!-- col-xl-3 -->
-      <!-- <app-list *ngFor="let item of [].constructor(2)" class="col-12"></app-list> -->
-      <app-grid *ngFor="let item of itemsArr" class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="item"></app-grid>
-      <!-- <app-grid *ngFor="let item of [].constructor(4)" class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="itemsArr[0]"></app-grid> -->
+  <!-- col-xl-3 -->
+  <!-- <app-list *ngFor="let item of [].constructor(2)" class="col-12"></app-list> -->
+  <app-grid *ngFor="let item of itemsArr" class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="item"></app-grid>
+  <!-- <app-grid *ngFor="let item of [].constructor(4)" class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="itemsArr[0]"></app-grid> -->
 
-    </div>
-        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="12" [maxSize]="4" [pageSize]="2" [(page)]="pageIndex" [boundaryLinks]="true">
-        </ngb-pagination>
+</div>
+<ngb-pagination class="d-flex justify-content-center" [collectionSize]="12" [maxSize]="4" [pageSize]="2"
+  [(page)]="pageIndex" [boundaryLinks]="true">
+</ngb-pagination>

@@ -9,7 +9,7 @@ import { SearchService } from './services/search.service';
 export class SearchComponent implements OnInit {
   isLoading = false;
   favoriteBadge = 55;
-  isNoData = false;
+  isNoData = true;
   constructor(private _SearchService: SearchService) { }
 
   ngOnInit() {
@@ -17,6 +17,11 @@ export class SearchComponent implements OnInit {
     this._SearchService.getSearchConfiguration(searchProfile).subscribe(data => {
       console.log('getSearchConfiguration ', data);
       this._SearchService.searchConfiguration$.next(data);
+    });
+    this._SearchService.results$.subscribe(data => {
+      if ( data !== null){
+        this.isNoData = false;
+      }
     });
   }
 

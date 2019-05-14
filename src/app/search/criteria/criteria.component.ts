@@ -78,7 +78,7 @@ export class CriteriaComponent implements OnInit {
           this.AllFields.push(element);
         });
 
-        data.SearchKeyWords.forEach(element => {
+        data.SearchKeywords.forEach(element => {
           this.searchKeyword.push(element);
         });
 
@@ -89,13 +89,10 @@ export class CriteriaComponent implements OnInit {
   onSubmit() {
     this.setSearchObject();
     console.log(' finall CriteriaSearch  => ', this.CriteriaSearch);
-    // console.log('alldata', this.criteriaForm.value);
-    // console.log("currentCreteriaForms", currentCreteriaForms)
     // this. createFormdynamic();
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.searchProfileId = this.searchProfileId;
     this._SearchService.getResults(this.CriteriaSearch).subscribe((data) => {
-      console.log('search results : ', data);
       this._SearchService.results$.next(data)
     });
   }
