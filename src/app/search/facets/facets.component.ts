@@ -38,6 +38,7 @@ export class FacetsComponent implements OnInit {
             return value.id === facetOption.id;
           });
         });
+        this.facetFieldsOptions.sort((a, b) => (a.DisplayOrderNumber > b.DisplayOrderNumber) ? 1 : -1)
         // console.log('Facets Configuration with values => ', this.facetFieldsOptions);
       }
     });

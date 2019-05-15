@@ -12,7 +12,9 @@ import { GategoryComponent } from './facets/gategory/gategory.component';
 import { ListComponent } from '../Common/list/list.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from 'primeng/toast';
 import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
@@ -72,7 +74,9 @@ const HeaderRoutes = [
     ],
   imports: [
     RouterModule.forChild(HeaderRoutes),
+
     ProgressSpinnerModule,
+    ToastModule,
     ReactiveFormsModule,
     NaseejSharedModule,
     SwiperModule,

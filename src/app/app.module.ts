@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { OrderByPipe } from './Naseej-shared/order-by.Pipe';
 import { NkampInterceptor } from './interceptor';
 import { NaseejSharedModule } from './Naseej-shared/naseej-shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { NaseejSharedModule } from './Naseej-shared/naseej-shared.module';
     OrderByPipe
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     NaseejSharedModule.forRoot()
