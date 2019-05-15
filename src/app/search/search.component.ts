@@ -13,6 +13,46 @@ export class SearchComponent implements OnInit {
   isLoading = false;
   favoriteBadge = 55;
   isNoData = true;
+  addQueryRequestBody ={
+    "userId": "user_58",
+    "anonymous": true,
+    "email": "abdfg@xyz.comabdfg@xyz.com",
+    "query_name": "books",
+    "query_syntax": ""
+  };
+  searchValues={
+    "searchProfileId": "1111-1111-1111-1111",
+    "pageSize": 15,
+    "dataSourcesId": [
+      "dataSources1",
+      "dataSources2"
+    ],
+    "searchKeyWords": [
+      {
+        "searchKeyWordId": "SearchKeyWordId1",
+        "materialTypeId": "MaterialTypeId1",
+        "keyWordValue": "KeyWordValue1",
+        "searchOperationId": "SearchOperationId1",
+        "nextSearchKeyWordWithAnd": true
+      }
+    ],
+    "facetsFilter": [
+      {
+        "facetId": "1111-1111-1111-1111",
+        "facetType": "5",
+        "facetValue": "Riyadh"
+      }
+    ],
+    "keywWordsOrderBy": [
+      {
+        "keywWordId": "1111-1111-1111-1111",
+        "keywWordType": "4",
+        "keywWordValue": "value",
+        "isAcendening": true
+      }
+    ]
+  };
+  searchValueString = JSON.stringify(this.searchValues);
   constructor(private _SearchService: SearchService, private messageService: MessageService) { }
 
   ngOnInit() {
@@ -30,6 +70,17 @@ export class SearchComponent implements OnInit {
 
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Success Message', detail:'Order submitted'});
-}
+  }
+  saveSearch(){
+    this.addQueryRequestBody.query_syntax= this.searchValueString;
+    console.log(this.addQueryRequestBody);
+    this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data)=>{
+      if (data != null) {
+        console.log(data);
+      }else{
+        console.log("no data");
+      }
+    });
+  }
 
 }
