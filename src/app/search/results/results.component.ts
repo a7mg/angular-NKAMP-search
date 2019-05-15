@@ -7,6 +7,7 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent implements OnInit {
+  pageIndex = 1;
   itemsArr = [];
   constructor(private _SearchService: SearchService) { }
 

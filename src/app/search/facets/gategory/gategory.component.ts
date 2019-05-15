@@ -9,12 +9,13 @@ export class GategoryComponent implements OnInit {
   isRadioButton = true;
   masterSelected: boolean;
   showAll = false;
-  maxShowing = 4;
+  maxShowing = 6;
   totalOfAllItems = 0;
+  isCollapsed = false;
 
   @Input("facetOption") facetOption;
   constructor() {
-    this.masterSelected = true;
+    this.masterSelected = false;
   }
 
   ngOnInit() {
