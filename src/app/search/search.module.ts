@@ -26,8 +26,8 @@ import { BookDetailsService } from './services/book-details.service';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
-  keyboard: true,
-  mousewheel: true,
+  keyboard: false,
+  mousewheel: false,
   navigation: true,
   threshold: 50,
   observer: true,
@@ -54,13 +54,13 @@ const HeaderRoutes = [
      ReviewRatingComponent,
      AddReviewComponent
     ],
-    providers: [
-      BookDetailsService,
-      {
-        provide: SWIPER_CONFIG,
-        useValue: DEFAULT_SWIPER_CONFIG
-      }
-    ],
+  providers: [
+    BookDetailsService,
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
+  ],
   imports: [
     RouterModule.forChild(HeaderRoutes),
     ProgressSpinnerModule,
