@@ -3,12 +3,12 @@
   <div class="facet-header">
 
     <p class="border-bottom d-flex facet-title mb-2">
-      <span class="col is-active p-0 text">
+      <button type="button" (click)="this.isVituailizationActive = false" class="btn btn-link col is-active p-0 text">
         {{this.facetOption.eName}}
-      </span>
-      <span class="col text">
+      </button>
+      <button *ngIf="this.config.isVituailization" type="button" (click)="this.isVituailizationActive = true" class="btn btn-link col text">
         Visual
-      </span>
+      </button>
     </p>
 
     <span (click)="this.isCollapsed=!this.isCollapsed" class="facet-collapseIcon "
@@ -19,10 +19,12 @@
 
     </span>
   </div>
+  <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'pie':'bar'}}" [data]="data"></p-chart>
 
+<ng-container *ngIf="!this.isVituailizationActive" >
   <div class="facet-controls" *ngIf="!this.isCollapsed">
 
-    <label class="controlRC" *ngIf="!isRadioButton">
+    <label class="controlRC" *ngIf="this.config.isAllowMultiSelection">
       <span class="text">All</span>
       <span class="count float-right">{{this.totalOfAllItems}}</span>
       <input type="checkbox" name="radio" value="ddddd" (change)="allFieldMasterChanged($event)" />
@@ -33,7 +35,7 @@
       <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
         <span class="text">{{value.facetValue}}</span>
         <span class="count float-right">{{value.totalItems}}</span>
-        <input type="{{false?'radio':'checkbox'}}" name="radio" [(checked)]="this.masterSelected" />
+        <input type="{{this.config.isAllowMultiSelection?'checkbox':'radio'}}" name="radio" [(checked)]="this.masterSelected" />
         <div class="controlRC_indicator"></div>
       </label>
     </ng-container>
@@ -46,5 +48,5 @@
     <span *ngIf="!this.showAll">Show More </span>
     <span *ngIf="this.showAll">Show Less </span>
   </button>
-
+</ng-container>
 </div>
