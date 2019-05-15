@@ -2,12 +2,23 @@
   <header class="searchNK-header">
 
     <div class="row">
-      <div class="col-12 col-md-10 col-lg-10">
+      <div class="col-12 col-md-2 col-lg-2">
         <h1>Search</h1>
       </div>
 
-      <div class="col-12 col-md-2 col-lg-2 d-flex justify-content-end">
-
+      <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-end">
+        <div class="searchNK-savedSearch">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>        
+        </div>
         <a [routerLink]="['/favorite']" routerLinkActive="router-link-active" class="btn btn-link btn-icon">
           <span class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20">
@@ -25,7 +36,6 @@
           </span>
           Favorite
         </a>
-
       </div>
 
     </div>
