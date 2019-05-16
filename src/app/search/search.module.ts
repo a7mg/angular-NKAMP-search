@@ -30,8 +30,8 @@ import { ResultsAreaComponent } from './results-area/results-area.component';
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
-  keyboard: true,
-  mousewheel: true,
+  keyboard: false,
+  mousewheel: false,
   navigation: true,
   threshold: 50,
   observer: true,
