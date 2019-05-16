@@ -4,17 +4,15 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { SearchComponent } from '../search/search.component';
-import { ResultsComponent } from './results/results.component';
 import { FacetsComponent } from './facets/facets.component';
-import { FiltersComponent } from './results/filters/filters.component';
 import { ActiveSelectionComponent } from './active-selection/active-selection.component';
 import { GategoryComponent } from './facets/gategory/gategory.component';
 import { ListComponent } from '../Common/list/list.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
+import { ChartModule } from 'primeng/chart';
 import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
@@ -25,6 +23,10 @@ import { AddReviewComponent } from './add-review/add-review.component';
 import { ReviewRatingComponent } from './review-rating/review-rating.component';
 import { DetailsComponent } from './details/details.component';
 import { BookDetailsService } from './services/book-details.service';
+import { ItemsViewComponent } from './items-view/items-view.component';
+import { FiltersComponent } from './items-view/filters/filters.component';
+import { ResultsAreaComponent } from './results-area/results-area.component';
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
@@ -42,29 +44,29 @@ const HeaderRoutes = [
     path: '',
     component: SearchComponent,
     children: [
-      { path: 'book', component: BookDetailsComponent},
+      { path: '', component: ResultsAreaComponent },
+      { path: 'book', component: BookDetailsComponent },
 
     ]
   }
-  // { path: 'book', component:  BookDetailsComponent  },
-  // { path: 'book', component:  BookDetailsComponent , outlet: 'bookDetails' }// , outlet: "bookDetails"
 ];
 
 @NgModule({
   declarations: [
     SearchComponent,
-     ResultsComponent,
-     CriteriaComponent,
-     FacetsComponent,
-     ListComponent,
-     FiltersComponent,
-     ActiveSelectionComponent,
-     GategoryComponent,
-     BookDetailsComponent,
-     DetailsComponent,
-     ReviewRatingComponent,
-     AddReviewComponent
-    ],
+    ItemsViewComponent,
+    CriteriaComponent,
+    FacetsComponent,
+    ListComponent,
+    FiltersComponent,
+    ActiveSelectionComponent,
+    GategoryComponent,
+    BookDetailsComponent,
+    DetailsComponent,
+    ReviewRatingComponent,
+    AddReviewComponent,
+    ResultsAreaComponent
+  ],
   providers: [
     BookDetailsService,
     {
@@ -77,6 +79,7 @@ const HeaderRoutes = [
 
     ProgressSpinnerModule,
     ToastModule,
+    ChartModule,
     ReactiveFormsModule,
     NaseejSharedModule,
     SwiperModule,
