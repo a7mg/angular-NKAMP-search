@@ -19,7 +19,8 @@
 
     </span>
   </div>
-  <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'pie':'bar'}}" [data]="data"></p-chart>
+  <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'horizontalBar':'bar'}}"   height="{{30*this.facetOption.values.length}}px" [data]="data"></p-chart>
+  <!-- <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'pie':'bar'}}" [data]="data"></p-chart> -->
 
 <ng-container *ngIf="!this.isVituailizationActive" >
   <div class="facet-controls" *ngIf="!this.isCollapsed">

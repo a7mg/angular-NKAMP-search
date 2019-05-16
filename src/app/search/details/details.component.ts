@@ -59,7 +59,7 @@ export class DetailsComponent implements OnInit {
   }
   addToFavorites(){
     const favoritesRequestBody={
-      "userId": "user_58",
+      "userId": "hager18",
       "anonymous": true,
       "email": "abdfg@xyz.comabdfg@xyz.com",
       "itemListPageInformation": {

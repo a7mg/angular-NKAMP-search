@@ -88,7 +88,7 @@ export class CriteriaComponent implements OnInit {
 
   onSubmit() {
     this.setSearchObject();
-    console.log(' finall CriteriaSearch  => ', this.CriteriaSearch);
+    console.log(' finall CriteriaSearch  => ', JSON.stringify(this.CriteriaSearch));
     // this. createFormdynamic();
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.searchProfileId = this.searchProfileId;
