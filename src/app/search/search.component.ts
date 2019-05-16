@@ -13,52 +13,53 @@ export class SearchComponent implements OnInit {
   isLoading = false;
   favoriteBadge = 55;
   isNoData = true;
-  addQueryRequestBody ={
-    "userId": "user_58",
-    "anonymous": true,
-    "email": "abdfg@xyz.comabdfg@xyz.com",
-    "query_name": "books",
-    "query_syntax": ""
+  addQueryRequestBody = {
+    query_syntax: "{'dataSourcesId':['0B438369-C0DA-4A32-8C6F-103AB6FEADD2','A641F684-00F6-4988-A052-B2FEFAB171C7','A641F684-00F6-4988-A052-B2FEFAB171C9'],'searchKeyWords':[{'searchKeyWordId':'1909145C-117E-48F3-9F5A-B699D011C619','materialTypeId':'','keyWordValue':'ddddddddddd','searchOperationId':'E58FB0BC-744C-4136-A4CE-A9A3736914FE','nextSearchKeyWordWithAnd':true},{'searchKeyWordId':'E57FA2D0-921D-4E43-8487-DCEEDBB225F6','materialTypeId':'','keyWordValue':'search test 2','searchOperationId':'AAD2C592-DC0D-4ED5-A5C7-6F0259C0498B','nextSearchKeyWordWithAnd':false},{'searchKeyWordId':'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50','materialTypeId':'','keyWordValue':'search test 3','searchOperationId':'','nextSearchKeyWordWithAnd':true}],'pageSize':12,'searchProfileId':'1111-1111-1111-1111'}",
+    query_name: 'ART and football 4',
+    anonymous: false,
+    id: 'rnPb4mkBBsIQctp5jb6r',
+    userId: 'hager1',
+    email: 'abdfg@xyz.com'
   };
-  searchValues={
-    "searchProfileId": "1111-1111-1111-1111",
-    "pageSize": 15,
-    "dataSourcesId": [
-      "dataSources1",
-      "dataSources2"
+  searchValues = {
+    searchProfileId: '1111-1111-1111-1111',
+    pageSize: 15,
+    dataSourcesId: [
+      'dataSources1',
+      'dataSources2'
     ],
-    "searchKeyWords": [
+    searchKeyWords: [
       {
-        "searchKeyWordId": "SearchKeyWordId1",
-        "materialTypeId": "MaterialTypeId1",
-        "keyWordValue": "KeyWordValue1",
-        "searchOperationId": "SearchOperationId1",
-        "nextSearchKeyWordWithAnd": true
+        searchKeyWordId: 'SearchKeyWordId1',
+        materialTypeId: 'MaterialTypeId1',
+        keyWordValue: 'KeyWordValue1',
+        searchOperationId: 'SearchOperationId1',
+        nextSearchKeyWordWithAnd: true
       }
     ],
-    "facetsFilter": [
+    facetsFilter: [
       {
-        "facetId": "1111-1111-1111-1111",
-        "facetType": "5",
-        "facetValue": "Riyadh"
+        facetId: '1111-1111-1111-1111',
+        facetType: '5',
+        facetValue: 'Riyadh'
       }
     ],
-    "keywWordsOrderBy": [
+    keywWordsOrderBy: [
       {
-        "keywWordId": "1111-1111-1111-1111",
-        "keywWordType": "4",
-        "keywWordValue": "value",
-        "isAcendening": true
+        keywWordId: '1111-1111-1111-1111',
+        keywWordType: '4',
+        keywWordValue: 'value',
+        isAcendening: true
       }
     ]
   };
   searchValueString = JSON.stringify(this.searchValues);
-  getQueryRequestBody={
-    "userId": "user_5"
+  getQueryRequestBody = {
+    userId: 'hager1'
   };
-  getQueryValues=[];
-  deleteRequestBody={
-    "_id": "XzseB2oBNpoo7s4y3V8h"
+  getQueryValues = [];
+  deleteRequestBody = {
+    _id: 'XzseB2oBNpoo7s4y3V8h'
   };
   constructor(private _SearchService: SearchService, private messageService: MessageService) { }
 
@@ -69,12 +70,12 @@ export class SearchComponent implements OnInit {
       this._SearchService.searchConfiguration$.next(data);
     });
     this._SearchService.results$.subscribe(data => {
-      if ( data !== null){
+      if (data !== null) {
         this.isNoData = false;
       }
     });
     // save search
-    this._SearchService.getQuery(this.getQueryRequestBody).subscribe((data)=>{
+    this._SearchService.getQuery(this.getQueryRequestBody).subscribe((data) => {
       if (data != null) {
         console.log(data);
         data.forEach(element => {
@@ -82,32 +83,32 @@ export class SearchComponent implements OnInit {
           this.getQueryValues.push(element);
         });
         console.log(this.getQueryValues);
-      }else{
-        console.log("no data");
+      } else {
+        console.log('no data');
       }
     });
   }
 
   showSuccess() {
-    this.messageService.add({severity:'success', summary: 'Success Message', detail:'item deleted'});
+    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'item deleted' });
   }
-  saveSearch(){
-    this.addQueryRequestBody.query_syntax= this.searchValueString;
+  saveSearch() {
+    this.addQueryRequestBody.query_syntax = this.searchValueString;
     console.log(this.addQueryRequestBody);
-    this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data)=>{
+    this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
       if (data != null) {
         console.log(data);
-      }else{
-        console.log("no data");
+      } else {
+        console.log('no data');
       }
     });
   }
-  deleteSearchItem(){
-    this._SearchService.deleteQuery(this.deleteRequestBody).subscribe((data)=>{
+  deleteSearchItem() {
+    this._SearchService.deleteQuery(this.deleteRequestBody).subscribe((data) => {
       if (data != null) {
         this.showSuccess();
-      }else{
-        console.log("no data");
+      } else {
+        console.log('no data');
       }
     });
   }
