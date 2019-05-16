@@ -57,6 +57,9 @@ export class SearchComponent implements OnInit {
     "userId": "user_5"
   };
   getQueryValues=[];
+  deleteRequestBody={
+    "_id": "XzseB2oBNpoo7s4y3V8h"
+  };
   constructor(private _SearchService: SearchService, private messageService: MessageService) { }
 
   ngOnInit() {
@@ -86,7 +89,7 @@ export class SearchComponent implements OnInit {
   }
 
   showSuccess() {
-    this.messageService.add({severity:'success', summary: 'Success Message', detail:'Order submitted'});
+    this.messageService.add({severity:'success', summary: 'Success Message', detail:'item deleted'});
   }
   saveSearch(){
     this.addQueryRequestBody.query_syntax= this.searchValueString;
@@ -99,6 +102,14 @@ export class SearchComponent implements OnInit {
       }
     });
   }
-
+  deleteSearchItem(){
+    this._SearchService.deleteQuery(this.deleteRequestBody).subscribe((data)=>{
+      if (data != null) {
+        this.showSuccess();
+      }else{
+        console.log("no data");
+      }
+    });
+  }
 
 }

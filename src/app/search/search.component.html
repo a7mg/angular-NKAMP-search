@@ -18,7 +18,7 @@
                   <path id="Path_10" data-name="Path 10" d="M25.605,35.113a.369.369,0,0,0,0,.516.374.374,0,0,0,.258.105.364.364,0,1,0-.258-.621Z" transform="translate(-17.743 -24.379)" fill="#666"/>
                   <path id="Path_11" data-name="Path 11" d="M29.681,4H27.5V7.634h2.181Zm-.727,2.907h-.727V4.727h.727Z" transform="translate(-19.259 -2.546)" fill="#666"/>
                 </svg>
-                Save Search
+                <span> Save Search </span>
             </div>
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                 
@@ -31,8 +31,12 @@
                    <ul class="searchNK-savedSearchItem" *ngIf="getQueryValues.length >=0">
                      <li *ngFor="let getQueryValue of getQueryValues">
                         <div class="searchNK-savedSearch-item">
-                          {{getQueryValue.query_name}}
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14.141" height="14.141" viewBox="0 0 14.141 14.141">
+                          <span>{{getQueryValue.query_name}}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" 
+                               width="14.141" 
+                               height="14.141" 
+                               viewBox="0 0 14.141 14.141"
+                               (click)="deleteSearchItem()">
                             <g id="Delete" transform="translate(-66 -284)">
                               <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(66 284)" fill="none" stroke="red" stroke-width="1">
                                 <circle cx="7.07" cy="7.07" r="7.07" stroke="none"/>
