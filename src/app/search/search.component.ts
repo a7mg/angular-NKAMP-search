@@ -72,7 +72,7 @@ export class SearchComponent implements OnInit {
     this.messageService.add({severity:'success', summary: 'Success Message', detail:'Order submitted'});
   }
   saveSearch(){
-    this.addQueryRequestBody.query_syntax= this.searchValueString;
+    // this.addQueryRequestBody.query_syntax= this.searchValueString;
     console.log(this.addQueryRequestBody);
     this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data)=>{
       if (data != null) {
