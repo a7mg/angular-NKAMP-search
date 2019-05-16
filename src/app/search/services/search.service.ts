@@ -62,8 +62,26 @@ export class SearchService {
     );
   }
 
-  addQuery(serachCriteria): Observable<any> {
-    return this.http.post<any>(this.Url + 'AddQuery', serachCriteria).pipe(
+  addQuery(saveSerachCriteria): Observable<any> {
+    return this.http.post<any>(this.Url + 'AddQuery', saveSerachCriteria).pipe(
+      map((data: any) => {
+        return data;
+      }), catchError((error: Error) => {
+        const errParams: any[] = [];
+        errParams.push(`API_URL = ${this.Url}`);
+        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
+        this.errorLogging.error(
+          'MakeNewSearch',
+          `${error.name} --> ${error.message} --> ${error.stack}` ||
+          `${error.name} --> ${error.message}`,
+          errParams
+        );
+        return of([] as any[]);
+      })
+    );
+  }
+  getQuery(saveSerachCriteriaData): Observable<any> {
+    return this.http.post<any>(this.Url + 'GetQuery', saveSerachCriteriaData).pipe(
       map((data: any) => {
         return data;
       }), catchError((error: Error) => {

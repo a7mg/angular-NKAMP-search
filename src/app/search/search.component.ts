@@ -53,6 +53,10 @@ export class SearchComponent implements OnInit {
     ]
   };
   searchValueString = JSON.stringify(this.searchValues);
+  getQueryRequestBody={
+    "userId": "user_5"
+  };
+  getQueryValues=[];
   constructor(private _SearchService: SearchService, private messageService: MessageService) { }
 
   ngOnInit() {
@@ -66,13 +70,26 @@ export class SearchComponent implements OnInit {
         this.isNoData = false;
       }
     });
+    // save search
+    this._SearchService.getQuery(this.getQueryRequestBody).subscribe((data)=>{
+      if (data != null) {
+        console.log(data);
+        data.forEach(element => {
+          // console.log(element);
+          this.getQueryValues.push(element);
+        });
+        console.log(this.getQueryValues);
+      }else{
+        console.log("no data");
+      }
+    });
   }
 
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Success Message', detail:'Order submitted'});
   }
   saveSearch(){
-    // this.addQueryRequestBody.query_syntax= this.searchValueString;
+    this.addQueryRequestBody.query_syntax= this.searchValueString;
     console.log(this.addQueryRequestBody);
     this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data)=>{
       if (data != null) {
@@ -82,5 +99,6 @@ export class SearchComponent implements OnInit {
       }
     });
   }
+
 
 }
