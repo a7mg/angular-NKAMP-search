@@ -6,9 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favorite.component.scss']
 })
 export class FavoriteComponent implements OnInit {
-
   constructor() { }
-
+  isSearched: boolean;
+  getSearchResult(dataEvent: boolean){
+    console.log(dataEvent);
+    this.isSearched= dataEvent;
+    console.log(this.isSearched);
+  }
   ngOnInit() {
   }
 

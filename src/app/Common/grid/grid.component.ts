@@ -10,7 +10,7 @@ export class GridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("bookData", this.bookData)
+    // console.log("bookData", this.bookData)
     // this.bookData =
   }
 

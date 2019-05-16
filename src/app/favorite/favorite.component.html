@@ -2,5 +2,9 @@
     <app-favorite-search></app-favorite-search>
 </section>
 <section class="Favorite">
-  <app-favorite-items></app-favorite-items>
+  <app-favorite-items (searchResult)="getSearchResult($event)" [hidden]="!isSearched" >
+
+  </app-favorite-items>
 </section>
+
+

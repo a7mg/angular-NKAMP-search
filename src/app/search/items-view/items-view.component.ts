@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 
 @Component({
-  selector: 'app-results',
-  templateUrl: './results.component.html',
-  styleUrls: ['./results.component.scss']
+  selector: 'app-items-view',
+  templateUrl: './items-view.component.html',
+  styleUrls: ['./items-view.component.scss']
 })
-export class ResultsComponent implements OnInit {
+export class ItemsViewComponent implements OnInit {
+  pageIndex = 1;
   itemsArr = [];
   constructor(private _SearchService: SearchService) { }
 
