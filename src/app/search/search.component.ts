@@ -59,7 +59,7 @@ export class SearchComponent implements OnInit {
   };
   getQueryValues = [];
   deleteRequestBody = {
-    id: ''
+    _id: ''
   };
   constructor(private _SearchService: SearchService, private messageService: MessageService) { }
 
@@ -108,11 +108,12 @@ export class SearchComponent implements OnInit {
     });
   }
   deleteSearchItem(currentqueryName, currentQueryId) {
-    this.deleteRequestBody.id = currentQueryId;
+    this.deleteRequestBody._id = currentQueryId;
+    console.log(currentqueryName);
+    console.log(currentQueryId);
+    console.log(this.deleteRequestBody);
     this._SearchService.deleteQuery(this.deleteRequestBody).subscribe((data) => {
-      if (data != null) {
-        console.log(data);
-        console.log(currentqueryName);
+      if (data.Msg == "Query successfully removed") {
         this.getQueryValues.forEach( (currentElement, index ) => {
           if (currentElement.query_name == currentqueryName) {
             this.getQueryValues.splice(index, 1);
