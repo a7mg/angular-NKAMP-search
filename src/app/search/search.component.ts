@@ -91,7 +91,7 @@ export class SearchComponent implements OnInit {
   }
 
   showSuccess() {
-    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'item deleted' });
+    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Sucess' });
   }
   showError() {
     this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'sorry, please try again !' });
@@ -102,8 +102,10 @@ export class SearchComponent implements OnInit {
     this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
       if (data != null) {
         console.log(data);
+        this.showSuccess();
       } else {
         console.log('no data');
+        this.showError();
       }
     });
   }
@@ -118,12 +120,12 @@ export class SearchComponent implements OnInit {
           this.deletedItems.forEach( (currentdeleteElement) => {
             if (currentElement.query_name == currentdeleteElement.query_name) {
               this.getQueryValues.splice(index, 1);
+              this.showSuccess();
             }
           });
         });
         console.log(this.getQueryValues);
         console.log(this.deletedItems);
-        this.showSuccess();
       }
       else {
 
