@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/Naseej-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
-import { RequestOptions } from '@angular/http';
+
 
 
 // let httpOptions;
@@ -17,7 +17,8 @@ export class SearchService {
   Url: string; // = "https://10.0.6.154:8245/Search10/1.0.0/SearchConfiguration";
   public results$ = new BehaviorSubject(null);
   public searchConfiguration$ = new BehaviorSubject(null);
-
+  public currentCriteria$ = new Subject();
+  
   constructor(private http: HttpClient, appConfig: AppConfigService,
     public globals: GlobalsService,
     private errorLogging: ErrorLoggingService) {

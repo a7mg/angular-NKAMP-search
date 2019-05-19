@@ -21,41 +21,8 @@ export class SearchComponent implements OnInit {
     userId: 'hager1',
     email: 'abdfg@xyz.com'
   };
-  searchValues = {
-    searchProfileId: '1111-1111-1111-1111',
-    pageSize: 15,
-    dataSourcesId: [
-      'dataSources1',
-      'dataSources2'
-    ],
-    searchKeyWords: [
-      {
-        searchKeyWordId: 'SearchKeyWordId1',
-        materialTypeId: 'MaterialTypeId1',
-        keyWordValue: 'KeyWordValue1',
-        searchOperationId: 'SearchOperationId1',
-        nextSearchKeyWordWithAnd: true
-      }
-    ],
-    facetsFilter: [
-      {
-        facetId: '1111-1111-1111-1111',
-        facetType: '5',
-        facetValue: 'Riyadh'
-      }
-    ],
-    keywWordsOrderBy: [
-      {
-        keywWordId: '1111-1111-1111-1111',
-        keywWordType: '4',
-        keywWordValue: 'value',
-        isAcendening: true
-      }
-    ]
-  };
-  searchValueString = JSON.stringify(this.searchValues);
   getQueryRequestBody = {
-    userId: 'user_5'
+    userId: 'hager1'
   };
   getQueryValues = [];
   deleteRequestBody = {
@@ -95,7 +62,7 @@ export class SearchComponent implements OnInit {
     this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'sorry, please try again !' });
   }
   saveSearch() {
-    this.addQueryRequestBody.query_syntax = this.searchValueString;
+    // this.addQueryRequestBody.query_syntax = this.searchValueString;
     console.log(this.addQueryRequestBody);
     this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
       if (data != null) {
