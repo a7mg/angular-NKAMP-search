@@ -80,8 +80,8 @@ export class SearchService {
       })
     );
   }
-  getQuery(saveSerachCriteriaData): Observable<any> {
-    return this.http.post<any>(this.Url + 'GetQuery', saveSerachCriteriaData).pipe(
+  getQuery(getSerachCriteriaData): Observable<any> {
+    return this.http.post<any>(this.Url + 'GetQuery', getSerachCriteriaData).pipe(
       map((data: any) => {
         return data;
       }), catchError((error: Error) => {

@@ -55,11 +55,11 @@ export class SearchComponent implements OnInit {
   };
   searchValueString = JSON.stringify(this.searchValues);
   getQueryRequestBody = {
-    userId: 'hager1'
+    userId: 'user_5'
   };
   getQueryValues = [];
   deleteRequestBody = {
-    _id: 'XzseB2oBNpoo7s4y3V8h'
+    id: ''
   };
   constructor(private _SearchService: SearchService, private messageService: MessageService) { }
 
@@ -79,7 +79,6 @@ export class SearchComponent implements OnInit {
       if (data != null) {
         console.log(data);
         data.forEach(element => {
-          // console.log(element);
           this.getQueryValues.push(element);
         });
         console.log(this.getQueryValues);
@@ -108,7 +107,8 @@ export class SearchComponent implements OnInit {
       }
     });
   }
-  deleteSearchItem(currentqueryName) {
+  deleteSearchItem(currentqueryName, currentQueryId) {
+    this.deleteRequestBody.id = currentQueryId;
     this._SearchService.deleteQuery(this.deleteRequestBody).subscribe((data) => {
       if (data != null) {
         console.log(data);
