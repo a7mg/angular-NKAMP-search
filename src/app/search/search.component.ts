@@ -61,7 +61,6 @@ export class SearchComponent implements OnInit {
   deleteRequestBody = {
     _id: 'XzseB2oBNpoo7s4y3V8h'
   };
-  deletedItems=[];
   constructor(private _SearchService: SearchService, private messageService: MessageService) { }
 
   ngOnInit() {
@@ -109,23 +108,18 @@ export class SearchComponent implements OnInit {
       }
     });
   }
-  deleteSearchItem() {
+  deleteSearchItem(currentqueryName) {
     this._SearchService.deleteQuery(this.deleteRequestBody).subscribe((data) => {
       if (data != null) {
-
-        data.forEach(element => {
-          this.deletedItems.push(element);
-        });
+        console.log(data);
+        console.log(currentqueryName);
         this.getQueryValues.forEach( (currentElement, index ) => {
-          this.deletedItems.forEach( (currentdeleteElement) => {
-            if (currentElement.query_name == currentdeleteElement.query_name) {
-              this.getQueryValues.splice(index, 1);
-              this.showSuccess();
-            }
-          });
+          if (currentElement.query_name == currentqueryName) {
+            this.getQueryValues.splice(index, 1);
+            this.showSuccess();
+          }
         });
         console.log(this.getQueryValues);
-        console.log(this.deletedItems);
       }
       else {
 

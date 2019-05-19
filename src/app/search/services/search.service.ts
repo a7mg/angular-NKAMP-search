@@ -99,7 +99,7 @@ export class SearchService {
     );
   }
   deleteQuery(deleteSerachCriteriaData): Observable<any> {
-    return this.http.post<any>(this.Url + 'GetQuery', deleteSerachCriteriaData).pipe(
+    return this.http.post<any>(this.Url + 'DeleteQuery', deleteSerachCriteriaData).pipe(
       map((data: any) => {
         return data;
       }), catchError((error: Error) => {
