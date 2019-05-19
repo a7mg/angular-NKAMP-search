@@ -31,7 +31,10 @@
                    <ul class="searchNK-savedSearchItem" *ngIf="getQueryValues.length >=0">
                      <li *ngFor="let getQueryValue of getQueryValues">
                         <div class="searchNK-savedSearch-item">
-                          <span>{{getQueryValue.query_name}}</span>
+                          <span> 
+                             <!-- {{getQueryValue.query_name | slice:0:10}} -->
+                             {{ (getQueryValue.query_name | slice:0:15)+'..'}}
+                          </span>
                           <svg xmlns="http://www.w3.org/2000/svg" 
                                width="14.141" 
                                height="14.141" 
