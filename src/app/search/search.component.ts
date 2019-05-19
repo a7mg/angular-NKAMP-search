@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchService } from './services/search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { MessageService } from 'primeng/components/common/messageservice';
   styleUrls: ['./search.component.scss'],
   providers: [MessageService]
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
+  unSubscribeCurrentCriteria =new Subscription();
   isLoading = false;
   favoriteBadge = 55;
   isNoData = true;
@@ -33,7 +35,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     const searchProfile = { SearchProfile_id: 'FFB6CD68-BED4-4B5D-897D-89D205734B0E' };
     this._SearchService.getSearchConfiguration(searchProfile).subscribe(data => {
-      console.log('getSearchConfiguration ', data);
+      // console.log('getSearchConfiguration ', data);
       this._SearchService.searchConfiguration$.next(data);
     });
     this._SearchService.results$.subscribe(data => {
@@ -44,14 +46,23 @@ export class SearchComponent implements OnInit {
     // save search
     this._SearchService.getQuery(this.getQueryRequestBody).subscribe((data) => {
       if (data != null) {
-        console.log(data);
+        // console.log(data);
         data.forEach(element => {
           this.getQueryValues.push(element);
         });
-        console.log(this.getQueryValues);
+        // console.log(this.getQueryValues);
       } else {
         console.log('no data');
       }
+    });
+    this.unSubscribeCurrentCriteria = this._SearchService.currentCriteria$.subscribe((Data)=>{
+      if(Data !== null){
+        this.addQueryRequestBody.query_syntax =  JSON.stringify(Data);
+        console.log('this is cira data', this.addQueryRequestBody.query_syntax);
+      }else{
+        console.log('no data');
+      }
+       
     });
   }
 
@@ -66,7 +77,7 @@ export class SearchComponent implements OnInit {
     console.log(this.addQueryRequestBody);
     this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
       if (data != null) {
-        console.log(data);
+        // console.log(data);
         this.showSuccess();
       } else {
         console.log('no data');
@@ -87,7 +98,7 @@ export class SearchComponent implements OnInit {
             this.showSuccess();
           }
         });
-        console.log(this.getQueryValues);
+        // console.log(this.getQueryValues);
       }
       else {
 
@@ -96,6 +107,9 @@ export class SearchComponent implements OnInit {
 
       }
     });
+  }
+  ngOnDestroy(){
+    this.unSubscribeCurrentCriteria.unsubscribe();
   }
 
 }
