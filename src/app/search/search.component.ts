@@ -92,6 +92,9 @@ export class SearchComponent implements OnInit {
   showSuccess() {
     this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'item deleted' });
   }
+  showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'sorry, please try again !' });
+  }
   saveSearch() {
     this.addQueryRequestBody.query_syntax = this.searchValueString;
     console.log(this.addQueryRequestBody);
@@ -99,6 +102,7 @@ export class SearchComponent implements OnInit {
       if (data != null) {
         console.log(data);
       } else {
+        this.showError();
         console.log('no data');
       }
     });
