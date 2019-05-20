@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "gategory.component.scss"
+        "category.component.scss"
     ],
     "names": [],
-    "file": "gategory.component.css"
+    "file": "category.component.css"
 }

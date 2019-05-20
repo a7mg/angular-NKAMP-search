@@ -6,7 +6,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SearchComponent } from '../search/search.component';
 import { FacetsComponent } from './facets/facets.component';
 import { ActiveSelectionComponent } from './active-selection/active-selection.component';
-import { GategoryComponent } from './facets/gategory/gategory.component';
 import { ListComponent } from '../Common/list/list.component';
 import { CriteriaComponent } from './criteria/criteria.component';
 
@@ -26,12 +25,13 @@ import { BookDetailsService } from './services/book-details.service';
 import { ItemsViewComponent } from './items-view/items-view.component';
 import { FiltersComponent } from './items-view/filters/filters.component';
 import { ResultsAreaComponent } from './results-area/results-area.component';
+import { CategoryComponent } from './facets/gategory/category.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
-  keyboard: true,
-  mousewheel: true,
+  keyboard: false,
+  mousewheel: false,
   navigation: true,
   threshold: 50,
   observer: true,
@@ -60,7 +60,7 @@ const HeaderRoutes = [
     ListComponent,
     FiltersComponent,
     ActiveSelectionComponent,
-    GategoryComponent,
+    CategoryComponent,
     BookDetailsComponent,
     DetailsComponent,
     ReviewRatingComponent,
