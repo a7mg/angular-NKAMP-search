@@ -90,7 +90,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   ToggleClass(){
     this.clicked = !this.clicked;
-    // this.formElement.reset();
+    this.formElement.reset();
   }
   getSaveSearchInput(){
     if (this.formElement.value.savedSearchInput) {
