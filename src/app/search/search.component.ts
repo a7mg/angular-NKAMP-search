@@ -96,7 +96,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (this.formElement.value.savedSearchInput) {
      this.addQueryRequestBody.query_name = this.formElement.value.savedSearchInput;
      console.log(" new data",this.addQueryRequestBody);
-    //  this.ToggleClass();
+     this.ToggleClass();
+     this.showSuccess();
     }else{
       console.log('no data');
     }
