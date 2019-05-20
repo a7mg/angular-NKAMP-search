@@ -58,10 +58,13 @@
             </div>        
         </div>
         <div class="searchNK-savedSearchInput"  [ngClass]="{'searchNK-saveSearchClicked': !clicked}">
-                <form>
-                  <input type="text" class="form-control">
+                <form (ngSubmit)="getSaveSearchInput()" #formEle="ngForm">
+                  <input type="text" 
+                        class="form-control" 
+                        name="savedSearchInput"
+                        ngModel>
                   <button type="submit" 
-                          class="btn btn-primary searchNK-searchBtn">Search</button>
+                          class="btn btn-primary searchNK-searchBtn">Send</button>
                 </form>
                 <span (click)="ToggleClass()"> x </span>
         </div>

@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { SearchService } from './services/search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Subscription } from 'rxjs';
   providers: [MessageService]
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  @ViewChild('formEle') formElement : NgForm;
   unSubscribeCurrentCriteria =new Subscription();
   isLoading = false;
   favoriteBadge = 55;
@@ -18,7 +20,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   clicked= false;
   addQueryRequestBody = {
     query_syntax: "",
-    query_name: 'ART and football 4',
+    query_name: '',
     anonymous: false,
     id: 'rnPb4mkBBsIQctp5jb6r',
     userId: 'hager1',
@@ -88,6 +90,16 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   ToggleClass(){
     this.clicked = !this.clicked;
+    // this.formElement.reset();
+  }
+  getSaveSearchInput(){
+    if (this.formElement.value.savedSearchInput) {
+     this.addQueryRequestBody.query_name = this.formElement.value.savedSearchInput;
+     console.log(" new data",this.addQueryRequestBody);
+    //  this.ToggleClass();
+    }else{
+      console.log('no data');
+    }
   }
   deleteSearchItem(currentqueryName, currentQueryId) {
     this.deleteRequestBody._id = currentQueryId;
