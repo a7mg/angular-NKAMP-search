@@ -18,16 +18,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   favoriteBadge = 55;
   isNoData = true;
   clicked= false;
+  userId = 'hager1';
   addQueryRequestBody = {
     query_syntax: "",
     query_name: '',
     anonymous: false,
     id: 'rnPb4mkBBsIQctp5jb6r',
-    userId: 'hager1',
+    userId: "",
     email: 'abdfg@xyz.com'
-  };
-  getQueryRequestBody = {
-    userId: 'hager1'
   };
   getQueryValues = [];
   deleteRequestBody = {
@@ -37,6 +35,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.unSubscribeCurrentCriteria = this._SearchService.currentCriteria$.subscribe((Data)=>{
+      this.addQueryRequestBody.userId= this.userId;
       if(Data !== null){
         console.log(JSON.stringify(Data));
         this.addQueryRequestBody.query_syntax =  JSON.stringify(Data);
@@ -46,6 +45,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
        
     });
+
     const searchProfile = { SearchProfile_id: 'FFB6CD68-BED4-4B5D-897D-89D205734B0E' };
     this._SearchService.getSearchConfiguration(searchProfile).subscribe(data => {
       // console.log('getSearchConfiguration ', data);
@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
     });
     // save search
-    this._SearchService.getQuery(this.getQueryRequestBody).subscribe((data) => {
+    this._SearchService.getQuery({userId: this.userId}).subscribe((data) => {
       if (data != null) {
         // console.log(data);
         data.forEach(element => {
