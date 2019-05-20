@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   isLoading = false;
   favoriteBadge = 55;
   isNoData = true;
+  clicked= false;
   addQueryRequestBody = {
     query_syntax: "",
     query_name: 'ART and football 4',
@@ -75,16 +76,18 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   saveSearch() {
     // this.addQueryRequestBody.query_syntax = this.searchValueString;
+    this.ToggleClass();
     console.log(this.addQueryRequestBody);
     this._SearchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
       if (data != null) {
-        // console.log(data);
-        this.showSuccess();
+        console.log(data);
       } else {
         console.log('no data');
-        this.showError();
       }
     });
+  }
+  ToggleClass(){
+    this.clicked = !this.clicked;
   }
   deleteSearchItem(currentqueryName, currentQueryId) {
     this.deleteRequestBody._id = currentQueryId;
@@ -96,9 +99,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.getQueryValues.forEach( (currentElement, index ) => {
           if (currentElement.query_name == currentqueryName) {
             this.getQueryValues.splice(index, 1);
-            this.showSuccess();
           }
         });
+        this.showSuccess();
         // console.log(this.getQueryValues);
       }
       else {
