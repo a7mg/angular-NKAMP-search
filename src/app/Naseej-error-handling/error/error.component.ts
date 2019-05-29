@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalsService } from '../../Naseej-shared/services/globals.service';
+import { GlobalsService } from '../../NKAMP-Search-shared/services/globals.service';
 
 @Component({
   selector: 'app-error',

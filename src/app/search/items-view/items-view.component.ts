@@ -9,15 +9,15 @@ import { SearchService } from '../services/search.service';
 export class ItemsViewComponent implements OnInit {
   pageIndex = 1;
   itemsArr = [];
-  constructor(private _SearchService: SearchService) { }
+  constructor(private $searchService: SearchService) { }
 
   ngOnInit() {
-    this._SearchService.results$.subscribe(data => {
+    this.$searchService.results$.subscribe(data => {
       if (data !== null) {
         data.items.forEach(element => {
           this.itemsArr.push(element);
         });
-        console.log("Resultrs == > items ", this.itemsArr);
+        // console.log('Resultrs == > items ', this.itemsArr);
       }
     });
   }

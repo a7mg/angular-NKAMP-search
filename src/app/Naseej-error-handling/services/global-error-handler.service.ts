@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { GlobalsService } from '../../Naseej-shared/services/globals.service';
+import { GlobalsService } from '../../NKAMP-Search-shared/services/globals.service';
 import { ErrorLoggingService } from './error-logging.service';
 // ---------------------------------------------------------------------------------------------------------------------------------- //
 @Injectable()

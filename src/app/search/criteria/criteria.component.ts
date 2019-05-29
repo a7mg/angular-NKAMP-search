@@ -17,7 +17,8 @@ import {
   FormBuilder,
   FormArray
 } from '@angular/forms';
-import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+import { EventEmitterService } from '../services/event-emitter.service';
 
 @Component({
   selector: 'app-criteria',
@@ -27,40 +28,6 @@ import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
 export class CriteriaComponent implements OnInit {
   criteriaForm: FormGroup;
   pageSize = 12;
-  searchProfileId = '1111-1111-1111-1111';
-  savedCriteria = {
-    dataSourcesId: [
-      '0B438369-C0DA-4A32-8C6F-103AB6FEADD2',
-      'A641F684-00F6-4988-A052-B2FEFAB171C7',
-      'A641F684-00F6-4988-A052-B2FEFAB171C9'
-    ],
-    searchKeyWords: [
-      {
-        searchKeyWordId: '1909145C-117E-48F3-9F5A-B699D011C619',
-        materialTypeId: '',
-        keyWordValue: 'ddddddddddd',
-        searchOperationId: 'E58FB0BC-744C-4136-A4CE-A9A3736914FE',
-        nextSearchKeyWordWithAnd: true
-      },
-      {
-        searchKeyWordId: 'E57FA2D0-921D-4E43-8487-DCEEDBB225F6',
-        materialTypeId: '',
-        keyWordValue: 'search test 2',
-        searchOperationId: 'AAD2C592-DC0D-4ED5-A5C7-6F0259C0498B',
-        nextSearchKeyWordWithAnd: false
-      },
-      {
-        searchKeyWordId: 'AA06F8E1-BF2C-42F6-8C01-AD6F0BF60E50',
-        materialTypeId: '',
-        keyWordValue: 'search test 3',
-        searchOperationId: '',
-        nextSearchKeyWordWithAnd: true
-      }
-    ],
-    pageSize: 12,
-    searchProfileId: '1111-1111-1111-1111'
-  };
-
   isAdvanced = false;
   DataSources: Criteria[];
   AllFields: Criteria[];
@@ -75,6 +42,7 @@ export class CriteriaComponent implements OnInit {
   constructor(
     private $searchService: SearchService,
     private $globalsService: GlobalsService,
+    private $eventEmitterService: EventEmitterService,
     private fb: FormBuilder
   ) {
     this.lang = this.$globalsService.UILanguage;
@@ -90,13 +58,19 @@ export class CriteriaComponent implements OnInit {
   ngOnInit() {
     this.createFormdynamic();
     this.getAllDataCriteria();
-    this.getSavedCriteria();
+    // make getsaved function accessable to infoke from another component
+    if (this.$eventEmitterService.subsVar === undefined) {
+      this.$eventEmitterService.subsVar = this.$eventEmitterService.invokeSavedSearchFunction.subscribe((data) => {
+        this.getSavedSearch(data);
+      });
+    }
+    // END
   }
 
   getAllDataCriteria() {
     this.$searchService.searchConfiguration$.subscribe(data => {
-      console.log('getAllDataCriteria => ', data);
       if (data != null) {
+        // console.log('getAllDataCriteria => ', data);
 
         data.DataSources.forEach(element => {
           this.DataSources.push(element);
@@ -116,14 +90,15 @@ export class CriteriaComponent implements OnInit {
 
       }
     });
+
   }
 
   onSubmit() {
     this.setSearchObject();
-    console.log(' finall CriteriaSearch  => ', JSON.stringify(this.CriteriaSearch));
-    this.$searchService.currentCriteria$.next(this.CriteriaSearch);
+    // tslint:disable-next-line: quotemark
+    this.$searchService.currentCriteria$.next(JSON.stringify(this.CriteriaSearch).replace(/"/g, "'" ));
     this.CriteriaSearch.pageSize = this.pageSize;
-    this.CriteriaSearch.searchProfileId = this.searchProfileId;
+    this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
       this.$searchService.results$.next(data);
     });
@@ -154,13 +129,13 @@ export class CriteriaComponent implements OnInit {
   }
 
   addSearchButtonClick(): void {
-    // if (
-    //   (this.criteriaForm.get('searchadd') as FormArray).length <
-    //   this.DataSources.length
-    // ) {
-    //   (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup());
-    // }
-    (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup()); // delete this line
+    if (
+      (this.criteriaForm.get('searchadd') as FormArray).length <
+      this.searchKeyword.length
+    ) {
+      (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup());
+    }
+    // (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup()); // delete this line
   }
   removeCurrentRowClick(selected): void {
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
@@ -180,7 +155,6 @@ export class CriteriaComponent implements OnInit {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormControl) {
-        // console.log('abstractControl  ' + key, abstractControl.value);
         if (key === 'dataSourceFC') {
 
           if (abstractControl.value === null) {
@@ -237,21 +211,31 @@ export class CriteriaComponent implements OnInit {
     }
 
   }
-
-  getSavedCriteria() {
+  onClickChangeToSimpleSearch() {
+    this.isAdvanced = false;
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
-    console.log('currentCreteriaForms', currentCreteriaForms.length);
-    const mainForm = currentCreteriaForms.at(0) as FormGroup;
-    console.log('mainForm', mainForm);
-    // const FeildControl = controll.controls.facetFC as FormControl;
-    // const containControl = controll.controls.searchOperationFC as FormControl;
-    if (this.savedCriteria != null) {
-      if (this.savedCriteria.dataSourcesId.length > 1) {
+    currentCreteriaForms.controls.length = 1;
+  }
 
-      }
+  getSavedSearch(savedCriteriaObj) {
+    // console.log('onst currentCret : string',  savedCriteriaObj  );
+    if (savedCriteriaObj != null) {
+      const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
+      currentCreteriaForms.controls = [];
+      if (savedCriteriaObj.searchKeyWords.length > 1) { this.isAdvanced = true; } else { this.isAdvanced = false; }
+      savedCriteriaObj.searchKeyWords.forEach((row, idx) => {
+        this.addSearchButtonClick();
+        const abstractControl = currentCreteriaForms.controls[idx];
+        // const { facetFC, searchTextFC, searchOperationFC, operator } = abstractControl.controls;
+        abstractControl.patchValue({
+          facetFC: row.searchKeyWordId,
+          searchTextFC: row.keyWordValue,
+          searchOperationFC: row.searchOperationId,
+          operator: (row.nextSearchKeyWordWithAnd ? 'AND' : 'OR')
+        });
+        this.onSubmit();
+      });
     }
-
-
 
   }
 

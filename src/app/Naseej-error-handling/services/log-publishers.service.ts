@@ -6,7 +6,7 @@ import {
   LogWebApi
 } from "../dataModel/LogPublisher";
 import { HttpClient } from "@angular/common/http";
-import { AppConfigService } from "../../Naseej-shared/services/app-config.service";
+import { AppConfigService } from "../../NKAMP-Search-shared/services/app-config.service";
 // ---------------------------------------------------------------------------------------------------------------------------------- //
 @Injectable({
   providedIn: "root"

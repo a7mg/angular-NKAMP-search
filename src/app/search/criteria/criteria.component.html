@@ -96,7 +96,7 @@
     <div class="form-group col-12  col-sm-2 offset-sm-8 d-flex justify-content-end">
 
       <button type="button" *ngIf="isAdvanced" class="btn btn-link searchNK-changeStateBtn"
-        (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_simplesearch">Simple Search</button>
+        (click)="onClickChangeToSimpleSearch()" i18n="@@lblsearch_simplesearch">Simple Search</button>
       <button type="button" *ngIf="!isAdvanced" class="btn btn-link searchNK-changeStateBtn"
         (click)="isAdvanced=!isAdvanced" i18n="@@lblsearch_advancedSearch">AdvancedSearch</button>
     </div>
@@ -105,6 +105,8 @@
       <button type="submit" [disabled]="criteriaForm.invalid" class="btn btn-primary searchNK-searchBtn"
         i18n="@@lblsearch">Search</button>
     </div>
+
+
 
 
   </div>

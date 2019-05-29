@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
-import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 
 @Component({
   selector: 'app-facets',
@@ -8,28 +8,30 @@ import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
   styleUrls: ['./facets.component.scss']
 })
 export class FacetsComponent implements OnInit {
-  public facetsArr = [];
-  facetFieldsOptions = [];
+  public facetsArr: Array<any>;
+  facetFieldsOptions: Array<any>;
   constructor(
-    private _SearchService: SearchService,
-    private _GlobalsService: GlobalsService) {
-
+    private $searchService: SearchService,
+    private $globalsService: GlobalsService) {
+    this.facetsArr = [];
+    this.facetFieldsOptions = [];
   }
 
   ngOnInit() {
-    this._SearchService.searchConfiguration$.subscribe(data => {
+
+    this.$searchService.searchConfiguration$.subscribe(data => {
       // console.log('Facets Configuration => ', data);
       if (data != null) {
 
         data.FacetFields.forEach(element => {
           this.facetFieldsOptions.push(element);
         });
-        console.log('Facets Configuration => ', this.facetFieldsOptions);
+        // console.log('Facets Configuration => ', this.facetFieldsOptions);
       }
     });
 
-    this._SearchService.results$.subscribe(results => {
-      console.log('_SearchService.results$ ', this.facetsArr);
+    this.$searchService.results$.subscribe(results => {
+      // console.log('$searchService.results$ ', this.facetsArr);
       if (results !== null) {
         this.facetsArr = results.facetsSearchQueryStatistic;
         // console.log('facetsArr', this.facetsArr);

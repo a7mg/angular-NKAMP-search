@@ -12,11 +12,11 @@ import { CriteriaComponent } from './criteria/criteria.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
 import { ChartModule } from 'primeng/chart';
-import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
+import { NKAMPSearchSharedModule } from '../NKAMP-Search-shared/NKAMP-Search-shared.module';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
-import { RatingModule } from 'primeng/primeng';
+import { RatingModule, TabViewModule } from 'primeng/primeng';
 import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { ReviewRatingComponent } from './review-rating/review-rating.component';
@@ -26,6 +26,7 @@ import { ItemsViewComponent } from './items-view/items-view.component';
 import { FiltersComponent } from './items-view/filters/filters.component';
 import { ResultsAreaComponent } from './results-area/results-area.component';
 import { CategoryComponent } from './facets/gategory/category.component';
+import { EventEmitterService } from './services/event-emitter.service';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -38,7 +39,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   spaceBetween: 20
 };
 
-const HeaderRoutes = [
+const SearchRoutes = [
   // { path: '', component: SearchComponent },
   {
     path: '',
@@ -72,16 +73,18 @@ const HeaderRoutes = [
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
-    }
+    },
+    EventEmitterService
   ],
   imports: [
-    RouterModule.forChild(HeaderRoutes),
+    RouterModule.forChild(SearchRoutes),
 
     ProgressSpinnerModule,
     ToastModule,
     ChartModule,
+    TabViewModule,
     ReactiveFormsModule,
-    NaseejSharedModule,
+    NKAMPSearchSharedModule,
     SwiperModule,
     CommonModule,
     FormsModule,
