@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
-import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { SearchService } from '../../services/search.service';
 
 @Component({
@@ -11,6 +11,8 @@ import { SearchService } from '../../services/search.service';
 export class CategoryComponent implements OnInit {
   categoryForm: FormGroup;
   masterSelected: boolean;
+  checklist = [];
+  checkedList: any;
   showAll = false;
   maxShowing = 6;
   totalOfAllItems = 0;
@@ -20,7 +22,7 @@ export class CategoryComponent implements OnInit {
     isAllowMultiSelection: false,
     isPiChart: false,
     isVituailization: false,
-  }
+  };
   chartData = {
     labels: [],
     data: []
@@ -41,7 +43,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.createItemsFormDynamic();
-    console.log('category facet', this.facetOption);
+    // console.log('category facet', this.facetOption);
     this.facetOption.values.forEach(element => {
       this.totalOfAllItems += element.totalItems;
       this.chartData.labels.push(element.facetValue);
@@ -72,13 +74,14 @@ export class CategoryComponent implements OnInit {
 
   }
 
-  allFieldMasterChanged(mainInput): void {
-    console.log('mainInpuxt', mainInput.target.checked);
-    this.masterSelected = mainInput.target.checked;
-  }
+  // allFieldMasterChanged(mainInput): void {
+  //   console.log('mainInpuxt', mainInput.target.checked);
+  //   this.masterSelected = mainInput.target.checked;
+  // }
 
   createItemsFormDynamic() {
     this.categoryForm = this.$formBuilder.group({
+      selectAll: [null],
       facetFC: new FormArray([])
     });
 
@@ -86,25 +89,46 @@ export class CategoryComponent implements OnInit {
 
   }
 
-  public addFacets() {
+  private addFacets() {
     this.facetOption.values.map((o, i) => {
-      const control = new FormControl(i === 0); // if first item set to true, else false
+      this.checklist.push({ id: o.id, isSelected: false });
+      const control = new FormControl(false); // if first item set to true, else false
       (this.categoryForm.controls.facetFC as FormArray).push(control);
     });
   }
 
-  // addSearchFormGroup(defalutValues = { facet: null }) {
-  //   return this.$formBuilder.control({
-  //     facetFC: [defalutValues.facet]
-  //   });
-  // }
+  checkUncheckAll() {
+    // this.masterSelected = !this.masterSelected ;
+    console.log("this.masterSelected", this.masterSelected)
+    for (let i = 0; i < this.checklist.length; i++) {
+      this.checklist[i].isSelected = this.masterSelected;
+    }
+    console.log("this.checklist checkUncheckAll",this.checklist)
+    this.getCheckedItemList();
+  }
+  isAllSelected() {
+    console.log("this.checklist", this.checklist)
+    this.masterSelected = this.checklist.every((item: any) => {
+      return item.isSelected === true;
+    });
+    this.getCheckedItemList();
+  }
 
-  // setSearchObject(group: FormGroup = this.categoryForm): void {
-  //   console.log('group :', group )
-  // }
+  getCheckedItemList() {
+    const isSelectedID = [];
+    for (let i = 0; i < this.checklist.length; i++) {
+      if (this.checklist[i].isSelected) {
+        isSelectedID.push(this.checklist[i].id);
+      }
+    }
+    this.checkedList = JSON.stringify(isSelectedID);
+    console.log("this.checklist getCheckedItemList", this.checklist)
+  }
 
-  onSubmit(categoryForm): void {
-    console.log('catgory form ', this.categoryForm);
+  onSubmit(): void {
+    console.log('catgory this.checklist ', this.checklist);
+    console.log('catgory this.checkedList ', this.checkedList);
+    // console.log('catgory form ', this.categoryForm);
   }
 
 }

@@ -33,7 +33,7 @@ export const providers = [
 // ------------------------------------------------------------------------------------------------------------ //
 @NgModule({
   declarations:[
-    GridComponent 
+    GridComponent
   ],
   imports: [
     RouterModule,
@@ -63,20 +63,20 @@ export const providers = [
     GridComponent
   ]
 })
-export class NaseejSharedModule {
+export class NKAMPSearchSharedModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: NaseejSharedModule,
+      ngModule: NKAMPSearchSharedModule,
       providers: [providers]
     };
   }
   constructor(
     @Optional()
     @SkipSelf()
-    parentModule: NaseejSharedModule
+    parentModule: NKAMPSearchSharedModule
   ) {
     if (parentModule) {
-      console.log("NaseejSharedModule is already loaded");
+      console.log("NKAMPSearchSharedModule is already loaded");
     }
   }
 }

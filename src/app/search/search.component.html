@@ -7,10 +7,9 @@
       <div class="col-12 col-md-2 col-lg-2">
         <h1>Search</h1>
       </div>
-
       <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-end">
         <div class="searchNK-savedSearchContainer" [ngClass]="{'searchNK-saveSearchClicked': clicked}">
-            <div class="searchNK-savedSearch" (click)="saveSearch()">
+            <button class="btn searchNK-savedSearch " (click)="clicked=!clicked" [disabled]="isSavedSearchDisabled">
                 <svg xmlns="http://www.w3.org/2000/svg" id="save" width="15" height="15" viewBox="0 0 15 15">
                   <path id="Path_7" data-name="Path 7" d="M12.817,0H.5V15h15V2.628ZM11.437.612V4.9h-7.5V.612ZM3.312,14.388V8.571h9.062v5.816Zm11.563,0H13V7.959H2.687v6.429H1.125V.612H3.312v4.9h8.75V.612h.5l2.317,2.27Z" transform="translate(-0.5)" fill="#666"/>
                   <path id="Path_8" data-name="Path 8" d="M12.863,31.727h2.544a.363.363,0,1,0,0-.727H12.863a.363.363,0,1,0,0,.727Z" transform="translate(-8.891 -21.586)" fill="#666"/>
@@ -19,9 +18,9 @@
                   <path id="Path_11" data-name="Path 11" d="M29.681,4H27.5V7.634h2.181Zm-.727,2.907h-.727V4.727h.727Z" transform="translate(-19.259 -2.546)" fill="#666"/>
                 </svg>
                 <span> Save Search </span>
-            </div>
+            </button>
             <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                 
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <svg xmlns="http://www.w3.org/2000/svg" width="8.707" height="5.064" viewBox="0 0 8.707 5.064">
                     <path id="Arrow_Down" data-name="Arrow Down" d="M4,0,0,3.925,4,8" transform="translate(0.357 4.357) rotate(-90)" fill="none" stroke="#333" stroke-width="1"/>
                   </svg>
@@ -31,13 +30,12 @@
                    <ul class="searchNK-savedSearchItem" *ngIf="getQueryValues.length >=0">
                      <li *ngFor="let getQueryValue of getQueryValues">
                         <div class="searchNK-savedSearch-item">
-                          <span> 
-                             <!-- {{getQueryValue.query_name | slice:0:10}} -->
-                             {{ (getQueryValue.query_name | slice:0:15)+'..'}}
+                          <span (click)="onSavedSearchClicked(getQueryValue.query_syntax)">
+                             {{ (getQueryValue.query_name | slice:0:20)+'..'}}
                           </span>
-                          <svg xmlns="http://www.w3.org/2000/svg" 
-                               width="14.141" 
-                               height="14.141" 
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                               width="14.141"
+                               height="14.141"
                                viewBox="0 0 14.141 14.141"
                                (click)="deleteSearchItem(getQueryValue.query_name, getQueryValue.id)">
                             <g id="Delete" transform="translate(-66 -284)">
@@ -55,16 +53,16 @@
                    </ul>
                    <div *ngIf="getQueryValues.length ==0"> no save search yet</div>
                 </div>
-            </div>        
+            </div>
         </div>
         <div class="searchNK-savedSearchInput"  [ngClass]="{'searchNK-saveSearchClicked': !clicked}">
                 <form (ngSubmit)="getSaveSearchInput()" #formEle="ngForm">
-                  <input type="text" 
-                        class="form-control" 
+                  <input type="text"
+                        class="form-control"
                         name="savedSearchInput"
                         ngModel>
-                  <button type="submit" 
-                          class="btn btn-primary searchNK-searchBtn">Send</button>
+                  <button type="submit"
+                          class="btn btn-primary searchNK-searchBtn">Save</button>
                 </form>
                 <span (click)="ToggleClass()"> x </span>
         </div>

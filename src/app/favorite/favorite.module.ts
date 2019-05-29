@@ -7,18 +7,18 @@ import { FavoriteSearchComponent } from './favorite-search/favorite-search.compo
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-const HeaderRoutes = [
+const FavoriteRoutes = [
   { path: '', component: FavoriteComponent }
 ];
 @NgModule({
-  declarations: [ 
-    FavoriteComponent, 
-    FavoriteItemsComponent, 
+  declarations: [
+    FavoriteComponent,
+    FavoriteItemsComponent,
     FavoriteSearchComponent
 
   ],
   imports: [
-    RouterModule.forChild(HeaderRoutes),
+    RouterModule.forChild(FavoriteRoutes),
     CommonModule,
     FormsModule,
     NgbModule,

@@ -1,6 +1,10 @@
 <!--  fillter -->
 <app-filters class="form-row"></app-filters>
-
+<p-tabView>
+    <p-tabPanel [header]="'item.header' + i" *ngFor="let item of itemsArr; let i = index" [selected]="i == 0">
+        resultsBox Content  {{i}}
+    </p-tabPanel>
+</p-tabView>
 <div class="row">
 
   <!-- col-xl-3 -->

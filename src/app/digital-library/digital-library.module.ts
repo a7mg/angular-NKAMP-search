@@ -3,7 +3,7 @@ import { SwiperModule, SwiperConfigInterface,
   SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { DigitalLibraryComponent } from './digital-library.component';
 import { RouterModule } from '@angular/router';
-import { NaseejSharedModule } from '../Naseej-shared/naseej-shared.module';
+import { NKAMPSearchSharedModule } from '../NKAMP-Search-shared/NKAMP-Search-shared.module';
 import { DigitalSearchComponent } from './digital-search/digital-search.component';
 import { DigitalResultComponent } from './digital-result/digital-result.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,7 +20,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 
-const HeaderRoutes = [
+const DiditalLibraryRoutes = [
   { path: '', component:  DigitalLibraryComponent }
 ];
 @NgModule({
@@ -31,9 +31,9 @@ const HeaderRoutes = [
 
   ],
   imports: [
-    RouterModule.forChild(HeaderRoutes),
+    RouterModule.forChild(DiditalLibraryRoutes),
     SwiperModule,
-    NaseejSharedModule,
+    NKAMPSearchSharedModule,
     NgbModule.forRoot(),
     NgbPaginationModule
   ],
