@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   favoriteBadge = 55;
   isNoData = true;
   clicked = false;
+  blockedDocument = true;
   addQueryRequestBody = {
     query_syntax: '',
     query_name: '',
@@ -32,6 +33,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   deleteRequestBody = {
     _id: ''
   };
+
   constructor(private $searchService: SearchService,
               private $messageService: MessageService,
               private $eventEmitterService: EventEmitterService) { }
@@ -46,7 +48,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       if (data !== null) {
         this.isSavedSearchDisabled = false;
-        this.addQueryRequestBody.query_syntax = data ;
+        this.addQueryRequestBody.query_syntax = data;
         console.log('this is cira data 45', this.addQueryRequestBody);
       } else {
         console.log('no data');
@@ -57,6 +59,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     const searchProfile = { SearchProfile_id: this.$searchService.userProfile.searchProfile_id };
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
       // console.log('getSearchConfiguration ', data);
+      this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
     });
     this.$searchService.results$.subscribe(data => {

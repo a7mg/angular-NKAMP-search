@@ -35,8 +35,8 @@ export class CategoryComponent implements OnInit {
 
   @Input('facetOption') facetOption;
   constructor(private $searchService: SearchService,
-    private $globalsService: GlobalsService,
-    private $formBuilder: FormBuilder) {
+              private $globalsService: GlobalsService,
+              private $formBuilder: FormBuilder) {
     this.masterSelected = false;
 
   }
@@ -99,15 +99,18 @@ export class CategoryComponent implements OnInit {
 
   checkUncheckAll() {
     // this.masterSelected = !this.masterSelected ;
-    console.log("this.masterSelected", this.masterSelected)
+    console.log('this.masterSelected', this.masterSelected);
     for (let i = 0; i < this.checklist.length; i++) {
       this.checklist[i].isSelected = this.masterSelected;
     }
-    console.log("this.checklist checkUncheckAll",this.checklist)
+    // console.log("this.checklist checkUncheckAll",this.checklist)
     this.getCheckedItemList();
   }
-  isAllSelected() {
-    console.log("this.checklist", this.checklist)
+
+  isAllSelected(event, idx) {
+    // event.target.checked
+    console.log('this.checklist event', event.target.checked);
+    this.checklist[idx].isSelected = event.target.checked;
     this.masterSelected = this.checklist.every((item: any) => {
       return item.isSelected === true;
     });
@@ -115,14 +118,21 @@ export class CategoryComponent implements OnInit {
   }
 
   getCheckedItemList() {
-    const isSelectedID = [];
+    // const isSelectedID = [];
+    // for (let i = 0; i < this.checklist.length; i++) {
+    //   if (this.checklist[i].isSelected) {
+    //     isSelectedID.push(this.checklist[i].id);
+    //   }
+    // }
+    // this.checkedList = JSON.stringify(isSelectedID);
+    // console.log("this.checklist getCheckedItemList", this.checklist)
+    this.checkedList = [];
     for (let i = 0; i < this.checklist.length; i++) {
       if (this.checklist[i].isSelected) {
-        isSelectedID.push(this.checklist[i].id);
+        this.checkedList.push(this.checklist[i]);
       }
     }
-    this.checkedList = JSON.stringify(isSelectedID);
-    console.log("this.checklist getCheckedItemList", this.checklist)
+    this.checkedList = JSON.stringify(this.checkedList);
   }
 
   onSubmit(): void {
