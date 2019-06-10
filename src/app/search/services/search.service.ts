@@ -17,8 +17,8 @@ export class SearchService {
   public userProfile = {
     searchProfile_id: 'FFB6CD68-BED4-4B5D-897D-89D205734B0E',
     anonymous: false,
-    userId: 'AhmedElbaz',
-    email: 'abdfg@xyz.com'
+    userId: 'AhmedElbaz1',
+    email: 'AhmedElbaz1@naseej.com'
   };
   public nextPageCriteria = {
     searchProfileId: '',

@@ -36,7 +36,7 @@ export class ItemsViewComponent implements OnInit {
     this.$searchService.results$.subscribe(data => {
       this.materialTypes = [];
       this.itemsArr = [];
-      console.log('SearchService Results ', data);
+      // console.log('SearchService Results ', data);
       if (data !== null) {
 
         data.items.forEach(element => {

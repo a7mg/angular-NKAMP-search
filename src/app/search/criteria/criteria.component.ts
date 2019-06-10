@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import {
   Criteria,
@@ -67,7 +67,7 @@ export class CriteriaComponent implements OnInit {
 
   getAllDataCriteria() {
     this.$searchService.searchConfiguration$.subscribe(data => {
-      console.log("configration ", data)
+      // console.log("configration ", data)
       if (data != null) {
         // console.log('getAllDataCriteria => ', data);
 
@@ -93,9 +93,12 @@ export class CriteriaComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.setSearchObject();
     // tslint:disable-next-line: quotemark
-    this.$searchService.currentCriteria$.next(JSON.stringify(this.CriteriaSearch).replace(/"/g, "'" ));
+    this.$searchService.currentCriteria$.next( this.CriteriaSearch );
+    console.log("ffffffffffffffffffffffffffffffff",this.CriteriaSearch);
+    // this.$searchService.currentCriteria$.next(JSON.stringify(this.CriteriaSearch).replace(/"/g, "'" ));
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
@@ -145,7 +148,6 @@ export class CriteriaComponent implements OnInit {
 
   inisalizeCriteriaobject() {
     this.CriteriaSearch = {} as SearchCriteria;
-    // this.CriteriaSearch.search = [];
     this.CriteriaSearch.dataSourcesId = [];
   }
 
@@ -156,14 +158,13 @@ export class CriteriaComponent implements OnInit {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormControl) {
         if (key === 'dataSourceFC') {
-
           if (abstractControl.value === null) {
             this.CriteriaSearch.dataSourcesId = [];
             this.DataSources.forEach((data) => {
               this.CriteriaSearch.dataSourcesId.push(data.id);
             });
           } else {
-            this.CriteriaSearch.dataSourcesId.push(abstractControl.value.id);
+            this.CriteriaSearch.dataSourcesId.push(abstractControl.value);
           }
 
         }
@@ -219,11 +220,9 @@ export class CriteriaComponent implements OnInit {
 
   getSavedSearch(savedCriteriaObj) {
     if (savedCriteriaObj != null) {
-      const dataSourceFC = this.criteriaForm.get('dataSourceFC') as FormControl;
+      // const dataSourceFC = this.criteriaForm.get('dataSourceFC') as FormControl;
       if (savedCriteriaObj.dataSourcesId.length === 1) {
-        dataSourceFC.patchValue({dataSourceFC: savedCriteriaObj.dataSourcesId[0]});
-        console.log('onst currentCret : string',  dataSourceFC  );
-
+        this.criteriaForm.patchValue({dataSourceFC: savedCriteriaObj.dataSourcesId[0]});
       }
       const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
       currentCreteriaForms.controls = [];

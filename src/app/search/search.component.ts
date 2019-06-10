@@ -42,14 +42,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
     this.addQueryRequestBody.email = this.$searchService.userProfile.email;
     this.addQueryRequestBody.anonymous = this.$searchService.userProfile.anonymous;
-    this.unSubscribeCurrentCriteria = this.$searchService.currentCriteria$.subscribe((data: string) => {
+    this.unSubscribeCurrentCriteria = this.$searchService.currentCriteria$.subscribe(( data) => {
 
       // console.log('this i data', data);
 
       if (data !== null) {
         this.isSavedSearchDisabled = false;
-        this.addQueryRequestBody.query_syntax = data;
-        console.log('this is cira data 45', this.addQueryRequestBody);
+// tslint:disable-next-line: quotemark
+        this.addQueryRequestBody.query_syntax = JSON.stringify(data).replace(/"/g, "'" );
+        // console.log('this is cira data 45', this.addQueryRequestBody);
       } else {
         console.log('no data');
       }
