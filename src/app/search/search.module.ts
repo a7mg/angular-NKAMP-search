@@ -16,14 +16,13 @@ import { NKAMPSearchSharedModule } from '../NKAMP-Search-shared/NKAMP-Search-sha
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
-import { RatingModule, TabViewModule } from 'primeng/primeng';
+import { RatingModule, TabViewModule, BlockUIModule } from 'primeng/primeng';
 import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { ReviewRatingComponent } from './review-rating/review-rating.component';
 import { DetailsComponent } from './details/details.component';
 import { BookDetailsService } from './services/book-details.service';
 import { ItemsViewComponent } from './items-view/items-view.component';
-import { FiltersComponent } from './items-view/filters/filters.component';
 import { ResultsAreaComponent } from './results-area/results-area.component';
 import { CategoryComponent } from './facets/gategory/category.component';
 import { EventEmitterService } from './services/event-emitter.service';
@@ -59,7 +58,6 @@ const SearchRoutes = [
     CriteriaComponent,
     FacetsComponent,
     ListComponent,
-    FiltersComponent,
     ActiveSelectionComponent,
     CategoryComponent,
     BookDetailsComponent,
@@ -80,6 +78,7 @@ const SearchRoutes = [
     RouterModule.forChild(SearchRoutes),
 
     ProgressSpinnerModule,
+    BlockUIModule,
     ToastModule,
     ChartModule,
     TabViewModule,

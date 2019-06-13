@@ -12,14 +12,14 @@ import { EventEmitterService } from './services/event-emitter.service';
   styleUrls: ['./search.component.scss'],
   providers: [MessageService]
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent implements OnInit  {
   @ViewChild('formEle') formElement: NgForm;
-  unSubscribeCurrentCriteria = new Subscription();
   isLoading = false;
   isSavedSearchDisabled = true;
   favoriteBadge = 55;
   isNoData = true;
   clicked = false;
+  blockedDocument = true;
   addQueryRequestBody = {
     query_syntax: '',
     query_name: '',
@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   deleteRequestBody = {
     _id: ''
   };
+
   constructor(private $searchService: SearchService,
               private $messageService: MessageService,
               private $eventEmitterService: EventEmitterService) { }
@@ -40,14 +41,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
     this.addQueryRequestBody.email = this.$searchService.userProfile.email;
     this.addQueryRequestBody.anonymous = this.$searchService.userProfile.anonymous;
-    this.unSubscribeCurrentCriteria = this.$searchService.currentCriteria$.subscribe((data: string) => {
+    this.$searchService.currentCriteria$.subscribe(( data) => {
 
       // console.log('this i data', data);
 
       if (data !== null) {
         this.isSavedSearchDisabled = false;
-        this.addQueryRequestBody.query_syntax = data ;
-        console.log('this is cira data 45', this.addQueryRequestBody);
+// tslint:disable-next-line: quotemark
+        this.addQueryRequestBody.query_syntax = JSON.stringify(data).replace(/"/g, "'" );
+        // console.log('this is cira data 45', this.addQueryRequestBody);
       } else {
         console.log('no data');
       }
@@ -57,6 +59,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     const searchProfile = { SearchProfile_id: this.$searchService.userProfile.searchProfile_id };
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
       // console.log('getSearchConfiguration ', data);
+      this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
     });
     this.$searchService.results$.subscribe(data => {
@@ -139,9 +142,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       }
     });
-  }
-  ngOnDestroy() {
-    this.unSubscribeCurrentCriteria.unsubscribe();
   }
 
 

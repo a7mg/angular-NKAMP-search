@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import {
   Criteria,
@@ -36,8 +36,6 @@ export class CriteriaComponent implements OnInit {
   AllCriteriaSearch: AllCriteriaSearch;
   lang: string;
   searchKeyword: SearchKeyword[];
-  // showitem: Criteria[];
-  // selectFeild: SearchKeyword;
 
   constructor(
     private $searchService: SearchService,
@@ -69,6 +67,7 @@ export class CriteriaComponent implements OnInit {
 
   getAllDataCriteria() {
     this.$searchService.searchConfiguration$.subscribe(data => {
+      // console.log("configration ", data)
       if (data != null) {
         // console.log('getAllDataCriteria => ', data);
 
@@ -96,7 +95,7 @@ export class CriteriaComponent implements OnInit {
   onSubmit() {
     this.setSearchObject();
     // tslint:disable-next-line: quotemark
-    this.$searchService.currentCriteria$.next(JSON.stringify(this.CriteriaSearch).replace(/"/g, "'" ));
+    this.$searchService.currentCriteria$.next( this.CriteriaSearch );
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
@@ -137,6 +136,7 @@ export class CriteriaComponent implements OnInit {
     }
     // (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup()); // delete this line
   }
+
   removeCurrentRowClick(selected): void {
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
     currentCreteriaForms.removeAt(selected);
@@ -145,7 +145,6 @@ export class CriteriaComponent implements OnInit {
 
   inisalizeCriteriaobject() {
     this.CriteriaSearch = {} as SearchCriteria;
-    // this.CriteriaSearch.search = [];
     this.CriteriaSearch.dataSourcesId = [];
   }
 
@@ -156,14 +155,13 @@ export class CriteriaComponent implements OnInit {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormControl) {
         if (key === 'dataSourceFC') {
-
           if (abstractControl.value === null) {
             this.CriteriaSearch.dataSourcesId = [];
             this.DataSources.forEach((data) => {
               this.CriteriaSearch.dataSourcesId.push(data.id);
             });
           } else {
-            this.CriteriaSearch.dataSourcesId.push(abstractControl.value.id);
+            this.CriteriaSearch.dataSourcesId.push(abstractControl.value);
           }
 
         }
@@ -218,8 +216,11 @@ export class CriteriaComponent implements OnInit {
   }
 
   getSavedSearch(savedCriteriaObj) {
-    // console.log('onst currentCret : string',  savedCriteriaObj  );
     if (savedCriteriaObj != null) {
+      // const dataSourceFC = this.criteriaForm.get('dataSourceFC') as FormControl;
+      if (savedCriteriaObj.dataSourcesId.length === 1) {
+        this.criteriaForm.patchValue({dataSourceFC: savedCriteriaObj.dataSourcesId[0]});
+      }
       const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
       currentCreteriaForms.controls = [];
       if (savedCriteriaObj.searchKeyWords.length > 1) { this.isAdvanced = true; } else { this.isAdvanced = false; }
@@ -233,8 +234,9 @@ export class CriteriaComponent implements OnInit {
           searchOperationFC: row.searchOperationId,
           operator: (row.nextSearchKeyWordWithAnd ? 'AND' : 'OR')
         });
-        this.onSubmit();
       });
+
+        this.onSubmit();
     }
 
   }
