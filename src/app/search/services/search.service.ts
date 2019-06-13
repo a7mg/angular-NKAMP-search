@@ -13,7 +13,8 @@ export class SearchService {
   Url: string; // = "https://10.0.6.154:8245/Search10/1.0.0/SearchConfiguration";
   public results$ = new BehaviorSubject(null);
   public searchConfiguration$ = new BehaviorSubject(null);
-  public currentCriteria$ = new Subject();
+  public currentCriteria$ = new BehaviorSubject(null);
+  public currentFacetsConfiguration: Array<any>;
   public userProfile = {
     searchProfile_id: 'FFB6CD68-BED4-4B5D-897D-89D205734B0E',
     anonymous: false,
@@ -58,7 +59,7 @@ export class SearchService {
   }
 
   getResults(serachCriteria): Observable<any> {
-    console.log('MakeNewSearch');
+    // console.log('MakeNewSearch');
     return this.http.post<any>(this.Url + 'MakeNewSearch', serachCriteria).pipe(
       map((data: any) => {
         return data;

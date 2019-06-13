@@ -93,12 +93,9 @@ export class CriteriaComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.setSearchObject();
     // tslint:disable-next-line: quotemark
     this.$searchService.currentCriteria$.next( this.CriteriaSearch );
-    console.log("ffffffffffffffffffffffffffffffff",this.CriteriaSearch);
-    // this.$searchService.currentCriteria$.next(JSON.stringify(this.CriteriaSearch).replace(/"/g, "'" ));
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {

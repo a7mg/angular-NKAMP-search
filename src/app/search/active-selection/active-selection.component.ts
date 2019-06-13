@@ -7,21 +7,28 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./active-selection.component.scss']
 })
 export class ActiveSelectionComponent implements OnInit {
-
-  constructor(private $searchService: SearchService) { }
+  isShowing: boolean;
+  facetsObj: any;
+  constructor(private $searchService: SearchService) {
+    this.isShowing = false;
+  }
 
   ngOnInit() {
     // console.log('dddddddddddddddddddddddddddddddddddddddddddddddddd');
-    // this.$searchService.currentCriteria$.subscribe((data:String) => {
-    //   // console.log("data", data)
-    //   data = data.replace(/'/g, '"');
-    //   const criteria = JSON.parse(data);
-    //   if (data !== null) {
+    this.$searchService.currentCriteria$.subscribe((data) => {
+      if (data !== null) {
+        if (data.facetsFilter !== undefined) {
+          this.facetsObj = [];
+          this.isShowing = true;
+          data.facetsFilter.forEach(item=>{
+            this.facetsObj.push(item);
+          })
+          console.log('ddddddddddddddddddddddata', this.facetsObj);
+        }
 
-    //     console.log("data", criteria.facetsFilter)
-    //   }
+      }
 
-    // });
+    });
 
 
   }

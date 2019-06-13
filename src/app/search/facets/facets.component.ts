@@ -31,17 +31,21 @@ export class FacetsComponent implements OnInit {
     });
 
     this.$searchService.results$.subscribe(results => {
-      // console.log('$searchService.results$ ', this.facetsArr);
+      console.log('$searchService.results$ ', results );
       if (results !== null) {
         this.facetsArr = results.facetsSearchQueryStatistic;
         // console.log('facetsArr', this.facetsArr);
+        console.log('facetsArrOptions', this.facetFieldsOptions);
         this.facetFieldsOptions.forEach((facetOption, idx) => {
-          facetOption['values'] = this.facetsArr.filter(value => {
+          facetOption.values = this.facetsArr.filter(value => {
             return value.id === facetOption.id;
+          });
+          facetOption.values = facetOption.values.map((obj, i) => {
+            obj.facetValue = obj.facetValue + ' dummy ' + i;
+            return obj;
           });
         });
         this.facetFieldsOptions.sort((a, b) => (a.DisplayOrderNumber > b.DisplayOrderNumber) ? 1 : -1)
-        // console.log('Facets Configuration with values => ', this.facetFieldsOptions);
       }
     });
   }

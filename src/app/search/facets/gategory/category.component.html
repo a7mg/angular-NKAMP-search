@@ -20,28 +20,30 @@
 
     </span>
   </div>
-  <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'horizontalBar':'bar'}}"
+  <p-chart *ngIf="this.isVituailizationActive && !this.isCollapsed" type="{{this.config.isPiChart?'horizontalBar':'bar'}}"
     height="{{30*this.facetOption.values.length}}px" [data]="data"></p-chart>
   <!-- <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'pie':'bar'}}" [data]="data"></p-chart> -->
-  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <!-- <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()"> -->
+
     <ng-container *ngIf="!this.isVituailizationActive && !this.isCollapsed">
-      <div  class="facet-controls" *ngIf="true">
+
+      <div  class="facet-controls">
 
         <label class="controlRC" *ngIf="this.config.isAllowMultiSelection" >
           <span class="text">All</span>
           <span class="count float-right">{{this.totalOfAllItems}}</span>
-          <input type="checkbox" name="facet_name" value="ddddd"  formControlName="selectAll" [(ngModel)]="masterSelected" (change)="checkUncheckAll()" />
+          <input type="checkbox" name="facet_name" value="selectAll"    [(ngModel)]="masterSelected" (change)="checkUncheckAll()" />
           <div class="controlRC_indicator"></div>
         </label>
 
-        <ng-container formArrayName="facetFC" *ngFor="let value of categoryForm.controls.facetFC.controls;let idx = index">
+        <!-- <ng-container *ngFor="let value of categoryForm.controls.facetFC.controls;let idx = index"> -->
+        <ng-container *ngFor="let item of  checklist;let idx = index">
           <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
             <span class="text">{{this.facetOption.values[idx].facetValue}}</span>
             <span class="count float-right">{{this.facetOption.values[idx].totalItems}}</span>
-            <!-- <input type="{{this.config.isAllowMultiSelection?'checkbox':'radio'}}"  [(ngModel)]="this.masterSelected"  name="{{'facet'+ this.facetOption.id}}" /> -->
-            <input type="{{this.config.isAllowMultiSelection?'checkbox':'radio'}}"  (change)="isAllSelected($event, idx)"   [(ngModel)]="this.checklist[idx].isSelected"   [formControlName]="idx" name="{{this.config.isAllowMultiSelection?'checkbox'+idx:'item-list'}}"/>
-            <!-- <input type="radio" [(ngModel)]="this.facetOption.values[idx].id"  formControlName="radio"  [(ngModel)]="this.checklist[idx].isSelected" /> -->
-            <!-- <input type="radio" [(ngModel)]="this.facetOption.values[idx].id" name="list_name" value="{{this.facetOption.values[idx].id}}" /> -->
+             <!-- <input type="{{this.config.isAllowMultiSelection?'checkbox':'radio'}}"  (change)="isAllSelected($event, idx)"   [(ngModel)]="this.checklist[idx].isSelected"   [formControlName]="idx" name="{{this.config.isAllowMultiSelection?'checkbox'+idx:'item-list'}}"/> -->
+             <input *ngIf="config.isAllowMultiSelection" type="checkbox"  [(ngModel)]="item.isSelected" (change)="isAllSelected()"  name="{{'checkbox'+idx}}"/>
+             <input *ngIf="!config.isAllowMultiSelection" type="radio" name="{{item.id}}" value="{{item.value}}" (change)="onItemChange(item)"/>
             <div class="controlRC_indicator"></div>
           </label>
         </ng-container>
@@ -49,16 +51,16 @@
 
       </div>
 
-      <button *ngIf="!this.isCollapsed && this.facetOption.values.length > maxShowing " type="button"
+      <button *ngIf="  this.facetOption.values.length > maxShowing " type="button"
         class="btn btn-link p-0 mb-4" (click)="this.showAll=!this.showAll">
         <span *ngIf="!this.showAll">Show More </span>
         <span *ngIf="this.showAll">Show Less </span>
       </button>
 
-      <button type="submit" class="btn btn-primary w-100">
+      <button type="button" class="btn btn-primary w-100" [ngClass]="{'cursor-disable': this.checkedList.length<1 }" disabled="{{this.checkedList.length<1?'disabled':''}}" (click)="onSubmit()">
           Apply
         </button>
 
     </ng-container>
-  </form>
+
 </div>

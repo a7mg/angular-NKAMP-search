@@ -12,9 +12,8 @@ import { EventEmitterService } from './services/event-emitter.service';
   styleUrls: ['./search.component.scss'],
   providers: [MessageService]
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent implements OnInit  {
   @ViewChild('formEle') formElement: NgForm;
-  unSubscribeCurrentCriteria = new Subscription();
   isLoading = false;
   isSavedSearchDisabled = true;
   favoriteBadge = 55;
@@ -42,7 +41,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
     this.addQueryRequestBody.email = this.$searchService.userProfile.email;
     this.addQueryRequestBody.anonymous = this.$searchService.userProfile.anonymous;
-    this.unSubscribeCurrentCriteria = this.$searchService.currentCriteria$.subscribe(( data) => {
+    this.$searchService.currentCriteria$.subscribe(( data) => {
 
       // console.log('this i data', data);
 
@@ -143,9 +142,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
       }
     });
-  }
-  ngOnDestroy() {
-    this.unSubscribeCurrentCriteria.unsubscribe();
   }
 
 

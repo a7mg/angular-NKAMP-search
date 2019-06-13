@@ -11,7 +11,7 @@ import { SearchService } from '../../services/search.service';
 export class CategoryComponent implements OnInit {
   categoryForm: FormGroup;
   masterSelected: boolean;
-  checklist = [];
+  checklist: Array<any>;
   checkedList: any;
   showAll = false;
   maxShowing = 6;
@@ -28,27 +28,32 @@ export class CategoryComponent implements OnInit {
     data: []
   };
   data: any;
-  //   isAllowMultipeSelection: false
-  // isAppearOnFacet: true
-  // isShowPiChart: false
-  // isShowVituailization: false
+// variables for radio button
+  radioSel: any;
+  radioSelected: string;
+  radioSelectedString: string;
 
   @Input('facetOption') facetOption;
   constructor(private $searchService: SearchService,
               private $globalsService: GlobalsService,
               private $formBuilder: FormBuilder) {
     this.masterSelected = false;
-
+    this.checklist = [];
+    this.getCheckedItemList();
   }
 
   ngOnInit() {
-    this.createItemsFormDynamic();
+    this.facetOption.values.forEach((o, i) => {
+      this.checklist.push({ id: o.id, value: o.facetValue , isSelected: false });
+    });
+    // this.createItemsFormDynamic();
     // console.log('category facet', this.facetOption);
     this.facetOption.values.forEach(element => {
       this.totalOfAllItems += element.totalItems;
       this.chartData.labels.push(element.facetValue);
       this.chartData.data.push(element.totalItems);
     });
+    // console.log('this element facetOption', this.facetOption.values);
     this.config.isAllowMultiSelection = !this.facetOption.isAllowMultipeSelection;
     this.config.isPiChart = this.facetOption.isShowPiChart;
     this.config.isVituailization = this.facetOption.isShowVituailization;
@@ -71,13 +76,7 @@ export class CategoryComponent implements OnInit {
           ]
         }]
     };
-
   }
-
-  // allFieldMasterChanged(mainInput): void {
-  //   console.log('mainInpuxt', mainInput.target.checked);
-  //   this.masterSelected = mainInput.target.checked;
-  // }
 
   createItemsFormDynamic() {
     this.categoryForm = this.$formBuilder.group({
@@ -86,31 +85,26 @@ export class CategoryComponent implements OnInit {
     });
 
     this.addFacets();
-
+    console.log('this.checklist f ', this.checklist);
   }
 
   private addFacets() {
-    this.facetOption.values.map((o, i) => {
-      this.checklist.push({ id: o.id, isSelected: false });
-      const control = new FormControl(false); // if first item set to true, else false
+    this.facetOption.values.map((obj, i) => {
+      this.checklist.push({ id: obj.id, value: obj.facetValue, isSelected: false });
+      const control = new FormControl(); // if first item set to true, else false
       (this.categoryForm.controls.facetFC as FormArray).push(control);
     });
-  }
-
-  checkUncheckAll() {
-    // this.masterSelected = !this.masterSelected ;
-    console.log('this.masterSelected', this.masterSelected);
-    for (let i = 0; i < this.checklist.length; i++) {
-      this.checklist[i].isSelected = this.masterSelected;
-    }
-    // console.log("this.checklist checkUncheckAll",this.checklist)
     this.getCheckedItemList();
   }
 
-  isAllSelected(event, idx) {
-    // event.target.checked
-    console.log('this.checklist event', event.target.checked);
-    this.checklist[idx].isSelected = event.target.checked;
+  checkUncheckAll() {
+    for (const item of this.checklist) {
+      item.isSelected = this.masterSelected;
+    }
+    this.getCheckedItemList();
+  }
+
+  isAllSelected() {
     this.masterSelected = this.checklist.every((item: any) => {
       return item.isSelected === true;
     });
@@ -118,27 +112,47 @@ export class CategoryComponent implements OnInit {
   }
 
   getCheckedItemList() {
-    // const isSelectedID = [];
-    // for (let i = 0; i < this.checklist.length; i++) {
-    //   if (this.checklist[i].isSelected) {
-    //     isSelectedID.push(this.checklist[i].id);
-    //   }
-    // }
-    // this.checkedList = JSON.stringify(isSelectedID);
-    // console.log("this.checklist getCheckedItemList", this.checklist)
     this.checkedList = [];
-    for (let i = 0; i < this.checklist.length; i++) {
-      if (this.checklist[i].isSelected) {
-        this.checkedList.push(this.checklist[i]);
+    for (const item of this.checklist) {
+      if (item.isSelected) {
+        const selectedItem = {
+          facetId: '',
+          facetType: '',
+          facetValue: ''
+        };
+        selectedItem.facetId = item.id;
+        selectedItem.facetType = item.value;
+        selectedItem.facetValue = item.value;
+        this.checkedList.push(selectedItem);
       }
     }
-    this.checkedList = JSON.stringify(this.checkedList);
+    // this.checkedList = JSON.stringify(this.checkedList);
+  }
+
+  onItemChange(item: any) {
+    const selectedItem = {
+      facetId: '',
+      facetType: '',
+      facetValue: ''
+    };
+    selectedItem.facetId = item.id;
+    selectedItem.facetType = item.value;
+    selectedItem.facetValue = item.value;
+    this.checkedList = [selectedItem];
   }
 
   onSubmit(): void {
-    console.log('catgory this.checklist ', this.checklist);
-    console.log('catgory this.checkedList ', this.checkedList);
-    // console.log('catgory form ', this.categoryForm);
+    let criteria ;
+    this.$searchService.currentCriteria$.subscribe(data => {
+      criteria =  data;
+    });
+    if (criteria.facetsFilter === undefined) {criteria.facetsFilter = []; }
+    this.checkedList.forEach(element => {
+      criteria.facetsFilter.push(element);
+    });
+    this.$searchService.currentCriteria$.next(criteria);
+    console.log('catgory this.criteria ', criteria);
+
   }
 
 }
