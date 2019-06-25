@@ -9,7 +9,7 @@
                             <div *ngFor="let slide of slides" class="swiper-slide">
                                <div class="bookDetails-image-slide">
                                     <img class="img-fluid" [(src)]="slide" alt="bookDetailsImage">
-                               </div>          
+                               </div>
                             </div>
                     </swiper>
             </div>
@@ -37,7 +37,7 @@
                     <div class="row" *ngFor="let additonalFieldsItem of additonalFieldsItems">
                         <div class="col-3">
                             <span class="oneBook-descrption-title">
-                                {{additonalFieldsItem.eName}}
+                                {{ lang == 'ar' || lang=='ar-SA'  ?  additonalFieldsItem.aName :  (lang == 'fr'? additonalFieldsItem.fName :additonalFieldsItem.eName )}}
                             </span>
                         </div>
                         <div class="col-8">
@@ -46,7 +46,7 @@
                             </span>
                         </div>
                     </div> <!-- end Author -->
-                   
+
                 </div> <!-- end  description-->
                 <hr class="horizontal-line" />
                 <ul class="oneBook-features">
@@ -58,7 +58,9 @@
                                     transform="translate(0 -1.826)" />
                             </svg>
                         </span>
-                        Add to Favorites
+                        <span i18n="@@spn_add_to_favorites">
+                          Add to Favorites
+                        </span>
                     </li>
                     <li>
                         <span class="icon features-shareIcon">
@@ -68,7 +70,9 @@
                                     transform="translate(-1.997 0)" />
                             </svg>
                         </span>
-                        share
+                      <span i18n="@@spn_share">
+                          share
+                      </span>
                     </li>
                     <li>
                         <span class="icon features-borrowIcon">
@@ -80,12 +84,14 @@
                                     </g>
                                     <path id="Path_82" data-name="Path 82"
                                         d="M7.439-3.364H4.875V-.806H4.031V-3.364H1.473v-.851H4.031V-6.773h.844v2.558H7.439Z"
-                                        transform="translate(5.027 13.273)"   
+                                        transform="translate(5.027 13.273)"
                                         stroke-width="1" />
                                 </g>
                             </svg>
                         </span>
-                        Borrow
+                       <span i18n="@@spn_borrow">
+                          Borrow
+                       </span>
                     </li>
                 </ul>
             </div>

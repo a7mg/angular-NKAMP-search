@@ -7,7 +7,7 @@
           d="M13.016,22.82H0l4.849,5.109v6.762l3.318-1.716V27.929ZM5.343,33.878V27.732L1.151,23.314H11.865L7.673,27.732v4.942Z"
           transform="translate(0 -22.82)" /> </svg>
 
-      Filter
+      <span i18n="@@spn_filter">Filter</span>
 
     </button>
   </div>
@@ -29,20 +29,20 @@
         </g>
       </svg>
 
-      Sort
+      <span i18n="@@spn_sort">Sort</span>
 
     </label>
-    <select class="form-control" (change)="onChangeSort($event)"   >
-      <option selected="selected" [value]="'null'">select  </option>
+    <select class="form-control" (change)="onChangeSort($event)">
+      <option selected="selected" [value]="'null'">select </option>
       <option *ngFor="let keyWord of searchKeywords" [value]="keyWord.id">{{ keyWord.eName }}</option>
     </select>
   </div>
 
   <div class="form-group col-md-1">
-    <label for="inputState">
+    <label for="inputState" i18n="@@lbl_list">
 
       List</label>
-    <select class="form-control" (change)="onChangePageSize($event)" >
+    <select class="form-control" (change)="onChangePageSize($event)">
       <option selected="selected" [value]="12"> 12</option>
       <option [value]="24"> 24</option>
       <option [value]="48"> 48</option>
@@ -50,7 +50,7 @@
     </select>
   </div>
 
-  <div class="form-group col-md-3 d-none">
+  <div class="form-group col-md-3 ">
     <button type="button">
 
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
@@ -99,8 +99,8 @@
 
 </div>
 <!--  fillter -->
-<p-tabView>
-  <p-tabPanel header="General" [selected]="true">
+<p-tabView class="search-tabs">
+  <p-tabPanel [header]="generalTXT" [selected]="true">
     <div class="row">
 
       <!-- col-xl-3 -->
@@ -110,21 +110,22 @@
 
     </div>
 
-    <ngb-pagination class="d-flex justify-content-center" (pageChange)="paginate($event)"
-      [collectionSize]="itemsArr.length/1" [maxSize]="4" [pageSize]="2" [(page)]="pageIndex" [boundaryLinks]="true">
-    </ngb-pagination>
-
   </p-tabPanel>
 
-  <p-tabPanel [header]="singleMaterialType.Name +' ( ' + singleMaterialType.totalItems +' ) ' " *ngFor="let singleMaterialType of materialTypes; let i = index">
-      <div class="row">
+  <p-tabPanel [header]="lang == 'ar' || lang=='ar-SA'  ?  singleMaterialType.NameAr :  (lang == 'fr'? singleMaterialType.NameFr :singleMaterialType.Name ) +' ( ' + singleMaterialType.totalItems +' ) ' "
+    *ngFor="let singleMaterialType of materialTypes; let i = index">
+    <div class="row">
 
-           <ng-container *ngFor="let item of itemsArr">
-             <app-grid  *ngIf="item.materialTypeId == singleMaterialType.Id" class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="item"></app-grid>
-           </ng-container>
+      <ng-container *ngFor="let item of itemsArr">
+        <app-grid *ngIf="item.materialTypeId == singleMaterialType.Id" class="col-12 col-sm-6 col-md-4 col-lg-4"
+          [book-data]="item"></app-grid>
+      </ng-container>
 
 
-        </div>
+    </div>
   </p-tabPanel>
 
 </p-tabView>
+<ngb-pagination class="d-flex justify-content-center" (pageChange)="paginate($event)"
+  [collectionSize]="itemsArr.length/1" [maxSize]="4" [pageSize]="2" [(page)]="pageIndex" [boundaryLinks]="true">
+</ngb-pagination>

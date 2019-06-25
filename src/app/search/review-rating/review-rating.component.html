@@ -1,15 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-12">
-            <h2 class="rateAndReview-Title"> Rating and Reviews </h2>
-        </div> 
+            <h2 class="rateAndReview-Title" i18n="@@h2_rating_reviews"> Rating and Reviews </h2>
+        </div>
         <!-- <div class="col-sm-3 col-12">
               <button class="rateAndReview-btn">Add Review</button>
         </div> -->
         <div class="col-12">
                 <hr class="horizontal-line"/>
         </div>
-        <div class="col-12 rateAndReview-reviewDetails" *ngFor="let comment of commentsList">           
+        <div class="col-12 rateAndReview-reviewDetails" *ngFor="let comment of commentsList">
             <div class="row">
                <div class="col-sm-1 col-1">
                     <img class="img-fluid" src="./assets/Branding/images/bookD.png" alt="user">
@@ -25,19 +25,22 @@
 
                     <p  class="rateAndReview-comment no-padding">
                         {{comment.commentData}}
-                    </p>                
+                    </p>
                </div>
             </div>
         </div>
         <div class="col-12">
                 <a href="#" class="rateAndReview-link">
+                  <span i18n="@@spn_more_review">
                     More Reviews
+
+                    </span>
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="8.707" height="5.064" viewBox="0 0 8.707 5.064">
                             <path id="Arrow_Down" data-name="Arrow Down" d="M4,0,0,3.925,4,8" transform="translate(0.357 4.357) rotate(-90)" fill="none" stroke-width="1"/>
                         </svg>
                     </span>
-                   
+
                 </a>
         </div>
     </div>

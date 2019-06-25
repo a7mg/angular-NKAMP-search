@@ -9,6 +9,7 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
+  lang: string;
   categoryForm: FormGroup;
   masterSelected: boolean;
   checklist: Array<any>;
@@ -37,6 +38,7 @@ export class CategoryComponent implements OnInit {
   constructor(private $searchService: SearchService,
               private $globalsService: GlobalsService,
               private $formBuilder: FormBuilder) {
+                this.lang = this.$globalsService.UILanguage;
     this.masterSelected = false;
     this.checklist = [];
     this.getCheckedItemList();
@@ -78,24 +80,24 @@ export class CategoryComponent implements OnInit {
     };
   }
 
-  createItemsFormDynamic() {
-    this.categoryForm = this.$formBuilder.group({
-      selectAll: [null],
-      facetFC: new FormArray([])
-    });
+  // createItemsFormDynamic() {
+  //   this.categoryForm = this.$formBuilder.group({
+  //     selectAll: [null],
+  //     facetFC: new FormArray([])
+  //   });
 
-    this.addFacets();
-    console.log('this.checklist f ', this.checklist);
-  }
+  //   this.addFacets();
+  //   console.log('this.checklist f ', this.checklist);
+  // }
 
-  private addFacets() {
-    this.facetOption.values.map((obj, i) => {
-      this.checklist.push({ id: obj.id, value: obj.facetValue, isSelected: false });
-      const control = new FormControl(); // if first item set to true, else false
-      (this.categoryForm.controls.facetFC as FormArray).push(control);
-    });
-    this.getCheckedItemList();
-  }
+  // private addFacets() {
+  //   this.facetOption.values.map((obj, i) => {
+  //     this.checklist.push({ id: obj.id, value: obj.facetValue, isSelected: false });
+  //     const control = new FormControl(); // if first item set to true, else false
+  //     (this.categoryForm.controls.facetFC as FormArray).push(control);
+  //   });
+  //   this.getCheckedItemList();
+  // }
 
   checkUncheckAll() {
     for (const item of this.checklist) {

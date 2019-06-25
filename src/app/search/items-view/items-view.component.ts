@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 
 @Component({
   selector: 'app-items-view',
@@ -7,12 +8,23 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./items-view.component.scss']
 })
 export class ItemsViewComponent implements OnInit {
+  lang: string;
+  genralLoclaizaion = {
+    en: 'general',
+    ar: 'الكل',
+    fr: 'général'
+  };
+  generalTXT: string;
   pageIndex = 1;
   itemsArr: Array<any>;
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
   materialTypesConfiguration: Array<any>;
-  constructor(private $searchService: SearchService) {
+  constructor(private $searchService: SearchService, private $globalsService: GlobalsService) {
+    this.lang = this.$globalsService.UILanguage;
+    this.generalTXT =  this.genralLoclaizaion.en;
+    this.generalTXT =  this.lang === 'ar' || this.lang === 'ar-SA'  ?  this.genralLoclaizaion.ar : this.generalTXT;
+    this.generalTXT = this.lang === 'fr'  ?  this.genralLoclaizaion.fr : this.generalTXT;
     this.searchKeywords = [];
     this.itemsArr = [];
     this.materialTypes = [];

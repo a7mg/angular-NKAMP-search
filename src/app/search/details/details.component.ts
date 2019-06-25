@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 import { BookDetailsService } from '../services/book-details.service';
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { BookDetailsService } from '../services/book-details.service';
   providers: [NgbRatingConfig]
 })
 export class DetailsComponent implements OnInit {
+  lang: string;
   isOneImage= true;
   slides = [];
   additonalFieldsItems=[];
@@ -20,7 +22,8 @@ export class DetailsComponent implements OnInit {
     views_count: 0
   };
   currentRate: number;
-  constructor(private bookDetailsService: BookDetailsService, config: NgbRatingConfig) {
+  constructor(private bookDetailsService: BookDetailsService, private $globalsService: GlobalsService, config: NgbRatingConfig) {
+    this.lang = this.$globalsService.UILanguage;
     config.readonly = true;
   }
   ngOnInit() {

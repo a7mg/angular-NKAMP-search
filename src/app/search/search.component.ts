@@ -12,7 +12,7 @@ import { EventEmitterService } from './services/event-emitter.service';
   styleUrls: ['./search.component.scss'],
   providers: [MessageService]
 })
-export class SearchComponent implements OnInit  {
+export class SearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
   isLoading = false;
   isSavedSearchDisabled = true;
@@ -34,21 +34,21 @@ export class SearchComponent implements OnInit  {
   };
 
   constructor(private $searchService: SearchService,
-              private $messageService: MessageService,
-              private $eventEmitterService: EventEmitterService) { }
+    private $messageService: MessageService,
+    private $eventEmitterService: EventEmitterService) { }
 
   ngOnInit() {
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
     this.addQueryRequestBody.email = this.$searchService.userProfile.email;
     this.addQueryRequestBody.anonymous = this.$searchService.userProfile.anonymous;
-    this.$searchService.currentCriteria$.subscribe(( data) => {
+    this.$searchService.currentCriteria$.subscribe((data) => {
 
       // console.log('this i data', data);
 
       if (data !== null) {
         this.isSavedSearchDisabled = false;
-// tslint:disable-next-line: quotemark
-        this.addQueryRequestBody.query_syntax = JSON.stringify(data).replace(/"/g, "'" );
+        // tslint:disable-next-line: quotemark
+        this.addQueryRequestBody.query_syntax = JSON.stringify(data).replace(/"/g, "'");
         // console.log('this is cira data 45', this.addQueryRequestBody);
       } else {
         console.log('no data');
@@ -58,7 +58,7 @@ export class SearchComponent implements OnInit  {
 
     const searchProfile = { SearchProfile_id: this.$searchService.userProfile.searchProfile_id };
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
-      // console.log('getSearchConfiguration ', data);
+      console.log('getSearchConfiguration ', data);
       this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
     });
@@ -69,11 +69,18 @@ export class SearchComponent implements OnInit  {
     });
     // save search
     this.$searchService.getQuery({ userId: this.$searchService.userProfile.userId }).subscribe((data) => {
+      // console.log(data);
       if (data != null) {
-        // console.log(data);
-        data.forEach(element => {
-          this.getQueryValues.push(element);
-        });
+        if (data.Queries != null) {
+          data.Queries.forEach(element => {
+            this.getQueryValues.push(element);
+          });
+        } else {
+          data.forEach(element => {
+            this.getQueryValues.push(element);
+          });
+        }
+
         // console.log(this.getQueryValues);
       } else {
         console.log('no data');

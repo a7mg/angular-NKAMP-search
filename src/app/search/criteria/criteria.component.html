@@ -21,8 +21,8 @@
 
           <div *ngIf="formIndex>0" class="form-group col-4  col-sm-3  col-md-1 col-lg-1">
             <select formControlName="operator" class="form-control  w-100">
-              <option [ngValue]="'AND'" selected="selected"> AND </option>
-              <option [ngValue]="'OR'"> OR </option>
+              <option [ngValue]="'AND'" selected="selected" i18n="@@lbl_and"> and </option>
+              <option [ngValue]="'OR'" i18n="@@lbl_or"> or </option>
             </select>
           </div>
 
@@ -56,9 +56,7 @@
               i18n-placeholder="@@lblsearch_placeholder" placeholder="Searchtext">
             <div class="invalid-feedback"
               *ngIf="(search.get('searchTextFC').invalid && search.get('searchTextFC').dirty)||(search.get('searchTextFC').invalid && search.get('searchTextFC').touched)">
-              <p *ngIf="search.get('searchTextFC').errors['required']" i18n="@@lblsearch_errortext">Please Enter
-                Search
-                Text</p>
+              <p *ngIf="search.get('searchTextFC').errors['required']" i18n="@@lblsearch_errortext">Please Enter Search Text</p>
             </div>
 
           </div>
@@ -68,7 +66,7 @@
             class="form-group col-3 offset-9 col-sm-1 offset-sm-0 col-md-1 col-lg-1  text-center">
             <button type="button" (click)="addSearchButtonClick()" class="btn btn-outline-primary searchNK-addFromBtn">
               <span class="d-none d-sm-block">+</span>
-              <span class=" d-sm-none ">Add</span>
+              <span class=" d-sm-none " i18n="@@lbl_add">add</span>
             </button>
           </div>
           <div *ngIf="formIndex>0"
@@ -76,7 +74,7 @@
             <button type="button" (click)="removeCurrentRowClick(formIndex);"
               class="btn btn-outline-primary searchNK-removeFromBtn">
               <span class="d-none d-sm-block">-</span>
-              <span class="d-sm-none ">Remove</span>
+              <span class="d-sm-none " i18n="@@lbl_remove">remove</span>
 
             </button>
           </div>

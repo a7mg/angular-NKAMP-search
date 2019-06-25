@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col-12 col-md-2 col-lg-2">
-        <h1>Search</h1>
+        <h1 i18n="@@lblsearch">Search</h1>
       </div>
       <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-end">
         <div class="searchNK-savedSearchContainer" [ngClass]="{'searchNK-saveSearchClicked': clicked}">
@@ -17,7 +17,7 @@
                   <path id="Path_10" data-name="Path 10" d="M25.605,35.113a.369.369,0,0,0,0,.516.374.374,0,0,0,.258.105.364.364,0,1,0-.258-.621Z" transform="translate(-17.743 -24.379)" fill="#666"/>
                   <path id="Path_11" data-name="Path 11" d="M29.681,4H27.5V7.634h2.181Zm-.727,2.907h-.727V4.727h.727Z" transform="translate(-19.259 -2.546)" fill="#666"/>
                 </svg>
-                <span> Save Search </span>
+                <span i18n="@@lblsavedsearch"> Save Search </span>
             </button>
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,7 +26,7 @@
                   </svg>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                   <h3 class="dropdown-menu-title">Save Search</h3>
+                   <h3 class="dropdown-menu-title" i18n="@@lblsavedsearch" >Save Search</h3>
                    <ul class="searchNK-savedSearchItem" *ngIf="getQueryValues.length >=0">
                      <li *ngFor="let getQueryValue of getQueryValues">
                         <div class="searchNK-savedSearch-item">
@@ -51,7 +51,7 @@
                      </li>
 
                    </ul>
-                   <div *ngIf="getQueryValues.length ==0"> no save search yet</div>
+                   <div *ngIf="getQueryValues.length ==0" i18n="@@lblno_save_search_yet"> no save search yet</div>
                 </div>
             </div>
         </div>
@@ -61,8 +61,7 @@
                         class="form-control"
                         name="savedSearchInput"
                         ngModel>
-                  <button type="submit"
-                          class="btn btn-primary searchNK-searchBtn">Save</button>
+                  <button type="submit"  class="btn btn-primary searchNK-searchBtn" i18n="@@lblSave">Save</button>
                 </form>
                 <span (click)="ToggleClass()"> x </span>
         </div>
@@ -82,7 +81,10 @@
               </g>
             </svg>
           </span>
-          Favorite
+
+          <span i18n="@@lbl_favorite">
+            Favorite
+          </span>
         </a>
       </div>
 
