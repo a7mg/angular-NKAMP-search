@@ -42,9 +42,6 @@ export class SearchComponent implements OnInit {
     this.addQueryRequestBody.email = this.$searchService.userProfile.email;
     this.addQueryRequestBody.anonymous = this.$searchService.userProfile.anonymous;
     this.$searchService.currentCriteria$.subscribe((data) => {
-
-      // console.log('this i data', data);
-
       if (data !== null) {
         this.isSavedSearchDisabled = false;
         // tslint:disable-next-line: quotemark
@@ -53,7 +50,6 @@ export class SearchComponent implements OnInit {
       } else {
         console.log('no data');
       }
-
     });
 
     const searchProfile = { SearchProfile_id: this.$searchService.userProfile.searchProfile_id };
@@ -62,6 +58,7 @@ export class SearchComponent implements OnInit {
       this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
     });
+
     this.$searchService.results$.subscribe(data => {
       if (data !== null) {
         this.isNoData = false;
