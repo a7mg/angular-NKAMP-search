@@ -67,7 +67,8 @@ export class CriteriaComponent implements OnInit {
 
   getAllDataCriteria() {
     this.$searchService.searchConfiguration$.subscribe(data => {
-      // console.log("configration ", data)
+      console.log("configration ", data != null)
+      console.log("configration ", data )
       if (data != null) {
         // console.log('getAllDataCriteria => ', data);
 
