@@ -20,8 +20,10 @@ export class FavoriteItemsComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.unSubscribeFavoriteList =this.favoriteService.FavoriteList.subscribe((Data)=>{
+      this.alldate=Data;
+      console.log('alldate', this.alldate);
        if(Data !== null){
-        this.alldate=Data;    
+       
         this.isSearch = true;
         this.searchedEvent.emit(this.isSearch);
         console.log(this.alldate.length);

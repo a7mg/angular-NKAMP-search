@@ -48,8 +48,7 @@ export class CategoryComponent implements OnInit {
     this.facetOption.values.forEach((o, i) => {
       this.checklist.push({ id: o.id, value: o.facetValue , isSelected: false });
     });
-    // this.createItemsFormDynamic();
-    // console.log('category facet', this.facetOption);
+     console.log('category facet111111', this.facetOption);
     this.facetOption.values.forEach(element => {
       this.totalOfAllItems += element.totalItems;
       this.chartData.labels.push(element.facetValue);

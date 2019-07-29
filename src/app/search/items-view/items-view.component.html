@@ -33,8 +33,10 @@
 
     </label>
     <select class="form-control" (change)="onChangeSort($event)">
-      <option selected="selected" [value]="'null'">select </option>
-      <option *ngFor="let keyWord of searchKeywords" [value]="keyWord.id">{{ keyWord.eName }}</option>
+      <option selected="selected" i18n="@@lblsearch_Containes" [value]="'null'">select </option>
+      <option *ngFor="let keyWord of searchKeywords" [value]="keyWord.id">
+        {{lang == 'ar'||lang=='ar-SA'  ?  keyWord.aName :  (lang == 'fr'? keyWord.fName :keyWord.eName )}}
+      </option>
     </select>
   </div>
 
@@ -103,13 +105,11 @@
   <p-tabPanel [header]="generalTXT" [selected]="true">
     <div class="row">
 
-      <!-- col-xl-3 -->
-      <!-- <app-list *ngFor="let item of [].constructor(2)" class="col-12"></app-list> -->
-      <app-grid *ngFor="let item of itemsArr" class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="item"></app-grid>
-      <!-- <app-grid *ngFor="let item of [].constructor(4)" class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="itemsArr[0]"></app-grid> -->
+      <ng-container *ngFor="let item of itemsArr">
+        <app-grid  class="col-12 col-sm-6 col-md-4 col-lg-4" [book-data]="item"></app-grid>
 
+      </ng-container>
     </div>
-
   </p-tabPanel>
 
   <p-tabPanel [header]="lang == 'ar' || lang=='ar-SA'  ?  singleMaterialType.NameAr :  (lang == 'fr'? singleMaterialType.NameFr :singleMaterialType.Name ) +' ( ' + singleMaterialType.totalItems +' ) ' "

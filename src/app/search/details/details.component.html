@@ -31,7 +31,7 @@
                     </div> <!-- end review -->
                 </div> <!-- end rating and review -->
                 <p class="oneBook-pref no-padding no-margin">
-                   {{bookDetails.description}}
+                   {{bookDetails.description ==''?'No description':bookDetails.description}}
                 </p> <!-- end paragraph -->
                 <div class="oneBook-descrption">
                     <div class="row" *ngFor="let additonalFieldsItem of additonalFieldsItems">

@@ -37,6 +37,7 @@ export class BookDetailsService {
     );
   }
   getBookDetails(requestBody) : Observable<any>{
+    debugger;
     return this.http.get<any>('./assets/NkampData/GetItemOperationDetails.json').pipe(
       map((data: any) => {
         return data;
@@ -96,6 +97,7 @@ export class BookDetailsService {
   addNewRating(requestBody) : Observable<any>{
     return this.http.post<any>(this.Url + 'ItemOperation/RateItem', requestBody).pipe(
       map((data: any) => {
+       
         return data;
       }),
       catchError((error: Error) => {

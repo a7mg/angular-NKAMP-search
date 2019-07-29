@@ -4,16 +4,17 @@
         <form (ngSubmit)="getFavoriteList()" #formEle="ngForm">
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-12">
-                    <label for="bookName"> Search </label>
+                    <label i18n="@@lblsearch" for="bookName"> Search </label>
                     <input type="text"
                            class="Favorite-Search-input"
+                           i18n-placeholder="@@lblsearch"
                            name="searchName"
                            id="bookName"
                            placeholder="Search"
                            ngModel/>
                 </div>
                 <div class="col-md-2 col-sm-3 col-6">
-                    <label for="dateFrom"> Date From </label>
+                    <label i18n="@@lbldateFrom" for="dateFrom">DateFrom</label>
                     <div class="input-group">
                         <input class="form-control Favorite-Search-input"
                                placeholder="yyyy-mm-dd"
@@ -29,7 +30,7 @@
                       </div>
                 </div>
                 <div class="col-md-2 col-sm-3 col-6">
-                    <label for="dateTo"> Date To </label>
+                    <label i18n="@@lbldateTo"  for="dateTo">DateTo</label>
                     <div class="input-group">
                         <input class="form-control
                                Favorite-Search-input"
@@ -47,7 +48,7 @@
                 </div>
                 <div class="col-md-2 col-sm-12 col-12">
                     <label for="dateTo"class="Favorite-Search-sendLabel"> Date To </label>
-                    <button class="Favorite-Search-btn">Search</button>
+                    <button i18n="@@lblsearch" class="Favorite-Search-btn">Search</button>
                 </div>
             </div>
         </form>

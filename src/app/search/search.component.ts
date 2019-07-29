@@ -51,9 +51,10 @@ export class SearchComponent implements OnInit {
         console.log('no data');
       }
     });
-
+    debugger;
     const searchProfile = { SearchProfile_id: this.$searchService.userProfile.searchProfile_id };
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
+      debugger;
       console.log('getSearchConfiguration ', data);
       this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
@@ -65,24 +66,29 @@ export class SearchComponent implements OnInit {
       }
     });
     // save search
-    this.$searchService.getQuery({ userId: this.$searchService.userProfile.userId }).subscribe((data) => {
-      // console.log(data);
-      if (data != null) {
-        if (data.Queries != null) {
-          data.Queries.forEach(element => {
-            this.getQueryValues.push(element);
-          });
-        } else {
-          data.forEach(element => {
-            this.getQueryValues.push(element);
-          });
-        }
+    this.getquerySavesearch()
+  }
 
-        // console.log(this.getQueryValues);
-      } else {
-        console.log('no data');
-      }
-    });
+  getquerySavesearch(){
+    this.getQueryValues=[];
+    this.$searchService.getQuery({ userId: this.$searchService.userProfile.userId }).subscribe((data) => {
+      console.log("getQuery,getQuery",data);
+     if (data != null) {
+       if (data.Queries != null) {
+         data.Queries.forEach(element => {
+           this.getQueryValues.push(element);
+         });
+       } else {
+         data.forEach(element => {
+           this.getQueryValues.push(element);
+         });
+       }
+
+       console.log("getQuery,getQuery222",this.getQueryValues);
+     } else {
+       console.log('no data');
+     }
+   });
   }
 
   showSuccess() {
@@ -112,8 +118,8 @@ export class SearchComponent implements OnInit {
   saveSearch() {
     console.log('this.addQueryRequestBody', this.addQueryRequestBody);
     this.$searchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
-      console.log('addQuery respond', data);
       if (data != null) {
+        this.getquerySavesearch()
         console.log('addQuery respond', data);
       } else {
         console.log('no data');
@@ -132,9 +138,9 @@ export class SearchComponent implements OnInit {
     this.deleteRequestBody._id = currentQueryId;
     this.$searchService.deleteQuery(this.deleteRequestBody).subscribe((data) => {
       if (data.Msg === 'Query successfully removed') {
-        this.getQueryValues.forEach((currentElement, index) => {
+        this.getQueryValues[0].forEach((currentElement, index) => {
           if (currentElement.query_name === currentqueryName) {
-            this.getQueryValues.splice(index, 1);
+            this.getQueryValues[0].splice(index, 1);
           }
         });
         this.showSuccess();

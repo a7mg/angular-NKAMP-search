@@ -29,16 +29,16 @@ export class FacetsComponent implements OnInit {
         // console.log('Facets Configuration => ', this.facetFieldsOptions);
       }
     });
-
+    debugger;
     this.$searchService.results$.subscribe(results => {
+      debugger;
       console.log('$searchService.results$ ', results );
       if (results !== null) {
         this.facetsArr = results.facetsSearchQueryStatistic;
-        // console.log('facetsArr', this.facetsArr);
         console.log('facetsArrOptions', this.facetFieldsOptions);
         this.facetFieldsOptions.forEach((facetOption, idx) => {
           facetOption.values = this.facetsArr.filter(value => {
-            return value.id === facetOption.id;
+            return value.facetId === facetOption.id;
           });
           facetOption.values = facetOption.values.map((obj, i) => {
             obj.facetValue = obj.facetValue + ' dummy ' + i;
