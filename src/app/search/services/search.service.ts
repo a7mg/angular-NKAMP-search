@@ -68,40 +68,14 @@ export class SearchService {
         
       })
     };
-  console.log('serachCriteria',serachCriteria);
+
   const body={
-    "searchProfileId": "ffb6cd68-bed4-4b5d-897d-89d205734b0e",
-    "pageSize": 10,
+    "searchProfileId": serachCriteria.searchProfileId,
+    "pageSize": 12,
     "fromPage": 0,
-    "dataSourcesId": [
-    	"0B438369-C0DA-4A32-8C6F-103AB6FEADD1"
-    ],
-    "searchKeyWords": [
-      {
-        "searchKeyWordId": "e57fa2d0-921d-4e43-8487-dceedbb225f6",
-        "materialTypeId": "b3f94d14-6f70-426f-b0b8-df77860dc4df",
-        "keyWordValue": "عنوان",
-        "searchOperationId": "aad2c592-dc0d-4ed5-a5c7-6f0259c0498b",
-        "nextSearchKeyWordWithAnd": true
-      },
-      {
-        "searchKeyWordId": "1909145c-117e-48f3-9f5a-b699d011c618",
-        "materialTypeId": "ffc1d986-71c8-4bdd-9b15-87239ecf6690",
-        "keyWordValue": "محمد",
-        "searchOperationId": "aad2c592-dc0d-4ed5-a5c7-6f0259c0498b",
-        "nextSearchKeyWordWithAnd": true
-      }
-      , {
-        "searchKeyWordId": "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
-        "materialTypeId": "ffc1d986-71c8-4bdd-9b15-87239ecf6690",
-        "keyWordValue": "2020",
-        "searchOperationId": "B7C92AE0-E842-456C-B23C-66347CCDB752",
-        "nextSearchKeyWordWithAnd": false
-      }
-    ],
-    "facetsFilter": [
-      
-    ],
+    "dataSourcesId": serachCriteria.dataSourcesId,
+    "searchKeyWords":serachCriteria.searchKeyWords,
+    "facetsFilter": [],
     "keywWordsOrderBy": [
       {
         "keywWordId": "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
@@ -111,6 +85,7 @@ export class SearchService {
       }
     ]
   }
+  console.log('serachCriteria',body);
     return this.http.post<any>('http://10.0.6.146:8280/make_new_search/MakeNewSearch', body,httpOptions).pipe(
       map((data: any) => {
         console.log("Result search ",data)
