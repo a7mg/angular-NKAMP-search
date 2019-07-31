@@ -7,11 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GridComponent implements OnInit {
   @Input('book-data') bookData;
-  constructor() { }
+  constructor() { 
+
+
+   
+  }
 
   ngOnInit() {
-    // console.log("bookData", this.bookData)
-    // this.bookData =
+    console.log("bookData",this.bookData)
   }
 
 }

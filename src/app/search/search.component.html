@@ -28,7 +28,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                    <h3 class="dropdown-menu-title" i18n="@@lblsavedsearch" >Save Search</h3>
                    <ul class="searchNK-savedSearchItem" *ngIf="getQueryValues.length >=0">
-                     <li *ngFor="let getQueryValue of getQueryValues">
+                     <li *ngFor="let getQueryValue of getQueryValues[0]">
                         <div class="searchNK-savedSearch-item">
                           <span (click)="onSavedSearchClicked(getQueryValue.query_syntax)">
                              {{ (getQueryValue.query_name | slice:0:20)+'..'}}

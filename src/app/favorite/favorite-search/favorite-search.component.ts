@@ -29,12 +29,13 @@ export class FavoriteSearchComponent implements OnInit {
   }
   getFavoriteList(){
     if (this.formElement.value.searchName|| this.formElement.value.dateFrom || this.formElement.value.dateTo) {
+
         this.startDate =  Number(Object.values(this.formElement.value.dateFrom).reverse().join(""));
         this.endDate =  Number(Object.values(this.formElement.value.dateTo).reverse().join(""));
         this.getFavoriteListRequestBody.filterByTitle= this.formElement.value.searchName;
         this.getFavoriteListRequestBody.startDate= this.startDate;
         this.getFavoriteListRequestBody.endDate= this.endDate;
-        // console.log(this.getFavoriteListRequestBody);
+         console.log("getFavoriteListRequestBody",this.getFavoriteListRequestBody);
         this.favoriteService.getFavoriteList(this.getFavoriteListRequestBody).subscribe( Data  =>{
           if(Data !== null){
             console.log(Data);

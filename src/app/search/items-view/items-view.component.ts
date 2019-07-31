@@ -48,12 +48,14 @@ export class ItemsViewComponent implements OnInit {
     this.$searchService.results$.subscribe(data => {
       this.materialTypes = [];
       this.itemsArr = [];
-      // console.log('SearchService Results ', data);
+       console.log('SearchService Results222222 ', data);
       if (data !== null) {
 
         data.items.forEach(element => {
-          this.itemsArr.push(element);
+          this.itemsArr.push(element.Item);
         });
+
+        console.log('this.itemsArr222222 ', this.itemsArr[0]);
 
         const materialTypesResults = data.materialTypesSearcQueryStatistic;
         materialTypesResults.forEach(value => {
@@ -63,9 +65,6 @@ export class ItemsViewComponent implements OnInit {
           selectedMatrial.totalItems = value.totalItems;
           this.materialTypes.push(selectedMatrial);
         });
-
-        // console.log('  this.itemsArr', this.itemsArr);
-        // console.log('  this.materialTypes', this.materialTypes);
       }
     });
   }

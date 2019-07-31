@@ -194,6 +194,7 @@ export class CriteriaComponent implements OnInit {
   }
 
   getContainsData(indexControll) {
+    debugger;
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
     const controll = currentCreteriaForms.at(indexControll) as FormGroup;
     const FeildControl = controll.controls.facetFC as FormControl;
@@ -203,7 +204,8 @@ export class CriteriaComponent implements OnInit {
       const selectedFacetObj = this.searchKeyword.filter((value, idx) => {
         return value.id === FeildControl.value;
       });
-      return [...selectedFacetObj[0].allowedSearchOperations];
+     // return [...selectedFacetObj[0].allowedSearchOperations];
+     return [...selectedFacetObj];
     } else {
       containControl.disable();
       return [];

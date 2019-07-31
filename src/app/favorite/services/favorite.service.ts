@@ -20,7 +20,17 @@ export class FavoriteService {
   }
 
   getFavoriteList(requestBody) : Observable<any>{
-    return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody).pipe(
+
+  var  bodybj = {
+      "userId": "user_778",
+      "pageSize": 5,
+      "wantedPage": 1,
+      // "startDate": 16/6/2019,
+      // "endDate":  16/6/2019,
+      // "filterByTitle": "item fdfsvdvs"
+
+    };
+    return this.http.post<any>(this.Url + 'GetFavoritesList', bodybj).pipe(
       map((data: any) => {
         return data;
       }),

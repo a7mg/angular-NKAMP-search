@@ -21,7 +21,7 @@
                              </tr>
                            </thead>
                            <tbody class="Favorite-table-body">
-                             <tr *ngFor="let dataItem of alldate">
+                             <tr *ngFor="let dataItem of alldate.hits.hits">
                                <td>
                                  <label class="controlRC controlRC-radio d-block">
                                    <!-- First radio -->
@@ -34,7 +34,7 @@
                                </td>
                                <td>
                                  <p class="Favorite-table-title">
-                                     {{dataItem.title}}
+                                     {{dataItem._source.itemListPageInformation.title}}
                                  </p>
                                </td>
                                <td class="hideEle">
@@ -44,12 +44,12 @@
                                </td>
                                <td>
                                   <div  class="Favorite-table-year"> 
-                                    2018
+                                    {{dataItem._source.itemListPageInformation.createdDate| date: 'yyyy' }}
                                   </div>
                                </td>
                                <td class="hideEle">
                                    <div class="Favorite-table-date">
-                                     14/11/2019
+                                    {{dataItem._source.itemListPageInformation.createdDate}}
                                    </div>
                                </td>
                                <td>
