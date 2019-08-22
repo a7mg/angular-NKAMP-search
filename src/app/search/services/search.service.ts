@@ -65,7 +65,7 @@ export class SearchService {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Credentials, Access-Control-Request-Headers',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-        
+
       })
     };
 
@@ -73,22 +73,22 @@ export class SearchService {
     "searchProfileId": serachCriteria.searchProfileId,
     "pageSize": 12,
     "fromPage": 0,
-    "dataSourcesId": serachCriteria.dataSourcesId,
-    "searchKeyWords":serachCriteria.searchKeyWords,
-    "facetsFilter": [],
-    "keywWordsOrderBy": [
+    'dataSourcesId': serachCriteria.dataSourcesId,
+    searchKeyWords:serachCriteria.searchKeyWords,
+    facetsFilter: [],
+    keywWordsOrderBy: [
       {
-        "keywWordId": "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
-        "keywWordType": "4",
-        "keywWordValue": "value",
-        "isAcendening": true
+        keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
+        keywWordType: '4',
+        keywWordValue: 'value',
+        isAcendening: true
       }
     ]
-  }
-  console.log('serachCriteria',body);
-    return this.http.post<any>('http://10.0.6.146:8280/make_new_search/MakeNewSearch', body,httpOptions).pipe(
+  };
+    console.log('serachCriteria', body);
+    return this.http.post<any>(this.Url + 'Search', body, httpOptions).pipe(
       map((data: any) => {
-        console.log("Result search ",data)
+        console.log('Result search ', data);
         return data;
       }), catchError((error: Error) => {
         const errParams: any[] = [];
