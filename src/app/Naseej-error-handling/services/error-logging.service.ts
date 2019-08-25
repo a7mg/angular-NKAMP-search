@@ -3,7 +3,7 @@ import { LogPublishersService } from './log-publishers.service';
 import { LogLevel } from '../dataModel/enums';
 import { LogEntry } from '../dataModel/logEntry';
 import { LogPublisher } from '../dataModel/ILogPublisher';
-import { GlobalsService } from '../../Naseej-shared/services/globals.service';
+import { GlobalsService } from '../../NKAMP-Search-shared/services/globals.service';
 // ---------------------------------------------------------------------------------------------------------------------------------- //
 @Injectable({
   providedIn: 'root'

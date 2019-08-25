@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { AppConfigService } from 'src/app/Naseej-shared/services/app-config.service';
+import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
-import { GlobalsService } from 'src/app/Naseej-shared/services/globals.service';
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -37,6 +37,7 @@ export class BookDetailsService {
     );
   }
   getBookDetails(requestBody) : Observable<any>{
+    debugger;
     return this.http.get<any>('./assets/NkampData/GetItemOperationDetails.json').pipe(
       map((data: any) => {
         return data;
@@ -96,6 +97,7 @@ export class BookDetailsService {
   addNewRating(requestBody) : Observable<any>{
     return this.http.post<any>(this.Url + 'ItemOperation/RateItem', requestBody).pipe(
       map((data: any) => {
+       
         return data;
       }),
       catchError((error: Error) => {

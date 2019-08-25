@@ -11,7 +11,18 @@ export class ResultsAreaComponent implements OnInit {
   constructor(private $SearchService: SearchService) { }
 
   ngOnInit() {
+    // this.$SearchService.searchConfiguration$.subscribe(data => {
+    //   if (data != null) {
+
+    //     data.FacetFields.forEach(element => {
+    //       this.facetFieldsOptions.push(element);
+    //     });
+    //     console.log('Facets Configuration => ', this.facetFieldsOptions);
+    //   }
+    // });
+
     this.$SearchService.results$.subscribe(data => {
+      // console.log("$SearchService.results$", data)
       if (data !== null) {
         this.isNoData = false;
       }

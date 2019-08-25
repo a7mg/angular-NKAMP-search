@@ -1,6 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
-import { NavigationMode } from './Naseej-shared/dataModels/enums';
-import { AppConfigService } from './Naseej-shared/services/app-config.service';
+import { NavigationMode } from './NKAMP-Search-shared/dataModels/enums';
+import { AppConfigService } from './NKAMP-Search-shared/services/app-config.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { AppConfigService } from './Naseej-shared/services/app-config.service';
 export class AppComponent {
   title = 'Search Development ( NKAMP )';
   NavMode = NavigationMode;
-  languages = [{ code: "en", label: "English" }, { code: "ar", label: "عربي" }];
+  languages = [{ code: 'en', label: 'English' }, { code: 'ar', label: 'عربي' }];
 
   async ngOnInit(): Promise<void> {
     await this.appConfig.load();
@@ -24,10 +24,10 @@ export class AppComponent {
     //   "ComponentName"
     // );
     this.appConfig.language = this.elementRef.nativeElement.getAttribute(
-      "Lang"
+      'Lang'
     );
     this.appConfig.deployUrl = this.elementRef.nativeElement.getAttribute(
-      "DeployUrl"
+      'DeployUrl'
     );
   }
 

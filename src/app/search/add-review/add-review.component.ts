@@ -19,6 +19,7 @@ export class AddReviewComponent implements OnInit {
     userComment: ''
   }
   currentRate:number=0;
+  currentRate1:number=0;
   isAdded = false;
   addCommentRequestBody = {
     "primaryItemSourceId": "ggggjjjjggggg",
@@ -59,10 +60,11 @@ export class AddReviewComponent implements OnInit {
   }
   addComment(content){
     if(this.formElement.value.comment){
+      debugger;
       this.isAdded=true;
       this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
       this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  =>{
-        console.log(Data);
+        console.log("addNewCommentaddNewCommentaddNewComment",Data);
         if(Data !== null){
             this.modalService.open(content);
         }
@@ -77,10 +79,11 @@ export class AddReviewComponent implements OnInit {
     }
   }
   addRating(){
-    this.addRatingRequestBody.Rate= this.currentRate.toString();
+    debugger;
+    this.addRatingRequestBody.Rate= this.currentRate1.toString();
     console.log(parseInt(this.addRatingRequestBody.Rate));
     this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
-      console.log(Data);
+      console.log("Rate rate",Data);
       if(Data !==  null){
         console.log("sucess");
       }

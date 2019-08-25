@@ -1,5 +1,5 @@
 {
   "Common": {
-    "apiUrl": "https://10.0.6.154:8245/Search10/1.0.0/"
+    "apiUrl": "http://34.214.122.243:8280/Search/1.0.0/"
   }
 }
