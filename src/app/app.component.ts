@@ -8,7 +8,8 @@ import { AppConfigService } from './NKAMP-Search-shared/services/app-config.serv
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Search Development ( NKAMP )';
+  headerTitle = 'NKAMP Header';
+  footerTitle = 'NKAMP Footer';
   NavMode = NavigationMode;
   languages = [{ code: 'en', label: 'English' }, { code: 'ar', label: 'عربي' }];
 

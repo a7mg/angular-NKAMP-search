@@ -10094,20 +10094,56 @@ a.text-dark:hover, a.text-dark:focus {
 
 .searchNK-criteria .form-control {
   font-size: 12px;
-  height: 30px;
+  border-radius: 0rem;
+  color: #666666;
+  height: 32px;
+}
+
+@media (min-width: 992px) {
+  .searchNK-criteria .form-control {
+    height: 39px;
+  }
 }
 
 .searchNK-criteria select.form-control {
-  padding: 0;
+  padding-top: 0px;
+  height: 32px;
+}
+
+@media (min-width: 992px) {
+  .searchNK-criteria select.form-control {
+    height: 39px;
+    padding: 8px;
+  }
 }
 
 .searchNK-addFromBtn, .searchNK-removeFromBtn {
-  height: 30px;
-  width: 30px;
+  height: 32px;
+  width: 100%;
   padding: 7px 0;
   line-height: 16px;
   text-align: center;
   font-size: 12px;
+  border-radius: 0px;
+}
+
+@media (min-width: 768px) {
+  .searchNK-addFromBtn, .searchNK-removeFromBtn {
+    width: 30px;
+  }
+}
+
+@media (min-width: 992px) {
+  .searchNK-addFromBtn, .searchNK-removeFromBtn {
+    width: 50px;
+    height: 39px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .searchNK-addFromBtn, .searchNK-removeFromBtn {
+    width: 100%;
+  }
 }
 
 @media (max-width: 575px) {
@@ -10117,18 +10153,33 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .searchNK-changeStateBtn, .searchNK-searchBtn {
-  height: 30px;
+  height: 39px;
   line-height: 16px;
   font-size: 12px;
+  border-radius: 0rem;
 }
 
 .searchNK-changeStateBtn {
-  padding-left: 0;
   padding-right: 0;
+  padding-left: 0;
 }
 
 .searchNK-searchBtn {
   width: 100%;
+}
+
+.searchNK .favorite-btn {
+  font-weight: 600;
+}
+
+.searchNK .favorite-btn span {
+  font-size: 14px;
+}
+
+.searchNK .favorite-btn span:last-child {
+  padding-right: 9px;
+  position: relative;
+  top: 3px;
 }
 
 .controlRC {
@@ -11807,16 +11858,34 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.searchNK-header {
+  margin-bottom: 20px;
+}
+
+.searchNK-header-title {
+  font-size: 1.125rem;
+  height: 39px;
+  margin-bottom: 0px;
+  margin-top: 7px;
+}
+
 .searchNK-savedSearchContainer {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-right: 1.25rem;
+  margin-left: 1.25rem;
 }
 
 .searchNK-savedSearchContainer .dropdown {
   position: static;
+  padding-top: 3px;
+}
+
+@media (min-width: 1200px) {
+  .searchNK-savedSearchContainer .dropdown {
+    padding-top: 0px;
+  }
 }
 
 .searchNK-savedSearchContainer .btn {
@@ -11843,7 +11912,7 @@ a.text-dark:hover, a.text-dark:focus {
   display: none;
   width: 0;
   height: 0;
-  margin-left: 0rem;
+  margin-right: 0rem;
   vertical-align: 0rem;
   border-top: 0rem solid;
   border-right: 0rem solid transparent;
@@ -11852,9 +11921,9 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .searchNK-savedSearchContainer .dropdown-menu {
-  left: auto !important;
-  right: 0rem;
-  top: auto !important;
+  left: -4.5rem !important;
+  right: auto;
+  top: 37px !important;
   -webkit-transform: none !important;
           transform: none !important;
   padding: 0.75rem;
@@ -11863,6 +11932,21 @@ a.text-dark:hover, a.text-dark:focus {
           box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.09);
   border-width: 0rem;
   border-radius: 0rem;
+}
+
+@media (min-width: 768px) {
+  .searchNK-savedSearchContainer .dropdown-menu {
+    left: 0rem !important;
+    right: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .searchNK-savedSearchContainer .dropdown-menu {
+    left: 0rem !important;
+    right: auto;
+    top: auto !important;
+  }
 }
 
 .searchNK-savedSearchContainer .dropdown-menu-title {
@@ -11887,10 +11971,11 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .searchNK-savedSearchItem li:nth-child(odd) {
-  padding-right: 1.375rem;
+  padding-left: 1.375rem;
 }
 
 .searchNK-savedSearchItem li {
+  position: relative;
   font-size: 0.75rem;
   color: #FF6600;
   width: 49%;
@@ -11901,8 +11986,8 @@ a.text-dark:hover, a.text-dark:focus {
 .searchNK-savedSearchItem li svg {
   cursor: pointer;
   position: absolute;
-  right: 1.375rem;
-  top: 0.4375rem;
+  left: 0.9375rem;
+  top: 0.1875rem;
 }
 
 .searchNK-savedSearch {
@@ -11914,7 +11999,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .searchNK-savedSearch svg {
-  margin-right: 0.5625rem;
+  margin-left: 0.5625rem;
   margin-bottom: 0.3125rem;
 }
 
@@ -11952,7 +12037,7 @@ a.text-dark:hover, a.text-dark:focus {
   border-top-right-radius: 0rem;
   border-bottom-right-radius: 0rem;
   position: relative;
-  padding-left: 22px;
+  padding-right: 22px;
 }
 
 .searchNK-savedSearchInput form .searchNK-searchBtn {
@@ -11962,6 +12047,35 @@ a.text-dark:hover, a.text-dark:focus {
   border-bottom-left-radius: 0rem;
   width: 84px;
   line-height: 0px;
+}
+
+.searchNK .border-item {
+  height: 1.4375rem;
+  border: 1px solid #E5E5E5;
+  position: relative;
+  top: 0.1875rem;
+  margin-left: 20px;
+}
+
+.searchNK .small-text {
+  font-size: 12px;
+  color: #FF6600;
+}
+
+@media (min-width: 576px) {
+  .searchNK .small-text {
+    font-size: 14px;
+  }
+}
+
+.searchNK .favorite-btn .small-text {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .searchNK .favorite-btn .small-text {
+    display: inline;
+  }
 }
 
 body .searchNK .ui-widget {
@@ -12003,5 +12117,30 @@ body .searchNK .ui-widget {
 .searchNK .search-tabs .ui-tabview .ui-tabview-panels {
   border: 0;
   padding: 1.5625rem 0 0 0;
+}
+
+.NK-header {
+  background-color: #666666;
+  margin-bottom: 1.875rem;
+  color: #fff;
+  padding: 24px 0px;
+}
+
+.NK-header h1 {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.NK-footer {
+  background-color: #666666;
+  margin-top: 2.5rem;
+  text-align: center;
+  color: #fff;
+  padding: 24px 0px;
+}
+
+.NK-footer h2 {
+  text-align: center;
+  font-size: 1rem;
 }
 /*# sourceMappingURL=style.css.map */
