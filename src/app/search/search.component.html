@@ -4,10 +4,10 @@
   <header class="searchNK-header">
 
     <div class="row">
-      <div class="col-12 col-md-2 col-lg-2">
-        <h1 i18n="@@lblsearch">Search</h1>
+      <div class="col-3 col-md-2 col-lg-2">
+        <h3 class="searchNK-header-title" i18n="@@lblsearch">Search</h3>
       </div>
-      <div class="col-12 col-md-10 col-lg-10 d-flex justify-content-end">
+      <div class="col-9 col-md-10 col-lg-10 d-flex justify-content-end">
         <div class="searchNK-savedSearchContainer" [ngClass]="{'searchNK-saveSearchClicked': clicked}">
             <button class="btn searchNK-savedSearch " (click)="clicked=!clicked" [disabled]="isSavedSearchDisabled">
                 <svg xmlns="http://www.w3.org/2000/svg" id="save" width="15" height="15" viewBox="0 0 15 15">
@@ -17,7 +17,7 @@
                   <path id="Path_10" data-name="Path 10" d="M25.605,35.113a.369.369,0,0,0,0,.516.374.374,0,0,0,.258.105.364.364,0,1,0-.258-.621Z" transform="translate(-17.743 -24.379)" fill="#666"/>
                   <path id="Path_11" data-name="Path 11" d="M29.681,4H27.5V7.634h2.181Zm-.727,2.907h-.727V4.727h.727Z" transform="translate(-19.259 -2.546)" fill="#666"/>
                 </svg>
-                <span i18n="@@lblsavedsearch"> Save Search </span>
+                <span class="small-text" i18n="@@lblsavedsearch"> Save Search </span>
             </button>
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,18 +33,10 @@
                           <span (click)="onSavedSearchClicked(getQueryValue.query_syntax)">
                              {{ (getQueryValue.query_name | slice:0:20)+'..'}}
                           </span>
-                          <svg xmlns="http://www.w3.org/2000/svg"
-                               width="14.141"
-                               height="14.141"
-                               viewBox="0 0 14.141 14.141"
-                               (click)="deleteSearchItem(getQueryValue.query_name, getQueryValue.id)">
-                            <g id="Delete" transform="translate(-66 -284)">
-                              <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(66 284)" fill="none" stroke="red" stroke-width="1">
-                                <circle cx="7.07" cy="7.07" r="7.07" stroke="none"/>
-                                <circle cx="7.07" cy="7.07" r="6.57" fill="none"/>
-                              </g>
-                              <line id="Line_26" data-name="Line 26" x2="5.499" y2="5.499" transform="translate(70.321 288.321)" fill="none" stroke="red" stroke-width="1.2"/>
-                              <line id="Line_27" data-name="Line 27" x1="5.499" y2="5.499" transform="translate(70.321 288.321)" fill="none" stroke="red" stroke-width="1.2"/>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="7.707" height="7.707" viewBox="0 0 7.707 7.707">
+                            <g id="Group_366" data-name="Group 366" transform="translate(-133.938 -59.417)">
+                              <line id="Line_26" data-name="Line 26" x2="7" y2="7" transform="translate(134.291 59.771)" fill="none" stroke="#999" stroke-width="1"/>
+                              <line id="Line_27" data-name="Line 27" x1="7" y2="7" transform="translate(134.291 59.771)" fill="none" stroke="#999" stroke-width="1"/>
                             </g>
                           </svg>
                         </div>
@@ -54,6 +46,9 @@
                    <div *ngIf="getQueryValues.length ==0" i18n="@@lblno_save_search_yet"> no save search yet</div>
                 </div>
             </div>
+        </div>
+        <div class="border-item">
+
         </div>
         <div class="searchNK-savedSearchInput"  [ngClass]="{'searchNK-saveSearchClicked': !clicked}">
                 <form (ngSubmit)="getSaveSearchInput()" #formEle="ngForm">
@@ -66,7 +61,7 @@
                 <span (click)="ToggleClass()"> x </span>
         </div>
 
-        <a [routerLink]="['/favorite']" routerLinkActive="router-link-active" class="btn btn-link btn-icon">
+        <a [routerLink]="['/favorite']" routerLinkActive="router-link-active" class="btn btn-link btn-icon favorite-btn">
           <span class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20">
               <g data-name="Group 56" transform="translate(-1076.221 -322)">
@@ -76,13 +71,13 @@
                 <circle data-name="Ellipse 2" cx="8" cy="8" r="8" transform="translate(1088.221 322)" fill="#f7941e" />
                 <text data-name="26" transform="translate(1096.221 333)" fill="#fff" font-size="10"
                   font-family="SegoeUI, Segoe UI">
-                  <tspan x="-5.391" y="0">{{favoriteBadge}}</tspan>
+                  <tspan x="5.391" y="0">{{favoriteBadge}}</tspan>
                 </text>
               </g>
             </svg>
           </span>
 
-          <span i18n="@@lbl_favorite">
+          <span class="small-text" i18n="@@lbl_favorite">
             Favorite
           </span>
         </a>
