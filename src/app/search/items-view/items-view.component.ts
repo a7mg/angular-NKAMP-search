@@ -16,6 +16,7 @@ export class ItemsViewComponent implements OnInit {
   };
   generalTXT: string;
   pageIndex = 1;
+  displayMode:number = 1;
   itemsArr: Array<any>;
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
@@ -74,6 +75,9 @@ export class ItemsViewComponent implements OnInit {
     this.$searchService.nextPageCriteria.wantedPage = pageNumber;
     this.getNextPageResults();
   }
+  onDisplayModeChange(mode: number): void {
+    this.displayMode = mode;
+}
 
   onChangeSort(searchKeywordId): void {
     console.log('searchKeywordId ', searchKeywordId.target.value);
