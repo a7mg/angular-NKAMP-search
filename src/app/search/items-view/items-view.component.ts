@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
-
+import { ContentChild } from '@angular/core';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-items-view',
   templateUrl: './items-view.component.html',
   styleUrls: ['./items-view.component.scss']
 })
 export class ItemsViewComponent implements OnInit {
+  @ContentChild(NgbPagination) pagination: NgbPagination;
   lang: string;
   genralLoclaizaion = {
     en: 'general',
@@ -32,9 +34,13 @@ export class ItemsViewComponent implements OnInit {
     this.materialTypesConfiguration = [];
   }
 
+  // getPageFromService() {
+  // }
+
   ngOnInit() {
     this.$searchService.searchConfiguration$.subscribe(data => {
       if (data !== null) {
+
         data.SearchKeywords.forEach(element => {
           this.searchKeywords.push(element);
         });
@@ -46,12 +52,15 @@ export class ItemsViewComponent implements OnInit {
       }
     });
 
+
     this.$searchService.results$.subscribe(data => {
       this.materialTypes = [];
       this.itemsArr = [];
        console.log('SearchService Results222222 ', data);
       if (data !== null) {
-
+        // getPageFromService() {
+          
+        // }
         data.items.forEach(element => {
           this.itemsArr.push(element.Item);
         });
@@ -71,6 +80,7 @@ export class ItemsViewComponent implements OnInit {
   }
 
   paginate(pageNumber): void {
+    debugger;
     console.log('Page Number', pageNumber);
     this.$searchService.nextPageCriteria.wantedPage = pageNumber;
     this.getNextPageResults();
@@ -94,7 +104,7 @@ export class ItemsViewComponent implements OnInit {
 
   getNextPageResults(): void {
     this.$searchService.getNextPage().subscribe((data) => {
-      // console.log('GetNextPageResult', data.items );
+       console.log('GetNextPageResult', data.items );
       data.materialTypesSearcQueryStatistic = [
         {
           id: 'A1F06400-EC3C-4ACE-8960-2372C13BDCCE',
