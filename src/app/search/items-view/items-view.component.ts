@@ -54,6 +54,7 @@ export class ItemsViewComponent implements OnInit {
 
         data.items.forEach(element => {
           this.itemsArr.push(element.Item);
+
         });
 
         console.log('this.itemsArr222222 ', this.itemsArr[0]);

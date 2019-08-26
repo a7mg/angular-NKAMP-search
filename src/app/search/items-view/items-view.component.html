@@ -57,7 +57,7 @@
 
     View</label>
     <div class="d-flex justify-content-end">
-        <button class="grid-btn" type="button" (click)="onDisplayModeChange(1)">
+        <button class="grid-btn" type="button" [ngClass]="{' active': displayMode === 1}" (click)="onDisplayModeChange(1)">
             Grid
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
               viewBox="0 0 14 13.125">
@@ -83,7 +83,7 @@
             </svg>
       
           </button>
-          <button class="list-btn" type="button" (click)="onDisplayModeChange(2)">
+          <button class="list-btn" type="button" [ngClass]="{'active': displayMode === 2}" (click)="onDisplayModeChange(2)">
             List
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 14 13.611">
               <g data-name="Icon - List" transform="translate(0 1)">
@@ -114,7 +114,7 @@
 
       <ng-container *ngFor="let item of itemsArr">
         <app-grid  class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item"></app-grid>
-         <app-list class="col-12 col-sm-6 col-md-12 col-lg-12" *ngIf="displayMode === 2"></app-list>
+         <app-list class="col-12 col-sm-6 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
 
       </ng-container>
     </div>
