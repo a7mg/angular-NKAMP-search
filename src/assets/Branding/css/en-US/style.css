@@ -12175,10 +12175,11 @@ body .searchNK .ui-widget {
   color: #333333;
   font-size: 0.75rem;
   height: calc(2.25rem + 2px);
+  background-color: transparent;
 }
 
-.form-row .list-btn {
-  background-color: transparent;
+.form-row .grid-btn.active, .form-row .list-btn.active {
+  background-color: #EEEEEE;
 }
 
 .form-row .form-control {
