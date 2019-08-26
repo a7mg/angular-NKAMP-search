@@ -2179,6 +2179,7 @@ pre code {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
+  border-radius: 0;
   border-radius: 0.25rem;
   -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -9866,7 +9867,9 @@ a.text-dark:hover, a.text-dark:focus {
   color: #FF6600;
   font-weight: 600;
   margin-bottom: 0.625rem;
-  font-size: 1rem;
+  font-size: 16px;
+  margin-bottom: 11px;
+  display: block;
 }
 
 .gResultNK-title:hover, .gResultNK-title:focus {
@@ -9875,8 +9878,8 @@ a.text-dark:hover, a.text-dark:focus {
 
 .gResultNK-auther {
   font-weight: 600;
-  margin-bottom: 0.3125rem;
-  font-size: 12px;
+  margin-bottom: 0.6875rem;
+  font-size: 14px;
 }
 
 @media (min-width: 576px) {
@@ -9889,6 +9892,12 @@ a.text-dark:hover, a.text-dark:focus {
   .gResultNK-auther {
     font-size: 14px;
   }
+}
+
+.gResultNK-date {
+  font-size: 14px;
+  margin-bottom: 0.6875rem;
+  color: #333333;
 }
 
 .gResultNK-publisherDate {
@@ -12093,11 +12102,18 @@ body .searchNK .ui-widget {
 .searchNK .search-tabs .ui-tabview.ui-tabview-top .ui-tabview-nav li {
   float: right;
   margin: 0;
-  margin-left: 1.875rem;
+  margin-left: 1.6875rem;
   background-color: transparent !important;
   border: none !important;
   outline: 0;
   border-radius: 0;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  color: #333333;
+}
+
+.searchNK .search-tabs .ui-tabview.ui-tabview-top .ui-tabview-nav li a {
+  text-transform: capitalize;
 }
 
 .searchNK .search-tabs .ui-tabview.ui-tabview-top .ui-tabview-nav li.ui-state-active {
@@ -12142,5 +12158,46 @@ body .searchNK .ui-widget {
 .NK-footer h2 {
   text-align: center;
   font-size: 1rem;
+}
+
+.form-row .view-title {
+  display: block;
+  color: #333333;
+  font-size: 0.9375rem;
+  padding-bottom: 0.375rem;
+  text-align: right;
+  margin-right: 6.8125rem;
+}
+
+.form-row .grid-btn, .form-row .list-btn {
+  border-width: 0px;
+  padding: 7px 16px;
+  color: #333333;
+  font-size: 0.75rem;
+  height: calc(2.25rem + 2px);
+}
+
+.form-row .list-btn {
+  background-color: transparent;
+}
+
+.form-row .form-control {
+  border-radius: 0px;
+}
+
+.page-item.disabled .page-link {
+  color: #333333;
+  pointer-events: none;
+  cursor: auto;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #333333;
+  background-color: transparent;
+  border-color: transparent;
+  font-weight: bold;
 }
 /*# sourceMappingURL=style.css.map */

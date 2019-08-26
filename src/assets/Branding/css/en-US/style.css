@@ -12184,4 +12184,20 @@ body .searchNK .ui-widget {
 .form-row .form-control {
   border-radius: 0px;
 }
+
+.page-item.disabled .page-link {
+  color: #333333;
+  pointer-events: none;
+  cursor: auto;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #333333;
+  background-color: transparent;
+  border-color: transparent;
+  font-weight: bold;
+}
 /*# sourceMappingURL=style.css.map */
