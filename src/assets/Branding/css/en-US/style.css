@@ -10691,6 +10691,12 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+@media (max-width: 575px) {
+  .oneBook-col {
+    padding: 0px;
+  }
+}
+
 .rateAndReview {
   margin-bottom: 2.375rem;
   margin-top: 3.4375rem;
