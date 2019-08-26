@@ -12191,6 +12191,7 @@ body .searchNK .ui-widget {
   cursor: auto;
   background-color: transparent;
   border-color: transparent;
+  outline: none;
 }
 
 .page-item.active .page-link {
@@ -12199,5 +12200,13 @@ body .searchNK .ui-widget {
   background-color: transparent;
   border-color: transparent;
   font-weight: bold;
+  outline: none;
+}
+
+.page-item .page-link {
+  color: #333333;
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
 }
 /*# sourceMappingURL=style.css.map */
