@@ -12185,7 +12185,7 @@ body .searchNK .ui-widget {
   border-radius: 0px;
 }
 
-.page-item.disabled .page-link {
+.searchNk-paginate .page-item.disabled .page-link {
   color: #333333;
   pointer-events: none;
   cursor: auto;
@@ -12194,7 +12194,7 @@ body .searchNK .ui-widget {
   outline: none;
 }
 
-.page-item.active .page-link {
+.searchNk-paginate .page-item.active .page-link {
   z-index: 1;
   color: #333333;
   background-color: transparent;
@@ -12203,10 +12203,42 @@ body .searchNK .ui-widget {
   outline: none;
 }
 
-.page-item .page-link {
+.searchNk-paginate .page-item .page-link {
   color: #333333;
   background-color: transparent;
   border-color: transparent;
   outline: none;
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=Next] span {
+  display: none;
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=Next]::before {
+  content: ">";
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=Previous] span {
+  display: none;
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=Previous]::before {
+  content: "<";
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=First] span {
+  display: none;
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=First]::before {
+  content: "Prev";
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=Last] span {
+  display: none;
+}
+
+.searchNk-paginate .page-item .page-link[aria-label=Last]::before {
+  content: "Next";
 }
 /*# sourceMappingURL=style.css.map */
