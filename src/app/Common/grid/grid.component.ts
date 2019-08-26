@@ -5,16 +5,13 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss']
 })
-export class GridComponent implements OnInit {
+export class GridComponent implements OnInit {   
   @Input('book-data') bookData;
   constructor() { 
-
-
-   
   }
 
   ngOnInit() {
-    console.log("bookData",this.bookData)
+    console.log("bookDataGrid",this.bookData)
   }
 
 }
