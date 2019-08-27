@@ -39,8 +39,8 @@
         <!-- <ng-container *ngFor="let value of categoryForm.controls.facetFC.controls;let idx = index"> -->
         <ng-container *ngFor="let item of  checklist;let idx = index">
           <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
-            <span class="text">{{this.facetOption.values[idx].facetValue}}</span>
-            <span class="count float-right">{{this.facetOption.values[idx].totalItems}}</span>
+            <!-- <span class="text">{{this.facetOption.values[idx].facetValue}}</span>
+            <span class="count float-right">{{this.facetOption.values[idx].totalItems}}</span> -->
              <!-- <input type="{{this.config.isAllowMultiSelection?'checkbox':'radio'}}"  (change)="isAllSelected($event, idx)"   [(ngModel)]="this.checklist[idx].isSelected"   [formControlName]="idx" name="{{this.config.isAllowMultiSelection?'checkbox'+idx:'item-list'}}"/> -->
              <input *ngIf="config.isAllowMultiSelection" type="checkbox"  [(ngModel)]="item.isSelected" (change)="isAllSelected()"  name="{{'checkbox'+idx}}"/>
              <input *ngIf="!config.isAllowMultiSelection" type="radio" name="{{item.id}}" value="{{item.value}}" (change)="onItemChange(item)"/>
