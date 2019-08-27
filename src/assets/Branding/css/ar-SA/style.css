@@ -3,7 +3,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-Light.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-Light.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Light.woff2") format("woff2"), url("../../fonts/cairo/Cairo-Light.woff") format("woff"), url("../../fonts/cairo/Cairo-Light.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-Light.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Light.woff") format("woff"), url("../../fonts/cairo/Cairo-Light.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
 }
@@ -12,7 +12,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-Regular.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-Regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Regular.woff2") format("woff2"), url("../../fonts/cairo/Cairo-Regular.woff") format("woff"), url("../../fonts/cairo/Cairo-Regular.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-Regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Regular.woff") format("woff"), url("../../fonts/cairo/Cairo-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -21,7 +21,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-SemiBold.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-SemiBold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-SemiBold.woff2") format("woff2"), url("../../fonts/cairo/Cairo-SemiBold.woff") format("woff"), url("../../fonts/cairo/Cairo-SemiBold.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-SemiBold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-SemiBold.woff") format("woff"), url("../../fonts/cairo/Cairo-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
@@ -30,7 +30,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-Bold.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-Bold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Bold.woff2") format("woff2"), url("../../fonts/cairo/Cairo-Bold.woff") format("woff"), url("../../fonts/cairo/Cairo-Bold.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-Bold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Bold.woff") format("woff"), url("../../fonts/cairo/Cairo-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
