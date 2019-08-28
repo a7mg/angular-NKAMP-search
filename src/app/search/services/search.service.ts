@@ -31,7 +31,7 @@ export class SearchService {
     keywWordsOrderBy: []
   };
 
-
+  
   constructor(private http: HttpClient, appConfig: AppConfigService,
               public globals: GlobalsService,
               private errorLogging: ErrorLoggingService) {
@@ -68,24 +68,24 @@ export class SearchService {
 
       })
     };
-
-  const body={
-    "searchProfileId": serachCriteria.searchProfileId,
-    "pageSize": 12,
-    "fromPage": 0,
-    'dataSourcesId': serachCriteria.dataSourcesId,
-    searchKeyWords:serachCriteria.searchKeyWords,
-    facetsFilter: [],
-    keywWordsOrderBy: [
-      {
-        keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-        keywWordType: '4',
-        keywWordValue: 'value',
-        isAcendening: true
-      }
-    ]
-  };
-    console.log('serachCriteria', body);
+    console.log("uasminnnnnnnnnnnnnn", this.nextPageCriteria);
+    const body={
+      "searchProfileId": "",
+      "pageSize": this.nextPageCriteria.pageSize,
+      "fromPage": this.nextPageCriteria.wantedPage,
+      'dataSourcesId':"",
+      searchKeyWords:"",
+      facetsFilter: [],
+      keywWordsOrderBy: [
+        {
+          keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
+          keywWordType: '4',
+          keywWordValue: 'value',
+          isAcendening: true
+        }
+      ]
+    };
+    console.log('serachCriteriavvvvvvvvv', body);
     return this.http.post<any>(this.Url + 'Search', body, httpOptions).pipe(
       map((data: any) => {
         console.log('Result search ', data);

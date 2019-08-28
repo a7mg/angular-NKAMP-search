@@ -3,7 +3,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-Light.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-Light.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Light.woff2") format("woff2"), url("../../fonts/cairo/Cairo-Light.woff") format("woff"), url("../../fonts/cairo/Cairo-Light.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-Light.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Light.woff") format("woff"), url("../../fonts/cairo/Cairo-Light.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
 }
@@ -12,7 +12,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-Regular.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-Regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Regular.woff2") format("woff2"), url("../../fonts/cairo/Cairo-Regular.woff") format("woff"), url("../../fonts/cairo/Cairo-Regular.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-Regular.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Regular.woff") format("woff"), url("../../fonts/cairo/Cairo-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -21,7 +21,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-SemiBold.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-SemiBold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-SemiBold.woff2") format("woff2"), url("../../fonts/cairo/Cairo-SemiBold.woff") format("woff"), url("../../fonts/cairo/Cairo-SemiBold.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-SemiBold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-SemiBold.woff") format("woff"), url("../../fonts/cairo/Cairo-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
@@ -30,7 +30,7 @@
   font-family: "Cairo";
   src: url("../../fonts/cairo/Cairo-Bold.eot");
   /* IE9 Compat Modes */
-  src: url("../../fonts/cairo/Cairo-Bold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Bold.woff2") format("woff2"), url("../../fonts/cairo/Cairo-Bold.woff") format("woff"), url("../../fonts/cairo/Cairo-Bold.ttf") format("truetype");
+  src: url("../../fonts/cairo/Cairo-Bold.eot?#iefix") format("embedded-opentype"), url("../../fonts/cairo/Cairo-Bold.woff") format("woff"), url("../../fonts/cairo/Cairo-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -10191,102 +10191,6 @@ a.text-dark:hover, a.text-dark:focus {
   top: 3px;
 }
 
-.controlRC {
-  display: block;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 10px;
-  padding-top: 3px;
-  cursor: pointer;
-  font-size: 17px;
-}
-
-.controlRC input {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-}
-
-.controlRC input:checked ~ .controlRC_indicator {
-  background: #ffffff;
-}
-
-.controlRC input:checked ~ .controlRC_indicator:after {
-  display: block;
-}
-
-.controlRC input:disabled ~ .controlRC_indicator {
-  background: #e6e6e6;
-  opacity: 0.6;
-  pointer-events: none;
-  border-color: #bbb;
-}
-
-.controlRC.is-secondary input[type="rdaio"] ~ .controlRC_indicator {
-  border-color: #0080FF;
-}
-
-.controlRC.is-secondary input[type="checkbox"] ~ .controlRC_indicator:after,
-.controlRC.is-secondary .controlRC_indicator:after {
-  background: #0080FF;
-}
-
-.controlRC input[type="checkbox"] ~ .controlRC_indicator {
-  border-radius: 5px;
-  background: #fff;
-  border: 1px solid #ccc;
-  height: 21px;
-  width: 21px;
-}
-
-.controlRC input[type="checkbox"] ~ .controlRC_indicator::after {
-  left: 3px;
-  top: 3px;
-  height: 13px;
-  width: 13px;
-  border-radius: 2px;
-  background: #FF6600;
-}
-
-.controlRC input[type="checkbox"]:disabled ~ .controlRC_indicator:after {
-  background: #7b7b7b;
-}
-
-.controlRC input[type="radio"] ~ .controlRC_indicator {
-  border-radius: 50%;
-}
-
-.controlRC input[type="radio"] ~ .controlRC_indicator::after {
-  left: 4px;
-  top: 4px;
-  height: 9px;
-  width: 9px;
-  border-radius: 50%;
-  background: #FF6600;
-}
-
-.controlRC input[type="radio"]:disabled ~ .controlRC_indicator:after {
-  background: #7b7b7b;
-}
-
-.controlRC .controlRC_indicator {
-  position: absolute;
-  top: 4px;
-  left: 0;
-  height: 23px;
-  width: 23px;
-  background: #e6e6e6;
-  border: 3px solid #FF6600;
-}
-
-.controlRC .controlRC_indicator:after {
-  -webkit-box-sizing: unset;
-          box-sizing: unset;
-  content: '';
-  position: absolute;
-  display: none;
-}
-
 .searchNK .facet {
   margin-bottom: 2.5rem;
 }
@@ -10529,10 +10433,33 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: rgba(0, 0, 0, 0.15);
   width: 2.8125rem;
   height: 3.125rem;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .bookDetails-image.imageslider .swiper-button-next, .bookDetails-image.imageslider .swiper-button-prev {
+    display: block;
+  }
 }
 
 .bookDetails-image-slide {
   height: 100%;
+}
+
+.bookDetails-image .bookDetails-image-slide {
+  height: 66%;
+}
+
+@media (min-width: 768px) {
+  .bookDetails-image .bookDetails-image-slide {
+    height: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .bookDetails-image .bookDetails-image-slide {
+    height: 100%;
+  }
 }
 
 .bookDetails .oneBook-title {
@@ -10665,6 +10592,12 @@ a.text-dark:hover, a.text-dark:focus {
 @media (min-width: 576px) {
   .bookDetails .oneBook-features li:not(:last-child) {
     margin-right: 2.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .oneBook-col {
+    padding: 0px;
   }
 }
 
@@ -10918,6 +10851,10 @@ a.text-dark:hover, a.text-dark:focus {
 .rateAndReview-link .icon {
   margin-left: 0.25rem;
   stroke: #FF6600;
+}
+
+.rateAndReview .oneBook-col {
+  padding: 0px;
 }
 
 .addReview {
@@ -11299,6 +11236,7 @@ a.text-dark:hover, a.text-dark:focus {
   padding-top: 0rem;
   padding-bottom: 0rem;
   line-height: 0.5;
+  border-radius: 0px !important;
 }
 
 .Favorite-Search-calenderBtn:hover, .Favorite-Search-calenderBtn:focus, .Favorite-Search-calenderBtn:active {
@@ -11330,6 +11268,14 @@ a.text-dark:hover, a.text-dark:focus {
   visibility: hidden;
   margin-bottom: 0.1125rem;
   display: block;
+}
+
+input.Favorite-Search-input.form-control {
+  background-color: white !important;
+}
+
+input:-internal-autofill-selected {
+  background-color: white !important;
 }
 
 .digitalSearch-title {
@@ -12186,7 +12132,7 @@ body .searchNK .ui-widget {
   border-radius: 0px;
 }
 
-.searchNk-paginate .page-item.disabled .page-link {
+.page-item.disabled .page-link {
   color: #333333;
   pointer-events: none;
   cursor: auto;
@@ -12195,7 +12141,7 @@ body .searchNK .ui-widget {
   outline: none;
 }
 
-.searchNk-paginate .page-item.active .page-link {
+.page-item.active .page-link {
   z-index: 1;
   color: #333333;
   background-color: transparent;
@@ -12204,42 +12150,147 @@ body .searchNK .ui-widget {
   outline: none;
 }
 
-.searchNk-paginate .page-item .page-link {
+.page-item .page-link {
   color: #333333;
   background-color: transparent;
   border-color: transparent;
   outline: none;
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=Next] span {
+.page-item .page-link[aria-label=Next] span {
   display: none;
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=Next]::before {
+.page-item .page-link[aria-label=Next]::before {
   content: ">";
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=Previous] span {
+.page-item .page-link[aria-label=Previous] span {
   display: none;
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=Previous]::before {
+.page-item .page-link[aria-label=Previous]::before {
   content: "<";
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=First] span {
+.page-item .page-link[aria-label=First] span {
   display: none;
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=First]::before {
+.page-item .page-link[aria-label=First]::before {
   content: "Prev";
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=Last] span {
+.page-item .page-link[aria-label=Last] span {
   display: none;
 }
 
-.searchNk-paginate .page-item .page-link[aria-label=Last]::before {
+.page-item .page-link[aria-label=Last]::before {
   content: "Next";
+}
+
+.controlRC {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  padding-top: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.controlRC input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.controlRC input:checked ~ .controlRC_indicator {
+  background: #ffffff;
+}
+
+.controlRC input:checked ~ .controlRC_indicator:after {
+  display: block;
+}
+
+.controlRC input:disabled ~ .controlRC_indicator {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+  border-color: #bbb;
+}
+
+.controlRC.is-secondary input[type="rdaio"] ~ .controlRC_indicator {
+  border-color: #0080FF;
+}
+
+.controlRC.is-secondary input[type="checkbox"] ~ .controlRC_indicator:after,
+.controlRC.is-secondary .controlRC_indicator:after {
+  background: #0080FF;
+}
+
+.controlRC input[type="checkbox"] ~ .controlRC_indicator {
+  background: #fff;
+  border: 1px solid #ccc;
+  height: 17px;
+  width: 17px;
+}
+
+@media (min-width: 576px) {
+  .controlRC input[type="checkbox"] ~ .controlRC_indicator {
+    height: 21px;
+    width: 21px;
+  }
+}
+
+.controlRC input[type="checkbox"] ~ .controlRC_indicator::after {
+  left: 3px;
+  top: 3px;
+  height: 9px;
+  width: 9px;
+  border-radius: 2px;
+  background: #FF6600;
+}
+
+@media (min-width: 576px) {
+  .controlRC input[type="checkbox"] ~ .controlRC_indicator::after {
+    height: 13px;
+    width: 13px;
+  }
+}
+
+.controlRC input[type="checkbox"]:disabled ~ .controlRC_indicator:after {
+  background: #7b7b7b;
+}
+
+.controlRC input[type="radio"] ~ .controlRC_indicator::after {
+  left: 4px;
+  top: 4px;
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  background: #FF6600;
+}
+
+.controlRC input[type="radio"]:disabled ~ .controlRC_indicator:after {
+  background: #7b7b7b;
+}
+
+.controlRC .controlRC_indicator {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 23px;
+  width: 23px;
+  background: #e6e6e6;
+  border: 3px solid #FF6600;
+}
+
+.controlRC .controlRC_indicator:after {
+  -webkit-box-sizing: unset;
+          box-sizing: unset;
+  content: '';
+  position: absolute;
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

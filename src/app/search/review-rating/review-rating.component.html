@@ -1,20 +1,20 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 col-12">
+        <div class="col-sm-12 col-12 oneBook-col">
             <h2 class="rateAndReview-Title" i18n="@@h2_rating_reviews"> Rating and Reviews </h2>
         </div>
         <!-- <div class="col-sm-3 col-12">
               <button class="rateAndReview-btn">Add Review</button>
         </div> -->
-        <div class="col-12">
+        <div class="col-12 oneBook-col">
                 <hr class="horizontal-line"/>
         </div>
-        <div class="col-12 rateAndReview-reviewDetails" *ngFor="let comment of commentsList">
+        <div class="col-12 rateAndReview-reviewDetails oneBook-col" *ngFor="let comment of commentsList">
             <div class="row">
-               <div class="col-sm-1 col-1">
+               <div class="col-md-1 col-sm-2 col-3">
                     <img class="img-fluid" src="./assets/images/bookD.png" alt="user">
                </div>
-               <div class="col-sm-10 col-10 p-0">
+               <div class="col-sm-11 col-sm-10 col-9 p-0">
                     <div>
                         <span class="rateAndReview-name">{{comment.userId}}</span>
                         <span class="rateAndReview-date">{{comment.commentCreateDate}}</span>
@@ -29,7 +29,7 @@
                </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 oneBook-col">
                 <a href="#" class="rateAndReview-link">
                   <span i18n="@@spn_more_review">
                     More Reviews
