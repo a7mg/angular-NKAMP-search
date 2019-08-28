@@ -10,7 +10,7 @@ export class FavoriteComponent implements OnInit {
   isSearched: boolean;
   getSearchResult(dataEvent: boolean){
     console.log(dataEvent);
-    this.isSearched= dataEvent;
+    this.isSearched = dataEvent;
     console.log(this.isSearched);
   }
   ngOnInit() {

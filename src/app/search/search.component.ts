@@ -51,10 +51,8 @@ export class SearchComponent implements OnInit {
         console.log('no data');
       }
     });
-    debugger;
     const searchProfile = { SearchProfile_id: this.$searchService.userProfile.searchProfile_id };
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
-      debugger;
       console.log('getSearchConfiguration ', data);
       this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);

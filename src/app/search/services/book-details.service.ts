@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class BookDetailsService {
-  Url: string; // = https://10.0.6.154:8245/Search10/1.0.0/ItemOperation/GetItemOperationDetails
-
+  Url: string;
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer 09c4ac1e-040b-3d38-aa29-4a274c186517'})
+  };
   constructor(private http: HttpClient, appConfig: AppConfigService,
               public globals: GlobalsService,
               private errorLogging: ErrorLoggingService) {
@@ -37,7 +40,6 @@ export class BookDetailsService {
     );
   }
   getBookDetails(requestBody) : Observable<any>{
-    debugger;
     return this.http.get<any>('./assets/NkampData/GetItemOperationDetails.json').pipe(
       map((data: any) => {
         return data;
@@ -56,8 +58,8 @@ export class BookDetailsService {
       })
     );
   }
-  addFavorite(requestBody) : Observable<any>{
-    return this.http.post<any>(this.Url + 'AddItemToFavorites', requestBody).pipe(
+  addFavorite(requestBody): Observable<any>{
+    return this.http.post<any>(this.Url + 'AddItemToFavorites', requestBody, this.httpOptions).pipe(
       map((data: any) => {
         return data;
       }),
@@ -97,7 +99,7 @@ export class BookDetailsService {
   addNewRating(requestBody) : Observable<any>{
     return this.http.post<any>(this.Url + 'ItemOperation/RateItem', requestBody).pipe(
       map((data: any) => {
-       
+
         return data;
       }),
       catchError((error: Error) => {
