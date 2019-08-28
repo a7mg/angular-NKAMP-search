@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { EventEmitterService } from './services/event-emitter.service';
-
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 
 @Component({
   selector: 'app-search',
@@ -14,6 +14,7 @@ import { EventEmitterService } from './services/event-emitter.service';
 })
 export class SearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
+  lang: string;
   isLoading = false;
   isSavedSearchDisabled = true;
   favoriteBadge = 55;
@@ -34,8 +35,12 @@ export class SearchComponent implements OnInit {
   };
 
   constructor(private $searchService: SearchService,
+    private $globalsService: GlobalsService,
     private $messageService: MessageService,
-    private $eventEmitterService: EventEmitterService) { }
+    private $eventEmitterService: EventEmitterService) { 
+      this.lang = this.$globalsService.UILanguage;
+      console.log("site lang is",this.lang);
+    }
 
   ngOnInit() {
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
