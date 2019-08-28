@@ -6,11 +6,10 @@ export class NkampInterceptor implements HttpInterceptor {
 
     const newReq = req.clone({
       headers: new HttpHeaders({
-        'Authorization': 'Bearer 09c4ac1e-040b-3d38-aa29-4a274c186517'
-        
+        Authorization: 'Bearer 09c4ac1e-040b-3d38-aa29-4a274c186517'
       })
-    });                 
-    
+    });
+
     return next.handle(newReq);
 
   }

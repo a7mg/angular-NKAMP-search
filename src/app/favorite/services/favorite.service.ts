@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+import { BookDetailsService } from '../../search/services/book-details.service'
 @Injectable({
   providedIn: 'root'
 })
@@ -15,22 +16,14 @@ export class FavoriteService {
 
   constructor(private http: HttpClient, appConfig: AppConfigService,
               public globals: GlobalsService,
+              private bookDetailsService: BookDetailsService,
               private errorLogging: ErrorLoggingService) {
        this.Url = appConfig.configdata.apiUrl;
   }
 
-  getFavoriteList(requestBody) : Observable<any>{
-
-  var  bodybj = {
-      "userId": "user_778",
-      "pageSize": 5,
-      "wantedPage": 1,
-      // "startDate": 16/6/2019,
-      // "endDate":  16/6/2019,
-      // "filterByTitle": "item fdfsvdvs"
-
-    };
-    return this.http.post<any>(this.Url + 'GetFavoritesList', bodybj).pipe(
+  getFavoriteList(requestBody): Observable<any> {
+    console.log('body ' + JSON.stringify(requestBody));
+    return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {
         return data;
       }),
@@ -40,6 +33,27 @@ export class FavoriteService {
         errParams.push(`UILanguage = ${this.globals.UILanguage}`);
         this.errorLogging.error(
           'ItemOperation/GetItemOperationDetails',
+          `${error.name} --> ${error.message} --> ${error.stack}` ||
+          `${error.name} --> ${error.message}`,
+          errParams
+        );
+        return of([] as any[]);
+      })
+    );
+  }
+
+  removeFavoriteItem(requestBody): Observable<any> {
+    console.log('body ' + JSON.stringify(requestBody));
+    return this.http.post<any>(this.Url + 'DeleteFavoritesItem', requestBody, this.bookDetailsService.httpOptions).pipe(
+      map((data: any) => {
+        return data;
+      }),
+      catchError((error: Error) => {
+        const errParams: any[] = [];
+        errParams.push(`API_URL = ${this.Url}`);
+        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
+        this.errorLogging.error(
+          'DeleteFavoritesItem',
           `${error.name} --> ${error.message} --> ${error.stack}` ||
           `${error.name} --> ${error.message}`,
           errParams

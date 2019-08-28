@@ -5,12 +5,12 @@ import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
-let httpOptions;
+
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  Url: string; // = "https://10.0.6.154:8245/Search10/1.0.0/SearchConfiguration";
+  Url: string;
   public results$ = new BehaviorSubject(null);
   public searchConfiguration$ = new BehaviorSubject(null);
   public currentCriteria$ = new BehaviorSubject(null);
@@ -31,7 +31,7 @@ export class SearchService {
     keywWordsOrderBy: []
   };
 
-  
+
   constructor(private http: HttpClient, appConfig: AppConfigService,
               public globals: GlobalsService,
               private errorLogging: ErrorLoggingService) {
@@ -44,7 +44,6 @@ export class SearchService {
         return data;
       }),
       catchError((error: Error) => {
-        debugger;
         const errParams: any[] = [];
         errParams.push(`API_URL = ${this.Url}`);
         errParams.push(`UILanguage = ${this.globals.UILanguage}`);
@@ -60,33 +59,25 @@ export class SearchService {
   }
 
   getResults(serachCriteria): Observable<any> {
-    httpOptions = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Credentials, Access-Control-Request-Headers',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
 
-      })
-    };
-    console.log("uasminnnnnnnnnnnnnn", this.nextPageCriteria);
-    const body={
-      "searchProfileId": "",
-      "pageSize": this.nextPageCriteria.pageSize,
-      "fromPage": this.nextPageCriteria.wantedPage,
-      'dataSourcesId':"",
-      searchKeyWords:"",
-      facetsFilter: [],
-      keywWordsOrderBy: [
-        {
-          keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-          keywWordType: '4',
-          keywWordValue: 'value',
-          isAcendening: true
-        }
-      ]
-    };
-    console.log('serachCriteriavvvvvvvvv', body);
-    return this.http.post<any>(this.Url + 'Search', body, httpOptions).pipe(
+  const body = {
+    searchProfileId: serachCriteria.searchProfileId,
+    pageSize: 24,
+    fromPage: 13,
+    dataSourcesId: serachCriteria.dataSourcesId,
+    searchKeyWords: serachCriteria.searchKeyWords,
+    facetsFilter: [],
+    keywWordsOrderBy: [
+      {
+        keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
+        keywWordType: '4',
+        keywWordValue: 'value',
+        isAcendening: true
+      }
+    ]
+  };
+    console.log('serachCriteria', body);
+    return this.http.post<any>(this.Url + 'Search', body).pipe(
       map((data: any) => {
         console.log('Result search ', data);
         return data;
