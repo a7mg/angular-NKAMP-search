@@ -23,8 +23,21 @@ export class FavoriteSearchComponent implements OnInit {
   endDate: number;
   allData: any;
   page = 1;
+  dataIndex=0;
   show = false;
   index = 0;
+// test = 
+//   {
+//     "hits": {
+//       "hits": [
+//         {
+//           "id": 1,
+//           "name": "Hager",
+//           "number": 34324
+//         }
+//       ]
+//     } 
+//   }
 
 
   constructor(private favoriteService: FavoriteService) { }
@@ -39,6 +52,7 @@ export class FavoriteSearchComponent implements OnInit {
       if (response !== null) {
         console.log(response);
         this.allData = response;
+
       } else {
         console.log('no data');
       }
@@ -75,22 +89,32 @@ export class FavoriteSearchComponent implements OnInit {
   }
 
   sendFavorite() {}
+
   removeFav(id, index, dataitem) {
+
+  //  console.log('Hager', JSON.stringify(this.test.hits));
 
     let body = {
       _id: id
     };
-
-
-
-
-    this.favoriteService.removeFavoriteItem(body).subscribe( response  => {
-      if (response !== null) {
-        console.log(response);
-
-      } else {
-        console.log('remove error');
+    this.allData.hits.hits.forEach(function (currentValue, indexValue) {
+      if(indexValue == index){
+        console.log(currentValue);
+        this.allData.splice(index, 1);
       }
-    });
+    }); 
+    // console.log('Hager', JSON.stringify(this.test));
+
+    
+
+
+    // this.favoriteService.removeFavoriteItem(body).subscribe( response  => {
+    //   if (response !== null) {
+    //     console.log(response);
+
+    //   } else {
+    //     console.log('remove error');.
+    //   }
+    // });
   }
 }
