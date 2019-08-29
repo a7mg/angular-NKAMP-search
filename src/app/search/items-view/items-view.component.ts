@@ -31,7 +31,7 @@ export class ItemsViewComponent implements OnInit {
     this.generalTXT =  this.genralLoclaizaion.en;
     this.generalTXT =  this.lang === 'ar' || this.lang === 'ar-SA'  ?  this.genralLoclaizaion.ar : this.generalTXT;
     this.generalTXT = this.lang === 'fr'  ?  this.genralLoclaizaion.fr : this.generalTXT;
-    this.searchKeywords = [];
+    this.searchKeywords = []; 
     this.itemsArr = [];
     this.materialTypes = [];
     this.materialTypesConfiguration = [];
@@ -52,7 +52,7 @@ export class ItemsViewComponent implements OnInit {
           this.materialTypesConfiguration.push(element);
         });
 
-      }
+      } 
     });
 
 
