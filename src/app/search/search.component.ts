@@ -4,8 +4,12 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { EventEmitterService } from './services/event-emitter.service';
+<<<<<<< HEAD
 import { FavoriteService } from '../favorite/services/favorite.service';
 
+=======
+import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+>>>>>>> 7f8dc36a49e0f3f8e12233e8fd90a56225176685
 
 @Component({
   selector: 'app-search',
@@ -15,6 +19,7 @@ import { FavoriteService } from '../favorite/services/favorite.service';
 })
 export class SearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
+  lang: string;
   isLoading = false;
   isSavedSearchDisabled = true;
   favoriteBadge: any;
@@ -35,9 +40,16 @@ export class SearchComponent implements OnInit {
   };
 
   constructor(private $searchService: SearchService,
+<<<<<<< HEAD
     private favoriteService: FavoriteService,
+=======
+    private $globalsService: GlobalsService,
+>>>>>>> 7f8dc36a49e0f3f8e12233e8fd90a56225176685
     private $messageService: MessageService,
-    private $eventEmitterService: EventEmitterService) { }
+    private $eventEmitterService: EventEmitterService) { 
+      this.lang = this.$globalsService.UILanguage;
+      console.log("site lang is",this.lang);
+    }
 
   ngOnInit() {
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
