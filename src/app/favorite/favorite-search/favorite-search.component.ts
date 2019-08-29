@@ -30,7 +30,7 @@ export class FavoriteSearchComponent implements OnInit {
   constructor(private favoriteService: FavoriteService) { }
   ngOnInit() {
     const body = {
-      userId: "albaqer_aas",
+      userId: "albaqer_naseej",
       pageSize: 5,
       wantedPage: 0
     };
@@ -92,5 +92,9 @@ export class FavoriteSearchComponent implements OnInit {
         console.log('remove error');
       }
     });
+  }
+
+  getPublisher(item){
+    return item._source.itemListPageInformation.addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
   }
 }

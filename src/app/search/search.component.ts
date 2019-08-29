@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { EventEmitterService } from './services/event-emitter.service';
+import { FavoriteService } from '../favorite/services/favorite.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
   isLoading = false;
   isSavedSearchDisabled = true;
-  favoriteBadge = 55;
+  favoriteBadge: any;
   isNoData = true;
   clicked = false;
   blockedDocument = true;
@@ -34,6 +35,7 @@ export class SearchComponent implements OnInit {
   };
 
   constructor(private $searchService: SearchService,
+    private favoriteService: FavoriteService,
     private $messageService: MessageService,
     private $eventEmitterService: EventEmitterService) { }
 
@@ -65,6 +67,21 @@ export class SearchComponent implements OnInit {
     });
     // save search
     this.getquerySavesearch()
+
+    const body = {
+      userId: "albaqer_naseej",
+      pageSize: 5,
+      wantedPage: 0
+    };
+
+    this.favoriteService.getFavoriteList(body).subscribe( response  => {
+      if (response !== null) {
+        console.log(response);
+        this.favoriteBadge = response.hits.total;
+      } else {
+        console.log('no data');
+      }
+    });
   }
 
   getquerySavesearch(){

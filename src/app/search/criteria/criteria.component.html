@@ -4,7 +4,7 @@
 
     <div class="mb-3 col-12 col-sm-12 col-md-2 col-lg-2">
       <select formControlName="dataSourceFC" class="form-control  w-100">
-        <option [ngValue]="null" selected="selected" i18n="@@lblsearch_field">All Fields</option>
+        <option [ngValue]="null" selected="selected" i18n="@@lblsearch_field"> Choose </option>
         <option *ngFor="let general of DataSources" [ngValue]="general.id">
           {{ lang == 'ar' || lang=='ar-SA'  ?  general.aName :  (lang == 'fr'? general.fName :general.eName )}}
 
@@ -30,7 +30,7 @@
               'col-12 col-sm-12 col-md-4 col-lg-3': formIndex == 0 ,
               'col-4 col-sm-4 col-md-3 col-lg-2':  formIndex > 0
             }">
-            <select  formControlName="facetFC"  class="form-control  w-100">
+            <select  formControlName="facetFC"  class="form-control  w-100" (change)="onItemChange($event, searchKeyword)">
               <option [ngValue]="null" selected="selected" i18n="@@lblsearch_field">Allfields</option>
               <option *ngFor="let Feild of searchKeyword" [ngValue]="Feild.id">
                 {{lang == 'ar'||lang=='ar-SA'  ?  Feild.aName :  (lang == 'fr'? Feild.fName :Feild.eName )}}
@@ -42,7 +42,7 @@
               ,'col-4 col-sm-4':  formIndex > 0  }">
             <select  formControlName="searchOperationFC" class="form-control  w-100">
               <option [ngValue]="null" selected="selected" i18n="@@lblsearch_Containes">Containes</option>
-              <option *ngFor="let contain of getContainsData(formIndex)" [ngValue]="contain.id">
+              <option *ngFor="let contain of myOperations" [ngValue]="contain.id">
                 {{lang == 'ar'||lang=='ar-SA'  ?  contain.aName :  (lang == 'fr'? contain.fName :contain.eName )}}
               </option>
             </select>

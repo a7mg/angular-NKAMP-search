@@ -5,7 +5,7 @@
     <body>
 
       <trans-unit id="lblsearch_field" datatype="html">
-        <source>All Fields</source>
+        <source>Choose</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/Common/seach/criteria/criteria.component.ts</context>
           <context context-type="linenumber">1</context>
@@ -328,7 +328,7 @@
         </context-group>
       </trans-unit>
 
-      
+
 
 
     </body>
