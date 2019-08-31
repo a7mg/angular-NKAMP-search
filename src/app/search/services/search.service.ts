@@ -16,7 +16,7 @@ export class SearchService {
   public currentCriteria$ = new BehaviorSubject(null);
   public currentFacetsConfiguration: Array<any>;
   public userProfile = {
-    searchProfile_id: 'FFB6CD68-BED4-4B5D-897D-89D205734B0E',
+    searchProfile_id: '996ac773-2701-44ec-a377-bd52838de4dc',
     anonymous: false,
     userId: 'AhmedElbaz1',
     email: 'AhmedElbaz1@naseej.com'
@@ -60,7 +60,7 @@ export class SearchService {
 
   getResults(serachCriteria): Observable<any> {
 
-  const body = {
+  /*const body = {
     searchProfileId: serachCriteria.searchProfileId,
     pageSize: 24,
     fromPage: 13,
@@ -75,25 +75,42 @@ export class SearchService {
         isAcendening: true
       }
     ]
+  };*/
+  const body = {
+    searchProfileId: '996ac773-2701-44ec-a377-bd52838de4dc',
+    pageSize: 5,
+    fromPage: 0,
+    dataSourcesId: [
+      '783c969a-cebb-4b0c-8a25-f524ec479cfc'
+    ],
+    searchKeyWords: [
+      {
+       searchKeyWordId: 'd112835b-3b56-4295-aa62-7842dee627d0',
+        materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
+        keyWordValue: '1414',
+        searchOperationId: 'aad2c592-dc0d-4ed5-a5c7-6f0259c0498b',
+        nextSearchKeyWordWithAnd: true
+      }, {
+        searchKeyWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
+        materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
+        keyWordValue: 1994,
+        searchOperationId: '158c5e85-2c20-461b-ba49-972195dc0922',
+        nextSearchKeyWordWithAnd: true
+      }
+    ],
+    facetsFilter: [
+    ],
+    keywWordsOrderBy: [
+      {
+        keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
+        keywWordType: '4',
+        keywWordValue: 'value',
+        isAcendening: true
+      }
+    ]
   };
-    console.log('serachCriteria', body);
-    return this.http.post<any>(this.Url + 'Search', body).pipe(
-      map((data: any) => {
-        console.log('Result search ', data);
-        return data;
-      }), catchError((error: Error) => {
-        const errParams: any[] = [];
-        errParams.push(`API_URL = ${this.Url}`);
-        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
-        this.errorLogging.error(
-          'MakeNewSearch',
-          `${error.name} --> ${error.message} --> ${error.stack}` ||
-          `${error.name} --> ${error.message}`,
-          errParams
-        );
-        return of([] as any[]);
-      })
-    );
+
+  return this.http.post<any>(this.Url + 'Search', body);
   }
 
   getNextPage(): Observable<any> {

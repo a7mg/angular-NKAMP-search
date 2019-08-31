@@ -30,12 +30,14 @@ export class CriteriaComponent implements OnInit {
   pageSize = 12;
   isAdvanced = false;
   DataSources: Criteria[];
+  myOperations: Criteria[];
   AllFields: Criteria[];
   ContainsData: Criteria[];
   CriteriaSearch: SearchCriteria;
   AllCriteriaSearch: AllCriteriaSearch;
   lang: string;
   searchKeyword: SearchKeyword[];
+  //isActive = false;
 
   constructor(
     private $searchService: SearchService,
@@ -70,15 +72,9 @@ export class CriteriaComponent implements OnInit {
       console.log("configration ", data != null)
       console.log("configration ", data )
       if (data != null) {
-        // console.log('getAllDataCriteria => ', data);
-
         data.DataSources.forEach(element => {
           this.DataSources.push(element);
         });
-
-        // data.MaterialTypes.forEach(element => {
-        //   this.ContainsData.push(element);
-        // });
 
         data.FacetFields.forEach(element => {
           this.AllFields.push(element);
@@ -100,6 +96,7 @@ export class CriteriaComponent implements OnInit {
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
+      console.log("^^^res^^^" + data);
       this.$searchService.results$.next(data);
     });
   }
@@ -123,7 +120,7 @@ export class CriteriaComponent implements OnInit {
     return this.fb.group({
       operator: [defalutValues.operator],
       facetFC: [defalutValues.facet],
-      searchOperationFC: [{ value: defalutValues.operation, disabled: true }],
+      searchOperationFC: [{ value: defalutValues.operation, disabled: false }],
       searchTextFC: [defalutValues.text, Validators.required],
     });
   }
@@ -193,8 +190,7 @@ export class CriteriaComponent implements OnInit {
     });
   }
 
-  getContainsData(indexControll) {
-    debugger;
+  /*getContainsData(indexControll) {
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
     const controll = currentCreteriaForms.at(indexControll) as FormGroup;
     const FeildControl = controll.controls.facetFC as FormControl;
@@ -211,7 +207,7 @@ export class CriteriaComponent implements OnInit {
       return [];
     }
 
-  }
+  }*/
   onClickChangeToSimpleSearch() {
     this.isAdvanced = false;
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
@@ -242,6 +238,27 @@ export class CriteriaComponent implements OnInit {
         this.onSubmit();
     }
 
+  }
+
+  onItemChange(event, searchKeyword) {
+    let kwId = event.target.value;
+    console.log("**searchKeyword " + JSON.stringify(searchKeyword));
+    let id = kwId.slice(3, kwId.length);
+    console.log("**kwId " + kwId.slice(3, kwId.length));
+    let kwItem = searchKeyword.filter(x => x.id === id);
+    console.log("**kwItem** " + JSON.stringify(kwItem));
+    /*kwItem[0].AllowedSearchOperations.AllowedSearchOperation.forEach(element => {
+      this.myOperations.push(element);
+    });*/
+    this.myOperations = kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
+    console.log(JSON.stringify(this.myOperations));
+    /*if (this.myOperations.length > 0) {
+      console.log("**IF");
+      this.isActive = true;
+    } else {
+      console.log("**ELSE");
+      this.isActive = false;
+    }*/
   }
 
 

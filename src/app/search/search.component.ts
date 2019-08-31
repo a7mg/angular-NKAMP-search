@@ -4,7 +4,12 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { EventEmitterService } from './services/event-emitter.service';
+<<<<<<< HEAD
+import { FavoriteService } from '../favorite/services/favorite.service';
+
+=======
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+>>>>>>> 7f8dc36a49e0f3f8e12233e8fd90a56225176685
 
 @Component({
   selector: 'app-search',
@@ -17,7 +22,7 @@ export class SearchComponent implements OnInit {
   lang: string;
   isLoading = false;
   isSavedSearchDisabled = true;
-  favoriteBadge = 55;
+  favoriteBadge: any;
   isNoData = true;
   clicked = false;
   blockedDocument = true;
@@ -35,9 +40,9 @@ export class SearchComponent implements OnInit {
   };
 
   constructor(private $searchService: SearchService,
-    private $globalsService: GlobalsService,
+    private favoriteService: FavoriteService,
     private $messageService: MessageService,
-    private $eventEmitterService: EventEmitterService) { 
+    private $eventEmitterService: EventEmitterService) {
       this.lang = this.$globalsService.UILanguage;
       console.log("site lang is",this.lang);
     }
@@ -70,6 +75,21 @@ export class SearchComponent implements OnInit {
     });
     // save search
     this.getquerySavesearch()
+
+    const body = {
+      userId: "albaqer_naseej",
+      pageSize: 5,
+      wantedPage: 0
+    };
+
+    this.favoriteService.getFavoriteList(body).subscribe( response  => {
+      if (response !== null) {
+        console.log(response);
+        this.favoriteBadge = response.hits.total;
+      } else {
+        console.log('no data');
+      }
+    });
   }
 
   getquerySavesearch(){
