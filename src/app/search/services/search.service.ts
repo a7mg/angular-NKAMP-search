@@ -18,8 +18,8 @@ export class SearchService {
   public userProfile = {
     searchProfile_id: '996ac773-2701-44ec-a377-bd52838de4dc',
     anonymous: false,
-    userId: 'AhmedElbaz1',
-    email: 'AhmedElbaz1@naseej.com'
+    userId: 'albaqer_naseej',
+    email: 'albaqer@aas.com.sa'
   };
   public nextPageCriteria = {
     searchProfileId: '',
@@ -60,55 +60,25 @@ export class SearchService {
 
   getResults(serachCriteria): Observable<any> {
 
-  /*const body = {
+  console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
+
+  let body = {
     searchProfileId: serachCriteria.searchProfileId,
-    pageSize: 24,
-    fromPage: 13,
+    pageSize: serachCriteria.pageSize,
+    fromPage: 0,
     dataSourcesId: serachCriteria.dataSourcesId,
     searchKeyWords: serachCriteria.searchKeyWords,
     facetsFilter: [],
     keywWordsOrderBy: [
       {
-        keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-        keywWordType: '4',
-        keywWordValue: 'value',
+        keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
+        keywWordType: "4",
+        keywWordValue: "value",
         isAcendening: true
       }
     ]
-  };*/
-  const body = {
-    searchProfileId: '996ac773-2701-44ec-a377-bd52838de4dc',
-    pageSize: 5,
-    fromPage: 0,
-    dataSourcesId: [
-      '783c969a-cebb-4b0c-8a25-f524ec479cfc'
-    ],
-    searchKeyWords: [
-      {
-       searchKeyWordId: 'd112835b-3b56-4295-aa62-7842dee627d0',
-        materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
-        keyWordValue: '1414',
-        searchOperationId: 'aad2c592-dc0d-4ed5-a5c7-6f0259c0498b',
-        nextSearchKeyWordWithAnd: true
-      }, {
-        searchKeyWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-        materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
-        keyWordValue: 1994,
-        searchOperationId: '158c5e85-2c20-461b-ba49-972195dc0922',
-        nextSearchKeyWordWithAnd: true
-      }
-    ],
-    facetsFilter: [
-    ],
-    keywWordsOrderBy: [
-      {
-        keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-        keywWordType: '4',
-        keywWordValue: 'value',
-        isAcendening: true
-      }
-    ]
-  };
+};
+  console.log("**body **" + JSON.stringify(body));
 
   return this.http.post<any>(this.Url + 'Search', body);
   }
@@ -176,7 +146,7 @@ export class SearchService {
       }),
       body: deleteSerachCriteriaData
     };
-    return this.http.delete<any>(this.Url + 'DeleteQuery', options).pipe(
+    return this.http.post<any>(this.Url + 'DeleteQuery', deleteSerachCriteriaData).pipe(
       map((data: any) => {
         return data;
       }), catchError((error: Error) => {
