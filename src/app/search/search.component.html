@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col-3 col-md-2 col-lg-2">
-        <h3 class="searchNK-header-title" i18n="@@lblsearch">Search</h3>
+        <h3 class="searchNK-header-title" i18n="@@lblsearch">Search </h3>
       </div>
       <div class="col-9 col-md-10 col-lg-10 d-flex justify-content-end">
         <div class="searchNK-savedSearchContainer" [ngClass]="{'searchNK-saveSearchClicked': clicked}">
@@ -33,7 +33,7 @@
                           <span (click)="onSavedSearchClicked(getQueryValue.query_syntax)">
                              {{ (getQueryValue.query_name | slice:0:20)+'..'}}
                           </span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="7.707" height="7.707" viewBox="0 0 7.707 7.707">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="7.707" height="7.707" viewBox="0 0 7.707 7.707" (click)="deleteSearchItem(getQueryValue.query_name, getQueryValue.id)">
                             <g id="Group_366" data-name="Group 366" transform="translate(-133.938 -59.417)">
                               <line id="Line_26" data-name="Line 26" x2="7" y2="7" transform="translate(134.291 59.771)" fill="none" stroke="#999" stroke-width="1"/>
                               <line id="Line_27" data-name="Line 27" x1="7" y2="7" transform="translate(134.291 59.771)" fill="none" stroke="#999" stroke-width="1"/>
@@ -72,9 +72,9 @@
                 <text data-name="26" transform="translate(1096.221 333)" fill="#fff" font-size="10"
                   font-family="SegoeUI, Segoe UI">
                  <tspan  *ngIf="lang == 'ar-SA'" x="5.391" y="0">{{favoriteBadge}}</tspan>
-                  <tspan *ngIf="lang != 'ar-SA'" x="-5.391" y="0">{{favoriteBadge}}</tspan> 
-                
-                
+                  <tspan *ngIf="lang != 'ar-SA'" x="-5.391" y="0">{{favoriteBadge}}</tspan>
+
+
                 </text>
               </g>
             </svg>

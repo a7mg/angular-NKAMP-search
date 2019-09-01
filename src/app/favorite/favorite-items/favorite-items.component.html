@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
       <div class="col-12">
-          <form (ngSubmit)="sendFavorite()" #formEle="ngForm"> 
+          <form (ngSubmit)="sendFavorite()" #formEle="ngForm">
              <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -10,13 +10,13 @@
                              <tr>
                                <th class="Favorite-table-headItem">All</th>
                                <th class="Favorite-table-headItem">Title</th>
-                               <th class="Favorite-table-headItem hideEle">Author Name</th>
+                               <th class="Favorite-table-headItem hideEle">Publisher</th>
                                <th class="Favorite-table-headItem">Year</th>
                                <th class="Favorite-table-headItem hideEle">Date</th>
                                <th class="Favorite-table-headItem">
                                  <span class="hideheadEle">
                                     Action
-                                 </span> 
+                                 </span>
                                 </th>
                              </tr>
                            </thead>
@@ -25,9 +25,9 @@
                                <td>
                                  <label class="controlRC controlRC-radio d-block">
                                    <!-- First radio -->
-                                 <input type="checkbox" 
-                                        name="radio" 
-                                        checked="checked" 
+                                 <input type="checkbox"
+                                        name="radio"
+                                        checked="checked"
                                         ngModel/>
                                  <div class="controlRC_indicator"></div>
                                </label>
@@ -43,7 +43,7 @@
                                    </p>
                                </td>
                                <td>
-                                  <div  class="Favorite-table-year"> 
+                                  <div  class="Favorite-table-year">
                                     {{dataItem._source.itemListPageInformation.createdDate| date: 'yyyy' }}
                                   </div>
                                </td>
@@ -71,20 +71,20 @@
                 <div class="col-12">
                     <div class="Favorite-sendToEmail">
                         <button class="Favorite-btn Favorite-btnDownload">Download</button>
-                        <input type="email" 
+                        <input type="email"
                                class="Favorite-input"
-                               name="email" 
+                               name="email"
                                placeholder="email@domainname.com"
                                ngModel/>
-                        <button class="Favorite-btn Favorite-btnEmail">Send To Email</button>       
+                        <button class="Favorite-btn Favorite-btnEmail">Send To Email</button>
                     </div>
-                     
+
                 </div>
              </div>
-            
+
           </form>
       </div>
-    
-       
+
+
     </div>
 </div>

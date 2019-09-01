@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { EventEmitterService } from './services/event-emitter.service';
+import { FavoriteService } from '../favorite/services/favorite.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class SearchComponent implements OnInit {
   lang: string;
   isLoading = false;
   isSavedSearchDisabled = true;
-  favoriteBadge = 55;
+  favoriteBadge: any;
   isNoData = true;
   clicked = false;
   blockedDocument = true;
@@ -35,9 +36,10 @@ export class SearchComponent implements OnInit {
   };
 
   constructor(private $searchService: SearchService,
-    private $globalsService: GlobalsService,
+    private favoriteService: FavoriteService,
     private $messageService: MessageService,
-    private $eventEmitterService: EventEmitterService) { 
+    private $eventEmitterService: EventEmitterService,
+    private $globalsService: GlobalsService) {
       this.lang = this.$globalsService.UILanguage;
       console.log("site lang is",this.lang);
     }
@@ -70,6 +72,21 @@ export class SearchComponent implements OnInit {
     });
     // save search
     this.getquerySavesearch()
+
+    const body = {
+      userId: "albaqer_naseej",
+      pageSize: 5,
+      wantedPage: 0
+    };
+
+    this.favoriteService.getFavoriteList(body).subscribe( response  => {
+      if (response !== null) {
+        console.log(response);
+        this.favoriteBadge = response.hits.total;
+      } else {
+        console.log('no data');
+      }
+    });
   }
 
   getquerySavesearch(){
@@ -121,7 +138,7 @@ export class SearchComponent implements OnInit {
   saveSearch() {
     console.log('this.addQueryRequestBody', this.addQueryRequestBody);
     this.$searchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
-      if (data != null) {
+      if (data.id != null) {
         this.getquerySavesearch()
         console.log('addQuery respond', data);
       } else {
@@ -132,12 +149,15 @@ export class SearchComponent implements OnInit {
   }
 
   onSavedSearchClicked(savedCriteriaObj: string) {
+    console.log('aalchebbi before ' + savedCriteriaObj);
     savedCriteriaObj = savedCriteriaObj.replace(/'/g, '"');
+    console.log('aalchebbi after ' + savedCriteriaObj);
     this.$eventEmitterService.onSavedSearchClick(JSON.parse(savedCriteriaObj));
   }
 
 
   deleteSearchItem(currentqueryName, currentQueryId) {
+    console.log("aalchebbi Query Name " + currentqueryName +"Query ID "+ currentQueryId);
     this.deleteRequestBody._id = currentQueryId;
     this.$searchService.deleteQuery(this.deleteRequestBody).subscribe((data) => {
       if (data.Msg === 'Query successfully removed') {
@@ -147,9 +167,7 @@ export class SearchComponent implements OnInit {
           }
         });
         this.showSuccess();
-        // console.log(this.getQueryValues);
       } else {
-
         console.log('no data');
         this.showError();
 

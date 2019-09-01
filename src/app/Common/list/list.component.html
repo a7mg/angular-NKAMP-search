@@ -9,11 +9,12 @@
 
   <div class="lResultNK-body">
     <h6 class="lResultNK-type">
-      Item Type
+        {{bookData.materialTypeId}}
     </h6>
-    <a [routerLink]="[ '/' ]" class="lResultNK-title"> {{bookData.dataSourceName}} </a>
-    <h5 class="lResultNK-auther">Auther</h5>
-    <div class="lResultNK-date">2018</div>
+    <a [routerLink]="[ '/' ]" class="lResultNK-title"> {{bookData.Title}} </a>
+    <h5 class="lResultNK-auther">{{bookData.Author}}</h5>
+    <div class="lResultNK-date">{{additionalField1}}</div>
+    <div class="lResultNK-date">{{additionalField2}}</div>
     <div class="lResultNK-details">
       <div class="lResultNK-rating  justify-content-between">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="12"

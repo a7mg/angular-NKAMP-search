@@ -16,10 +16,10 @@ export class SearchService {
   public currentCriteria$ = new BehaviorSubject(null);
   public currentFacetsConfiguration: Array<any>;
   public userProfile = {
-    searchProfile_id: 'FFB6CD68-BED4-4B5D-897D-89D205734B0E',
+    searchProfile_id: '996ac773-2701-44ec-a377-bd52838de4dc',
     anonymous: false,
-    userId: 'AhmedElbaz1',
-    email: 'AhmedElbaz1@naseej.com'
+    userId: 'albaqer_naseej',
+    email: 'albaqer@aas.com.sa'
   };
   public nextPageCriteria = {
     searchProfileId: '',
@@ -60,40 +60,27 @@ export class SearchService {
 
   getResults(serachCriteria): Observable<any> {
 
-  const body = {
+  console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
+
+  let body = {
     searchProfileId: serachCriteria.searchProfileId,
-    pageSize: 24,
-    fromPage: 13,
+    pageSize: serachCriteria.pageSize,
+    fromPage: 0,
     dataSourcesId: serachCriteria.dataSourcesId,
     searchKeyWords: serachCriteria.searchKeyWords,
     facetsFilter: [],
     keywWordsOrderBy: [
       {
-        keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-        keywWordType: '4',
-        keywWordValue: 'value',
+        keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
+        keywWordType: "4",
+        keywWordValue: "value",
         isAcendening: true
       }
     ]
-  };
-    console.log('serachCriteria', body);
-    return this.http.post<any>(this.Url + 'Search', body).pipe(
-      map((data: any) => {
-        console.log('Result search ', data);
-        return data;
-      }), catchError((error: Error) => {
-        const errParams: any[] = [];
-        errParams.push(`API_URL = ${this.Url}`);
-        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
-        this.errorLogging.error(
-          'MakeNewSearch',
-          `${error.name} --> ${error.message} --> ${error.stack}` ||
-          `${error.name} --> ${error.message}`,
-          errParams
-        );
-        return of([] as any[]);
-      })
-    );
+};
+  console.log("**body **" + JSON.stringify(body));
+
+  return this.http.post<any>(this.Url + 'Search', body);
   }
 
   getNextPage(): Observable<any> {
@@ -159,7 +146,7 @@ export class SearchService {
       }),
       body: deleteSerachCriteriaData
     };
-    return this.http.delete<any>(this.Url + 'DeleteQuery', options).pipe(
+    return this.http.post<any>(this.Url + 'DeleteQuery', deleteSerachCriteriaData).pipe(
       map((data: any) => {
         return data;
       }), catchError((error: Error) => {

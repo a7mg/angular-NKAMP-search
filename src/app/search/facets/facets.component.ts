@@ -41,7 +41,7 @@ export class FacetsComponent implements OnInit {
             return value.facetId === facetOption.id;
           });
           facetOption.values = facetOption.values.map((obj, i) => {
-            obj.facetValue = obj.facetValue + ' dummy ' + i;
+            obj.facetValue = obj.facetValue;
             return obj;
           });
         });

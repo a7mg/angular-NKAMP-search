@@ -62,12 +62,14 @@ export class ItemsViewComponent implements OnInit {
        console.log('SearchService Results222222 ', data);
       if (data !== null) {
         // getPageFromService() {
-          
-        // }
-        data.items.forEach(element => {
-          this.itemsArr.push(element.Item);
 
-        });
+        // }
+        /*data.items[0].forEach(element => {
+          this.itemsArr.push(element.Item);
+        });*/
+        this.itemsArr =  data.items[0];
+
+        console.log("^^^ Search res " + JSON.stringify(this.itemsArr));
 
         console.log('this.itemsArr222222 ', this.itemsArr[0]);
 

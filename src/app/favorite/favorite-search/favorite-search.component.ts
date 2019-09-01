@@ -52,8 +52,13 @@ export class FavoriteSearchComponent implements OnInit {
                }
   ngOnInit() {
     const body = {
+<<<<<<< HEAD
       userId: "albaqer_aas",
       pageSize: 5, 
+=======
+      userId: "albaqer_naseej",
+      pageSize: 5,
+>>>>>>> 6ccc99910c5bde874a3fd31bfbb275200c6da9d7
       wantedPage: 0
     };
 
@@ -132,5 +137,9 @@ export class FavoriteSearchComponent implements OnInit {
     //     this.modalService.open(content);
     //   }
     // });
+  }
+
+  getPublisher(item){
+    return item._source.itemListPageInformation.addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
   }
 }
