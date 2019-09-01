@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { ContentChild } from '@angular/core';
@@ -9,8 +9,11 @@ import { SearchCriteria } from '../services/SearchCriteria.Model';
   templateUrl: './items-view.component.html',
   styleUrls: ['./items-view.component.scss']
 })
+
+
 export class ItemsViewComponent implements OnInit {
   @ContentChild(NgbPagination) pagination: NgbPagination;
+ 
   lang: string;
   genralLoclaizaion = {
     en: 'general',
@@ -23,6 +26,7 @@ export class ItemsViewComponent implements OnInit {
   pageIndex = 1;
   displayMode:number = 1;
   itemsArr: Array<any>;
+  collectionSizeT;
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
   materialTypesConfiguration: Array<any>;
@@ -72,7 +76,9 @@ export class ItemsViewComponent implements OnInit {
         console.log("^^^ Search res " + JSON.stringify(this.itemsArr));
 
         console.log('this.itemsArr222222 ', this.itemsArr[0]);
-
+        this.collectionSizeT= Math.round(data.totalNumberOfItems/12);
+        console.log("ttttttttt",data.totalNumberOfItems);
+        console.log(this.collectionSizeT);
         const materialTypesResults = data.materialTypesSearcQueryStatistic;
         materialTypesResults.forEach(value => {
           const selectedMatrial = this.materialTypesConfiguration.find((materialType, idx) => {
@@ -81,8 +87,11 @@ export class ItemsViewComponent implements OnInit {
           selectedMatrial.totalItems = value.totalItems;
           this.materialTypes.push(selectedMatrial);
         });
+ 
       }
+
     });
+    
   }
 
   paginate(pageNumber): void {

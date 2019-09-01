@@ -14,6 +14,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
   providers: [MessageService]
 })
 export class SearchComponent implements OnInit {
+  
   @ViewChild('formEle') formElement: NgForm;
   lang: string;
   isLoading = false;
@@ -83,6 +84,7 @@ export class SearchComponent implements OnInit {
       if (response !== null) {
         console.log(response);
         this.favoriteBadge = response.hits.total;
+      //  console.log("yasmin",this.favoriteBadge);
       } else {
         console.log('no data');
       }

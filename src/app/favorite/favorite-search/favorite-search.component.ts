@@ -52,13 +52,8 @@ export class FavoriteSearchComponent implements OnInit {
                }
   ngOnInit() {
     const body = {
-<<<<<<< HEAD
-      userId: "albaqer_aas",
-      pageSize: 5, 
-=======
       userId: "albaqer_naseej",
       pageSize: 5,
->>>>>>> 6ccc99910c5bde874a3fd31bfbb275200c6da9d7
       wantedPage: 0
     };
 

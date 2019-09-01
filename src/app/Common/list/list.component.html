@@ -13,10 +13,10 @@
     </h6>
     <a [routerLink]="[ '/' ]" class="lResultNK-title"> {{bookData.Title}} </a>
     <h5 class="lResultNK-auther">{{bookData.Author}}</h5>
-    <div class="lResultNK-date">{{additionalField1}}</div>
     <div class="lResultNK-date">{{additionalField2}}</div>
+    <div class="lResultNK-date">{{additionalField1}}</div>   
     <div class="lResultNK-details">
-      <div class="lResultNK-rating  justify-content-between">
+      <span class="lResultNK-rating">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="12"
           viewBox="0 0 64 12">
           <defs>
@@ -55,8 +55,9 @@
           </g>
         </svg>
 
-        <span class="lResultNK-review">1514 Review</span>
-      </div>
+       
+      </span>
+      <span class="lResultNK-review">1514 Review</span>
       <div class="lResultNK-actions">
         <div class="centerBox">
 
@@ -83,14 +84,14 @@
           <a [routerLink]="[ '/' ]" class="lResultNK-action">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 18 17.665">
               <g id="icon_-_Borrow" data-name="icon - Borrow" transform="translate(0 -1)">
-                <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(0 1)" fill="none" stroke="#fff"
+                <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(0 1)" fill="none" stroke="#333333"
                   stroke-width="1">
                   <ellipse cx="9" cy="8.832" rx="9" ry="8.832" stroke="none" />
                   <ellipse cx="9" cy="8.832" rx="8.5" ry="8.332" fill="none" />
                 </g>
                 <path id="Path_82" data-name="Path 82"
                   d="M7.439-3.364H4.875V-.806H4.031V-3.364H1.473v-.851H4.031V-6.773h.844v2.558H7.439Z"
-                  transform="translate(5.027 13.273)"   stroke="#fff" stroke-width="1" />
+                  transform="translate(5.027 13.273)"   stroke="#333333" stroke-width="1" />
               </g>
             </svg>
             <span class="text" i18n="@@spn_borrow">
