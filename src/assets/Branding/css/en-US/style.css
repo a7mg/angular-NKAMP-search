@@ -10154,6 +10154,51 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.ui-toast .ui-toast-message {
+  color: #ffffff;
+  width: 261px;
+  height: 94px;
+  border-radius: 11px;
+}
+
+.ui-toast .ui-toast-message.ui-toast-message-success {
+  background-color: #63B680;
+}
+
+.ui-toast .ui-toast-message.ui-toast-message-error {
+  background-color: #DF384C;
+}
+
+.ui-toast .ui-toast-icon {
+  color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 10px;
+  font-size: 61px !important;
+}
+
+.ui-toast .ui-toast-message-text-content {
+  margin-left: 72px;
+  margin-right: 0;
+  margin-top: 12px;
+  color: #ffffff;
+}
+
+.ui-toast .ui-toast-summary {
+  font-size: 16px;
+}
+
+.ui-toast .ui-toast-detail {
+  font-size: 14px;
+}
+
+.ui-toast .ui-toast-close-icon {
+  color: #ffffff !important;
+  right: 9px;
+  left: auto !important;
+  top: 7px;
+  font-size: 20px;
+}
+
 .searchNK-criteria .form-control {
   font-size: 12px;
   border-radius: 0rem;
