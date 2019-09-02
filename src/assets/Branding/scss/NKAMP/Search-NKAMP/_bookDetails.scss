@@ -78,13 +78,13 @@
                 background-image: url("/branding/images/arrowRight.png");
                 outline: none;
                 background-size: auto;
-                right: rem(0);
+                left: rem(0);
             }
             .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
                 background-image: url("/branding/images/arrowLeft.png");
                 background-size: auto;
                 outline: none;
-                left: rem(0);
+                right: rem(0);
             }
             .swiper-button-next, .swiper-button-prev{
                 background-color: rgba($color: #000000, $alpha: 0.15);

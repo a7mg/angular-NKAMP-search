@@ -66,6 +66,21 @@
   <!-- </div> -->
   <div class="row">
     <div class="col-12">
+      
+        <ng-template #contentDelete let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title" i18n="@@h4_msg_title" >Adding new Comment</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" *ngIf="isAdded">
+              <p i18n="@@p_msg_adding_comment" >Your comment has been added</p>
+            </div>
+            <div class="modal-body" *ngIf="!isAdded">
+              <p i18n="@@p_msg_no_comment" > please enter Your comment </p>
+            </div>
+        </ng-template>
         <form (ngSubmit)="sendFavorite()" #formEle="ngForm">
            <div class="row">
               <div class="col-12">
@@ -85,8 +100,13 @@
                               </th>
                            </tr>
                          </thead>
+
                          <tbody class="Favorite-table-body">
+<<<<<<< HEAD
+                           <tr *ngFor="let dataItem of allData.hits.hits; let i = index">
+=======
                            <tr *ngFor="let dataItem of allData.hits.hits">
+>>>>>>> 372137f6db7299fbff5a56f2f7a8378e80bc2cb9
                              <td>
                                <label class="controlRC controlRC-radio d-block">
                                  <!-- First radio -->
@@ -150,5 +170,6 @@
         </form>
     </div>
   </div>
+
 </div>
 
