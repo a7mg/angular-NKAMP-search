@@ -58,7 +58,7 @@
     View</label>
     <div class="d-flex justify-content-end">
         <button class="grid-btn" type="button" [ngClass]="{' active': displayMode === 1}" (click)="onDisplayModeChange(1)">
-            Grid
+            <span i18n="@@lbl_grid">  Grid</span>
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon"
               viewBox="0 0 14 13.125">
               <defs>
@@ -84,7 +84,7 @@
       
           </button>
           <button class="list-btn" type="button" [ngClass]="{'active': displayMode === 2}" (click)="onDisplayModeChange(2)">
-            List
+            <span i18n="@@lbl_list">List</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 14 13.611">
               <g data-name="Icon - List" transform="translate(0 1)">
                 <line data-name="Line 2" x1="10.279" transform="translate(3.721)" fill="none" stroke="#333"

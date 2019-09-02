@@ -11712,6 +11712,12 @@ body .searchNK .ui-widget {
   background-color: #EEEEEE;
 }
 
+.form-row .grid-btn span, .form-row .list-btn span {
+  padding-right: 10px;
+  position: relative;
+  top: 1px;
+}
+
 .form-row .form-control {
   border-radius: 0px;
 }
