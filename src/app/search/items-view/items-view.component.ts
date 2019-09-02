@@ -26,7 +26,7 @@ export class ItemsViewComponent implements OnInit {
   pageIndex = 1;
   displayMode:number = 1;
   itemsArr: Array<any>;
-  collectionSizeT;
+  collectionSizeT; 
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
   materialTypesConfiguration: Array<any>;
@@ -76,7 +76,7 @@ export class ItemsViewComponent implements OnInit {
         console.log("^^^ Search res " + JSON.stringify(this.itemsArr));
 
         console.log('this.itemsArr222222 ', this.itemsArr[0]);
-        this.collectionSizeT= Math.round(data.totalNumberOfItems/12);
+        this.collectionSizeT= Math.round(data.totalNumberOfItems);
         console.log("ttttttttt",data.totalNumberOfItems);
         console.log(this.collectionSizeT);
         const materialTypesResults = data.materialTypesSearcQueryStatistic;
