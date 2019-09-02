@@ -51,6 +51,7 @@ export class FavoriteSearchComponent implements OnInit {
                 config.keyboard = false;
                }
   ngOnInit() {
+<<<<<<< HEAD
     const body = {
       userId: "albaqer_naseej",
       pageSize: 5,
@@ -66,32 +67,55 @@ export class FavoriteSearchComponent implements OnInit {
         console.log('no data');
       }
     });
+=======
+this.getFavorite();
+>>>>>>> 372137f6db7299fbff5a56f2f7a8378e80bc2cb9
   }
-  getFavoriteList() {
-    if (this.formElement.value.searchName || this.formElement.value.dateFrom || this.formElement.value.dateTo) {
 
-        this.startDate =  Number(Object.values(this.formElement.value.dateFrom).reverse().join(""));
-        this.endDate =  Number(Object.values(this.formElement.value.dateTo).reverse().join(""));
-        this.getFavoriteListRequestBody.filterByTitle = this.formElement.value.searchName;
-        this.getFavoriteListRequestBody.startDate = this.startDate;
-        this.getFavoriteListRequestBody.endDate = this.endDate;
-        console.log("getFavoriteListRequestBody", this.getFavoriteListRequestBody);
-        this.favoriteService.getFavoriteList(this.getFavoriteListRequestBody).subscribe( Data  => {
-          if(Data !== null){
-            console.log(Data);
-            this.favoriteService.FavoriteList.next(Data);
-          }
-          else{
-            console.log('no data');
+  getFavorite() {
+  console.log('test111');
+  const body = {
+    userId: "albaqer_naseej",
+    pageSize: 5,
+    wantedPage: 0
+  };
 
-          }
-        });
 
+  this.favoriteService.getFavoriteList(body).subscribe( response  => {
+    if (response !== null) {
+      console.log(response);
+      this.allData = response;
     } else {
-        console.log("enter data search");
+      console.log('no data');
     }
-
+  });
   }
+
+  // getFavoriteList() {
+  //   if (this.formElement.value.searchName || this.formElement.value.dateFrom || this.formElement.value.dateTo) {
+
+  //       this.startDate =  Number(Object.values(this.formElement.value.dateFrom).reverse().join(""));
+  //       this.endDate =  Number(Object.values(this.formElement.value.dateTo).reverse().join(""));
+  //       this.getFavoriteListRequestBody.filterByTitle = this.formElement.value.searchName;
+  //       this.getFavoriteListRequestBody.startDate = this.startDate;
+  //       this.getFavoriteListRequestBody.endDate = this.endDate;
+  //       console.log("getFavoriteListRequestBody", this.getFavoriteListRequestBody);
+  //       this.favoriteService.getFavoriteList(this.getFavoriteListRequestBody).subscribe( Data  => {
+  //         if(Data !== null){
+  //           console.log(Data);
+  //           this.favoriteService.FavoriteList.next(Data);
+  //         }
+  //         else{
+  //           console.log('no data');
+
+  //         }
+  //       });
+
+  //   } else {
+  //       console.log("enter data search");
+  //   }
+
+  // }
 
   onChangePageSize(event) {
     console.log('Enter to change page size');
@@ -99,6 +123,7 @@ export class FavoriteSearchComponent implements OnInit {
 
   sendFavorite() {}
 
+<<<<<<< HEAD
   removeFav(contentDelete) {
     debugger;
     console.log(contentDelete);
@@ -132,6 +157,19 @@ export class FavoriteSearchComponent implements OnInit {
     //     this.modalService.open(content);
     //   }
     // });
+=======
+
+    this.favoriteService.removeFavoriteItem(body).subscribe( response  => {
+      if (response !== null) {
+        console.log(response);
+        this.getFavorite();
+
+
+      } else {
+        console.log('remove error');
+      }
+    });
+>>>>>>> 372137f6db7299fbff5a56f2f7a8378e80bc2cb9
   }
 
   getPublisher(item){

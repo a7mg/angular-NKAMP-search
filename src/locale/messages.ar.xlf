@@ -363,6 +363,62 @@
         </context-group>
       </trans-unit>
 
+
+      <trans-unit id="lbl_All" datatype="html">
+        <source>All</source>
+         <target>الكل</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_Title" datatype="html">
+        <source>Title</source>
+         <target>العنوان</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_Publisher" datatype="html">
+        <source>Publisher</source>
+         <target>المؤلف</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_Year" datatype="html">
+        <source>Year</source>
+         <target>السنة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_Date" datatype="html">
+        <source>Date</source>
+         <target>التاريخ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+
+      <trans-unit id="lbl_Action" datatype="html">
+        <source>Action</source>
+         <target>اختر</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\search\search.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+
+
     </body>
   </file>
 </xliff>
