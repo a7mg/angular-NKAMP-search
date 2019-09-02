@@ -10154,6 +10154,49 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.ui-toast .ui-toast-message {
+  color: #ffffff;
+  width: 261px;
+  height: 94px;
+  border-radius: 11px;
+}
+
+.ui-toast .ui-toast-message.ui-toast-message-success {
+  background-color: #63B680;
+}
+
+.ui-toast .ui-toast-message.ui-toast-message-error {
+  background-color: #DF384C;
+}
+
+.ui-toast .ui-toast-icon {
+  color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 10px;
+}
+
+.ui-toast .ui-toast-message-text-content {
+  margin-right: 72px;
+  margin-left: 0;
+  margin-top: 12px;
+}
+
+.ui-toast .ui-toast-summary {
+  font-size: 16px;
+}
+
+.ui-toast .ui-toast-detail {
+  font-size: 14px;
+}
+
+.ui-toast .ui-toast-close-icon {
+  color: #ffffff;
+  left: 9px;
+  right: auto;
+  top: 7px;
+  font-size: 20px;
+}
+
 .searchNK-criteria .form-control {
   font-size: 12px;
   border-radius: 0rem;
@@ -10169,11 +10212,25 @@ a.text-dark:hover, a.text-dark:focus {
 
 .searchNK-criteria select.form-control {
   padding-top: 0px;
+  font-size: 12px;
   height: 32px;
 }
 
 @media (min-width: 992px) {
   .searchNK-criteria select.form-control {
+    height: 39px;
+    padding: 8px;
+  }
+}
+
+.searchNK .form-control {
+  padding-top: 0px;
+  font-size: 12px;
+  height: 32px;
+}
+
+@media (min-width: 992px) {
+  .searchNK .form-control {
     height: 39px;
     padding: 8px;
   }

@@ -32,6 +32,7 @@ export class SearchService {
   };
 
 
+
   constructor(private http: HttpClient, appConfig: AppConfigService,
               public globals: GlobalsService,
               private errorLogging: ErrorLoggingService) {
@@ -65,7 +66,7 @@ export class SearchService {
   let body = {
     searchProfileId: serachCriteria.searchProfileId,
     pageSize: serachCriteria.pageSize,
-    fromPage: 0,
+    fromPage: 1,
     dataSourcesId: serachCriteria.dataSourcesId,
     searchKeyWords: serachCriteria.searchKeyWords,
     facetsFilter: [],

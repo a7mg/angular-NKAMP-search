@@ -10169,11 +10169,25 @@ a.text-dark:hover, a.text-dark:focus {
 
 .searchNK-criteria select.form-control {
   padding-top: 0px;
+  font-size: 12px;
   height: 32px;
 }
 
 @media (min-width: 992px) {
   .searchNK-criteria select.form-control {
+    height: 39px;
+    padding: 8px;
+  }
+}
+
+.searchNK .form-control {
+  padding-top: 0px;
+  font-size: 12px;
+  height: 32px;
+}
+
+@media (min-width: 992px) {
+  .searchNK .form-control {
     height: 39px;
     padding: 8px;
   }
