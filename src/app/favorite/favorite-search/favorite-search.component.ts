@@ -51,25 +51,7 @@ export class FavoriteSearchComponent implements OnInit {
                 config.keyboard = false;
                }
   ngOnInit() {
-<<<<<<< HEAD
-    const body = {
-      userId: "albaqer_naseej",
-      pageSize: 5,
-      wantedPage: 0
-    };
-
-    this.favoriteService.getFavoriteList(body).subscribe( response  => {
-      if (response !== null) {
-        console.log(response);
-        this.allData = response;
-
-      } else {
-        console.log('no data');
-      }
-    });
-=======
 this.getFavorite();
->>>>>>> 372137f6db7299fbff5a56f2f7a8378e80bc2cb9
   }
 
   getFavorite() {
