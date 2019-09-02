@@ -1,20 +1,17 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { FavoriteService } from '../services/favorite.service';
 import { NgForm } from '@angular/forms';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 
 
 @Component({
   selector: 'app-favorite-search',
   templateUrl: './favorite-search.component.html',
-  styleUrls: ['./favorite-search.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  styleUrls: ['./favorite-search.component.scss']
 })
 export class FavoriteSearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
 
-  getFavoriteListRequestBody = { 
+  getFavoriteListRequestBody = {
     "userId": "Jv0b2WkB7-mpx-Tip1YF",
     "pageSize": 5,
     "wantedPage": 1,
@@ -24,32 +21,13 @@ export class FavoriteSearchComponent implements OnInit {
   };
   startDate: number;
   endDate: number;
-  allData: any; 
+  allData: any;
   page = 1;
-  dataIndex=0;
   show = false;
   index = 0;
-  isAdded = false;
-// test = 
-//   {
-//     "hits": {
-//       "hits": [
-//         {
-//           "id": 1,
-//           "name": "Hager",
-//           "number": 34324
-//         }
-//       ]
-//     } 
-//   }
 
 
-  constructor(private favoriteService: FavoriteService,
-              config: NgbModalConfig,
-              private modalService: NgbModal) {
-                config.backdrop = 'static';
-                config.keyboard = false;
-               }
+  constructor(private favoriteService: FavoriteService) { }
   ngOnInit() {
 this.getFavorite();
   }
@@ -104,42 +82,14 @@ this.getFavorite();
   }
 
   sendFavorite() {}
+  removeFav(id, index, dataitem) {
 
-<<<<<<< HEAD
-  removeFav(contentDelete) {
-    debugger;
-    console.log(contentDelete);
-    this.modalService.open(contentDelete);
+    let body = {
+      _id: id
+    };
 
 
-    // let body = {
-    //   _id: id
-    // };
-    
 
-    //  console.log('Hager', JSON.stringify(this.test.hits));
-    // this.allData.hits.hits.forEach(function (currentValue, indexValue) {
-    //   if(indexValue == index){
-    //     console.log(currentValue);
-    //     this.allData.splice(index, 1);
-    //   }
-    // }); 
-    // console.log('Hager', JSON.stringify(this.test));
-
-    // this.favoriteService.removeFavoriteItem(body).subscribe( response  => {
-      
-    //   if (response !== null) {
-    //     this.isAdded=true;
-    //     console.log(response);
-    //     this.modalService.open(content);
-       
-    //   } else {
-    //     console.log('remove error');
-    //     this.isAdded=false;
-    //     this.modalService.open(content);
-    //   }
-    // });
-=======
 
     this.favoriteService.removeFavoriteItem(body).subscribe( response  => {
       if (response !== null) {
@@ -151,7 +101,6 @@ this.getFavorite();
         console.log('remove error');
       }
     });
->>>>>>> 372137f6db7299fbff5a56f2f7a8378e80bc2cb9
   }
 
   getPublisher(item){

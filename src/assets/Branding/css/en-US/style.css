@@ -9827,7 +9827,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .gResultNK-action {
   display: block;
-  color: #333333;
+  color: #fff;
   font-size: 0.875rem;
 }
 
@@ -10006,7 +10006,6 @@ a.text-dark:hover, a.text-dark:focus {
 
 .lResultNK-actions {
   display: block;
-  background-color: rgba(255, 102, 0, 0.7);
   width: 100%;
   position: absolute;
   float: left;
@@ -10020,8 +10019,24 @@ a.text-dark:hover, a.text-dark:focus {
 
 .lResultNK-action {
   display: block;
-  color: #fff;
+  color: #333333;
   font-size: 0.875rem;
+}
+
+.lResultNK-action a {
+  color: #333333;
+}
+
+.lResultNK-action a .text {
+  color: #333333 !important;
+}
+
+.lResultNK-action a .icon {
+  color: #333333 !important;
+}
+
+.lResultNK-action svg {
+  color: #333333;
 }
 
 .lResultNK-action:not(:last-child) {
@@ -10029,11 +10044,15 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .lResultNK-action:hover, .lResultNK-action:focus {
-  color: #fff;
+  color: #333333;
 }
 
 .lResultNK-action > .icon {
   margin-right: 0.9375rem;
+}
+
+.lResultNK-action .text {
+  color: #333333 !important;
 }
 
 .lResultNK-details {
