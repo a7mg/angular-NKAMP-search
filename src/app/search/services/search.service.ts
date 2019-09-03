@@ -81,7 +81,7 @@ export class SearchService {
 };
   console.log("**body **" + JSON.stringify(body));
 
-  return this.http.post<any>(this.Url + 'Search', body);
+  return this.http.post<any>(this.Url + 'MakeNewSearch', body);
   }
 
   getNextPage(): Observable<any> {
