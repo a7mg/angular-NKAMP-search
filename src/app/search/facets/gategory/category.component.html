@@ -36,7 +36,7 @@
           <input type="checkbox" name="facet_name" value="selectAll"    [(ngModel)]="masterSelected" (change)="checkUncheckAll()" />
           <div class="controlRC_indicator"></div>
         </label>
-
+  
         <!-- <ng-container *ngFor="let value of categoryForm.controls.facetFC.controls;let idx = index"> -->
         <ng-container *ngFor="let item of  checklist;let idx = index">
           <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
