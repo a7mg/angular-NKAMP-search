@@ -17,6 +17,7 @@ export class CategoryComponent implements OnInit {
   showAll = false;
   maxShowing = 6;
   totalOfAllItems = 0;
+  
   isCollapsed = false;
   isVituailizationActive = false;
   config = {
@@ -53,6 +54,8 @@ export class CategoryComponent implements OnInit {
       this.totalOfAllItems += element.totalItems;
       this.chartData.labels.push(element.facetValue);
       this.chartData.data.push(element.totalItems);
+      // console.log('hager ', this.chartData.labels);
+      // console.log(' yassmin', this.chartData.data);
     });
     // console.log('this element facetOption', this.facetOption.values);
     this.config.isAllowMultiSelection = !this.facetOption.isAllowMultipeSelection;
@@ -62,7 +65,7 @@ export class CategoryComponent implements OnInit {
 
     this.data = {
       labels: [...this.chartData.labels],
-      datasets: [
+      datasets: [ 
         {
           data: [...this.chartData.data],
           backgroundColor: [

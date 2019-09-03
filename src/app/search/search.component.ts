@@ -14,6 +14,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
   providers: [MessageService]
 })
 export class SearchComponent implements OnInit {
+  
   @ViewChild('formEle') formElement: NgForm;
   lang: string;
   isLoading = false;
@@ -74,7 +75,7 @@ export class SearchComponent implements OnInit {
     this.getquerySavesearch()
 
     const body = {
-      userId: "albaqer_naseej",
+      userId: "albaqer_naseej", 
       pageSize: 5,
       wantedPage: 0
     };
@@ -83,6 +84,7 @@ export class SearchComponent implements OnInit {
       if (response !== null) {
         console.log(response);
         this.favoriteBadge = response.hits.total;
+      //  console.log("yasmin",this.favoriteBadge);
       } else {
         console.log('no data');
       }
@@ -112,10 +114,10 @@ export class SearchComponent implements OnInit {
   }
 
   showSuccess() {
-    this.$messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Sucess' });
+    this.$messageService.add({ severity: 'success', summary: 'رسالة صحيحة', detail: 'تم حفظ البيانات بنجاح',life:3600000 });
   }
   showError() {
-    this.$messageService.add({ severity: 'error', summary: 'Error Message', detail: 'sorry, please try again !' });
+    this.$messageService.add({ severity: 'error', summary: 'رسالة خطأ', detail: 'لم يتم حفظ البيانات بشكل صحيح',life:3600000 });
   }
 
 

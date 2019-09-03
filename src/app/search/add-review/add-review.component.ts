@@ -70,7 +70,6 @@ export class AddReviewComponent implements OnInit {
         }
         else{
           console.log('no data');
-
         }
       });
     }else{

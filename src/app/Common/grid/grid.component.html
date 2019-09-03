@@ -1,10 +1,12 @@
-<div class="gResultNK">
+<div class="gResultNK gResultNKGrid">
 
   <div class="gResultNK-cover" style="background-image: url(./assets/images/Default-Book-Cover.jpg);">
   <!-- <div class="gResultNK-cover" style=" background-image: url({{this.bookData.coverImage}});"> -->
 
-    <img  src="{{this.bookData.coverImage}}" class="gResultNK-img-top img-fluid w-100" alt="...">
+    <!-- <img  *ngIf="this.bookData.coverImage != '' || this.bookData.coverImage != null" src="{{this.bookData.coverImage}}" class="gResultNK-img-top img-fluid w-100" alt="..."> -->
 
+    <img  *ngIf="this.bookData.coverImage" src="{{this.bookData.coverImage}}" class="gResultNK-img-top img-fluid w-100" alt="...">
+    
     <div class="gResultNK-actions">
       <div class="centerBox">
 
@@ -69,51 +71,21 @@
             <path d="M14.975,6.3c-.219-2.592-1.925-4.473-4.059-4.473A3.991,3.991,0,0,0,7.459,3.969,3.854,3.854,0,0,0,4.084,1.826C1.95,1.826.244,3.707.025,6.3A4.951,4.951,0,0,0,.153,8,7.413,7.413,0,0,0,2.23,11.725l5.226,5.1,5.316-5.1A7.414,7.414,0,0,0,14.848,8,4.962,4.962,0,0,0,14.975,6.3Zm-.689,1.557a6.779,6.779,0,0,1-1.9,3.408L7.459,15.991,2.617,11.266a6.783,6.783,0,0,1-1.9-3.41A4.326,4.326,0,0,1,.594,6.4l0-.031C.786,4.1,2.252,2.447,4.084,2.447A3.4,3.4,0,0,1,7.192,4.778l.266.677.266-.677a3.5,3.5,0,0,1,3.193-2.331c1.832,0,3.3,1.648,3.489,3.949A4.321,4.321,0,0,1,14.286,7.856Z" transform="translate(0 -1.826)"  />
           </svg>
 
-      </span>
+      </span>   
     </h6>
-    <a  [routerLink]="['book']" class="gResultNK-title" > {{bookData.Title}}</a>
-    <h5 class="gResultNK-auther">{{bookData.Author}}</h5>
+    <a  *ngIf="bookData.Title.length >= 30" [routerLink]="['book']" class="gResultNK-title" > 
+      {{ (bookData.Title | slice:0:30)+'..'}}</a>
+    <a  *ngIf="bookData.Title.length < 30" [routerLink]="['book']" class="gResultNK-title" > 
+      {{bookData.Title}}</a>
+    <h5 *ngIf="bookData.Author.length >= 60" class="gResultNK-auther">
+      {{ (bookData.Author | slice:0:60)+'..'}}</h5>
+    <h5 *ngIf="bookData.Author.length < 60" class="gResultNK-auther">{{bookData.Author}}</h5>
+
     <div class="gResultNK-date">{{additionalField}}</div>
 
 
     <div class="gResultNK-rating  justify-content-between">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="12"
-        viewBox="0 0 64 12">
-        <defs>
-          <clipPath id="clip-path">
-            <rect width="51" height="12" fill="none" />
-          </clipPath>
-        </defs>
-        <g id="Rating" transform="translate(0)">
-          <g id="star_1_" data-name="star (1)" transform="translate(0 0)" clip-path="url(#clip-path)">
-            <g id="star_1_2" data-name="star (1)" transform="translate(0 -0.452)">
-              <path id="Path_1" data-name="Path 1"
-                d="M6.283.65,7.81,4.438l3.908.352a.327.327,0,0,1,.176.566L8.929,8.049l.888,4.006a.311.311,0,0,1-.459.349L6,10.281,2.642,12.4a.311.311,0,0,1-.459-.349l.888-4.006L.106,5.355a.327.327,0,0,1,.176-.566L4.19,4.437,5.716.65a.3.3,0,0,1,.567,0Z"
-                transform="translate(0 0)" fill="#f7941e" />
-            </g>
-            <g id="star_1_3" data-name="star (1)" transform="translate(13 -0.452)">
-              <path id="Path_1-2" data-name="Path 1"
-                d="M6.283.65,7.81,4.438l3.908.352a.327.327,0,0,1,.176.566L8.929,8.049l.888,4.006a.311.311,0,0,1-.459.349L6,10.281,2.642,12.4a.311.311,0,0,1-.459-.349l.888-4.006L.106,5.355a.327.327,0,0,1,.176-.566L4.19,4.437,5.716.65a.3.3,0,0,1,.567,0Z"
-                transform="translate(0 0)" fill="#f7941e" />
-            </g>
-            <g id="star_1_4" data-name="star (1)" transform="translate(26 -0.452)">
-              <path id="Path_1-3" data-name="Path 1"
-                d="M6.283.65,7.81,4.438l3.908.352a.327.327,0,0,1,.176.566L8.929,8.049l.888,4.006a.311.311,0,0,1-.459.349L6,10.281,2.642,12.4a.311.311,0,0,1-.459-.349l.888-4.006L.106,5.355a.327.327,0,0,1,.176-.566L4.19,4.437,5.716.65a.3.3,0,0,1,.567,0Z"
-                transform="translate(0 0)" fill="#f7941e" />
-            </g>
-            <g id="star_1_5" data-name="star (1)" transform="translate(39 -0.452)">
-              <path id="Path_1-4" data-name="Path 1"
-                d="M6.283.65,7.81,4.438l3.908.352a.327.327,0,0,1,.176.566L8.929,8.049l.888,4.006a.311.311,0,0,1-.459.349L6,10.281,2.642,12.4a.311.311,0,0,1-.459-.349l.888-4.006L.106,5.355a.327.327,0,0,1,.176-.566L4.19,4.437,5.716.65a.3.3,0,0,1,.567,0Z"
-                transform="translate(0 0)" fill="#f7941e" />
-            </g>
-          </g>
-          <g id="star" transform="translate(52)">
-            <path id="Path_2" data-name="Path 2"
-              d="M11.984,15.546a.339.339,0,0,0-.268-.237l-3.744-.557L6.287,11.2a.333.333,0,0,0-.3-.193h0a.331.331,0,0,0-.3.2L4.028,14.764l-3.744.583a.339.339,0,0,0-.268.237A.356.356,0,0,0,.1,15.94L2.819,18.7,2.191,22.6a.351.351,0,0,0,.133.34.319.319,0,0,0,.195.067.3.3,0,0,0,.155-.041l3.342-1.855,3.352,1.834a.328.328,0,0,0,.153.039h0a.342.342,0,0,0,.332-.348.284.284,0,0,0-.01-.08L9.2,18.677l2.7-2.773A.352.352,0,0,0,11.984,15.546ZM8.609,18.309a.355.355,0,0,0-.094.31L9.08,22,6.169,20.413a.323.323,0,0,0-.31,0l-2.9,1.61L3.5,18.631a.358.358,0,0,0-.1-.307L1.051,15.93,4.3,15.425a.332.332,0,0,0,.249-.191l1.443-3.088,1.463,3.08a.34.34,0,0,0,.251.191l3.251.485Z"
-              transform="translate(0 -11.011)" fill="#666" />
-          </g>
-        </g>
-      </svg>
+       <img src="assets/images/r1.png" class="icon">
 
       <span class="gResultNK-review"></span>
     </div>
