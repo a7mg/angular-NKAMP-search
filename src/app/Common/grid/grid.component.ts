@@ -9,6 +9,7 @@ import { BookDetailsService } from '../../search/services/book-details.service';
 export class GridComponent implements OnInit {
   @Input('book-data') bookData;
   additionalField: any;
+  isFav = false;
   constructor(private $bookDetailFav: BookDetailsService) {
   }
 
@@ -18,7 +19,13 @@ export class GridComponent implements OnInit {
     console.log("bookDataGrid", this.bookData);
     this.additionalField = this.bookData.addtionFieldsInListPage.addtionField.filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
     console.log('^^^ this.additionalField ' + this.additionalField);
+
+
+
   }
+
+
+
 
   addToMyFav(data) {
     console.log('##ALBAQER ' + JSON.stringify(data));
@@ -42,6 +49,8 @@ export class GridComponent implements OnInit {
     this.$bookDetailFav.addFavorite(body).subscribe(response => {
       if (response !== null) {
         console.log('##ALBAQER ' + JSON.stringify(response));
+        this.isFav = true;
+
       }
     });
   }
