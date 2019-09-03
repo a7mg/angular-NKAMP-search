@@ -10,7 +10,9 @@ import { NgForm } from '@angular/forms';
 })
 export class FavoriteSearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
-
+  collectionSizeT=Math.round(11);
+  pageSize = 12;
+  pageIndex = 1;
   getFavoriteListRequestBody = {
     "userId": "Jv0b2WkB7-mpx-Tip1YF",
     "pageSize": 5,
@@ -29,7 +31,7 @@ export class FavoriteSearchComponent implements OnInit {
 
   constructor(private favoriteService: FavoriteService) { }
   ngOnInit() {
-this.getFavorite();
+     this.getFavorite();
   }
 
   getFavorite() {
@@ -105,5 +107,12 @@ this.getFavorite();
 
   getPublisher(item){
     return item._source.itemListPageInformation.addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
+  }
+  paginate(pageNumber): void {
+    // debugger;
+    // console.log('Page Number', pageNumber);
+    // this.$searchService.nextPageCriteria.wantedPage = pageNumber;
+    // this.pageIndex= pageNumber;
+    // this.getNextPageResults();
   }
 }
