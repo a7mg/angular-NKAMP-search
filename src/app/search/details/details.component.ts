@@ -88,11 +88,11 @@ export class DetailsComponent implements OnInit {
           ]
       }
     }
-    this.bookDetailsService.addFavorite(favoritesRequestBody).subscribe( Data  =>{
-      if(Data !== null){
+    this.bookDetailsService.addFavorite(favoritesRequestBody).subscribe( Data  => {
+      if (Data !== null) {
         console.log('sucess');
       }
-      else{
+      else {
         console.log('no data');
       }
     });

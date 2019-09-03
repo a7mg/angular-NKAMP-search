@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BookDetailsService } from '../../search/services/book-details.service';
+import { FavoriteService } from 'src/app/favorite/services/favorite.service';
 
 @Component({
   selector: 'app-grid',
@@ -10,7 +11,10 @@ export class GridComponent implements OnInit {
   @Input('book-data') bookData;
   additionalField: any;
   isFav = false;
-  constructor(private $bookDetailFav: BookDetailsService) {
+  favoriteBadge: any;
+  favItems: any[] = [];
+
+  constructor(private $bookDetailFav: BookDetailsService, private favoriteService: FavoriteService) {
   }
 
 
@@ -19,6 +23,22 @@ export class GridComponent implements OnInit {
     console.log("bookDataGrid", this.bookData);
     this.additionalField = this.bookData.addtionFieldsInListPage.addtionField.filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
     console.log('^^^ this.additionalField ' + this.additionalField);
+
+    const body = {
+      userId: "albaqer_naseej",
+      pageSize: 5,
+      wantedPage: 0
+    };
+
+    this.favoriteService.getFavoriteList(body).subscribe( response  => {
+      if (response !== null) {
+      this.favItems = response;
+      console.log('toto 2020', this.favItems);
+
+      } else {
+        console.log('no data');
+      }
+    });
 
 
 
@@ -50,6 +70,8 @@ export class GridComponent implements OnInit {
       if (response !== null) {
         console.log('##ALBAQER ' + JSON.stringify(response));
         this.isFav = true;
+
+
 
       }
     });
