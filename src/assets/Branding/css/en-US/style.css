@@ -9827,7 +9827,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .gResultNK-action {
   display: block;
-  color: #333333;
+  color: #fff;
   font-size: 0.875rem;
 }
 
@@ -10006,7 +10006,6 @@ a.text-dark:hover, a.text-dark:focus {
 
 .lResultNK-actions {
   display: block;
-  background-color: rgba(255, 102, 0, 0.7);
   width: 100%;
   position: absolute;
   float: left;
@@ -10020,8 +10019,24 @@ a.text-dark:hover, a.text-dark:focus {
 
 .lResultNK-action {
   display: block;
-  color: #fff;
+  color: #333333;
   font-size: 0.875rem;
+}
+
+.lResultNK-action a {
+  color: #333333;
+}
+
+.lResultNK-action a .text {
+  color: #333333 !important;
+}
+
+.lResultNK-action a .icon {
+  color: #333333 !important;
+}
+
+.lResultNK-action svg {
+  color: #333333;
 }
 
 .lResultNK-action:not(:last-child) {
@@ -10029,11 +10044,15 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .lResultNK-action:hover, .lResultNK-action:focus {
-  color: #fff;
+  color: #333333;
 }
 
 .lResultNK-action > .icon {
   margin-right: 0.9375rem;
+}
+
+.lResultNK-action .text {
+  color: #333333 !important;
 }
 
 .lResultNK-details {
@@ -10135,6 +10154,51 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.ui-toast .ui-toast-message {
+  color: #ffffff;
+  width: 261px;
+  height: 94px;
+  border-radius: 11px;
+}
+
+.ui-toast .ui-toast-message.ui-toast-message-success {
+  background-color: #63B680;
+}
+
+.ui-toast .ui-toast-message.ui-toast-message-error {
+  background-color: #DF384C;
+}
+
+.ui-toast .ui-toast-icon {
+  color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 10px;
+  font-size: 61px !important;
+}
+
+.ui-toast .ui-toast-message-text-content {
+  margin-left: 72px;
+  margin-right: 0;
+  margin-top: 12px;
+  color: #ffffff;
+}
+
+.ui-toast .ui-toast-summary {
+  font-size: 16px;
+}
+
+.ui-toast .ui-toast-detail {
+  font-size: 14px;
+}
+
+.ui-toast .ui-toast-close-icon {
+  color: #ffffff !important;
+  right: 9px;
+  left: auto !important;
+  top: 7px;
+  font-size: 20px;
+}
+
 .searchNK-criteria .form-control {
   font-size: 12px;
   border-radius: 0rem;
@@ -10150,11 +10214,25 @@ a.text-dark:hover, a.text-dark:focus {
 
 .searchNK-criteria select.form-control {
   padding-top: 0px;
+  font-size: 12px;
   height: 32px;
 }
 
 @media (min-width: 992px) {
   .searchNK-criteria select.form-control {
+    height: 39px;
+    padding: 8px;
+  }
+}
+
+.searchNK .form-control {
+  padding-top: 0px;
+  font-size: 12px;
+  height: 32px;
+}
+
+@media (min-width: 992px) {
+  .searchNK .form-control {
     height: 39px;
     padding: 8px;
   }
@@ -11632,6 +11710,12 @@ body .searchNK .ui-widget {
 
 .form-row .grid-btn.active, .form-row .list-btn.active {
   background-color: #EEEEEE;
+}
+
+.form-row .grid-btn span, .form-row .list-btn span {
+  padding-right: 10px;
+  position: relative;
+  top: 1px;
 }
 
 .form-row .form-control {
