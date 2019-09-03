@@ -288,6 +288,14 @@
           <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="spn_favorite" datatype="html">
+        <source>Favorite</source>
+        <target>Favorite</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src\app\search\details\details.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
 
       <trans-unit id="spn_borrow" datatype="html">
         <source>borrow</source>
