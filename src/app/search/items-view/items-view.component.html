@@ -134,7 +134,9 @@
   </p-tabPanel>
 
 </p-tabView>
+<div class="paginationContainer">
+  <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
+    [collectionSize]="collectionSizeT" [pageSize]="pageSize" [(page)]="pageIndex" [maxSize]="4" [rotate]="true" [boundaryLinks]="true">
+  </ngb-pagination>
+</div>
 
-<ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
-  [collectionSize]="collectionSizeT" [pageSize]="pageSize" [(page)]="pageIndex" [maxSize]="4" [rotate]="true" [boundaryLinks]="true">
-</ngb-pagination>
