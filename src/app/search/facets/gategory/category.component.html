@@ -12,12 +12,12 @@
       </button>
     </p>
 
-    <span (click)="isCollapsed=!isCollapsed" class="facet-collapseIcon "
+    <span (click)="isCollapsed=!isCollapsed" class="facet-collapseIcon " 
       [ngClass]="{'is-collapsed': this.isCollapsed}">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 9.415 6.128">
         <path d="M4,0,0,3.925,4,8" transform="translate(0.714 4.714) rotate(-90)" fill="none" stroke-width="2" />
       </svg>
-
+ 
     </span>
   </div>
   <p-chart *ngIf="this.isVituailizationActive && !this.isCollapsed" type="{{this.config.isPiChart?'horizontalBar':'bar'}}"
