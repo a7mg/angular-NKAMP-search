@@ -11779,6 +11779,10 @@ body .searchNK .ui-widget {
   content: "Next";
 }
 
+.paginationContainer {
+  margin-top: 30px;
+}
+
 .controlRC {
   display: block;
   position: relative;
