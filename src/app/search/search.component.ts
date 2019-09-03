@@ -170,7 +170,6 @@ export class SearchComponent implements OnInit {
       } else {
         console.log('no data');
         this.showError();
-
       }
     });
   }
