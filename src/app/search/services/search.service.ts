@@ -9,6 +9,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 @Injectable({
   providedIn: 'root'
 })
+
 export class SearchService {
   Url: string;
   public results$ = new BehaviorSubject(null);
@@ -61,28 +62,28 @@ export class SearchService {
 
   getResults(serachCriteria): Observable<any> {
 
-  console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
+    console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
 
-  let body = {
-    searchProfileId: serachCriteria.searchProfileId,
-    pageSize: serachCriteria.pageSize,
-    fromPage: 1,
-    dataSourcesId: serachCriteria.dataSourcesId,
-    searchKeyWords: serachCriteria.searchKeyWords,
-    facetsFilter: [],
-    keywWordsOrderBy: [
-      {
-        keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
-        keywWordType: "4",
-        keywWordValue: "value",
-        isAcendening: true
-      }
-    ]
-};
-  console.log("**body **" + JSON.stringify(body));
+    let body = {
+      searchProfileId: serachCriteria.searchProfileId,
+      pageSize: serachCriteria.pageSize,
+      fromPage: 1,
+      dataSourcesId: serachCriteria.dataSourcesId,
+      searchKeyWords: serachCriteria.searchKeyWords,
+      facetsFilter: [],
+      keywWordsOrderBy: [
+        {
+          keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
+          keywWordType: "4",
+          keywWordValue: "value",
+          isAcendening: true
+        }
+      ]
+    };
+    console.log("**body **" + JSON.stringify(body));
 
-  return this.http.post<any>(this.Url + 'MakeNewSearch', body);
-  }
+    return this.http.post<any>(this.Url + 'MakeNewSearch', body);
+}
 
   getNextPage(): Observable<any> {
     console.log('GetNextPageResult');
