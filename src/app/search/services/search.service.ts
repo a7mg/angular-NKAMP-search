@@ -13,6 +13,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 export class SearchService {
   Url: string;
   public results$ = new BehaviorSubject(null);
+  public btnClicked$ = new Subject();
   public searchConfiguration$ = new BehaviorSubject(null);
   public currentCriteria$ = new BehaviorSubject(null);
   public currentFacetsConfiguration: Array<any>;

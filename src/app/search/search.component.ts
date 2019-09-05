@@ -126,6 +126,7 @@ export class SearchComponent implements OnInit {
     this.formElement.reset();
   }
 
+  
   getSaveSearchInput() {
     if (this.formElement.value.savedSearchInput) {
       this.addQueryRequestBody.query_name = this.formElement.value.savedSearchInput;

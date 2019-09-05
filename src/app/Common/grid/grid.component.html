@@ -80,6 +80,7 @@
     </h6>
     <a  *ngIf="bookData.Title.length >= 20" [routerLink]="['book']" class="gResultNK-title" >
       {{ (bookData.Title | slice:0:20)+'..'}}</a>
+      
     <a  *ngIf="bookData.Title.length < 20" [routerLink]="['book']" class="gResultNK-title" >
       {{bookData.Title}}</a>
     <h5 *ngIf="bookData.Author.length >= 60" class="gResultNK-auther">

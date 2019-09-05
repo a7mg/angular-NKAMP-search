@@ -11,7 +11,8 @@
     <h6 class="lResultNK-type">
         {{bookData.materialTypeId}}
     </h6>
-    <a [routerLink]="[ '/' ]" class="lResultNK-title"> {{bookData.Title}} </a>
+    <a *ngIf="bookData.Title.length >= 90" [routerLink]="[ '/' ]" class="lResultNK-title"> {{ (bookData.Title | slice:0:20)+'..'}} </a>
+    <a *ngIf="bookData.Title.length < 90" [routerLink]="[ '/' ]" class="lResultNK-title"> {{ bookData.Title }} </a>
     <h5 class="lResultNK-auther">{{bookData.Author}}</h5>
     <div class="lResultNK-date">{{additionalField2}}</div>
     <div class="lResultNK-date">{{additionalField1}}</div>
