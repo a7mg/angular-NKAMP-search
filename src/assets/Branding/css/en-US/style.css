@@ -10169,6 +10169,12 @@ a.text-dark:hover, a.text-dark:focus {
   color: #FF6600;
 }
 
+@media (min-width: 576px) {
+  .lResultNK-title {
+    font-size: 14px;
+  }
+}
+
 .lResultNK-auther {
   font-weight: 600;
   margin-bottom: 0.3125rem;
@@ -10249,8 +10255,10 @@ a.text-dark:hover, a.text-dark:focus {
 
 @media (max-width: 575px) {
   .lResultNK-review {
-    top: 6px;
+    top: 5px;
     float: right;
+    font-size: 9px;
+    margin-left: 5px;
   }
 }
 
@@ -10341,6 +10349,12 @@ a.text-dark:hover, a.text-dark:focus {
   padding-left: 7px;
 }
 
+@media (min-width: 319px) and (max-width: 991px) {
+  .filterBtn.btn-link span {
+    font-size: 10px;
+  }
+}
+
 .btn.dropdwon-toggle {
   background-color: transparent;
   border-width: 0px;
@@ -10398,28 +10412,36 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-.CustomSelect {
-  border-width: 0px;
+@media (min-width: 319px) and (max-width: 991px) {
+  .CustomSelect:hover, .CustomSelect:focus, .CustomSelect:active {
+    border-color: transparent;
+    -webkit-box-shadow: 0 0 0 0rem #fff;
+            box-shadow: 0 0 0 0rem #fff;
+  }
 }
 
-.CustomSelect:hover, .CustomSelect:focus, .CustomSelect:active {
-  border-color: transparent;
-  -webkit-box-shadow: 0 0 0 0rem #fff;
-          box-shadow: 0 0 0 0rem #fff;
+@media (min-width: 319px) and (max-width: 991px) {
+  .CustomSelect.form-control {
+    width: auto;
+    border-width: 0px;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    padding-top: 7px !important;
+    font-size: 10px  !important;
+  }
 }
 
-.CustomSelect.form-control {
-  width: auto;
-  display: inline-block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  padding-top: 7px !important;
+.form-group svg.icon.sortIcon {
+  display: none;
 }
 
-.form-group svg.icon {
-  display: inline-block;
+@media (min-width: 319px) and (max-width: 991px) {
+  .form-group svg.icon.sortIcon {
+    display: inline-block;
+  }
 }
 
 .form-control {
@@ -11678,7 +11700,7 @@ input:-internal-autofill-selected {
 }
 
 .searchNK-savedSearchContainer .dropdown-menu {
-  left: -4.5rem !important;
+  left: -9.0625rem !important;
   right: auto;
   top: 37px !important;
   -webkit-transform: none !important;
@@ -11744,7 +11766,7 @@ input:-internal-autofill-selected {
 .searchNK-savedSearchItem li svg {
   cursor: pointer;
   position: absolute;
-  left: 0.9375rem;
+  right: 0.9375rem;
   top: 0.1875rem;
 }
 
@@ -11931,8 +11953,8 @@ body .searchNK .ui-widget {
   display: none;
   color: #333333;
   font-size: 0.9375rem;
-  text-align: left;
-  margin-left: 6.8125rem;
+  text-align: right;
+  margin-right: 6.8125rem;
 }
 
 @media (min-width: 992px) {
