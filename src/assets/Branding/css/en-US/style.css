@@ -10388,6 +10388,44 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.sortLabel {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .sortLabel {
+    display: block;
+  }
+}
+
+.CustomSelect {
+  border-width: 0px;
+}
+
+.CustomSelect:hover, .CustomSelect:focus, .CustomSelect:active {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0 0rem #fff;
+          box-shadow: 0 0 0 0rem #fff;
+}
+
+.CustomSelect.form-control {
+  width: auto;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  padding-top: 7px !important;
+}
+
+.form-group svg.icon {
+  display: inline-block;
+}
+
+.form-control {
+  cursor: pointer;
+}
+
 .searchNK-criteria .form-control {
   font-size: 12px;
   border-radius: 0rem;
