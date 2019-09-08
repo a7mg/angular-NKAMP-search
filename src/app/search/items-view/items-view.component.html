@@ -1,7 +1,7 @@
 <!--  fillter -->
 <div class="form-row">
-  <div class="form-group d-none">
-    <button type="button" class="btn btn-link">
+  <div class="form-group col-md-2 d-md-block d-lg-none">
+    <button type="button" class="btn btn-link" (click)="ToggleOpenClass()">
       <svg class="icon" data-name="icon - filter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.017 11.871">
         <path id="Path_74" data-name="Path 74"
           d="M13.016,22.82H0l4.849,5.109v6.762l3.318-1.716V27.929ZM5.343,33.878V27.732L1.151,23.314H11.865L7.673,27.732v4.942Z"
@@ -12,25 +12,9 @@
     </button>
   </div>
 
-  <div class="form-group col-md-3">
+  <div class="form-group col-md-3 d-md-none d-lg-block">
     <label for="inputCity">
-      <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 11.408 12.414">
-        <g data-name="icon - sort" transform="translate(0 12.414) rotate(-90)">
-          <g data-name="Group 294" transform="translate(0 0)">
-            <g data-name="Group 293">
-              <path data-name="Path 72"
-                d="M9.035,5.431l.547.547L12.3,3.262a.388.388,0,0,0,0-.547L9.582,0,9.035.551,11.091,2.6H0v.776H11.091Z"
-                transform="translate(0)" />
-              <path data-name="Path 73"
-                d="M12.414,2.6H1.323L3.379.551,2.828,0,.113,2.715a.388.388,0,0,0,0,.547L2.828,5.978l.547-.547L1.323,3.379H12.414Z"
-                transform="translate(0 5.431)" />
-            </g>
-          </g>
-        </g>
-      </svg> -->
-
       <span i18n="@@spn_sort">Sort</span>
-
     </label>
     <select class="form-control" (change)="onChangeSort($event)">
       <option selected="selected" i18n="@@lblsearch_Containes" [value]="'null'">select </option>
@@ -39,8 +23,50 @@
       </option>
     </select>
   </div>
+  <div class="form-group col-md-3 d-md-block d-lg-none">
 
-  <div class="form-group col-md-2">
+      <div class="btn-group">
+          <button 
+            type="button"
+            class="btn btn-primary dropdwon-toggle"
+            (click)="ToggledropClass()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 11.408 12.414">
+              <g data-name="icon - sort" transform="translate(0 12.414) rotate(-90)">
+                <g data-name="Group 294" transform="translate(0 0)">
+                  <g data-name="Group 293">
+                    <path data-name="Path 72"
+                      d="M9.035,5.431l.547.547L12.3,3.262a.388.388,0,0,0,0-.547L9.582,0,9.035.551,11.091,2.6H0v.776H11.091Z"
+                      transform="translate(0)" />
+                    <path data-name="Path 73"
+                      d="M12.414,2.6H1.323L3.379.551,2.828,0,.113,2.715a.388.388,0,0,0,0,.547L2.828,5.978l.547-.547L1.323,3.379H12.414Z"
+                      transform="translate(0 5.431)" />
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <span i18n="@@spn_sort">Sort</span>
+          </button>
+          <div class="dropdown-menu" [ngClass]="{'open': dropClicked}">
+                  <a class="dropdown-item" [id]="'null'">
+                    <span  i18n="@@lblsearch_Containes">select</span> 
+                  </a>
+                  <a class="dropdown-item" *ngFor="let keyWord of searchKeywords" [id]="keyWord.id">
+                    <label class="controlRC controlRC-radio d-block">
+                          <!-- First radio -->
+                        <input type="radio"
+                               name="radio"
+                               checked="checked"
+                               ngModel/>
+                        <div class="controlRC_indicator"></div>
+                    </label>
+                    {{lang == 'ar'||lang=='ar-SA'  ?  keyWord.aName :  (lang == 'fr'? keyWord.fName :keyWord.eName )}}
+                  </a>
+        
+          </div>
+      </div>
+  
+  </div>
+  <div class="form-group col-md-2 d-md-none d-lg-block">
     <label for="inputState" i18n="@@lbl_list">
 
       List</label>
@@ -114,7 +140,7 @@
 
       <ng-container *ngFor="let item of itemsArr">
         <app-grid  class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item"></app-grid>
-         <app-list class="col-12 col-sm-6 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
+        <app-list class="col-12 col-sm-6 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
 
       </ng-container>
     </div>

@@ -7,6 +7,7 @@ import {
   SkipSelf
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
+// import { ShareButtonsModule } from '@ngx-share/buttons';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { JsonpModule } from '@angular/http';
@@ -46,7 +47,8 @@ export const providers = [
     BlockUIModule,
     PanelModule,
     SharedModule,
-    ErrorHandlingModule
+    ErrorHandlingModule,
+    // ShareButtonsModule
   ],
 
   exports: [

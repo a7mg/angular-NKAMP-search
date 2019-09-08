@@ -11,7 +11,10 @@ import { BookDetailsService } from '../../search/services/book-details.service'
 })
 export class FavoriteService {
   FavoriteList = new Subject();
-
+  public nextPageCriteria = {
+    pageSize: 12,
+    wantedPage: 1,
+  };
   Url: string; // = https://10.0.6.154:8245/Search10/1.0.0/ItemOperation/GetItemOperationDetails
 
   constructor(private http: HttpClient, appConfig: AppConfigService,
@@ -22,6 +25,7 @@ export class FavoriteService {
   }
 
   getFavoriteList(requestBody): Observable<any> {
+    requestBody.wantedPage = this.nextPageCriteria.wantedPage ;
     console.log('body ' + JSON.stringify(requestBody));
     return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {

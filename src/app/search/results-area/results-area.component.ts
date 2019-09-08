@@ -8,6 +8,7 @@ import { SearchService } from '../services/search.service';
 })
 export class ResultsAreaComponent implements OnInit {
   isNoData = true;
+  btnClicked=false;
   constructor(private $SearchService: SearchService) { }
 
   ngOnInit() {
@@ -27,7 +28,16 @@ export class ResultsAreaComponent implements OnInit {
         this.isNoData = false;
       }
     });
+    this.$SearchService.btnClicked$.subscribe(data => {
+      console.log("btnClicked$$", data)
+      if (data !== null && data == true) {
+        this.btnClicked= true;
+      }
+    });
 
+  }
+  ToggleClass() {
+    this.btnClicked = !this.btnClicked;
   }
 
 }
