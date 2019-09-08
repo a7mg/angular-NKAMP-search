@@ -1,7 +1,7 @@
 <!--  fillter -->
-<div class="form-row">
-  <div class="form-group col-md-2 d-md-block d-lg-none">
-    <button type="button" class="btn btn-link" (click)="ToggleOpenClass()">
+<div class="form-row items-view">
+  <div class="form-group col-3 col-sm-2 d-md-block d-block d-lg-none">
+    <button type="button" class="btn btn-link filterBtn" (click)="ToggleOpenClass()">
       <svg class="icon" data-name="icon - filter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.017 11.871">
         <path id="Path_74" data-name="Path 74"
           d="M13.016,22.82H0l4.849,5.109v6.762l3.318-1.716V27.929ZM5.343,33.878V27.732L1.151,23.314H11.865L7.673,27.732v4.942Z"
@@ -12,7 +12,7 @@
     </button>
   </div>
 
-  <div class="form-group col-md-3 d-md-none d-lg-block">
+  <div class="form-group col-md-3 d-md-none d-none  d-lg-block">
     <label for="inputCity">
       <span i18n="@@spn_sort">Sort</span>
     </label>
@@ -23,12 +23,12 @@
       </option>
     </select>
   </div>
-  <div class="form-group col-md-3 d-md-block d-lg-none">
+  <div class="form-group col-3 d-md-block d-block d-lg-none">
 
       <div class="btn-group">
           <button 
             type="button"
-            class="btn btn-primary dropdwon-toggle"
+            class="btn dropdwon-toggle"
             (click)="ToggledropClass()">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 11.408 12.414">
               <g data-name="icon - sort" transform="translate(0 12.414) rotate(-90)">
@@ -66,7 +66,7 @@
       </div>
   
   </div>
-  <div class="form-group col-md-2 d-md-none d-lg-block">
+  <div class="form-group col-md-2 d-md-none d-none  d-lg-block">
     <label for="inputState" i18n="@@lbl_list">
 
       List</label>
@@ -78,7 +78,7 @@
     </select>
   </div>
 
-  <div class="form-group col-md-7">
+  <div class="form-group col-6 col-sm-7">
     <label class="view-title" i18n="@@spn_view">
 
     View</label>
@@ -140,7 +140,7 @@
 
       <ng-container *ngFor="let item of itemsArr">
         <app-grid  class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item"></app-grid>
-        <app-list class="col-12 col-sm-6 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
+        <app-list class="col-12 col-sm-12 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
 
       </ng-container>
     </div>

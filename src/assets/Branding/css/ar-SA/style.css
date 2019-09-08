@@ -9860,6 +9860,13 @@ a.text-dark:hover, a.text-dark:focus {
   width: 100%;
   -webkit-transition: background-color 0.3s ease 0.1s;
   transition: background-color 0.3s ease 0.1s;
+  height: 13.125rem;
+}
+
+@media (min-width: 992px) {
+  .gResultNK-body {
+    height: 11.875rem;
+  }
 }
 
 .gResultNK-body:hover {
@@ -9867,28 +9874,48 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .gResultNK-type {
-  font-size: 12px;
+  font-size: 10px;
   margin-bottom: 1.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
+@media (min-width: 576px) {
+  .gResultNK-type {
+    font-size: 12px;
+  }
+}
+
 .gResultNK-favIcon {
   font-size: 16px;
+}
+
+@media (max-width: 575px) {
+  .gResultNK-favIcon {
+    font-size: 13px;
+    position: relative;
+    bottom: 5px;
+  }
 }
 
 .gResultNK-title {
   color: #FF6600;
   font-weight: 600;
   margin-bottom: 0.625rem;
-  font-size: 16px;
+  font-size: 12px;
   margin-bottom: 11px;
   display: block;
 }
 
 .gResultNK-title:hover, .gResultNK-title:focus {
   color: #FF6600;
+}
+
+@media (min-width: 576px) {
+  .gResultNK-title {
+    font-size: 16px;
+  }
 }
 
 .gResultNK-auther {
@@ -9960,18 +9987,18 @@ a.text-dark:hover, a.text-dark:focus {
   min-width: 0;
   border: 1px solid rgba(0, 0, 0, 0.125);
   margin-bottom: 0.9375rem;
-  height: 200px;
+  height: 245px;
 }
 
-@media (max-width: 575px) {
+@media (min-width: 576px) {
   .lResultNK {
-    height: 180px;
+    height: 245px;
   }
 }
 
 @media (min-width: 992px) {
   .lResultNK {
-    height: 245px;
+    height: 200px;
   }
 }
 
@@ -10020,22 +10047,56 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .lResultNK-actions {
-  display: block;
-  width: 100%;
-  position: absolute;
+  position: relative;
+  display: inline-block;
+  bottom: 0px;
+  right: 0px;
+  width: auto;
   float: left;
-  left: 10px;
-  bottom: 25px;
-  width: 100px;
-  bottom: 20px;
   -webkit-transition: all 0.3s ease 0.1s;
   transition: all 0.3s ease 0.1s;
 }
 
-.lResultNK-action {
+@media (max-width: 575px) {
+  .lResultNK-actions {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .lResultNK-actions {
+    width: 100%;
+    position: absolute;
+    float: left;
+    right: 10px;
+    width: 100px;
+    bottom: 20px;
+    display: block;
+  }
+}
+
+.lResultNK-actions .centerBox {
   display: block;
+}
+
+@media (min-width: 992px) {
+  .lResultNK-actions .centerBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.lResultNK-action {
+  display: inline-block;
   color: #333333;
   font-size: 0.875rem;
+}
+
+@media (min-width: 992px) {
+  .lResultNK-action {
+    display: block;
+  }
 }
 
 .lResultNK-action a {
@@ -10068,6 +10129,13 @@ a.text-dark:hover, a.text-dark:focus {
 
 .lResultNK-action .text {
   color: #333333 !important;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .lResultNK-action .text {
+    display: inherit;
+  }
 }
 
 .lResultNK-details {
@@ -10160,12 +10228,29 @@ a.text-dark:hover, a.text-dark:focus {
 
 .lResultNK-review {
   font-size: 11px;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  margin-right: 20px;
+}
+
+@media (min-width: 992px) {
+  .lResultNK-review {
+    display: block;
+  }
 }
 
 @media (min-width: 576px) {
   .lResultNK-review {
     font-size: 14px;
     margin-right: 20px;
+  }
+}
+
+@media (max-width: 575px) {
+  .lResultNK-review {
+    top: 6px;
+    float: left;
   }
 }
 
@@ -10214,14 +10299,14 @@ a.text-dark:hover, a.text-dark:focus {
   font-size: 20px;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 992px) {
+@media only screen and (min-width: 320px) and (max-width: 991px) {
   .searchInAuc-content--sidebar {
     width: 100%;
     height: 100vh;
     padding: 15px;
     background-color: #fff;
     position: fixed;
-    left: -100%;
+    right: -100%;
     top: 0;
     opacity: 0;
     z-index: 1000;
@@ -10231,7 +10316,7 @@ a.text-dark:hover, a.text-dark:focus {
     overflow-y: scroll;
   }
   .searchInAuc-content--sidebar.open {
-    left: 0;
+    right: 0;
     opacity: 1;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
@@ -10244,6 +10329,55 @@ a.text-dark:hover, a.text-dark:focus {
     display: block;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
+  }
+}
+
+.filterBtn.btn-link {
+  color: #333333;
+  font-size: 14px;
+}
+
+.filterBtn.btn-link span {
+  padding-right: 7px;
+}
+
+.btn.dropdwon-toggle {
+  background-color: transparent;
+  border-width: 0px;
+  font-size: 12px;
+}
+
+.btn.dropdwon-toggle span {
+  padding-right: 7px;
+}
+
+@media (min-width: 576px) {
+  .btn.dropdwon-toggle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 575px) {
+  .btn.dropdwon-toggle span {
+    position: relative;
+    top: 3px;
+  }
+}
+
+.closeFilter {
+  margin-top: 13px;
+  margin-bottom: 13px;
+  font-size: 12px;
+}
+
+.closeFilter svg {
+  position: absolute;
+  left: 15px;
+}
+
+@media (min-width: 576px) {
+  .closeFilter {
+    font-size: 13px;
   }
 }
 
@@ -11738,22 +11872,44 @@ body .searchNK .ui-widget {
   font-size: 1rem;
 }
 
+.form-row.items-view {
+  margin-top: 20px;
+}
+
+@media (min-width: 992px) {
+  .form-row.items-view {
+    margin-top: 0px;
+  }
+}
+
 .form-row .view-title {
-  display: block;
+  display: none;
   color: #333333;
   font-size: 0.9375rem;
   text-align: left;
   margin-left: 6.8125rem;
 }
 
+@media (min-width: 992px) {
+  .form-row .view-title {
+    display: block;
+  }
+}
+
 .form-row .grid-btn, .form-row .list-btn {
   border-width: 0px;
-  padding: 7px 16px;
+  padding: 7px 10px;
   color: #333333;
   font-size: 0.75rem;
   height: calc(2.25rem + 2px);
   background-color: transparent;
   height: 32px;
+}
+
+@media (min-width: 576px) {
+  .form-row .grid-btn, .form-row .list-btn {
+    padding: 7px 16px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -11817,12 +11973,24 @@ body .searchNK .ui-widget {
   content: "<";
 }
 
+@media (max-width: 575px) {
+  .page-item .page-link[aria-label=First] {
+    display: none;
+  }
+}
+
 .page-item .page-link[aria-label=First] span {
   display: none;
 }
 
 .page-item .page-link[aria-label=First]::before {
   content: "Prev";
+}
+
+@media (max-width: 575px) {
+  .page-item .page-link[aria-label=Last] {
+    display: none;
+  }
 }
 
 .page-item .page-link[aria-label=Last] span {
@@ -11835,6 +12003,13 @@ body .searchNK .ui-widget {
 
 .paginationContainer {
   margin-top: 30px;
+}
+
+@media (max-width: 575px) {
+  .paginationContainer {
+    width: 80%;
+    margin: auto;
+  }
 }
 
 .controlRC {
