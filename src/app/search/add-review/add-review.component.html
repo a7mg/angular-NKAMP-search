@@ -17,7 +17,7 @@
           </ng-template>
 
       <h2 class="addReview-title no-padding no-margin" i18n="@@h2_add_review">Add Review</h2>
-      <div class="addReview-rating">
+      <div class="addReview-rating" style="display: none">
           <ngb-rating [(rate)]="currentRate" [max]="5" (click)="addRating()" [(ngModel)]="currentRate1"></ngb-rating>
       </div>
       <form (ngSubmit)="addComment(content)" #formEle="ngForm">

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BookDetailsService } from '../services/book-details.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -12,19 +13,22 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 })
 export class DetailsComponent implements OnInit {
   lang: string;
-  isOneImage= true;
+  isOneImage = true;
   slides = [];
-  additonalFieldsItems=[];
-  bookDetails = {
-    title: '',
-    description: '',
-    coverImage: '',
-    views_count: 0
-  };
+  additonalFieldsItems = [];
+  bookDetails;
   currentRate: number;
-  constructor(private bookDetailsService: BookDetailsService, private $globalsService: GlobalsService, config: NgbRatingConfig) {
+  requestBody: any;
+
+  constructor(private bookDetailsService: BookDetailsService, private $globalsService: GlobalsService, config: NgbRatingConfig, private route: ActivatedRoute) {
     this.lang = this.$globalsService.UILanguage;
     config.readonly = true;
+
+    this.route.queryParams.subscribe(params => {
+      let details = params["details"];
+      this.requestBody = JSON.parse(details);
+      console.log("details " + details);
+  });
   }
   ngOnInit() {
     const commentsRequestBody = {
@@ -34,18 +38,25 @@ export class DetailsComponent implements OnInit {
       "dataSourceId": "dataSourceId1",
       "materialTypeId": "materialTypeId1",
       "materialTypeName": "materialTypeName1"
-    }
+    };
+
+    this.bookDetailsService.GetItemDetails(this.requestBody).subscribe(data => {
+        console.log("** data book details **" + JSON.stringify(data));
+        this.bookDetails = data;
+
+    });
+
     this.bookDetailsService.getBookDetails(commentsRequestBody).subscribe(  Data  =>{
-      if(Data !== null){
+      if (Data !== null) {
         Data.forEach(DataElement => {
           this.bookDetails.title = DataElement.title;
           this.bookDetails.coverImage = DataElement.coverImage;
           this.bookDetails.description = DataElement.description;
-          this.bookDetails.views_count= DataElement.views_count;
+          this.bookDetails.views_count = DataElement.views_count;
           this.slides.push(this.bookDetails.coverImage);
           this.caculateRating(DataElement.rating_count);
           DataElement.addtionFieldsInDetail.forEach(addtionFieldsElement => {
-            if(addtionFieldsElement.inputHtmlTypeName == "image"){
+            if (addtionFieldsElement.inputHtmlTypeName == 'image') {
               this.isOneImage = false;
               this.slides.push(addtionFieldsElement.insertedData);
             }
@@ -54,7 +65,7 @@ export class DetailsComponent implements OnInit {
           });
         });
       }
-      else{
+      else {
         console.log('no data');
       }
   });
@@ -88,11 +99,11 @@ export class DetailsComponent implements OnInit {
           ]
       }
     }
-    this.bookDetailsService.addFavorite(favoritesRequestBody).subscribe( Data  =>{
-      if(Data !== null){
+    this.bookDetailsService.addFavorite(favoritesRequestBody).subscribe( Data  => {
+      if (Data !== null) {
         console.log('sucess');
       }
-      else{
+      else {
         console.log('no data');
       }
     });

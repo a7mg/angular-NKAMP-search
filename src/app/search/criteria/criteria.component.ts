@@ -51,8 +51,6 @@ export class CriteriaComponent implements OnInit {
     this.AllFields = [];
     this.ContainsData = [];
     this.searchKeyword = [];
-    // this.showitem = [];
-    // this.selectFeild = {} as SearchKeyword;
   }
 
   ngOnInit() {
@@ -94,6 +92,7 @@ export class CriteriaComponent implements OnInit {
     // tslint:disable-next-line: quotemark
     this.$searchService.currentCriteria$.next( this.CriteriaSearch );
     this.CriteriaSearch.pageSize = this.pageSize;
+    this.CriteriaSearch.wantedPage = 0;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
       console.log("^^^res^^^" + data);

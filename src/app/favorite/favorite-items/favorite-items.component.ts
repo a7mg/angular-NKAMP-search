@@ -12,10 +12,13 @@ export class FavoriteItemsComponent implements OnInit, OnDestroy {
 
   @ViewChild('formEle') formElement: NgForm;
   @Output('searchResult') searchedEvent = new EventEmitter<boolean>();
-  isSearch= false;
+  isSearch = false;
   page = 1;
+  pageIndex = 1;
   unSubscribeFavoriteList = new Subscription();
   alldate: any;
+
+
   constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit() {
@@ -32,10 +35,14 @@ export class FavoriteItemsComponent implements OnInit, OnDestroy {
       }
     });
   }
-  sendFavorite(){
+  sendFavorite() {
     // checkboxes
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.unSubscribeFavoriteList.unsubscribe();
+  }
+
+  paginate(event) {
+    console.log(event);
   }
 }
