@@ -9,6 +9,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 @Injectable({
   providedIn: 'root'
 })
+
 export class SearchService {
 
   private childClickedEvent = new BehaviorSubject<string>('');
@@ -23,6 +24,7 @@ export class SearchService {
 
   Url: string;
   public results$ = new BehaviorSubject(null);
+  public btnClicked$ = new Subject();
   public searchConfiguration$ = new BehaviorSubject(null);
   public currentCriteria$ = new BehaviorSubject(null);
   public searchCriteria: any;
@@ -73,7 +75,7 @@ export class SearchService {
 
   getResults(serachCriteria): Observable<any> {
 
-  console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
+    console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
 
   let body = {
     searchProfileId: serachCriteria.searchProfileId,

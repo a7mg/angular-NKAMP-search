@@ -13,7 +13,6 @@ import { SearchCriteria } from '../services/SearchCriteria.Model';
 
 export class ItemsViewComponent implements OnInit {
   @ContentChild(NgbPagination) pagination: NgbPagination;
-
   lang: string;
   genralLoclaizaion = {
     en: 'general',
@@ -89,6 +88,10 @@ export class ItemsViewComponent implements OnInit {
       }
 
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5f66b9ae1c8da914057e0d122564db1d66e0902d
   }
 
   paginate(pageNumber): void {
@@ -120,8 +123,17 @@ export class ItemsViewComponent implements OnInit {
     });
   }
 
+<<<<<<< HEAD
   exampleParent($event) {
     console.log('FAv OutPut :', $event);
+=======
+  ToggleOpenClass() {
+    this.clicked = !this.clicked;
+    this.$searchService.btnClicked$.next(this.clicked);
+  }
+  ToggledropClass(){
+    this.dropClicked = !this.dropClicked;
+>>>>>>> 5f66b9ae1c8da914057e0d122564db1d66e0902d
   }
 
 }
