@@ -10368,6 +10368,7 @@ a.text-dark:hover, a.text-dark:focus {
   margin-top: 13px;
   margin-bottom: 13px;
   font-size: 12px;
+  display: block;
 }
 
 .closeFilter svg {
@@ -10378,6 +10379,12 @@ a.text-dark:hover, a.text-dark:focus {
 @media (min-width: 576px) {
   .closeFilter {
     font-size: 13px;
+  }
+}
+
+@media (min-width: 992px) {
+  .closeFilter {
+    display: none;
   }
 }
 
