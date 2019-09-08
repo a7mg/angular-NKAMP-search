@@ -2,8 +2,9 @@
     <div class="row">
         <div class="col-sm-4 col-12 pl-sm-0 p-0">
             <div class="bookDetails-image" *ngIf="isOneImage == true">
-                <img class="img-fluid" [src]="this.bookDetails.coverImage" alt="bookDetailsImage">
-            </div>
+                <img *ngIf="this.bookDetails.items[0].addtionFieldsInListPage.addtionField[2].insertedData == null" class="img-fluid" src="http://localhost:4200/ar/assets/images/Default-Book-Cover.jpg" alt="bookDetailsImage">
+                <img *ngIf="this.bookDetails.items[0].addtionFieldsInListPage.addtionField[2].insertedData != null" class="img-fluid" [src]="this.bookDetails.items[0].addtionFieldsInListPage.addtionField[2].insertedData" alt="bookDetailsImage">
+              </div>
             <div class="bookDetails-image imageslider" *ngIf="isOneImage == false">
                     <swiper class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)">
                             <div *ngFor="let slide of slides" class="swiper-slide">
@@ -18,7 +19,7 @@
         <div class="col-sm-8 col-12 oneBook-col">
             <div class="oneBook">
                 <h2 class="oneBook-title no-padding no-margin">
-                    {{bookDetails.title}}
+                    {{bookDetails.items[0].title}}
                 </h2><!-- end title -->
                 <div class="oneBook-rating-review">
                     <div class="rating">
@@ -31,10 +32,10 @@
                     </div> <!-- end review -->
                 </div> <!-- end rating and review -->
                 <p class="oneBook-pref no-padding no-margin">
-                   {{bookDetails.description ==''?'No description':bookDetails.description}}
+                   {{bookDetails.items[0].PhysicalDescription ==''?'No description':bookDetails.items[0].PhysicalDescription}}
                 </p> <!-- end paragraph -->
                 <div class="oneBook-descrption">
-                    <div class="row" *ngFor="let additonalFieldsItem of additonalFieldsItems">
+                    <div class="row" *ngFor="let additonalFieldsItem of bookDetails.items[0].addtionFieldsInListPage.addtionField">
                         <div class="col-3">
                             <span class="oneBook-descrption-title">
                                 {{ lang == 'ar' || lang=='ar-SA'  ?  additonalFieldsItem.aName :  (lang == 'fr'? additonalFieldsItem.fName :additonalFieldsItem.eName )}}

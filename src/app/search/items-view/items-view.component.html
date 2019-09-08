@@ -64,7 +64,7 @@
               <defs>
                 <clipPath id="clip-path">
                   <rect width="14" height="13.125" fill="none" />
-                </clipPath> 
+                </clipPath>
               </defs>
               <g data-name="Icon - Grid" clip-path="url(#clip-path)">
                 <g transform="translate(-529 -225)">
@@ -81,7 +81,7 @@
                 </g>
               </g>
             </svg>
-      
+
           </button>
           <button class="list-btn" type="button" [ngClass]="{'active': displayMode === 2}" (click)="onDisplayModeChange(2)">
             <span i18n="@@lbl_list">List</span>
@@ -100,7 +100,7 @@
                   stroke-width="2" />
               </g>
             </svg>
-      
+
           </button>
     </div>
 
@@ -113,7 +113,7 @@
     <div class="row">
 
       <ng-container *ngFor="let item of itemsArr">
-        <app-grid  class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item"></app-grid>
+        <app-grid  class="col-12 col-sm-6 col-md-4 col-lg-4" *ngIf="displayMode === 1" [book-data]="item" ></app-grid>
          <app-list class="col-12 col-sm-6 col-md-12 col-lg-12" *ngIf="displayMode === 2" [book-data]="item"></app-list>
 
       </ng-container>

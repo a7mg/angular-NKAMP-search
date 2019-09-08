@@ -2,7 +2,7 @@
 <section class="searchNK">
   <p-toast></p-toast>
   <header class="searchNK-header">
- 
+
     <div class="row">
       <div class="col-3 col-md-2 col-lg-2">
         <h3 class="searchNK-header-title" i18n="@@lblsearch">Search </h3>
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="searchNK-savedSearchInput"  [ngClass]="{'searchNK-saveSearchClicked': !clicked}" style="border:0px red solid">
                 <form (ngSubmit)="getSaveSearchInput()" #formEle="ngForm">
                   <input type="text"
@@ -64,7 +64,11 @@
         <div class="border-item">
 
           </div>
-        <a [routerLink]="['/favorite']" routerLinkActive="router-link-active" class="btn btn-link btn-icon favorite-btn">
+
+
+
+
+         <a [routerLink]="['/favorite']" routerLinkActive="router-link-active" class="btn btn-link btn-icon favorite-btn">
           <span class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="26" viewBox="0 0 28 20">
               <g data-name="Group 56" transform="translate(-1076.221 -322)">

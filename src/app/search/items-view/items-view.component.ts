@@ -13,7 +13,7 @@ import { SearchCriteria } from '../services/SearchCriteria.Model';
 
 export class ItemsViewComponent implements OnInit {
   @ContentChild(NgbPagination) pagination: NgbPagination;
- 
+
   lang: string;
   genralLoclaizaion = {
     en: 'general',
@@ -24,9 +24,9 @@ export class ItemsViewComponent implements OnInit {
   pageSize = 12;
   generalTXT: string;
   pageIndex = 1;
-  displayMode:number = 1;
+  displayMode = 1;
   itemsArr: Array<any>;
-  collectionSizeT; 
+  collectionSizeT: any;
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
   materialTypesConfiguration: Array<any>;
@@ -35,7 +35,7 @@ export class ItemsViewComponent implements OnInit {
     this.generalTXT =  this.genralLoclaizaion.en;
     this.generalTXT =  this.lang === 'ar' || this.lang === 'ar-SA'  ?  this.genralLoclaizaion.ar : this.generalTXT;
     this.generalTXT = this.lang === 'fr'  ?  this.genralLoclaizaion.fr : this.generalTXT;
-    this.searchKeywords = []; 
+    this.searchKeywords = [];
     this.itemsArr = [];
     this.materialTypes = [];
     this.materialTypesConfiguration = [];
@@ -55,15 +55,14 @@ export class ItemsViewComponent implements OnInit {
         data.MaterialTypes.forEach(element => {
           this.materialTypesConfiguration.push(element);
         });
-
-      } 
+      }
     });
 
 
     this.$searchService.results$.subscribe(data => {
       this.materialTypes = [];
       this.itemsArr = [];
-       console.log('SearchService Results222222 ', data);
+       console.log('SearchService Results222222 ' + data);
       if (data !== null) {
         // getPageFromService() {
 
@@ -87,18 +86,15 @@ export class ItemsViewComponent implements OnInit {
           selectedMatrial.totalItems = value.totalItems;
           this.materialTypes.push(selectedMatrial);
         });
- 
       }
 
     });
-    
   }
 
   paginate(pageNumber): void {
-    debugger;
     console.log('Page Number', pageNumber);
-    this.$searchService.nextPageCriteria.wantedPage = pageNumber;
-    this.pageIndex= pageNumber;
+    this.$searchService.nextPageCriteria.wantedPage = pageNumber - 1;
+    console.log("** baqer ** " + JSON.stringify(this.$searchService.nextPageCriteria));
     this.getNextPageResults();
   }
   onDisplayModeChange(mode: number): void {
@@ -119,9 +115,13 @@ export class ItemsViewComponent implements OnInit {
   }
 
   getNextPageResults(): void {
-    this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
+    this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
       this.$searchService.results$.next(data);
     });
+  }
+
+  exampleParent($event) {
+    console.log('FAv OutPut :', $event);
   }
 
 }

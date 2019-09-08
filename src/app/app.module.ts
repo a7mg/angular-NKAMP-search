@@ -36,7 +36,6 @@ const buttonsConfig = {
     HttpClientModule,
     NKAMPSearchSharedModule.forRoot(),
     ShareButtonsModule.forRoot(options, buttonsConfig)
-    
   ],
   providers: [
     {

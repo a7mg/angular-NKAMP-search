@@ -103,7 +103,10 @@ this.getFavorite();
     });
   }
 
-  getPublisher(item){
+  getPublisher(item) {
     return item._source.itemListPageInformation.addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
+  }
+  paginate(event) {
+    console.log(event);
   }
 }
