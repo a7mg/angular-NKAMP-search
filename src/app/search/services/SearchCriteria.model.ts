@@ -22,6 +22,7 @@ export interface KeywWordOrder {
 export interface SearchCriteria {
   searchProfileId: string;
   pageSize: number;
+  wantedPage: number;
   dataSourcesId: string[];
   searchKeyWords: SearchKeyWordDetails[];
   facetsFilter: FacetFilter[];

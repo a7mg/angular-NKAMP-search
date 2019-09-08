@@ -107,11 +107,13 @@ export class FavoriteSearchComponent implements OnInit {
     });
   }
 
-  getPublisher(item){
+  getPublisher(item) {
+    // tslint:disable-next-line:max-line-length
     return item._source.itemListPageInformation.addtionslFields.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
   }
+
   paginate(pageNumber): void {
-    debugger;
+
     console.log('Page Number', pageNumber);
     this.favoriteService.nextPageCriteria.wantedPage = pageNumber;
     this.body.wantedPage= pageNumber;
@@ -119,7 +121,7 @@ export class FavoriteSearchComponent implements OnInit {
     this.getNextPageResults();
   }
   getNextPageResults(): void {
-    debugger;
+
     this.favoriteService.getFavoriteList(this.body).subscribe( Data  => {
       this.favoriteService.FavoriteList.next(Data);
     });

@@ -63,10 +63,17 @@
                            </tbody>
                        </table>
                     </div>
-                    <div class="Favorite-pagination">
+
+                    <div class="paginationContainer">
+                        <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
+                          [collectionSize]="9" [pageSize]="5" [page]="1" [maxSize]="4" [rotate]="true" [boundaryLinks]="true">
+                        </ngb-pagination>
+                      </div>
+
+                    <!-- <div class="Favorite-pagination">
                         <ngb-pagination [collectionSize]="20" [maxSize]="5" [pageSize]="2" [(page)]="page" [boundaryLinks]="true">
                         </ngb-pagination>
-                     </div>
+                     </div> -->
                 </div>
                 <div class="col-12">
                     <div class="Favorite-sendToEmail">

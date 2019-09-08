@@ -90,7 +90,7 @@
                            <tr>
                              <th class="Favorite-table-headItem" i18n="@@lbl_All">All</th>
                              <th class="Favorite-table-headItem" i18n="@@lbl_Title">Title</th>
-                             <th class="Favorite-table-headItem hideEle" i18n="@@lbl_Year">Publisher</th>
+                             <th class="Favorite-table-headItem hideEle">الناشر</th>
                              <th class="Favorite-table-headItem" i18n="@@lbl_Year">Year</th>
                              <th class="Favorite-table-headItem hideEle" i18n="@@lbl_Date">Date</th>
                              <th class="Favorite-table-headItem">
@@ -149,7 +149,12 @@
                       <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
                             [collectionSize]="collectionSizeT" [pageSize]="pageSize"  [(page)]="pageIndex" [maxSize]="2" [rotate]="true" [boundaryLinks]="true">
                       </ngb-pagination>
-                  </div>
+                   </div> -->
+                   <div class="paginationContainer">
+                      <ngb-pagination class="d-flex justify-content-center searchNk-paginate" (pageChange)="paginate($event)"
+                        [collectionSize]="9" [pageSize]="5" [page]="1" [maxSize]="4" [rotate]="true" [boundaryLinks]="true">
+                      </ngb-pagination>
+                    </div>
               </div>
               <div class="col-12">
                   <div class="Favorite-sendToEmail">
