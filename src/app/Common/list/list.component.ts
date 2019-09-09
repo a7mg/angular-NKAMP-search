@@ -1,7 +1,8 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { BookDetailsService } from 'src/app/search/services/book-details.service';
-
+import '../../../assets/js/sosialsharing.js'
+declare function sharePostToFaceBook(pageUrl: string, postTitle: string,  postDescription: string , postImage: string ): any;
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -12,7 +13,11 @@ export class ListComponent implements OnInit {
   additionalField1: any;
   additionalField2: any;
   isFav = false;
-
+  BookModel={
+    title:'hager',
+    disc:'',
+    imageURL:''
+  }
   constructor( private $bookDetailFav: BookDetailsService) { }
 
   ngOnInit() {
@@ -48,4 +53,8 @@ export class ListComponent implements OnInit {
       }
     });
   }
+  sharefacebook() {
+    sharePostToFaceBook(location.href, this.BookModel.title, this.BookModel.disc, this.BookModel.imageURL );
+  }
+  
 }
