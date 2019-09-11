@@ -12201,6 +12201,62 @@ body .searchNK .ui-widget {
   display: none;
 }
 
+.lResultNK-action.share-button {
+  position: relative;
+}
+
+.lResultNK-action.share-button .toggle {
+  position: relative;
+  z-index: 10;
+  display: block;
+}
+
+.lResultNK-action.share-button .toggle-input {
+  display: none;
+}
+
+.lResultNK-action.share-button .network-list li {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  opacity: 0;
+  -webkit-transition: all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24);
+  transition: all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24);
+}
+
+.lResultNK-action.share-button .network-list li svg {
+  margin-left: 0.9375rem;
+}
+
+.lResultNK-action.share-button .network-list a {
+  position: relative;
+  display: block;
+}
+
+.lResultNK-action.share-button .network-list .twitter a:before {
+  color: #00C3F3;
+}
+
+.lResultNK-action.share-button .network-list .facebook a:before {
+  color: #2C609B;
+}
+
+.lResultNK-action.share-button .toggle-input:checked ~ .network-list li {
+  opacity: 1;
+}
+
+.lResultNK-action.share-button .toggle-input:checked ~ .network-list li:nth-child(1) {
+  left: 125px;
+}
+
+.lResultNK-action.share-button .toggle-input:checked ~ .network-list li:nth-child(2) {
+  left: 175px;
+}
+
 .bookDetails {
   margin-top: 2.5rem;
 }
