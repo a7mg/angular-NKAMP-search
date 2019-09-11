@@ -11,8 +11,8 @@
     <h6 class="lResultNK-type">
         {{bookData.materialTypeId}}
     </h6>
-    <a *ngIf="bookData.Title.length >= 90" [routerLink]="[ '/' ]" class="lResultNK-title"> {{ (bookData.Title | slice:0:20)+'..'}} </a>
-    <a *ngIf="bookData.Title.length < 90" [routerLink]="[ '/' ]" class="lResultNK-title"> {{ bookData.Title }} </a>
+    <a *ngIf="bookData.Title.length >= 90" [routerLink]="[ '/' ]" class="lResultNK-title" #bookTitle> {{ (bookData.Title | slice:0:20)+'..'}} </a>
+    <a *ngIf="bookData.Title.length < 90" [routerLink]="[ '/' ]" class="lResultNK-title" #bookTitle> {{ bookData.Title }} </a>
     <h5 class="lResultNK-auther">{{bookData.Author}}</h5>
     <div class="lResultNK-date">{{additionalField2}}</div>
     <div class="lResultNK-date">{{additionalField1}}</div>
@@ -82,7 +82,14 @@
                 <g>
                 </g>
             </svg>
-        </a>
+          </a>
+          <!-- test twiiter -->
+          <a id="twitterShare" (click)="shareTwitter()"
+              class="twitterBtn" href="{{ selectEl }}"  target="_blank" alt ="Tweet this pen">
+              <i class="fa fa-twitter"></i>
+              <span class="btn-text">Tweet</span>
+          </a>
+
           <a [routerLink]="[ '/' ]" class="lResultNK-action">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 18 17.665">
               <g id="icon_-_Borrow" data-name="icon - Borrow" transform="translate(0 -1)">

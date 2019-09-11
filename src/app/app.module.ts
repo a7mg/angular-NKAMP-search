@@ -9,7 +9,6 @@ import { NkampInterceptor } from './interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NKAMPSearchSharedModule } from './NKAMP-Search-shared/NKAMP-Search-shared.module';
 // import { ShareButtonsModule } from '@ngx-share/buttons'
-
 @NgModule({
   declarations: [
     AppComponent,
