@@ -4,6 +4,7 @@ import { BookDetailsComponent } from './search/book-details/book-details.compone
 import { ResultsAreaComponent } from './search/results-area/results-area.component';
 import { SearchComponent } from './search/search.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'search', pathMatch: 'full'},
   { path: 'search', loadChildren: './search/search.module#SearchModule'},
