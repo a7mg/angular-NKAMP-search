@@ -1,6 +1,8 @@
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { BookDetailsService } from 'src/app/search/services/book-details.service';
+import '../../../assets/js/sosialsharing.js'
+declare function sharePostToFaceBook(pageUrl: string, postTitle: string,  postDescription: string , postImage: string ): any;
 import { SearchService } from 'src/app/search/services/search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 
@@ -11,9 +13,18 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 export class ListComponent implements OnInit {
   @Input('book-data') bookData;
+  @ViewChild('bookTitle') bookTitle: ElementRef;
   additionalField1: any;
   additionalField2: any;
   isFav = false;
+  albumTitle: any;
+  selectEl;
+  BookModel={
+    title:'hager',
+    disc:'',
+    imageURL:''
+  }
+
 
   constructor( private $bookDetailFav: BookDetailsService, private $messageService: MessageService, private $searchService: SearchService) { }
 
@@ -50,6 +61,21 @@ export class ListComponent implements OnInit {
       }
     });
   }
+  sharefacebook() {
+    sharePostToFaceBook(location.href, this.BookModel.title, this.BookModel.disc, this.BookModel.imageURL );
+  }
+  // $('#twitterShare').on('click', function() {
+  //   
+  //   $("#twitterShare").attr("href","https://twitter.com/intent/tweet?url="+location.href+"&amp;text="+albumTitle)
+  // });
+   shareTwitter(){
+    debugger;
+    console.log(this.bookTitle.nativeElement.innerHTML);
+    this.albumTitle = this.bookTitle.nativeElement.innerHTML;  
+    this.selectEl= "https://twitter.com/intent/tweet?url="+location.href+"&amp;text="+this.albumTitle;
+    console.log(this.selectEl);
+   }
+  
 
   showSuccess() {
     this.$messageService.add({ severity: 'success', summary: 'رسالة نجاح', detail: 'تم تقديم طلب إستعارة بنجاح',life:3600000 });
