@@ -11,11 +11,23 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 })
 
 export class SearchService {
+
+  private childClickedEvent = new BehaviorSubject<string>('');
+  emitfavBadgeEvent(msg: any) {
+    this.childClickedEvent.next(msg);
+ }
+
+ favEventListner() {
+  return this.childClickedEvent.asObservable();
+}
+
+
   Url: string;
   public results$ = new BehaviorSubject(null);
   public btnClicked$ = new Subject();
   public searchConfiguration$ = new BehaviorSubject(null);
   public currentCriteria$ = new BehaviorSubject(null);
+  public searchCriteria: any;
   public currentFacetsConfiguration: Array<any>;
   public userProfile = {
     searchProfile_id: '996ac773-2701-44ec-a377-bd52838de4dc',
@@ -65,26 +77,25 @@ export class SearchService {
 
     console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
 
-    let body = {
-      searchProfileId: serachCriteria.searchProfileId,
-      pageSize: serachCriteria.pageSize,
-      fromPage: 1,
-      dataSourcesId: serachCriteria.dataSourcesId,
-      searchKeyWords: serachCriteria.searchKeyWords,
-      facetsFilter: [],
-      keywWordsOrderBy: [
-        {
-          keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
-          keywWordType: "4",
-          keywWordValue: "value",
-          isAcendening: true
-        }
-      ]
-    };
-    console.log("**body **" + JSON.stringify(body));
-
-    return this.http.post<any>(this.Url + 'MakeNewSearch', body);
-}
+  let body = {
+    searchProfileId: serachCriteria.searchProfileId,
+    pageSize: serachCriteria.pageSize,
+    fromPage: serachCriteria.wantedPage,
+    dataSourcesId: serachCriteria.dataSourcesId,
+    searchKeyWords: serachCriteria.searchKeyWords,
+    facetsFilter: [],
+    keywWordsOrderBy: [
+      {
+        keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
+        keywWordType: "4",
+        keywWordValue: "value",
+        isAcendening: true
+      }
+    ]
+  };
+  console.log("**body **" + JSON.stringify(body));
+  return this.http.post<any>(this.Url + 'MakeNewSearch', body);
+  }
 
   getNextPage(): Observable<any> {
     console.log('GetNextPageResult');
@@ -167,4 +178,22 @@ export class SearchService {
     );
   }
 
+  borrow(data): Observable<any> {
+
+    let body = {
+      userId: this.userProfile.userId,
+      anonymous: true,
+      email: this.userProfile.email,
+      primaryItemSourceId: data.itemSourceId,
+      itemIndexId: data.itemSourceId,
+      dataSourceName: data.dataSourceName,
+      dataSourceId: data.dataSourceId,
+      materialTypeId: data.materialTypeId,
+      materialTypeName: 'كتب',
+      borrowDate: "2019-09-04",
+      status: "approved",
+      borrowApprovedBy: "NKAMP ADMIN TEAM"
+    };
+    return this.http.post<any>(this.Url + 'BorrowRequest', body);
+    }
 }

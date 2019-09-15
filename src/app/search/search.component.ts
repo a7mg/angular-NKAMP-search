@@ -14,7 +14,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
   providers: [MessageService]
 })
 export class SearchComponent implements OnInit {
-  
+
   @ViewChild('formEle') formElement: NgForm;
   lang: string;
   isLoading = false;
@@ -46,6 +46,13 @@ export class SearchComponent implements OnInit {
     }
 
   ngOnInit() {
+
+    this.$searchService.favEventListner().subscribe(info => {
+      console.log('toto', info); // here you get the message from Child component
+      this.getFavoriteBadge();
+   });
+
+
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
     this.addQueryRequestBody.email = this.$searchService.userProfile.email;
     this.addQueryRequestBody.anonymous = this.$searchService.userProfile.anonymous;
@@ -72,24 +79,15 @@ export class SearchComponent implements OnInit {
       }
     });
     // save search
-    this.getquerySavesearch()
+    this.getquerySavesearch();
 
-    const body = {
-      userId: "albaqer_naseej", 
-      pageSize: 5,
-      wantedPage: 0
-    };
+    this.getFavoriteBadge();
 
-    this.favoriteService.getFavoriteList(body).subscribe( response  => {
-      if (response !== null) {
-        console.log(response);
-        this.favoriteBadge = response.hits.total;
-      //  console.log("yasmin",this.favoriteBadge);
-      } else {
-        console.log('no data');
-      }
-    });
+
   }
+
+
+
 
   getquerySavesearch(){
     this.getQueryValues=[];
@@ -142,7 +140,7 @@ export class SearchComponent implements OnInit {
     console.log('this.addQueryRequestBody', this.addQueryRequestBody);
     this.$searchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
       if (data.id != null) {
-        this.getquerySavesearch()
+        this.getquerySavesearch();
         console.log('addQuery respond', data);
       } else {
         console.log('no data');
@@ -177,5 +175,26 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  getFavoriteBadge() {
+
+    const body = {
+      userId: "albaqer_naseej",
+      pageSize: 5,
+      wantedPage: 0
+    };
+
+
+    this.favoriteService.getFavoriteList(body).subscribe( response  => {
+      if (response !== null) {
+        console.log(response);
+        this.favoriteBadge = response.hits.total;
+
+      //  console.log("yasmin",this.favoriteBadge);
+      } else {
+        console.log('no data');
+      }
+    });
+
+  }
 
 }

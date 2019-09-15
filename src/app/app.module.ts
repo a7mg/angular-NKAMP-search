@@ -21,8 +21,7 @@ import { NKAMPSearchSharedModule } from './NKAMP-Search-shared/NKAMP-Search-shar
     AppRoutingModule,
     HttpClientModule,
     // ShareButtonsModule,
-    NKAMPSearchSharedModule.forRoot(),
-    
+    NKAMPSearchSharedModule.forRoot()
   ],
   providers: [
     {
