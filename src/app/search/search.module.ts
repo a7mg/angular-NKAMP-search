@@ -28,6 +28,7 @@ import { CategoryComponent } from './facets/gategory/category.component';
 import { EventEmitterService } from './services/event-emitter.service';
 import { FavoriteBadgeComponent } from './favorite-badge/favorite-badge.component';
 
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 1,
