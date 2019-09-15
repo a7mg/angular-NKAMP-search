@@ -19,6 +19,9 @@ export class DetailsComponent implements OnInit {
   bookDetails;
   currentRate: number;
   requestBody: any;
+  ratingDegree;
+  requestBodyForRating: any;
+
 
   constructor(private bookDetailsService: BookDetailsService, private $globalsService: GlobalsService, config: NgbRatingConfig, private route: ActivatedRoute) {
     this.lang = this.$globalsService.UILanguage;
@@ -27,17 +30,25 @@ export class DetailsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let details = params["details"];
       this.requestBody = JSON.parse(details);
-      console.log("details " + details);
+      this.requestBodyForRating = JSON.stringify(this.requestBody.searchKeyWords[0]);
+      console.log('test rating view in detail' + this.requestBodyForRating);
+      // const rateData =  JSON.stringify(this.requestBody.searchKeyWords);
+      // this.requestBodyForRating = rateData;
+      // console.log('ddddd' + this.requestBodyForRating);
+
   });
   }
   ngOnInit() {
-    const commentsRequestBody = {
-      "primaryItemSourceId": "primaryItemSourceId1",
-      "itemIndexId": "itemIndexId1",
-      "dataSourceName": "dataSourceName1",
-      "dataSourceId": "dataSourceId1",
-      "materialTypeId": "materialTypeId1",
-      "materialTypeName": "materialTypeName1"
+
+
+
+    const ratingRequestBody = {
+      primaryItemSourceId: this.requestBodyForRating.primaryItemSourceId,
+      itemIndexId: this.requestBodyForRating.itemIndexId,
+      dataSourceName: this.requestBodyForRating.dataSourceName,
+      dataSourceId: this.requestBodyForRating.dataSourceId,
+      materialTypeId: this.requestBodyForRating.materialTypeId,
+      materialTypeName: this.requestBodyForRating.materialTypeName
     };
 
     this.bookDetailsService.GetItemDetails(this.requestBody).subscribe(data => {
@@ -46,29 +57,39 @@ export class DetailsComponent implements OnInit {
 
     });
 
-    this.bookDetailsService.getBookDetails(commentsRequestBody).subscribe(  Data  =>{
-      if (Data !== null) {
-        Data.forEach(DataElement => {
-          this.bookDetails.title = DataElement.title;
-          this.bookDetails.coverImage = DataElement.coverImage;
-          this.bookDetails.description = DataElement.description;
-          this.bookDetails.views_count = DataElement.views_count;
-          this.slides.push(this.bookDetails.coverImage);
-          this.caculateRating(DataElement.rating_count);
-          DataElement.addtionFieldsInDetail.forEach(addtionFieldsElement => {
-            if (addtionFieldsElement.inputHtmlTypeName == 'image') {
-              this.isOneImage = false;
-              this.slides.push(addtionFieldsElement.insertedData);
-            }
-            this.additonalFieldsItems.push(addtionFieldsElement);
-            this.additonalFieldsItems.sort((a, b) => (a.fieldOrderPage > b.fieldOrderPage) ? 1 : -1);
-          });
-        });
-      }
-      else {
-        console.log('no data');
-      }
-  });
+
+
+    this.bookDetailsService.getComment(ratingRequestBody).subscribe(Data  => {
+      console.log('requestBodyForRating' + ratingRequestBody);
+      this.ratingDegree = Data[0].rating_count;
+      console.log('rating in detail' + this.ratingDegree);
+       // console.log('requestBodyForRating ' + this.requestBodyForRating);
+      this.caculateRating(this.ratingDegree);
+    });
+
+  //   this.bookDetailsService.getBookDetails(commentsRequestBody).subscribe(  Data  =>{
+  //     if (Data !== null) {
+  //       Data.forEach(DataElement => {
+  //         this.bookDetails.title = DataElement.title;
+  //         this.bookDetails.coverImage = DataElement.coverImage;
+  //         this.bookDetails.description = DataElement.description;
+  //         this.bookDetails.views_count = DataElement.views_count;
+  //         this.slides.push(this.bookDetails.coverImage);
+  //         this.caculateRating(DataElement.rating_count);
+  //         DataElement.addtionFieldsInDetail.forEach(addtionFieldsElement => {
+  //           if (addtionFieldsElement.inputHtmlTypeName == 'image') {
+  //             this.isOneImage = false;
+  //             this.slides.push(addtionFieldsElement.insertedData);
+  //           }
+  //           this.additonalFieldsItems.push(addtionFieldsElement);
+  //           this.additonalFieldsItems.sort((a, b) => (a.fieldOrderPage > b.fieldOrderPage) ? 1 : -1);
+  //         });
+  //       });
+  //     }
+  //     else {
+  //       console.log('no data');
+  //     }
+  // });
 
   }
   addToFavorites(){
@@ -98,21 +119,27 @@ export class DetailsComponent implements OnInit {
               }
           ]
       }
-    }
+    };
+
     this.bookDetailsService.addFavorite(favoritesRequestBody).subscribe( Data  => {
       if (Data !== null) {
         console.log('sucess');
-      }
-      else {
+      } else {
         console.log('no data');
       }
     });
   }
 
-  caculateRating(ratingList){
-    let totalRating = ratingList.l1Count + ratingList.l2Count + ratingList.l3Count + ratingList.l4Count + ratingList.l5Count;
-    let OverAllRating = (5*ratingList.l1Count + 4*ratingList.l2Count + 3*ratingList.l3Count + 2*ratingList.l4Count + 1*ratingList.l5Count) / (totalRating);
-    this.currentRate= Math.round(OverAllRating);
+  caculateRating(ratingList) {
+    console.log('ratingList' + JSON.stringify(ratingList));
+    const totalRating = ratingList.l1Count + ratingList.l2Count + ratingList.l3Count + ratingList.l4Count + ratingList.l5Count;
+
+    // tslint:disable-next-line:max-line-length
+    const OverAllRating = ( 1 * ratingList.l1Count + 2 * ratingList.l2Count + 3 * ratingList.l3Count + 4 * ratingList.l4Count + 5 * ratingList.l5Count) / (totalRating);
+    console.log('OverAllRating' + OverAllRating);
+    // this.currentRate = Math.round(OverAllRating);
+    // this.currentRate = Math.round(ratingList);
+    this.ratingDegree = OverAllRating;
   }
 
 

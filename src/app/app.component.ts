@@ -8,6 +8,7 @@ import { AppConfigService } from './NKAMP-Search-shared/services/app-config.serv
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  currentRate = 8;
   headerTitle = 'NKAMP Header';
   footerTitle = 'NKAMP Footer';
   NavMode = NavigationMode;

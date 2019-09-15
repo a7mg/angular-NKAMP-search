@@ -40,13 +40,15 @@ export class AddReviewComponent implements OnInit {
   };
 addRatingRequestBody= {
     "primaryItemSourceId": "primaryItemSourceId1",
-    "itemIndexId": "itemIndexId1",
+    "itemIndexId": "281796",
     "dataSourceName": "dataSourceName1",
     "dataSourceId": "dataSourceId1",
     "materialTypeId": "materialTypeId1",
     "materialTypeName": "materialTypeName1",
     "Rate": "5"
   };
+
+
 
   constructor(private bookDetailsService: BookDetailsService,
               config: NgbModalConfig,
@@ -69,8 +71,7 @@ addRatingRequestBody= {
         if ( Data !== null) {
            // this.modalService.open(content);
            console.log('comment added');
-        }
-        else {
+        } else {
           console.log('no data');
         }
       });
@@ -80,14 +81,14 @@ addRatingRequestBody= {
     }
   }
   addRating() {
-    this.addRatingRequestBody.Rate= this.currentRate1.toString();
+    console.log('addRating ffff');
+    this.addRatingRequestBody.Rate  = this.currentRate1.toString();
     console.log(parseInt(this.addRatingRequestBody.Rate));
-    this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  =>{
+    this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  => {
       console.log("Rate rate",Data);
-      if(Data !==  null){
+      if ( Data !==  null){
         console.log("sucess");
-      }
-      else{
+      } else {
         console.log('no data');
       }
     });

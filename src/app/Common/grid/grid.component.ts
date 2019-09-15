@@ -15,6 +15,7 @@ export class GridComponent implements OnInit {
   @Input('book-data') bookData;
 
   // @Output() exampleOutPut = new EventEmitter<any>();
+  currentRate = 8;
   additionalField: any;
   isFav = false;
   favoriteBadge: any;
