@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import {
   Criteria,
@@ -37,6 +37,9 @@ export class CriteriaComponent implements OnInit {
   AllCriteriaSearch: AllCriteriaSearch;
   lang: string;
   searchKeyword: SearchKeyword[];
+  keywords =[];
+  kw ='';
+  isShown = true;
   //isActive = false;
 
   constructor(
@@ -94,6 +97,21 @@ export class CriteriaComponent implements OnInit {
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.wantedPage = 0;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
+    console.log("***** Hamza " + JSON.stringify(this.CriteriaSearch));
+    this.CriteriaSearch.searchKeyWords.forEach(element => {
+        let result = this.searchKeyword.filter(word => word.id == element.searchKeyWordId);
+        let keyParam = (this.lang == 'ar' || this.lang=='ar-SA')  ?  result[0].aName :  (this.lang == 'fr'? result[0].fName :result[0].eName )
+        this.keywords.push(
+          {
+            key: keyParam,
+            value: element.keyWordValue
+          }
+        );
+        this.kw = this.kw  + ' ' +  keyParam + ' : ' + element.keyWordValue + ' | ' ;
+    });
+    this.isShown = false;
+    //console.log("**** Hamza 2 " + JSON.stringify(this.keywords));
+
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
       console.log("^^^res^^^" + data);
       this.$searchService.results$.next(data);
