@@ -17,7 +17,7 @@ export class CategoryComponent implements OnInit {
   showAll = false;
   maxShowing = 6;
   totalOfAllItems = 0;
-  
+
   isCollapsed = false;
   isVituailizationActive = false;
   config = {
@@ -30,16 +30,14 @@ export class CategoryComponent implements OnInit {
     data: []
   };
   data: any;
-// variables for radio button
+  // variables for radio button
   radioSel: any;
   radioSelected: string;
   radioSelectedString: string;
 
   @Input('facetOption') facetOption;
-  constructor(private $searchService: SearchService,
-              private $globalsService: GlobalsService,
-              private $formBuilder: FormBuilder) {
-                this.lang = this.$globalsService.UILanguage;
+  constructor(private $searchService: SearchService, private $globalsService: GlobalsService, private $formBuilder: FormBuilder) {
+    this.lang = this.$globalsService.UILanguage;
     this.masterSelected = false;
     this.checklist = [];
     this.getCheckedItemList();
@@ -47,17 +45,13 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.facetOption.values.forEach((o, i) => {
-      this.checklist.push({ id: o.id, value: o.facetValue , isSelected: false });
+      this.checklist.push({ id: o.id, value: o.facetValue, isSelected: false });
     });
-     console.log('category facet111111', this.facetOption);
     this.facetOption.values.forEach(element => {
       this.totalOfAllItems += element.totalItems;
       this.chartData.labels.push(element.facetValue);
       this.chartData.data.push(element.totalItems);
-      // console.log('hager ', this.chartData.labels);
-      // console.log(' yassmin', this.chartData.data);
     });
-    // console.log('this element facetOption', this.facetOption.values);
     this.config.isAllowMultiSelection = !this.facetOption.isAllowMultipeSelection;
     this.config.isPiChart = this.facetOption.isShowPiChart;
     this.config.isVituailization = this.facetOption.isShowVituailization;
@@ -65,7 +59,7 @@ export class CategoryComponent implements OnInit {
 
     this.data = {
       labels: [...this.chartData.labels],
-      datasets: [ 
+      datasets: [
         {
           data: [...this.chartData.data],
           backgroundColor: [
@@ -89,7 +83,7 @@ export class CategoryComponent implements OnInit {
   //   });
 
   //   this.addFacets();
-  //   console.log('this.checklist f ', this.checklist);
+  //   //console.log('this.checklist f ', this.checklist);
   // }
 
   // private addFacets() {
@@ -146,17 +140,14 @@ export class CategoryComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let criteria ;
+    let criteria;
     this.$searchService.currentCriteria$.subscribe(data => {
-      criteria =  data;
+      criteria = data;
     });
-    if (criteria.facetsFilter === undefined) {criteria.facetsFilter = []; }
+    if (criteria.facetsFilter === undefined) { criteria.facetsFilter = []; }
     this.checkedList.forEach(element => {
-      criteria.facetsFilter.push(element);
+      criteria.facetsFilter.push(element);// push without checking if the el exists !
     });
     this.$searchService.currentCriteria$.next(criteria);
-    console.log('catgory this.criteria ', criteria);
-
   }
-
 }
