@@ -41,16 +41,13 @@ export class SearchComponent implements OnInit {
     private $messageService: MessageService,
     private $eventEmitterService: EventEmitterService,
     private $globalsService: GlobalsService) {
-      this.lang = this.$globalsService.UILanguage;
-      console.log("site lang is",this.lang);
-    }
+    this.lang = this.$globalsService.UILanguage;
+  }
 
   ngOnInit() {
-
     this.$searchService.favEventListner().subscribe(info => {
-      console.log('toto', info); // here you get the message from Child component
       this.getFavoriteBadge();
-   });
+    });
 
 
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
@@ -59,16 +56,12 @@ export class SearchComponent implements OnInit {
     this.$searchService.currentCriteria$.subscribe((data) => {
       if (data !== null) {
         this.isSavedSearchDisabled = false;
-        // tslint:disable-next-line: quotemark
         this.addQueryRequestBody.query_syntax = JSON.stringify(data).replace(/"/g, "'");
-        // console.log('this is cira data 45', this.addQueryRequestBody);
       } else {
-        console.log('no data');
       }
     });
     const searchProfile = { SearchProfile_id: this.$searchService.userProfile.searchProfile_id };
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
-      console.log('getSearchConfiguration ', data);
       this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
     });
@@ -80,42 +73,35 @@ export class SearchComponent implements OnInit {
     });
     // save search
     this.getquerySavesearch();
-
     this.getFavoriteBadge();
-
-
   }
 
 
 
 
-  getquerySavesearch(){
-    this.getQueryValues=[];
+  getquerySavesearch() {
+    this.getQueryValues = [];
     this.$searchService.getQuery({ userId: this.$searchService.userProfile.userId }).subscribe((data) => {
-      console.log("getQuery,getQuery",data);
-     if (data != null) {
-       if (data.Queries != null) {
-         data.Queries.forEach(element => {
-           this.getQueryValues.push(element);
-         });
-       } else {
-         data.forEach(element => {
-           this.getQueryValues.push(element);
-         });
-       }
-
-       console.log("getQuery,getQuery222",this.getQueryValues);
-     } else {
-       console.log('no data');
-     }
-   });
+      if (data != null) {
+        if (data.Queries != null) {
+          data.Queries.forEach(element => {
+            this.getQueryValues.push(element);
+          });
+        } else {
+          data.forEach(element => {
+            this.getQueryValues.push(element);
+          });
+        }
+      } else {
+      }
+    });
   }
 
   showSuccess() {
-    this.$messageService.add({ severity: 'success', summary: 'رسالة صحيحة', detail: 'تم حفظ البيانات بنجاح',life:3600000 });
+    this.$messageService.add({ severity: 'success', summary: 'رسالة صحيحة', detail: 'تم حفظ البيانات بنجاح', life: 3600000 });
   }
   showError() {
-    this.$messageService.add({ severity: 'error', summary: 'رسالة خطأ', detail: 'لم يتم حفظ البيانات بشكل صحيح',life:3600000 });
+    this.$messageService.add({ severity: 'error', summary: 'رسالة خطأ', detail: 'لم يتم حفظ البيانات بشكل صحيح', life: 3600000 });
   }
 
 
@@ -124,7 +110,7 @@ export class SearchComponent implements OnInit {
     this.formElement.reset();
   }
 
-  
+
   getSaveSearchInput() {
     if (this.formElement.value.savedSearchInput) {
       this.addQueryRequestBody.query_name = this.formElement.value.savedSearchInput;
@@ -132,33 +118,24 @@ export class SearchComponent implements OnInit {
       this.showSuccess();
       this.saveSearch();
     } else {
-      console.log('no data');
     }
   }
 
   saveSearch() {
-    console.log('this.addQueryRequestBody', this.addQueryRequestBody);
     this.$searchService.addQuery(this.addQueryRequestBody).subscribe((data) => {
       if (data.id != null) {
         this.getquerySavesearch();
-        console.log('addQuery respond', data);
       } else {
-        console.log('no data');
       }
     });
-
   }
 
   onSavedSearchClicked(savedCriteriaObj: string) {
-    console.log('aalchebbi before ' + savedCriteriaObj);
     savedCriteriaObj = savedCriteriaObj.replace(/'/g, '"');
-    console.log('aalchebbi after ' + savedCriteriaObj);
     this.$eventEmitterService.onSavedSearchClick(JSON.parse(savedCriteriaObj));
   }
 
-
   deleteSearchItem(currentqueryName, currentQueryId) {
-    console.log("aalchebbi Query Name " + currentqueryName +"Query ID "+ currentQueryId);
     this.deleteRequestBody._id = currentQueryId;
     this.$searchService.deleteQuery(this.deleteRequestBody).subscribe((data) => {
       if (data.Msg === 'Query successfully removed') {
@@ -169,32 +146,23 @@ export class SearchComponent implements OnInit {
         });
         this.showSuccess();
       } else {
-        console.log('no data');
         this.showError();
       }
     });
   }
 
   getFavoriteBadge() {
-
     const body = {
       userId: "albaqer_naseej",
       pageSize: 5,
       wantedPage: 0
     };
 
-
-    this.favoriteService.getFavoriteList(body).subscribe( response  => {
+    this.favoriteService.getFavoriteList(body).subscribe(response => {
       if (response !== null) {
-        console.log(response);
         this.favoriteBadge = response.hits.total;
-
-      //  console.log("yasmin",this.favoriteBadge);
       } else {
-        console.log('no data');
       }
     });
-
   }
-
 }

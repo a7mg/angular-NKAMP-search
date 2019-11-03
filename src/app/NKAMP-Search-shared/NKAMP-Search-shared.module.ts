@@ -78,7 +78,7 @@ export class NKAMPSearchSharedModule {
     parentModule: NKAMPSearchSharedModule
   ) {
     if (parentModule) {
-      console.log("NKAMPSearchSharedModule is already loaded");
+      //console.log("NKAMPSearchSharedModule is already loaded");
     }
   }
 }

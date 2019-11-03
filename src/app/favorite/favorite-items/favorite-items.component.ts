@@ -24,14 +24,14 @@ export class FavoriteItemsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.unSubscribeFavoriteList = this.favoriteService.FavoriteList.subscribe((Data) => {
       this.alldate = Data;
-      console.log('alldate', this.alldate);
+      //console.log('alldate', this.alldate);
        if (Data !== null) {
         this.isSearch = true;
         this.searchedEvent.emit(this.isSearch);
-        console.log(this.alldate.length);
+        //console.log(this.alldate.length);
       }
       else{
-        console.log('no data');
+        //console.log('no data');
       }
     });
   }
@@ -43,6 +43,6 @@ export class FavoriteItemsComponent implements OnInit, OnDestroy {
   }
 
   paginate(event) {
-    console.log(event);
+    //console.log(event);
   }
 }

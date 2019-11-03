@@ -56,7 +56,6 @@ addCommntsTest(comment) {
   GetItemDetails(bodyRequest): Observable<any> {
     return this.http.post<any>(this.Url + 'GetItemDetails', bodyRequest).pipe(
       map((data: any) => {
-        console.log('test data');
         return data;
       }),
     );
@@ -68,7 +67,6 @@ addCommntsTest(comment) {
   }
 
   getBookDetails(requestBody): Observable<any> {
-    console.log('test data toto');
     return this.http.post<any>(this.Url + 'ItemOperation/GetItemOperationDetails', requestBody);
   }
 
