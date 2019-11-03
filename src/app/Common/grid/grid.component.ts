@@ -49,7 +49,10 @@ export class GridComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log('HI HI');
+    console.log("bookDataGrid", this.bookData);
     this.additionalField = this.bookData.addtionFieldsInListPage.addtionField.filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
+    console.log('^^^ this.additionalField ' + this.additionalField);
 
     const body = {
       userId: "albaqer_naseej",
@@ -59,12 +62,18 @@ export class GridComponent implements OnInit {
 
     this.favoriteService.getFavoriteList(body).subscribe( response  => {
       if (response !== null) {
+        console.log('data');
       // this.favItems = response;
+      // console.log('toto 2020', this.favItems);
+        // console.log('toto 2020' + JSON.stringify(response.hits.total)) ;
         // this.favItems = response;
+        // console.log('toto 2020' + JSON.stringify(this.favItems));
         // response.forEach( item => {
+        //   console.log('toto 2021');
         // });
 
       } else {
+        console.log('no data');
       }
     });
 
@@ -76,6 +85,7 @@ export class GridComponent implements OnInit {
 
 
   addToMyFav(data) {
+    console.log('##ALBAQER ' + JSON.stringify(data));
     const body = {
         userId: 'albaqer_naseej',
         anonymous: true,
@@ -95,6 +105,7 @@ export class GridComponent implements OnInit {
 
     this.$bookDetailFav.addFavorite(body).subscribe(response => {
       if (response !== null) {
+        console.log('##ALBAQER ' + JSON.stringify(response));
         this.isFav = true;
        // this.isFav = !this.isFav;
       }
@@ -112,6 +123,7 @@ export class GridComponent implements OnInit {
   }
 
   borrowBook() {
+    console.log('borrow API');
     this.$searchService.borrow(this.bookData).subscribe(data => {
       if (data.id != null) {
         this.showSuccess();

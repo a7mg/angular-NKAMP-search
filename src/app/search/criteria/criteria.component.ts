@@ -1,8 +1,22 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
-import { Criteria, AllCriteriaSearch,SearchKeyword} from '../services/criteriaModel';
-import { SearchCriteria, SearchKeyWordDetails } from '../services/SearchCriteria.Model';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import {
+  Criteria,
+  AllCriteriaSearch,
+  SearchKeyword
+} from '../services/criteriaModel';
+import {
+  SearchCriteria,
+  SearchKeyWordDetails
+} from '../services/SearchCriteria.Model';
+
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+  FormArray
+} from '@angular/forms';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { EventEmitterService } from '../services/event-emitter.service';
 
@@ -12,7 +26,6 @@ import { EventEmitterService } from '../services/event-emitter.service';
   styleUrls: ['./criteria.component.scss']
 })
 export class CriteriaComponent implements OnInit {
-
   criteriaForm: FormGroup;
   pageSize = 12;
   isAdvanced = false;
@@ -24,13 +37,14 @@ export class CriteriaComponent implements OnInit {
   AllCriteriaSearch: AllCriteriaSearch;
   lang: string;
   searchKeyword: SearchKeyword[];
-  keywords =[];
-  kw ='';
-  isShown = true;
   //isActive = false;
 
-  constructor(private $searchService: SearchService, private $globalsService: GlobalsService,
-    private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
+  constructor(
+    private $searchService: SearchService,
+    private $globalsService: GlobalsService,
+    private $eventEmitterService: EventEmitterService,
+    private fb: FormBuilder
+  ) {
     this.lang = this.$globalsService.UILanguage;
     this.inisalizeCriteriaobject();
     this.DataSources = [];
@@ -48,53 +62,40 @@ export class CriteriaComponent implements OnInit {
         this.getSavedSearch(data);
       });
     }
+    // END
   }
 
   getAllDataCriteria() {
     this.$searchService.searchConfiguration$.subscribe(data => {
+      console.log("configration ", data != null)
+      console.log("configration ", data )
       if (data != null) {
-        this.DataSources = data.DataSources;
-        this.AllFields = data.FacetFields;
-        this.searchKeyword = data.SearchKeywords;
-        // data.DataSources.forEach(element => {
-        //   this.DataSources.push(element);
-        // });
+        data.DataSources.forEach(element => {
+          this.DataSources.push(element);
+        });
 
-        // data.FacetFields.forEach(element => {
-        //   this.AllFields.push(element);
-        // });
+        data.FacetFields.forEach(element => {
+          this.AllFields.push(element);
+        });
 
-        // data.SearchKeywords.forEach(element => {
-        //   this.searchKeyword.push(element);
-        // });
-      } else {
-        // should be loader here
+        data.SearchKeywords.forEach(element => {
+          this.searchKeyword.push(element);
+        });
+
       }
     });
+
   }
 
   onSubmit() {
     this.setSearchObject();
+    // tslint:disable-next-line: quotemark
     this.$searchService.currentCriteria$.next( this.CriteriaSearch );
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.wantedPage = 0;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
-    console.log("***** Hamza " + JSON.stringify(this.CriteriaSearch));
-    this.CriteriaSearch.searchKeyWords.forEach(element => {
-        let result = this.searchKeyword.filter(word => word.id == element.searchKeyWordId);
-        let keyParam = (this.lang == 'ar' || this.lang=='ar-SA')  ?  result[0].aName :  (this.lang == 'fr'? result[0].fName :result[0].eName )
-        this.keywords.push(
-          {
-            key: keyParam,
-            value: element.keyWordValue
-          }
-        );
-        this.kw = this.kw  + ' ' +  keyParam + ' : ' + element.keyWordValue + ' | ' ;
-    });
-    this.isShown = false;
-    //console.log("**** Hamza 2 " + JSON.stringify(this.keywords));
-
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
+      console.log("^^^res^^^" + data);
       this.$searchService.results$.next(data);
     });
   }
@@ -130,11 +131,13 @@ export class CriteriaComponent implements OnInit {
     ) {
       (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup());
     }
+    // (this.criteriaForm.get('searchadd') as FormArray).push(this.addSearchFormGroup()); // delete this line
   }
 
   removeCurrentRowClick(selected): void {
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
     currentCreteriaForms.removeAt(selected);
+
   }
 
   inisalizeCriteriaobject() {
@@ -157,8 +160,10 @@ export class CriteriaComponent implements OnInit {
           } else {
             this.CriteriaSearch.dataSourcesId.push(abstractControl.value);
           }
+
         }
       }
+
 
       if (abstractControl instanceof FormArray) {
         abstractControl.controls.forEach((control, controlIdx) => {
@@ -175,6 +180,7 @@ export class CriteriaComponent implements OnInit {
               nextSearchKeyWordWithAnd: isLast ? null : ((operator === 'AND' ? true : false)),
             };
             this.CriteriaSearch.searchKeyWords.push(searchKeyWord);
+
           }
 
         });
@@ -209,6 +215,7 @@ export class CriteriaComponent implements OnInit {
 
   getSavedSearch(savedCriteriaObj) {
     if (savedCriteriaObj != null) {
+      // const dataSourceFC = this.criteriaForm.get('dataSourceFC') as FormControl;
       if (savedCriteriaObj.dataSourcesId.length === 1) {
         this.criteriaForm.patchValue({dataSourceFC: savedCriteriaObj.dataSourcesId[0]});
       }
@@ -218,6 +225,7 @@ export class CriteriaComponent implements OnInit {
       savedCriteriaObj.searchKeyWords.forEach((row, idx) => {
         this.addSearchButtonClick();
         const abstractControl = currentCreteriaForms.controls[idx];
+        // const { facetFC, searchTextFC, searchOperationFC, operator } = abstractControl.controls;
         abstractControl.patchValue({
           facetFC: row.searchKeyWordId,
           searchTextFC: row.keyWordValue,
@@ -226,15 +234,31 @@ export class CriteriaComponent implements OnInit {
         });
       });
 
-      this.onSubmit();
+        this.onSubmit();
     }
 
   }
 
   onItemChange(event, searchKeyword) {
     let kwId = event.target.value;
+    console.log("**searchKeyword " + JSON.stringify(searchKeyword));
     let id = kwId.slice(3, kwId.length);
+    console.log("**kwId " + kwId.slice(3, kwId.length));
     let kwItem = searchKeyword.filter(x => x.id === id);
+    console.log("**kwItem** " + JSON.stringify(kwItem));
+    /*kwItem[0].AllowedSearchOperations.AllowedSearchOperation.forEach(element => {
+      this.myOperations.push(element);
+    });*/
     this.myOperations = kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
+    console.log(JSON.stringify(this.myOperations));
+    /*if (this.myOperations.length > 0) {
+      console.log("**IF");
+      this.isActive = true;
+    } else {
+      console.log("**ELSE");
+      this.isActive = false;
+    }*/
   }
+
+
 }

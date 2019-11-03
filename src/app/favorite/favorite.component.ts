@@ -9,9 +9,9 @@ export class FavoriteComponent implements OnInit {
   constructor() { }
   isSearched: boolean;
   getSearchResult(dataEvent: boolean){
-    //console.log(dataEvent);
+    console.log(dataEvent);
     this.isSearched = dataEvent;
-    //console.log(this.isSearched);
+    console.log(this.isSearched);
   }
   ngOnInit() {
   }

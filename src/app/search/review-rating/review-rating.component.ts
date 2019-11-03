@@ -24,10 +24,10 @@ export class ReviewRatingComponent implements OnInit {
       let details = params['details'];
       this.requestBody = JSON.parse(details);
       this.requestBodyForRating = JSON.stringify(this.requestBody.searchKeyWords[0]);
-      //console.log('test rating view in detail' + this.requestBodyForRating);
+      console.log('test rating view in detail' + this.requestBodyForRating);
       // const rateData =  JSON.stringify(this.requestBody.searchKeyWords);
       // this.requestBodyForRating = rateData;
-      // //console.log('ddddd' + this.requestBodyForRating);
+      // console.log('ddddd' + this.requestBodyForRating);
 
   });
   }
@@ -56,14 +56,14 @@ export class ReviewRatingComponent implements OnInit {
     this.bookDetailsService.getComment(ratingRequestBody).subscribe(Data  => {
 
 
-      // //console.log("## baqer 111" + JSON.stringify(commentsRequestBody));
-      // //console.log("## baqer 1100" + JSON.stringify(Data));
-      // //console.log("## baqer 222");
+      // console.log("## baqer 111" + JSON.stringify(commentsRequestBody));
+      // console.log("## baqer 1100" + JSON.stringify(Data));
+      // console.log("## baqer 222");
       this.commentsList = Data[0].comments;
       this.ratingDegree = Data[0].views_count;
-      //console.log('comments are got' + this.ratingDegree);
+      console.log('comments are got' + this.ratingDegree);
 
-      // //console.log(' get comment ' + JSON.parse(this.commentsList));
+      // console.log(' get comment ' + JSON.parse(this.commentsList));
 
       // if (Data !== null) {
       //     Data[0].forEach(currentElement => {
@@ -72,14 +72,14 @@ export class ReviewRatingComponent implements OnInit {
       //       }
       //     });
 
-      //     //console.log("## baqer" + Data[0]);
+      //     console.log("## baqer" + Data[0]);
       //   } else {
-      //     //console.log('no data');
+      //     console.log('no data');
       //   }
     });
 
     // this.commentsList = this.bookDetailsService.getCommentsTest();
-    // //console.log('test 101' + this.bookDetailsService.getCommentsTest);
+    // console.log('test 101' + this.bookDetailsService.getCommentsTest);
 
     // this.commentsList = [
     //   {

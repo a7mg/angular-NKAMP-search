@@ -38,7 +38,7 @@ export class AppConfigService {
         this.ReadConfig();
       })
       .catch(error => {
-        //console.log(error);
+        console.log(error);
       });
   }
   // ---------------------------------------------------------------------------------------------------------------------------------- //

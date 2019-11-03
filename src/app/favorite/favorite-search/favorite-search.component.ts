@@ -39,18 +39,18 @@ export class FavoriteSearchComponent implements OnInit {
   }
 
   getFavorite() {
-  //console.log('test111');
+  console.log('test111');
 
 
 
   this.favoriteService.getFavoriteList(this.body).subscribe( response  => {
     if (response !== null) {
-      //console.log(response);
+      console.log(response);
       this.collectionSizeT= Math.round(response.hits.total);
-      //console.log("total", this.collectionSizeT);
+      console.log("total", this.collectionSizeT);
       this.allData = response;
     } else {
-      //console.log('no data');
+      console.log('no data');
     }
   });
   }
@@ -63,26 +63,26 @@ export class FavoriteSearchComponent implements OnInit {
   //       this.getFavoriteListRequestBody.filterByTitle = this.formElement.value.searchName;
   //       this.getFavoriteListRequestBody.startDate = this.startDate;
   //       this.getFavoriteListRequestBody.endDate = this.endDate;
-  //       //console.log("getFavoriteListRequestBody", this.getFavoriteListRequestBody);
+  //       console.log("getFavoriteListRequestBody", this.getFavoriteListRequestBody);
   //       this.favoriteService.getFavoriteList(this.getFavoriteListRequestBody).subscribe( Data  => {
   //         if(Data !== null){
-  //           //console.log(Data);
+  //           console.log(Data);
   //           this.favoriteService.FavoriteList.next(Data);
   //         }
   //         else{
-  //           //console.log('no data');
+  //           console.log('no data');
 
   //         }
   //       });
 
   //   } else {
-  //       //console.log("enter data search");
+  //       console.log("enter data search");
   //   }
 
   // }
 
   onChangePageSize(event) {
-    //console.log('Enter to change page size');
+    console.log('Enter to change page size');
   }
 
   sendFavorite() {}
@@ -97,12 +97,12 @@ export class FavoriteSearchComponent implements OnInit {
 
     this.favoriteService.removeFavoriteItem(body).subscribe( response  => {
       if (response !== null) {
-        //console.log(response);
+        console.log(response);
         this.getFavorite();
 
 
       } else {
-        //console.log('remove error');
+        console.log('remove error');
       }
     });
   }
@@ -114,7 +114,7 @@ export class FavoriteSearchComponent implements OnInit {
 
   paginate(pageNumber): void {
 
-    //console.log('Page Number', pageNumber);
+    console.log('Page Number', pageNumber);
     this.favoriteService.nextPageCriteria.wantedPage = pageNumber;
     this.body.wantedPage= pageNumber;
     this.pageIndex= pageNumber;

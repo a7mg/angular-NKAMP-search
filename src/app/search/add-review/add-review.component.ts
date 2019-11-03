@@ -63,16 +63,16 @@ addRatingRequestBody= {
   addComment(content){
     if (this.formElement.value.comment) {
       // let comments = this.bookDetailsService.addCommntsTest(this.formElement.value.comment);
-      // //console.log(JSON.stringify(comments));
+      // console.log(JSON.stringify(comments));
       this.isAdded = true;
       this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
       this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  => {
-        //console.log('addNewCommentaddNewCommentaddNewComment', Data);
+        console.log('addNewCommentaddNewCommentaddNewComment', Data);
         if ( Data !== null) {
            // this.modalService.open(content);
-           //console.log('comment added');
+           console.log('comment added');
         } else {
-          //console.log('no data');
+          console.log('no data');
         }
       });
     } else {
@@ -81,15 +81,15 @@ addRatingRequestBody= {
     }
   }
   addRating() {
-    //console.log('addRating ffff');
+    console.log('addRating ffff');
     this.addRatingRequestBody.Rate  = this.currentRate1.toString();
-    //console.log(parseInt(this.addRatingRequestBody.Rate));
+    console.log(parseInt(this.addRatingRequestBody.Rate));
     this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  => {
-      //console.log("Rate rate",Data);
+      console.log("Rate rate",Data);
       if ( Data !==  null){
-        //console.log("sucess");
+        console.log("sucess");
       } else {
-        //console.log('no data');
+        console.log('no data');
       }
     });
   }

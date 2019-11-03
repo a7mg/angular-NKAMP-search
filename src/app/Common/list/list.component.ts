@@ -29,13 +29,13 @@ export class ListComponent implements OnInit {
   constructor( private $bookDetailFav: BookDetailsService, private $messageService: MessageService, private $searchService: SearchService) { }
 
   ngOnInit() {
-    //console.log("bookDataGrid", this.bookData);
+    console.log("bookDataGrid", this.bookData);
     this.additionalField1 = this.bookData.addtionFieldsInListPage.addtionField.filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
     this.additionalField2 = this.bookData.addtionFieldsInListPage.addtionField.filter(x => x.id === 'd8ccada6-2dae-42c9-8f6b-da06a2736d00')[0].insertedData;
   }
 
   addToMyFav(data) {
-    //console.log('##ALBAQER ' + JSON.stringify(data));
+    console.log('##ALBAQER ' + JSON.stringify(data));
     const body = {
         userId: 'albaqer_naseej',
         anonymous: true,
@@ -55,7 +55,7 @@ export class ListComponent implements OnInit {
 
     this.$bookDetailFav.addFavorite(body).subscribe(response => {
       if (response !== null) {
-        //console.log('##ALBAQER ' + JSON.stringify(response));
+        console.log('##ALBAQER ' + JSON.stringify(response));
         this.isFav = true;
 
       }
@@ -65,17 +65,17 @@ export class ListComponent implements OnInit {
     sharePostToFaceBook(location.href, this.BookModel.title, this.BookModel.disc, this.BookModel.imageURL );
   }
   // $('#twitterShare').on('click', function() {
-  //
+  //   
   //   $("#twitterShare").attr("href","https://twitter.com/intent/tweet?url="+location.href+"&amp;text="+albumTitle)
   // });
    shareTwitter(){
     debugger;
-    //console.log(this.bookTitle.nativeElement.innerHTML);
-    this.albumTitle = this.bookTitle.nativeElement.innerHTML;
+    console.log(this.bookTitle.nativeElement.innerHTML);
+    this.albumTitle = this.bookTitle.nativeElement.innerHTML;  
     this.selectEl= "https://twitter.com/intent/tweet?url="+location.href+"&amp;text="+this.albumTitle;
-    //console.log(this.selectEl);
+    console.log(this.selectEl);
    }
-
+  
 
   showSuccess() {
     this.$messageService.add({ severity: 'success', summary: 'رسالة نجاح', detail: 'تم تقديم طلب إستعارة بنجاح',life:3600000 });
@@ -85,7 +85,7 @@ export class ListComponent implements OnInit {
   }
 
   borrowBook() {
-    //console.log('borrow API');
+    console.log('borrow API');
     this.$searchService.borrow(this.bookData).subscribe(data => {
       if (data.id != null) {
         this.showSuccess();

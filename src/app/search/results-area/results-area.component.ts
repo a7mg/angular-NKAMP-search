@@ -18,18 +18,18 @@ export class ResultsAreaComponent implements OnInit {
     //     data.FacetFields.forEach(element => {
     //       this.facetFieldsOptions.push(element);
     //     });
-    //     //console.log('Facets Configuration => ', this.facetFieldsOptions);
+    //     console.log('Facets Configuration => ', this.facetFieldsOptions);
     //   }
     // });
 
     this.$SearchService.results$.subscribe(data => {
-      // //console.log("$SearchService.results$", data)
+      // console.log("$SearchService.results$", data)
       if (data !== null) {
         this.isNoData = false;
       }
     });
     this.$SearchService.btnClicked$.subscribe(data => {
-      //console.log("btnClicked$$", data)
+      console.log("btnClicked$$", data)
       if (data !== null && data == true) {
         this.btnClicked= true;
       }

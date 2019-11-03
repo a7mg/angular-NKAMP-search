@@ -14,7 +14,7 @@ export class ActiveSelectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // //console.log('dddddddddddddddddddddddddddddddddddddddddddddddddd');
+    // console.log('dddddddddddddddddddddddddddddddddddddddddddddddddd');
     this.$searchService.currentCriteria$.subscribe((data) => {
       if (data !== null) {
         if (data.facetsFilter !== undefined) {
@@ -23,7 +23,7 @@ export class ActiveSelectionComponent implements OnInit {
           data.facetsFilter.forEach(item=>{
             this.facetsObj.push(item);
           })
-          //console.log('ddddddddddddddddddddddata', this.facetsObj);
+          console.log('ddddddddddddddddddddddata', this.facetsObj);
         }
 
       }
