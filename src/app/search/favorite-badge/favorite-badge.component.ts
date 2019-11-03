@@ -24,11 +24,11 @@ export class FavoriteBadgeComponent implements OnInit {
     };
     this.favoriteService.getFavoriteList(body).subscribe( response  => {
       if (response !== null) {
-        console.log(response);
+        //console.log(response);
         this.favoriteBadge = response.hits.total;
-      //  console.log("yasmin",this.favoriteBadge);
+      //  //console.log("yasmin",this.favoriteBadge);
       } else {
-        console.log('no data');
+        //console.log('no data');
       }
     });
   }

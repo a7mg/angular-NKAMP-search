@@ -26,7 +26,7 @@ export class FavoriteService {
 
   getFavoriteList(requestBody): Observable<any> {
     requestBody.wantedPage = this.nextPageCriteria.wantedPage ;
-    console.log('body ' + JSON.stringify(requestBody));
+    //console.log('body ' + JSON.stringify(requestBody));
     return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {
         return data;
@@ -47,7 +47,7 @@ export class FavoriteService {
   }
 
   removeFavoriteItem(requestBody): Observable<any> {
-    console.log('body ' + JSON.stringify(requestBody));
+    //console.log('body ' + JSON.stringify(requestBody));
     return this.http.post<any>(this.Url + 'DeleteFavoritesItem', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {
         return data;

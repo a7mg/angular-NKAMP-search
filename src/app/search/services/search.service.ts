@@ -13,14 +13,6 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 export class SearchService {
 
   private childClickedEvent = new BehaviorSubject<string>('');
-  emitfavBadgeEvent(msg: any) {
-    this.childClickedEvent.next(msg);
- }
-
- favEventListner() {
-  return this.childClickedEvent.asObservable();
-}
-
 
   Url: string;
   public results$ = new BehaviorSubject(null);
@@ -45,12 +37,16 @@ export class SearchService {
     keywWordsOrderBy: []
   };
 
-
-
-  constructor(private http: HttpClient, appConfig: AppConfigService,
-              public globals: GlobalsService,
-              private errorLogging: ErrorLoggingService) {
+  constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService, private errorLogging: ErrorLoggingService) {
     this.Url = appConfig.configdata.apiUrl;
+  }
+
+  emitfavBadgeEvent(msg: any) {
+    this.childClickedEvent.next(msg);
+  }
+
+  favEventListner() {
+    return this.childClickedEvent.asObservable();
   }
 
   getSearchConfiguration(bodyRequest): Observable<any> {
@@ -74,33 +70,28 @@ export class SearchService {
   }
 
   getResults(serachCriteria): Observable<any> {
-
-    console.log("**aalchebbi criteria**" + JSON.stringify(serachCriteria));
-
-  let body = {
-    searchProfileId: serachCriteria.searchProfileId,
-    pageSize: serachCriteria.pageSize,
-    fromPage: serachCriteria.wantedPage,
-    dataSourcesId: serachCriteria.dataSourcesId,
-    searchKeyWords: serachCriteria.searchKeyWords,
-    facetsFilter: [],
-    keywWordsOrderBy: [
-      {
-        keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
-        keywWordType: "4",
-        keywWordValue: "value",
-        isAcendening: true
-      }
-    ]
-  };
-  console.log("**body **" + JSON.stringify(body));
-  return this.http.post<any>(this.Url + 'MakeNewSearch', body);
+    let body = {
+      searchProfileId: serachCriteria.searchProfileId,
+      pageSize: serachCriteria.pageSize,
+      fromPage: serachCriteria.wantedPage,
+      dataSourcesId: serachCriteria.dataSourcesId,
+      searchKeyWords: serachCriteria.searchKeyWords,
+      facetsFilter: [],
+      keywWordsOrderBy: [
+        {
+          keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
+          keywWordType: "4",
+          keywWordValue: "value",
+          isAcendening: true
+        }
+      ]
+    };
+    return this.http.post<any>(this.Url + 'MakeNewSearch', body);
   }
 
   getNextPage(): Observable<any> {
-    console.log('GetNextPageResult');
     this.nextPageCriteria.searchProfileId = this.userProfile.searchProfile_id;
-    return this.http.post<any>(this.Url + 'GetNextPageResult', this.nextPageCriteria ).pipe(
+    return this.http.post<any>(this.Url + 'GetNextPageResult', this.nextPageCriteria).pipe(
       map((data: any) => {
         return data;
       }), catchError((error: Error) => {
@@ -179,7 +170,6 @@ export class SearchService {
   }
 
   borrow(data): Observable<any> {
-
     let body = {
       userId: this.userProfile.userId,
       anonymous: true,
@@ -195,5 +185,5 @@ export class SearchService {
       borrowApprovedBy: "NKAMP ADMIN TEAM"
     };
     return this.http.post<any>(this.Url + 'BorrowRequest', body);
-    }
+  }
 }
