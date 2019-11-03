@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
-import { Criteria, AllCriteriaSearch,SearchKeyword} from '../services/criteriaModel';
+import { Criteria, AllCriteriaSearch, SearchKeyword } from '../services/criteriaModel';
 import { SearchCriteria, SearchKeyWordDetails } from '../services/SearchCriteria.Model';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
@@ -12,7 +12,6 @@ import { EventEmitterService } from '../services/event-emitter.service';
   styleUrls: ['./criteria.component.scss']
 })
 export class CriteriaComponent implements OnInit {
-
   criteriaForm: FormGroup;
   pageSize = 12;
   isAdvanced = false;
@@ -24,10 +23,11 @@ export class CriteriaComponent implements OnInit {
   AllCriteriaSearch: AllCriteriaSearch;
   lang: string;
   searchKeyword: SearchKeyword[];
+  //isActive = false;
+
   keywords =[];
   kw ='';
   isShown = true;
-  //isActive = false;
 
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService,
     private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
@@ -48,6 +48,7 @@ export class CriteriaComponent implements OnInit {
         this.getSavedSearch(data);
       });
     }
+    // END
   }
 
   getAllDataCriteria() {
@@ -67,34 +68,20 @@ export class CriteriaComponent implements OnInit {
         // data.SearchKeywords.forEach(element => {
         //   this.searchKeyword.push(element);
         // });
-      } else {
-        // should be loader here
       }
     });
+
   }
 
   onSubmit() {
     this.setSearchObject();
-    this.$searchService.currentCriteria$.next( this.CriteriaSearch );
+    this.$searchService.currentCriteria$.next(this.CriteriaSearch);
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.wantedPage = 0;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
-    console.log("***** Hamza " + JSON.stringify(this.CriteriaSearch));
-    this.CriteriaSearch.searchKeyWords.forEach(element => {
-        let result = this.searchKeyword.filter(word => word.id == element.searchKeyWordId);
-        let keyParam = (this.lang == 'ar' || this.lang=='ar-SA')  ?  result[0].aName :  (this.lang == 'fr'? result[0].fName :result[0].eName )
-        this.keywords.push(
-          {
-            key: keyParam,
-            value: element.keyWordValue
-          }
-        );
-        this.kw = this.kw  + ' ' +  keyParam + ' : ' + element.keyWordValue + ' | ' ;
-    });
-    this.isShown = false;
-    //console.log("**** Hamza 2 " + JSON.stringify(this.keywords));
-
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
+      console.log(data);
+
       this.$searchService.results$.next(data);
     });
   }
@@ -135,6 +122,7 @@ export class CriteriaComponent implements OnInit {
   removeCurrentRowClick(selected): void {
     const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
     currentCreteriaForms.removeAt(selected);
+
   }
 
   inisalizeCriteriaobject() {
@@ -159,10 +147,8 @@ export class CriteriaComponent implements OnInit {
           }
         }
       }
-
       if (abstractControl instanceof FormArray) {
         abstractControl.controls.forEach((control, controlIdx) => {
-
           if (control instanceof FormGroup) {
             let searchKeyWord = {} as SearchKeyWordDetails;
             const isLast: boolean = controlIdx === abstractControl.controls.length;
@@ -176,10 +162,8 @@ export class CriteriaComponent implements OnInit {
             };
             this.CriteriaSearch.searchKeyWords.push(searchKeyWord);
           }
-
         });
       }
-
     });
   }
 
@@ -209,8 +193,9 @@ export class CriteriaComponent implements OnInit {
 
   getSavedSearch(savedCriteriaObj) {
     if (savedCriteriaObj != null) {
+      // const dataSourceFC = this.criteriaForm.get('dataSourceFC') as FormControl;
       if (savedCriteriaObj.dataSourcesId.length === 1) {
-        this.criteriaForm.patchValue({dataSourceFC: savedCriteriaObj.dataSourcesId[0]});
+        this.criteriaForm.patchValue({ dataSourceFC: savedCriteriaObj.dataSourcesId[0] });
       }
       const currentCreteriaForms = this.criteriaForm.get('searchadd') as FormArray;
       currentCreteriaForms.controls = [];
@@ -218,6 +203,7 @@ export class CriteriaComponent implements OnInit {
       savedCriteriaObj.searchKeyWords.forEach((row, idx) => {
         this.addSearchButtonClick();
         const abstractControl = currentCreteriaForms.controls[idx];
+        // const { facetFC, searchTextFC, searchOperationFC, operator } = abstractControl.controls;
         abstractControl.patchValue({
           facetFC: row.searchKeyWordId,
           searchTextFC: row.keyWordValue,
@@ -235,6 +221,18 @@ export class CriteriaComponent implements OnInit {
     let kwId = event.target.value;
     let id = kwId.slice(3, kwId.length);
     let kwItem = searchKeyword.filter(x => x.id === id);
+    /*kwItem[0].AllowedSearchOperations.AllowedSearchOperation.forEach(element => {
+      this.myOperations.push(element);
+    });*/
     this.myOperations = kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
+    /*if (this.myOperations.length > 0) {
+      //console.log("**IF");
+      this.isActive = true;
+    } else {
+      //console.log("**ELSE");
+      this.isActive = false;
+    }*/
   }
+
+
 }

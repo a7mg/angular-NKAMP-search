@@ -11,9 +11,6 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 })
 
 export class SearchService {
-
-  private childClickedEvent = new BehaviorSubject<string>('');
-
   Url: string;
   public results$ = new BehaviorSubject(null);
   public btnClicked$ = new Subject();
@@ -41,6 +38,7 @@ export class SearchService {
     this.Url = appConfig.configdata.apiUrl;
   }
 
+  private childClickedEvent = new BehaviorSubject<string>('');
   emitfavBadgeEvent(msg: any) {
     this.childClickedEvent.next(msg);
   }
@@ -170,6 +168,7 @@ export class SearchService {
   }
 
   borrow(data): Observable<any> {
+
     let body = {
       userId: this.userProfile.userId,
       anonymous: true,

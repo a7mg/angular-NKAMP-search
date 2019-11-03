@@ -42,6 +42,9 @@ export class ItemsViewComponent implements OnInit {
     this.materialTypesConfiguration = [];
   }
 
+  // getPageFromService() {
+  // }
+
   ngOnInit() {
     this.$searchService.searchConfiguration$.subscribe(data => {
       if (data !== null) {
@@ -50,32 +53,29 @@ export class ItemsViewComponent implements OnInit {
         // data.SearchKeywords.forEach(element => {
         //   this.searchKeywords.push(element);
         // });
+
         // data.MaterialTypes.forEach(element => {
         //   this.materialTypesConfiguration.push(element);
         // });
       }
     });
 
-    this.$searchService.results$.subscribe(data => {
-      console.log(data);
 
+    this.$searchService.results$.subscribe(data => {
       this.materialTypes = [];
       this.itemsArr = [];
       if (data !== null) {
         this.itemsArr = data.items[0];
         this.collectionSizeT = Math.round(data.totalNumberOfItems);
         const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
-        materialTypesResults.forEach(value => {
-          const selectedMatrial = this.materialTypesConfiguration.find(materialType => value.id === materialType.NameAr);
-
-          // materialTypesResults.forEach(value => {
-          //   const selectedMatrial = this.materialTypesConfiguration.find((materialType, idx) => {
-          //     return value.id === materialType.Id;
-          //   });
-          //   // selectedMatrial.totalItems = value.totalItems;
-          //   // this.materialTypes.push(selectedMatrial);
-          // });
-        });
+        // materialTypesResults.forEach(value => {
+        //   // const selectedMatrial = this.materialTypesConfiguration.find(materialType => value.id === materialType.NameAr);
+        //   const selectedMatrial = this.materialTypesConfiguration.find((materialType, idx) => {
+        //     return value.id === materialType.Id;
+        //   });
+        //   selectedMatrial.totalItems = value.totalItems;
+        //   this.materialTypes.push(selectedMatrial);
+        // });
       }
     });
   }
@@ -84,7 +84,6 @@ export class ItemsViewComponent implements OnInit {
     this.$searchService.nextPageCriteria.wantedPage = pageNumber - 1;
     this.getNextPageResults();
   }
-
   onDisplayModeChange(mode: number): void {
     this.displayMode = mode;
   }
@@ -92,6 +91,7 @@ export class ItemsViewComponent implements OnInit {
   onChangeSort(searchKeywordId): void {
     this.$searchService.nextPageCriteria.keywWordsOrderBy = searchKeywordId.target.value;
     this.$searchService.nextPageCriteria.wantedPage = 1;
+    // this.getNextPageResults();
   }
 
   onChangePageSize(pageSize): void {
@@ -105,11 +105,13 @@ export class ItemsViewComponent implements OnInit {
     });
   }
 
+  exampleParent($event) {
+  }
+
   ToggleOpenClass() {
     this.clicked = !this.clicked;
     this.$searchService.btnClicked$.next(this.clicked);
   }
-
   ToggledropClass() {
     this.dropClicked = !this.dropClicked;
   }

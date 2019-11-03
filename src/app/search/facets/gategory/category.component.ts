@@ -36,7 +36,6 @@ export class CategoryComponent implements OnInit {
   radioSelectedString: string;
 
   @Input('facetOption') facetOption;
-
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService, private $formBuilder: FormBuilder) {
     this.lang = this.$globalsService.UILanguage;
     this.masterSelected = false;
@@ -145,7 +144,6 @@ export class CategoryComponent implements OnInit {
     this.$searchService.currentCriteria$.subscribe(data => {
       criteria = data;
     });
-
     if (criteria.facetsFilter === undefined) { criteria.facetsFilter = []; }
     this.checkedList.forEach(element => {
       criteria.facetsFilter.push(element);// push without checking if the el exists !

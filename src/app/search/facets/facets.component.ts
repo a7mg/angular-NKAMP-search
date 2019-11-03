@@ -10,13 +10,13 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 export class FacetsComponent implements OnInit {
   public facetsArr: Array<any>;
   facetFieldsOptions: Array<any>;
-
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService) {
     this.facetsArr = [];
     this.facetFieldsOptions = [];
   }
 
   ngOnInit() {
+
     this.$searchService.searchConfiguration$.subscribe(data => {
       if (data != null) {
         data.FacetFields.forEach(element => {
@@ -24,7 +24,6 @@ export class FacetsComponent implements OnInit {
         });
       }
     });
-
     this.$searchService.results$.subscribe(results => {
       if (results !== null) {
         this.facetsArr = results.facetsSearchQueryStatistic;
@@ -41,5 +40,4 @@ export class FacetsComponent implements OnInit {
       }
     });
   }
-
 }
