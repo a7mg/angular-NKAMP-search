@@ -1,28 +1,18 @@
 // ------------------------------------------------------------------------------------------------------------ //
 // ----------------- Angular Modules -------------------------------------------------------------------------- //
-import {
-  NgModule,
-  ModuleWithProviders,
-  Optional,
-  SkipSelf
-} from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
+import { CommonModule } from '@angular/common';
 // import { ShareButtonsModule } from '@ngx-share/buttons';
-import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { JsonpModule } from '@angular/http';
 // ------------------------------------------------------------------------------------------------------------ //
 // ----------------- Angular Modules -------------------------------------------------------------------------- //
-import {
-  ProgressSpinnerModule,
-  BlockUIModule,
-  PanelModule,
-  SharedModule
-} from "primeng/primeng";
-import { MessagesModule } from "primeng/messages";
-import { UrlSerializer, RouterModule } from "@angular/router";
-import { LowerCaseUrlSerializer } from "./services/lowercase-url-deserializer";
-import { ErrorHandlingModule } from "../Naseej-error-handling/error-handling.module";
+import { ProgressSpinnerModule, BlockUIModule, PanelModule, SharedModule } from 'primeng/primeng';
+import { MessagesModule } from 'primeng/messages';
+import { UrlSerializer, RouterModule } from '@angular/router';
+import { LowerCaseUrlSerializer } from './services/lowercase-url-deserializer';
+import { ErrorHandlingModule } from '../Naseej-error-handling/error-handling.module';
 import { GridComponent } from '../Common/grid/grid.component';
 // ------------------------------------------------------------------------------------------------------------ //
 export const providers = [
@@ -33,7 +23,7 @@ export const providers = [
 ];
 // ------------------------------------------------------------------------------------------------------------ //
 @NgModule({
-  declarations:[
+  declarations:  [
     GridComponent
   ],
   imports: [
@@ -78,7 +68,6 @@ export class NKAMPSearchSharedModule {
     parentModule: NKAMPSearchSharedModule
   ) {
     if (parentModule) {
-      //console.log("NKAMPSearchSharedModule is already loaded");
     }
   }
 }

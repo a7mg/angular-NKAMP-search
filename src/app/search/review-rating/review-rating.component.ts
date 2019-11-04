@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookDetailsService } from '../services/book-details.service';
-import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from "@angular/router";
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-review-rating',
@@ -21,24 +21,21 @@ export class ReviewRatingComponent implements OnInit {
 
 
     this.route.queryParams.subscribe(params => {
-      let details = params['details'];
+      const details = params.details;
       this.requestBody = JSON.parse(details);
       this.requestBodyForRating = JSON.stringify(this.requestBody.searchKeyWords[0]);
-      //console.log('test rating view in detail' + this.requestBodyForRating);
       // const rateData =  JSON.stringify(this.requestBody.searchKeyWords);
       // this.requestBodyForRating = rateData;
-      // //console.log('ddddd' + this.requestBodyForRating);
-
-  });
+    });
   }
   ngOnInit() {
     const commentsRequestBody = {
-      primaryItemSourceId: "783c969a-cebb-4b0c-8a25-f524ec479cfc",
-      itemIndexId: "61879",
-      dataSourceName: "aruc_index",
-      dataSourceId: "783c969a-cebb-4b0c-8a25-f524ec479cfc",
-      materialTypeId: "783c969a-cebb-4b0c-8a25-f524ec479cfc",
-      materialTypeName: "كتب"
+      primaryItemSourceId: '783c969a-cebb-4b0c-8a25-f524ec479cfc',
+      itemIndexId: '61879',
+      dataSourceName: 'aruc_index',
+      dataSourceId: '783c969a-cebb-4b0c-8a25-f524ec479cfc',
+      materialTypeId: '783c969a-cebb-4b0c-8a25-f524ec479cfc',
+      materialTypeName: 'كتب'
     };
 
 
@@ -53,17 +50,9 @@ export class ReviewRatingComponent implements OnInit {
 
 
 
-    this.bookDetailsService.getComment(ratingRequestBody).subscribe(Data  => {
-
-
-      // //console.log("## baqer 111" + JSON.stringify(commentsRequestBody));
-      // //console.log("## baqer 1100" + JSON.stringify(Data));
-      // //console.log("## baqer 222");
+    this.bookDetailsService.getComment(ratingRequestBody).subscribe(Data => {
       this.commentsList = Data[0].comments;
       this.ratingDegree = Data[0].views_count;
-      //console.log('comments are got' + this.ratingDegree);
-
-      // //console.log(' get comment ' + JSON.parse(this.commentsList));
 
       // if (Data !== null) {
       //     Data[0].forEach(currentElement => {
@@ -79,7 +68,6 @@ export class ReviewRatingComponent implements OnInit {
     });
 
     // this.commentsList = this.bookDetailsService.getCommentsTest();
-    // //console.log('test 101' + this.bookDetailsService.getCommentsTest);
 
     // this.commentsList = [
     //   {

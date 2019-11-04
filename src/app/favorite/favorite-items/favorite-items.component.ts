@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 export class FavoriteItemsComponent implements OnInit, OnDestroy {
 
   @ViewChild('formEle') formElement: NgForm;
+  // tslint:disable-next-line:no-output-rename
   @Output('searchResult') searchedEvent = new EventEmitter<boolean>();
   isSearch = false;
   page = 1;
@@ -18,20 +19,15 @@ export class FavoriteItemsComponent implements OnInit, OnDestroy {
   unSubscribeFavoriteList = new Subscription();
   alldate: any;
 
-
   constructor(private favoriteService: FavoriteService) { }
 
   ngOnInit() {
     this.unSubscribeFavoriteList = this.favoriteService.FavoriteList.subscribe((Data) => {
       this.alldate = Data;
-      //console.log('alldate', this.alldate);
-       if (Data !== null) {
+      if (Data !== null) {
         this.isSearch = true;
         this.searchedEvent.emit(this.isSearch);
-        //console.log(this.alldate.length);
-      }
-      else{
-        //console.log('no data');
+      } else {
       }
     });
   }
@@ -43,6 +39,5 @@ export class FavoriteItemsComponent implements OnInit, OnDestroy {
   }
 
   paginate(event) {
-    //console.log(event);
   }
 }

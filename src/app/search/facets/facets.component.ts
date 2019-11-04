@@ -36,7 +36,7 @@ export class FacetsComponent implements OnInit {
             return obj;
           });
         });
-        this.facetFieldsOptions.sort((a, b) => (a.DisplayOrderNumber > b.DisplayOrderNumber) ? 1 : -1)
+        this.facetFieldsOptions.sort((a, b) => (a.DisplayOrderNumber > b.DisplayOrderNumber) ? 1 : -1);
       }
     });
   }

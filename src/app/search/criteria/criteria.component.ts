@@ -23,14 +23,13 @@ export class CriteriaComponent implements OnInit {
   AllCriteriaSearch: AllCriteriaSearch;
   lang: string;
   searchKeyword: SearchKeyword[];
-  //isActive = false;
-
-  keywords =[];
-  kw ='';
+  // isActive = false;
+  keywords = [];
+  kw = '';
   isShown = true;
 
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService,
-    private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
+              private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
     this.lang = this.$globalsService.UILanguage;
     this.inisalizeCriteriaobject();
     this.DataSources = [];
@@ -79,10 +78,13 @@ export class CriteriaComponent implements OnInit {
     this.CriteriaSearch.pageSize = this.pageSize;
     this.CriteriaSearch.wantedPage = 0;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
-    this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
-      console.log(data);
+    this.$searchService.searchCriteria = this.CriteriaSearch;
+    console.log(this.$searchService.searchCriteria);
 
+    this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
       this.$searchService.results$.next(data);
+      // console.log(data);
+
     });
   }
 
@@ -218,9 +220,9 @@ export class CriteriaComponent implements OnInit {
   }
 
   onItemChange(event, searchKeyword) {
-    let kwId = event.target.value;
-    let id = kwId.slice(3, kwId.length);
-    let kwItem = searchKeyword.filter(x => x.id === id);
+    const kwId = event.target.value;
+    const id = kwId.slice(3, kwId.length);
+    const kwItem = searchKeyword.filter(x => x.id === id);
     /*kwItem[0].AllowedSearchOperations.AllowedSearchOperation.forEach(element => {
       this.myOperations.push(element);
     });*/

@@ -5,7 +5,8 @@ import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
-import { BookDetailsService } from '../../search/services/book-details.service'
+import { BookDetailsService } from '../../search/services/book-details.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,16 +18,13 @@ export class FavoriteService {
   };
   Url: string; // = https://10.0.6.154:8245/Search10/1.0.0/ItemOperation/GetItemOperationDetails
 
-  constructor(private http: HttpClient, appConfig: AppConfigService,
-              public globals: GlobalsService,
-              private bookDetailsService: BookDetailsService,
-              private errorLogging: ErrorLoggingService) {
-       this.Url = appConfig.configdata.apiUrl;
+  constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
+              private bookDetailsService: BookDetailsService, private errorLogging: ErrorLoggingService) {
+    this.Url = appConfig.configdata.apiUrl;
   }
 
   getFavoriteList(requestBody): Observable<any> {
-    requestBody.wantedPage = this.nextPageCriteria.wantedPage ;
-    //console.log('body ' + JSON.stringify(requestBody));
+    requestBody.wantedPage = this.nextPageCriteria.wantedPage;
     return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {
         return data;
@@ -47,7 +45,6 @@ export class FavoriteService {
   }
 
   removeFavoriteItem(requestBody): Observable<any> {
-    //console.log('body ' + JSON.stringify(requestBody));
     return this.http.post<any>(this.Url + 'DeleteFavoritesItem', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {
         return data;
@@ -66,5 +63,4 @@ export class FavoriteService {
       })
     );
   }
-
 }

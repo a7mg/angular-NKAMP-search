@@ -8,7 +8,7 @@ import { SearchService } from '../services/search.service';
 })
 export class ResultsAreaComponent implements OnInit {
   isNoData = true;
-  btnClicked=false;
+  btnClicked = false;
   constructor(private $SearchService: SearchService) { }
 
   ngOnInit() {
@@ -29,9 +29,8 @@ export class ResultsAreaComponent implements OnInit {
       }
     });
     this.$SearchService.btnClicked$.subscribe(data => {
-      //console.log("btnClicked$$", data)
-      if (data !== null && data == true) {
-        this.btnClicked= true;
+      if (data !== null && data === true) {
+        this.btnClicked = true;
       }
     });
 

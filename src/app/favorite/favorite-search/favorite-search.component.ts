@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FavoriteService } from '../services/favorite.service';
 import { NgForm } from '@angular/forms';
 
@@ -10,16 +10,16 @@ import { NgForm } from '@angular/forms';
 })
 export class FavoriteSearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
-  collectionSizeT=Math.round(11);
+  collectionSizeT = Math.round(11);
   pageSize = 5;
   pageIndex = 1;
   getFavoriteListRequestBody = {
-    "userId": "Jv0b2WkB7-mpx-Tip1YF",
-    "pageSize": 5,
-    "wantedPage": 1,
-    "startDate": 1,
-    "endDate": 1,
-    "filterByTitle": "Compuetr"
+    userId: 'Jv0b2WkB7-mpx-Tip1YF',
+    pageSize: 5,
+    wantedPage: 1,
+    startDate: 1,
+    endDate: 1,
+    filterByTitle: 'Compuetr'
   };
   startDate: number;
   endDate: number;
@@ -29,30 +29,23 @@ export class FavoriteSearchComponent implements OnInit {
   index = 0;
 
   body = {
-    userId: "albaqer_naseej",
+    userId: 'albaqer_naseej',
     pageSize: 5,
     wantedPage: 1
   };
   constructor(private favoriteService: FavoriteService) { }
   ngOnInit() {
-     this.getFavorite();
+    this.getFavorite();
   }
 
   getFavorite() {
-  //console.log('test111');
-
-
-
-  this.favoriteService.getFavoriteList(this.body).subscribe( response  => {
-    if (response !== null) {
-      //console.log(response);
-      this.collectionSizeT= Math.round(response.hits.total);
-      //console.log("total", this.collectionSizeT);
-      this.allData = response;
-    } else {
-      //console.log('no data');
-    }
-  });
+    this.favoriteService.getFavoriteList(this.body).subscribe(response => {
+      if (response !== null) {
+        this.collectionSizeT = Math.round(response.hits.total);
+        this.allData = response;
+      } else {
+      }
+    });
   }
 
   // getFavoriteList() {
@@ -82,27 +75,18 @@ export class FavoriteSearchComponent implements OnInit {
   // }
 
   onChangePageSize(event) {
-    //console.log('Enter to change page size');
   }
 
-  sendFavorite() {}
+  sendFavorite() { }
   removeFav(id, index, dataitem) {
-
-    let body = {
+    const body = {
       _id: id
     };
 
-
-
-
-    this.favoriteService.removeFavoriteItem(body).subscribe( response  => {
+    this.favoriteService.removeFavoriteItem(body).subscribe(response => {
       if (response !== null) {
-        //console.log(response);
         this.getFavorite();
-
-
       } else {
-        //console.log('remove error');
       }
     });
   }
@@ -113,16 +97,13 @@ export class FavoriteSearchComponent implements OnInit {
   }
 
   paginate(pageNumber): void {
-
-    //console.log('Page Number', pageNumber);
     this.favoriteService.nextPageCriteria.wantedPage = pageNumber;
-    this.body.wantedPage= pageNumber;
-    this.pageIndex= pageNumber;
+    this.body.wantedPage = pageNumber;
+    this.pageIndex = pageNumber;
     this.getNextPageResults();
   }
   getNextPageResults(): void {
-
-    this.favoriteService.getFavoriteList(this.body).subscribe( Data  => {
+    this.favoriteService.getFavoriteList(this.body).subscribe(Data => {
       this.favoriteService.FavoriteList.next(Data);
     });
   }

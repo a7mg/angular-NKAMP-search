@@ -11,9 +11,12 @@ import { SearchService } from '../services/search.service';
   providedIn: 'root'
 })
 export class BookDetailsService {
-public searchService$: SearchService;
-
-public commentsList = [
+  Url: string;
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer 09c4ac1e-040b-3d38-aa29-4a274c186517' })
+  };
+  public searchService$: SearchService;
+  public commentsList = [
     {
       userId: 'albaqer_naseej',
       commentCreateDate: '04-09-2019',
@@ -27,36 +30,30 @@ public commentsList = [
   ];
 
   getCommentsTest() {
-  // tslint:disable-next-line:no-unused-expression
+    // tslint:disable-next-line:no-unused-expression
     return this.commentsList;
-}
-
-addCommntsTest(comment) {
-  this.commentsList.push(
-    {
-      userId: 'albaqer_naseej',
-      commentCreateDate: '04-09-2019',
-      commentData: comment
-    }
-  );
-  return this.commentsList;
-}
+  }
 
 
-  Url: string;
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer 09c4ac1e-040b-3d38-aa29-4a274c186517'})
-  };
-  constructor(private http: HttpClient, appConfig: AppConfigService,
-              public globals: GlobalsService,
+  constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
               private errorLogging: ErrorLoggingService) {
-       this.Url = appConfig.configdata.apiUrl;
+    this.Url = appConfig.configdata.apiUrl;
+  }
+
+  addCommntsTest(comment) {
+    this.commentsList.push(
+      {
+        userId: 'albaqer_naseej',
+        commentCreateDate: '04-09-2019',
+        commentData: comment
+      }
+    );
+    return this.commentsList;
   }
 
   GetItemDetails(bodyRequest): Observable<any> {
     return this.http.post<any>(this.Url + 'GetItemDetails', bodyRequest).pipe(
       map((data: any) => {
-        //console.log('test data');
         return data;
       }),
     );
@@ -68,11 +65,10 @@ addCommntsTest(comment) {
   }
 
   getBookDetails(requestBody): Observable<any> {
-    //console.log('test data toto');
     return this.http.post<any>(this.Url + 'ItemOperation/GetItemOperationDetails', requestBody);
   }
 
-  addFavorite(requestBody): Observable<any>{
+  addFavorite(requestBody): Observable<any> {
     return this.http.post<any>(this.Url + 'AddItemToFavorites', requestBody, this.httpOptions).pipe(
       map((data: any) => {
         return data;
@@ -91,7 +87,7 @@ addCommntsTest(comment) {
       })
     );
   }
-  addNewComment(requestBody) : Observable<any>{
+  addNewComment(requestBody): Observable<any> {
     return this.http.post<any>(this.Url + 'ItemOperation/AddComment', requestBody).pipe(
       map((data: any) => {
         return data;
@@ -110,7 +106,7 @@ addCommntsTest(comment) {
       })
     );
   }
-  addNewRating(requestBody) : Observable<any>{
+  addNewRating(requestBody): Observable<any> {
     return this.http.post<any>(this.Url + 'ItemOperation/RateItem', requestBody).pipe(
       map((data: any) => {
 
@@ -130,5 +126,4 @@ addCommntsTest(comment) {
       })
     );
   }
-
 }

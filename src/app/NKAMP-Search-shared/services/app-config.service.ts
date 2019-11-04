@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { IAppConfig } from "../dataModels/IAppConfig";
-import { Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { IAppConfig } from '../dataModels/IAppConfig';
+import { Router } from '@angular/router';
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AppConfigService {
   // ---------------------------------------------------------------------------------------------------------------------------------- //
@@ -21,8 +21,8 @@ export class AppConfigService {
 
   // ---------------------------------------------------------------------------------------------------------------------------------- //
   constructor(private _httpClient: HttpClient, private router: Router) {
-    this._language = "NA";
-    this._deployUrl = "NA";
+    this._language = 'NA';
+    this._deployUrl = 'NA';
     this._isLoaded = false;
   }
   // ---------------------------------------------------------------------------------------------------------------------------------- //
@@ -38,7 +38,6 @@ export class AppConfigService {
         this.ReadConfig();
       })
       .catch(error => {
-        //console.log(error);
       });
   }
   // ---------------------------------------------------------------------------------------------------------------------------------- //
@@ -63,16 +62,15 @@ export class AppConfigService {
   get language(): string {
     return this._language;
   }
-  // --------------------------------------------------------------------------------------------------------------------------------------------//
+  // -------------------------------------------------------------------------------------------------------------------------------- //
 
   //#endregion
 
   // ---------------------------------------------------------------------------------------------------------------------------------- //
-  ReadConfig(url: string = "") {
-    this.configdata = <IAppConfig>{};
+  ReadConfig(url: string = '') {
+    this.configdata = {} as IAppConfig;
     try {
       this.configdata.apiUrl = this.settings.Common.apiUrl;
-
       this._isLoaded = true;
     } catch (error) {
       this._isLoaded = false;

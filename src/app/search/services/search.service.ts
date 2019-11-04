@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
+import { FacetFilter, SearchCriteria } from './SearchCriteria.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class SearchService {
   public btnClicked$ = new Subject();
   public searchConfiguration$ = new BehaviorSubject(null);
   public currentCriteria$ = new BehaviorSubject(null);
-  public searchCriteria: any;
+  public searchCriteria: SearchCriteria;
   public currentFacetsConfiguration: Array<any>;
   public userProfile = {
     searchProfile_id: '996ac773-2701-44ec-a377-bd52838de4dc',
@@ -34,7 +35,8 @@ export class SearchService {
     keywWordsOrderBy: []
   };
 
-  constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService, private errorLogging: ErrorLoggingService) {
+  constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
+              private errorLogging: ErrorLoggingService) {
     this.Url = appConfig.configdata.apiUrl;
   }
 
@@ -67,19 +69,41 @@ export class SearchService {
     );
   }
 
-  getResults(serachCriteria): Observable<any> {
-    let body = {
-      searchProfileId: serachCriteria.searchProfileId,
-      pageSize: serachCriteria.pageSize,
-      fromPage: serachCriteria.wantedPage,
-      dataSourcesId: serachCriteria.dataSourcesId,
-      searchKeyWords: serachCriteria.searchKeyWords,
+  getResults(searchCriteria): Observable<any> {
+    const body = {
+      searchProfileId: searchCriteria.searchProfileId,
+      pageSize: searchCriteria.pageSize,
+      fromPage: searchCriteria.wantedPage,
+      dataSourcesId: searchCriteria.dataSourcesId,
+      searchKeyWords: searchCriteria.searchKeyWords,
       facetsFilter: [],
       keywWordsOrderBy: [
         {
-          keywWordId: "df6c3d06-b99b-4d80-ab25-22b7b638fc81",
-          keywWordType: "4",
-          keywWordValue: "value",
+          keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81', // TODO: read this value from config
+          keywWordType: '4',
+          keywWordValue: 'value',
+          isAcendening: true
+        }
+      ]
+    };
+    return this.http.post<any>(this.Url + 'MakeNewSearch', body);
+  }
+  getFacetsResult(facetsFilter): Observable<any> {
+    console.log(this.searchCriteria);
+
+    facetsFilter = JSON.stringify(facetsFilter);
+    const body = {
+      searchProfileId: this.searchCriteria.searchProfileId,
+      pageSize: this.searchCriteria.pageSize,
+      fromPage: this.searchCriteria.wantedPage,
+      dataSourcesId: this.searchCriteria.dataSourcesId,
+      searchKeyWords: this.searchCriteria.searchKeyWords,
+      facetsFilter: [facetsFilter],
+      keywWordsOrderBy: [
+        {
+          keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
+          keywWordType: '4',
+          keywWordValue: 'value',
           isAcendening: true
         }
       ]
@@ -168,8 +192,7 @@ export class SearchService {
   }
 
   borrow(data): Observable<any> {
-
-    let body = {
+    const body = {
       userId: this.userProfile.userId,
       anonymous: true,
       email: this.userProfile.email,
@@ -179,10 +202,12 @@ export class SearchService {
       dataSourceId: data.dataSourceId,
       materialTypeId: data.materialTypeId,
       materialTypeName: 'كتب',
-      borrowDate: "2019-09-04",
-      status: "approved",
-      borrowApprovedBy: "NKAMP ADMIN TEAM"
+      borrowDate: '2019-09-04',
+      status: 'approved',
+      borrowApprovedBy: 'NKAMP ADMIN TEAM',
     };
     return this.http.post<any>(this.Url + 'BorrowRequest', body);
   }
+
+
 }

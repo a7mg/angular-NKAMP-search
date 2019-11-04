@@ -34,8 +34,9 @@ export class CategoryComponent implements OnInit {
   radioSel: any;
   radioSelected: string;
   radioSelectedString: string;
-
+  // tslint:disable-next-line:no-input-rename
   @Input('facetOption') facetOption;
+
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService, private $formBuilder: FormBuilder) {
     this.lang = this.$globalsService.UILanguage;
     this.masterSelected = false;
@@ -44,8 +45,9 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.facetOption.values.forEach((o, i) => {
-      this.checklist.push({ id: o.id, value: o.facetValue, isSelected: false });
+      this.checklist.push({ id: o.facetId, value: o.facetValue, isSelected: false });
     });
     this.facetOption.values.forEach(element => {
       this.totalOfAllItems += element.totalItems;
@@ -146,8 +148,12 @@ export class CategoryComponent implements OnInit {
     });
     if (criteria.facetsFilter === undefined) { criteria.facetsFilter = []; }
     this.checkedList.forEach(element => {
-      criteria.facetsFilter.push(element);// push without checking if the el exists !
+      criteria.facetsFilter.push(element); // push without checking if the el exists !
     });
     this.$searchService.currentCriteria$.next(criteria);
+    this.$searchService.getFacetsResult(criteria.facetsFilter).subscribe((data) => {
+      // console.log(data);
+      this.$searchService.results$.next(data);
+    });
   }
 }

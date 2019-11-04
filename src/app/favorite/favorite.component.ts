@@ -8,12 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class FavoriteComponent implements OnInit {
   constructor() { }
   isSearched: boolean;
-  getSearchResult(dataEvent: boolean){
-    //console.log(dataEvent);
+  getSearchResult(dataEvent: boolean) {
     this.isSearched = dataEvent;
-    //console.log(this.isSearched);
   }
   ngOnInit() {
   }
-
 }

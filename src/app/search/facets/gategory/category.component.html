@@ -1,7 +1,5 @@
 <div class="facet">
-
   <div class="facet-header">
-
     <p class="border-bottom d-flex facet-title mb-2">
       <button type="button" (click)="this.isVituailizationActive = false"
         class="btn btn-link col is-active p-0 text text-left">
@@ -17,17 +15,15 @@
       <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 9.415 6.128">
         <path d="M4,0,0,3.925,4,8" transform="translate(0.714 4.714) rotate(-90)" fill="none" stroke-width="2" />
       </svg>
-
     </span>
   </div>
+
   <p-chart *ngIf="this.isVituailizationActive && !this.isCollapsed"
     type="{{this.config.isPiChart?'horizontalBar':'bar'}}" height="{{30*this.facetOption.values.length}}px"
     [data]="data"></p-chart>
   <!-- <p-chart *ngIf="this.isVituailizationActive" type="{{this.config.isPiChart?'pie':'bar'}}" [data]="data"></p-chart> -->
-  <!-- <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()"> -->
 
   <ng-container *ngIf="!this.isVituailizationActive && !this.isCollapsed">
-
     <div class="facet-controls">
       <!-- <span (click)="selectAll()">selectall</span> -->
       <label class="controlRC">
@@ -39,19 +35,14 @@
         <div class="controlRC_indicator"></div>
       </label>
 
-      <!-- <ng-container *ngFor="let value of categoryForm.controls.facetFC.controls;let idx = index"> -->
-      <ng-container *ngFor="let item of  checklist;let idx = index">
+      <ng-container *ngFor="let item of checklist;let idx = index">
         <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
           <span class="text">{{this.facetOption.values[idx].facetValue}}</span>
           <span class="count float-right">{{this.facetOption.values[idx].totalItems}}</span>
-          <!-- <input type="{{this.config.isAllowMultiSelection?'checkbox':'radio'}}"  (change)="isAllSelected($event, idx)"   [(ngModel)]="this.checklist[idx].isSelected"   [formControlName]="idx" name="{{this.config.isAllowMultiSelection?'checkbox'+idx:'item-list'}}"/> -->
-          <input type="checkbox" [(ngModel)]="item.isSelected" (change)="isAllSelected()" name="{{'checkbox'+idx}}" />
-          <!-- <input *ngIf="!config.isAllowMultiSelection" type="radio" name="{{item.id}}" value="{{item.value}}" (change)="onItemChange(item)"/> -->
+          <input type="checkbox" id={{item.id}} [(ngModel)]="item.isSelected" (change)="isAllSelected()" name="{{'checkbox'+idx}}" />
           <div class="controlRC_indicator"></div>
         </label>
       </ng-container>
-
-
     </div>
 
     <button *ngIf="  this.facetOption.values.length > maxShowing " type="button" class="btn btn-link p-0 mb-4"
@@ -65,5 +56,4 @@
       Apply
     </button>
   </ng-container>
-
 </div>
