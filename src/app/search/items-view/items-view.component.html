@@ -111,7 +111,7 @@
   </p-tabPanel>
 
   <p-tabPanel
-    [header]="lang == 'ar' || lang=='ar-SA'  ?  singleMaterialType.NameAr :  (lang == 'fr'? singleMaterialType.NameFr :singleMaterialType.Name ) +' ( ' + singleMaterialType.totalItems +' ) ' "
+    [header]="singleMaterialType.NameAr + ' ( ' + singleMaterialType.total +' ) ' "
     *ngFor="let singleMaterialType of materialTypes; let i = index">
     <div class="row">
       <ng-container *ngFor="let item of itemsArr">

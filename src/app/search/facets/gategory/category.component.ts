@@ -85,7 +85,6 @@ export class CategoryComponent implements OnInit {
   //   });
 
   //   this.addFacets();
-  //   //console.log('this.checklist f ', this.checklist);
   // }
 
   // private addFacets() {
@@ -152,7 +151,6 @@ export class CategoryComponent implements OnInit {
     });
     this.$searchService.currentCriteria$.next(criteria);
     this.$searchService.getFacetsResult(criteria.facetsFilter).subscribe((data) => {
-      // console.log(data);
       this.$searchService.results$.next(data);
     });
   }

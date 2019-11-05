@@ -37,9 +37,7 @@ function sharePostToFaceBook(pageUrl, postTitle, postDescription, postImage) {
     function (response) {
       // Action after response
       if (response && response.post_id) {
-        ////console.log('Facebook ', 'success');
       } else {
-        ////console.log('Facebook ', 'error');
       }
     });
 }

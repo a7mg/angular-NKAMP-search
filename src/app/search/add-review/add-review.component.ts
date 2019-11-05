@@ -61,7 +61,6 @@ addRatingRequestBody = {
   addComment(content) {
     if (this.formElement.value.comment) {
       // let comments = this.bookDetailsService.addCommntsTest(this.formElement.value.comment);
-      // //console.log(JSON.stringify(comments));
       this.isAdded = true;
       this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
       this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  => {

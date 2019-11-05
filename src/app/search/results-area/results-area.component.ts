@@ -18,12 +18,10 @@ export class ResultsAreaComponent implements OnInit {
     //     data.FacetFields.forEach(element => {
     //       this.facetFieldsOptions.push(element);
     //     });
-    //     //console.log('Facets Configuration => ', this.facetFieldsOptions);
     //   }
     // });
 
     this.$SearchService.results$.subscribe(data => {
-      // //console.log("$SearchService.results$", data)
       if (data !== null) {
         this.isNoData = false;
       }

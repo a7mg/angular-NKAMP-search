@@ -50,34 +50,41 @@ export class ItemsViewComponent implements OnInit {
       if (data !== null) {
         this.searchKeywords = data.SearchKeywords;
         this.materialTypesConfiguration = data.MaterialTypes;
-        // data.SearchKeywords.forEach(element => {
-        //   this.searchKeywords.push(element);
-        // });
-
-        // data.MaterialTypes.forEach(element => {
-        //   this.materialTypesConfiguration.push(element);
-        // });
       }
     });
 
 
     this.$searchService.results$.subscribe(data => {
-      this.materialTypes = [];
-      this.itemsArr = [];
       if (data !== null) {
         this.itemsArr = data.items[0];
         this.collectionSizeT = Math.round(data.totalNumberOfItems);
         const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
-        // materialTypesResults.forEach(value => {
-        //   // const selectedMatrial = this.materialTypesConfiguration.find(materialType => value.id === materialType.NameAr);
-        //   const selectedMatrial = this.materialTypesConfiguration.find((materialType, idx) => {
-        //     return value.id === materialType.Id;
-        //   });
-        //   selectedMatrial.totalItems = value.totalItems;
-        //   this.materialTypes.push(selectedMatrial);
-        // });
+
+        materialTypesResults.forEach(value => {
+          this.materialTypesConfiguration.find(materialType => {
+            if (value.name === materialType.NameAr) {
+              materialType.total = value.totalItems;
+
+              if (!this.checkItemInArray('NameAr', materialType, this.materialTypes)) {
+                this.materialTypes.push(materialType);
+              }
+            }
+          });
+        });
       }
     });
+  }
+
+  checkItemInArray(key, obj, array): any {
+    let exists = false;
+    array.forEach(el => {
+      if (el[key] === obj[key]) {
+        exists = true;
+      } else {
+        exists = false;
+      }
+    });
+    return exists;
   }
 
   paginate(pageNumber): void {

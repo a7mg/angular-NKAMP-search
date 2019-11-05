@@ -61,9 +61,7 @@ export class ReviewRatingComponent implements OnInit {
       //       }
       //     });
 
-      //     //console.log("## baqer" + Data[0]);
       //   } else {
-      //     //console.log('no data');
       //   }
     });
 

@@ -79,12 +79,8 @@ export class CriteriaComponent implements OnInit {
     this.CriteriaSearch.wantedPage = 0;
     this.CriteriaSearch.searchProfileId = this.$searchService.userProfile.searchProfile_id;
     this.$searchService.searchCriteria = this.CriteriaSearch;
-    console.log(this.$searchService.searchCriteria);
-
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
       this.$searchService.results$.next(data);
-      // console.log(data);
-
     });
   }
 
@@ -228,10 +224,8 @@ export class CriteriaComponent implements OnInit {
     });*/
     this.myOperations = kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
     /*if (this.myOperations.length > 0) {
-      //console.log("**IF");
       this.isActive = true;
     } else {
-      //console.log("**ELSE");
       this.isActive = false;
     }*/
   }

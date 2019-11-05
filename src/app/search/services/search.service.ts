@@ -89,8 +89,6 @@ export class SearchService {
     return this.http.post<any>(this.Url + 'MakeNewSearch', body);
   }
   getFacetsResult(facetsFilter): Observable<any> {
-    console.log(this.searchCriteria);
-
     facetsFilter = JSON.stringify(facetsFilter);
     const body = {
       searchProfileId: this.searchCriteria.searchProfileId,
