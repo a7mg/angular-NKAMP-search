@@ -42,10 +42,10 @@ export class SearchComponent implements OnInit {
     }
 
   ngOnInit() {
+
     this.$searchService.favEventListner().subscribe(info => {
       this.getFavoriteBadge();
-   });
-
+    });
 
     this.addQueryRequestBody.userId = this.$searchService.userProfile.userId;
     this.addQueryRequestBody.email = this.$searchService.userProfile.email;
@@ -62,6 +62,7 @@ export class SearchComponent implements OnInit {
     this.$searchService.getSearchConfiguration(searchProfile).subscribe(data => {
       this.blockedDocument = false;
       this.$searchService.searchConfiguration$.next(data);
+      // this.isLoading = false;
     });
 
     this.$searchService.results$.subscribe(data => {

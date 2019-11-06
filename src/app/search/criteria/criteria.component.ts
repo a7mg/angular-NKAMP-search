@@ -56,20 +56,12 @@ export class CriteriaComponent implements OnInit {
         this.DataSources = data.DataSources;
         this.AllFields = data.FacetFields;
         this.searchKeyword = data.SearchKeywords;
-        // data.DataSources.forEach(element => {
-        //   this.DataSources.push(element);
-        // });
 
-        // data.FacetFields.forEach(element => {
-        //   this.AllFields.push(element);
-        // });
-
-        // data.SearchKeywords.forEach(element => {
-        //   this.searchKeyword.push(element);
-        // });
+        const kwItem = this.searchKeyword.filter(x => x.id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f');
+        // tslint:disable-next-line: quotemark
+        this.myOperations = kwItem[0]["AllowedSearchOperations"]["AllowedSearchOperation"];
       }
     });
-
   }
 
   onSubmit() {
@@ -84,7 +76,6 @@ export class CriteriaComponent implements OnInit {
     });
   }
 
-
   // ---------------------------------------------------------------------------------------------------------------------------------- //
 
   createFormdynamic() {
@@ -96,6 +87,7 @@ export class CriteriaComponent implements OnInit {
 
   addSearchFormGroup(defalutValues = {
     operator: 'AND',
+    // facet: '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f',
     facet: null,
     operation: null,
     text: ''
@@ -209,26 +201,13 @@ export class CriteriaComponent implements OnInit {
           operator: (row.nextSearchKeyWordWithAnd ? 'AND' : 'OR')
         });
       });
-
       this.onSubmit();
     }
-
   }
 
   onItemChange(event, searchKeyword) {
-    const kwId = event.target.value;
-    const id = kwId.slice(3, kwId.length);
-    const kwItem = searchKeyword.filter(x => x.id === id);
-    /*kwItem[0].AllowedSearchOperations.AllowedSearchOperation.forEach(element => {
-      this.myOperations.push(element);
-    });*/
+    const kwId = event.target.selectedOptions[0].id;
+    const kwItem = searchKeyword.filter(x => x.id === kwId);
     this.myOperations = kwItem[0].AllowedSearchOperations.AllowedSearchOperation;
-    /*if (this.myOperations.length > 0) {
-      this.isActive = true;
-    } else {
-      this.isActive = false;
-    }*/
   }
-
-
 }

@@ -35,13 +35,15 @@
         <div class="controlRC_indicator"></div>
       </label>
 
-      <ng-container *ngFor="let item of checklist;let idx = index">
-        <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
-          <span class="text">{{this.facetOption.values[idx].facetValue}}</span>
-          <span class="count float-right">{{this.facetOption.values[idx].totalItems}}</span>
-          <input type="checkbox" id={{item.id}} [(ngModel)]="item.isSelected" (change)="isAllSelected()" name="{{'checkbox'+idx}}" />
-          <div class="controlRC_indicator"></div>
-        </label>
+      <ng-container *ngIf="facetOption.values.length > 0" >
+        <ng-container *ngFor="let item of checklist;let idx = index">
+          <label class="controlRC" *ngIf="idx < maxShowing || this.showAll">
+            <span class="text" *ngIf="facetOption.values[idx] !== undefined">{{facetOption.values[idx].facetValue}}</span>
+            <span class="count float-right" *ngIf="facetOption.values[idx] !== undefined">{{facetOption.values[idx].totalItems}}</span>
+            <input type="checkbox" id={{item.id}} [(ngModel)]="item.isSelected" (change)="isAllSelected()" name="{{'checkbox'+idx}}" />
+            <div class="controlRC_indicator"></div>
+          </label>
+        </ng-container>
       </ng-container>
     </div>
 
@@ -51,8 +53,8 @@
       <span *ngIf="this.showAll" i18n="@@spn_show_less">Show Less </span>
     </button>
 
-    <button type="button" class="btn btn-primary w-100" [ngClass]="{'cursor-disable': this.checkedList.length<1 }"
-      disabled="{{this.checkedList.length<1?'disabled':''}}" (click)="onSubmit()" i18n="@@btn_apply">
+    <button type="button" class="btn btn-primary w-100" [ngClass]="{'cursor-disable': this.checkedList.length < 1 }"
+      disabled="{{this.checkedList.length < 1 ? 'disabled' : ''}}" (click)="onSubmit()" i18n="@@btn_apply">
       Apply
     </button>
   </ng-container>

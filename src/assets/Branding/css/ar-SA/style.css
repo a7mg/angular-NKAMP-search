@@ -10171,11 +10171,11 @@ a.text-dark:hover, a.text-dark:focus {
   color: #FF6600;
 }
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .lResultNK-title {
     font-size: 12px;
   }
-}
+} */
 
 .lResultNK-auther {
   font-weight: 600;

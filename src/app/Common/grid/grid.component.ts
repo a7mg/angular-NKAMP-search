@@ -25,6 +25,27 @@ export class GridComponent implements OnInit {
               private favoriteService: FavoriteService, private router: Router, private $searchService: SearchService) {
   }
 
+  ngOnInit() {
+    this.additionalField = this.bookData.addtionFieldsInListPage.addtionField
+      .filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
+
+    const body = {
+      userId: 'albaqer_naseej',
+      pageSize: 5,
+      wantedPage: 0
+    };
+
+    this.favoriteService.getFavoriteList(body).subscribe(response => {
+      if (response !== null) {
+        // this.favItems = response;
+        // this.favItems = response;
+        // response.forEach( item => {
+        // });
+      } else {
+      }
+    });
+  }
+
   public onTap() {
     const bdy = {
       searchProfileId: '996ac773-2701-44ec-a377-bd52838de4dc',
@@ -45,26 +66,6 @@ export class GridComponent implements OnInit {
       }
     };
     this.router.navigate(['book'], navigationExtras);
-  }
-
-  ngOnInit() {
-    this.additionalField = this.bookData.addtionFieldsInListPage.addtionField
-      .filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
-    const body = {
-      userId: 'albaqer_naseej',
-      pageSize: 5,
-      wantedPage: 0
-    };
-
-    this.favoriteService.getFavoriteList(body).subscribe(response => {
-      if (response !== null) {
-        // this.favItems = response;
-        // this.favItems = response;
-        // response.forEach( item => {
-        // });
-      } else {
-      }
-    });
   }
 
   addToMyFav(data) {

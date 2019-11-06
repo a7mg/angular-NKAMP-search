@@ -16,7 +16,6 @@ export class FacetsComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.$searchService.searchConfiguration$.subscribe(data => {
       if (data != null) {
         data.FacetFields.forEach(element => {
@@ -39,5 +38,6 @@ export class FacetsComponent implements OnInit {
         this.facetFieldsOptions.sort((a, b) => (a.DisplayOrderNumber > b.DisplayOrderNumber) ? 1 : -1);
       }
     });
+
   }
 }

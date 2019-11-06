@@ -55,30 +55,42 @@ export class ItemsViewComponent implements OnInit {
 
 
     this.$searchService.results$.subscribe(data => {
+      this.itemsArr = [];
+      this.materialTypes = [];
       if (data !== null) {
         this.itemsArr = data.items[0];
+
         this.collectionSizeT = Math.round(data.totalNumberOfItems);
+
         const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
-
-        materialTypesResults.forEach(value => {
-          this.materialTypesConfiguration.find(materialType => {
-            if (value.name === materialType.NameAr) {
-              materialType.total = value.totalItems;
-
-              if (!this.checkItemInArray('NameAr', materialType, this.materialTypes)) {
-                this.materialTypes.push(materialType);
+        if (Array.isArray(materialTypesResults)) {
+          materialTypesResults.forEach(value => {
+            this.materialTypesConfiguration.find(materialType => {
+              if (value.name === materialType.NameAr) {
+                const newEl = {name: value.name, totalItems: value.totalItems};
+                if (!this.checkItemInArray( newEl, this.materialTypes)) {
+                  this.materialTypes.push(newEl);
+                }
               }
-            }
+              // return true;
+            });
           });
-        });
+          // console.log(data);
+          // console.log(this.materialTypesConfiguration);
+          // console.log(this.materialTypes);
+          // console.log(this.itemsArr);
+
+        } else {
+          this.materialTypes = [materialTypesResults];
+        }
       }
     });
   }
 
-  checkItemInArray(key, obj, array): any {
+  checkItemInArray( obj, array) {
     let exists = false;
     array.forEach(el => {
-      if (el[key] === obj[key]) {
+      if (JSON.stringify(el) === JSON.stringify(obj)) {
         exists = true;
       } else {
         exists = false;

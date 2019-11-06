@@ -33,6 +33,8 @@ export class ListComponent implements OnInit {
               private $searchService: SearchService) { }
 
   ngOnInit() {
+    // console.log(this.bookData);
+
     this.additionalField1 = this.bookData.addtionFieldsInListPage.addtionField
       .filter(x => x.id === '789f356c-dcec-459c-aac4-6196f430d890')[0].insertedData;
     this.additionalField2 = this.bookData.addtionFieldsInListPage.addtionField

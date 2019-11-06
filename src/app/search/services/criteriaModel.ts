@@ -29,7 +29,7 @@ export interface SearchKeyword {
   allowedSearchOperations: Criteria[];
 }
 
-export interface AllowedSearchOperationsobj{
+export interface AllowedSearchOperationsobj {
   index: number;
   allowedSearchOperations: Criteria[];
 }
