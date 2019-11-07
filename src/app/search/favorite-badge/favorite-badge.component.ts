@@ -17,8 +17,8 @@ export class FavoriteBadgeComponent implements OnInit {
 
   ngOnInit() {
     const body = {
-      userId: "albaqer_naseej",
-      pageSize: 5,
+      userId: 'albaqer_naseej',
+      // pageSize: 5,
       wantedPage: 0
     };
     this.favoriteService.getFavoriteList(body).subscribe(response => {

@@ -58,8 +58,8 @@ export class CriteriaComponent implements OnInit {
         this.searchKeyword = data.SearchKeywords;
 
         const kwItem = this.searchKeyword.filter(x => x.id === '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f');
-        // tslint:disable-next-line: quotemark
-        this.myOperations = kwItem[0]["AllowedSearchOperations"]["AllowedSearchOperation"];
+        // tslint:disable-next-line: no-string-literal
+        this.myOperations = kwItem[0]['AllowedSearchOperations']['AllowedSearchOperation'];
       }
     });
   }

@@ -151,13 +151,13 @@ export class SearchComponent implements OnInit {
   getFavoriteBadge() {
     const body = {
       userId: 'albaqer_naseej',
-      pageSize: 5,
+      // pageSize: 5,
       wantedPage: 0
     };
 
     this.favoriteService.getFavoriteList(body).subscribe( response  => {
       if (response !== null) {
-        this.favoriteBadge = response.hits.total;
+        // this.favoriteBadge = response.hits.total;
       } else {
       }
     });

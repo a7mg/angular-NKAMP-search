@@ -10,17 +10,19 @@ import { SearchCriteria } from '../services/SearchCriteria.Model';
   styleUrls: ['./items-view.component.scss']
 })
 
-
 export class ItemsViewComponent implements OnInit {
   @ContentChild(NgbPagination) pagination: NgbPagination;
+
   clicked = false;
   dropClicked = false;
   lang: string;
+
   genralLoclaizaion = {
     en: 'general',
     ar: 'الكل',
     fr: 'général'
   };
+
   CriteriaSearch: SearchCriteria;
   pageSize = 12;
   generalTXT: string;
@@ -31,6 +33,7 @@ export class ItemsViewComponent implements OnInit {
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
   materialTypesConfiguration: Array<any>;
+
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService) {
     this.lang = this.$globalsService.UILanguage;
     this.generalTXT = this.genralLoclaizaion.en;
@@ -42,9 +45,6 @@ export class ItemsViewComponent implements OnInit {
     this.materialTypesConfiguration = [];
   }
 
-  // getPageFromService() {
-  // }
-
   ngOnInit() {
     this.$searchService.searchConfiguration$.subscribe(data => {
       if (data !== null) {
@@ -53,13 +53,11 @@ export class ItemsViewComponent implements OnInit {
       }
     });
 
-
     this.$searchService.results$.subscribe(data => {
       this.itemsArr = [];
       this.materialTypes = [];
       if (data !== null) {
         this.itemsArr = data.items[0];
-
         this.collectionSizeT = Math.round(data.totalNumberOfItems);
 
         const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
@@ -100,11 +98,18 @@ export class ItemsViewComponent implements OnInit {
   }
 
   paginate(pageNumber): void {
-    this.$searchService.nextPageCriteria.wantedPage = pageNumber - 1;
+    // this.$searchService.nextPageCriteria.wantedPage = pageNumber - 1;
+    this.$searchService.searchCriteria.wantedPage = pageNumber - 1;
+    this.CriteriaSearch = this.$searchService.searchCriteria;
     this.getNextPageResults();
   }
-  onDisplayModeChange(mode: number): void {
-    this.displayMode = mode;
+
+  getNextPageResults(): void {
+    console.log(this.CriteriaSearch);
+    this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
+      this.$searchService.results$.next(data);
+      console.log(data);
+    });
   }
 
   onChangeSort(searchKeywordId): void {
@@ -113,18 +118,20 @@ export class ItemsViewComponent implements OnInit {
     // this.getNextPageResults();
   }
 
-  onChangePageSize(pageSize): void {
-    this.$searchService.nextPageCriteria.pageSize = pageSize.target.value;
+  onChangePageSize(event): void {
+    this.pageSize = Number(event.target.value);
+    // this.$searchService.nextPageCriteria.pageSize = pageSize.target.value;
+    this.$searchService.searchCriteria.pageSize = this.pageSize ;
+    this.CriteriaSearch = this.$searchService.searchCriteria;
     this.getNextPageResults();
   }
 
-  getNextPageResults(): void {
-    this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
-      this.$searchService.results$.next(data);
-    });
-  }
 
   exampleParent($event) {
+  }
+
+  onDisplayModeChange(mode: number): void {
+    this.displayMode = mode;
   }
 
   ToggleOpenClass() {

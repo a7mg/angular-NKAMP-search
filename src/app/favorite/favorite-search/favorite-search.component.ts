@@ -11,11 +11,11 @@ import { NgForm } from '@angular/forms';
 export class FavoriteSearchComponent implements OnInit {
   @ViewChild('formEle') formElement: NgForm;
   collectionSizeT = Math.round(11);
-  pageSize = 5;
+  // pageSize = 5;
   pageIndex = 1;
   getFavoriteListRequestBody = {
     userId: 'Jv0b2WkB7-mpx-Tip1YF',
-    pageSize: 5,
+    // pageSize: 5,
     wantedPage: 1,
     startDate: 1,
     endDate: 1,
@@ -30,7 +30,7 @@ export class FavoriteSearchComponent implements OnInit {
 
   body = {
     userId: 'albaqer_naseej',
-    pageSize: 5,
+    // pageSize: 5,
     wantedPage: 1
   };
   constructor(private favoriteService: FavoriteService) { }

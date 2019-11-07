@@ -35,12 +35,13 @@ export class SearchService {
     keywWordsOrderBy: []
   };
 
+  private childClickedEvent = new BehaviorSubject<string>('');
+
   constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
               private errorLogging: ErrorLoggingService) {
     this.Url = appConfig.configdata.apiUrl;
   }
 
-  private childClickedEvent = new BehaviorSubject<string>('');
   emitfavBadgeEvent(msg: any) {
     this.childClickedEvent.next(msg);
   }

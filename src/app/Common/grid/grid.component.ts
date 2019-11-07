@@ -31,7 +31,7 @@ export class GridComponent implements OnInit {
 
     const body = {
       userId: 'albaqer_naseej',
-      pageSize: 5,
+      // pageSize: 5,
       wantedPage: 0
     };
 
