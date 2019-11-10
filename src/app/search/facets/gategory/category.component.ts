@@ -45,9 +45,6 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log('category oninit');
-    // console.log(this.facetOption);
-
     this.facetOption.values.forEach((o, i) => {
       this.checklist.push({ id: o.facetId, value: o.facetValue, isSelected: false });
     });
@@ -59,9 +56,6 @@ export class CategoryComponent implements OnInit {
     this.config.isAllowMultiSelection = !this.facetOption.isAllowMultipeSelection;
     this.config.isPiChart = this.facetOption.isShowPiChart;
     this.config.isVituailization = this.facetOption.isShowVituailization;
-
-
-
 
     this.data = {
       labels: [...this.chartData.labels],
@@ -153,11 +147,12 @@ export class CategoryComponent implements OnInit {
     this.checkedList.forEach(element => {
       criteria.facetsFilter.push(element); // push without checking if the el exists !
     });
-    this.$searchService.currentCriteria$.next(criteria);
     // console.log(criteria);
-    this.$searchService.getFacetsResult(criteria.facetsFilter).subscribe((data) => {
+    this.$searchService.currentCriteria$.next(criteria);
+    this.$searchService.getResults(criteria).subscribe((data) => {
       this.$searchService.results$.next(data);
       // console.log(data);
+      // this.checklist = [];
     });
   }
 }

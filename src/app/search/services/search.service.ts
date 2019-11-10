@@ -42,14 +42,6 @@ export class SearchService {
     this.Url = appConfig.configdata.apiUrl;
   }
 
-  emitfavBadgeEvent(msg: any) {
-    this.childClickedEvent.next(msg);
-  }
-
-  favEventListner() {
-    return this.childClickedEvent.asObservable();
-  }
-
   getSearchConfiguration(bodyRequest): Observable<any> {
     return this.http.post<any>(this.Url + 'SearchConfiguration', bodyRequest).pipe(
       map((data: any) => {
@@ -71,45 +63,30 @@ export class SearchService {
   }
 
   getResults(searchCriteria): Observable<any> {
-    const body = {
-      searchProfileId: searchCriteria.searchProfileId,
-      pageSize: searchCriteria.pageSize,
-      fromPage: searchCriteria.wantedPage,
-      dataSourcesId: searchCriteria.dataSourcesId,
-      searchKeyWords: searchCriteria.searchKeyWords,
-      facetsFilter: [],
-      keywWordsOrderBy: [
-        {
-          keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81', // TODO: read this value from config
-          keywWordType: '4',
-          keywWordValue: 'value',
-          isAcendening: true
-        }
-      ]
-    };
-    return this.http.post<any>(this.Url + 'MakeNewSearch', body);
+    searchCriteria.fromPage = searchCriteria.wantedPage;
+    return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria);
   }
 
-  getFacetsResult(facetsFilter): Observable<any> {
-    facetsFilter = JSON.stringify(facetsFilter);
-    const body = {
-      searchProfileId: this.searchCriteria.searchProfileId,
-      pageSize: this.searchCriteria.pageSize,
-      fromPage: this.searchCriteria.wantedPage,
-      dataSourcesId: this.searchCriteria.dataSourcesId,
-      searchKeyWords: this.searchCriteria.searchKeyWords,
-      facetsFilter: [facetsFilter],
-      keywWordsOrderBy: [
-        {
-          keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
-          keywWordType: '4',
-          keywWordValue: 'value',
-          isAcendening: true
-        }
-      ]
-    };
-    return this.http.post<any>(this.Url + 'MakeNewSearch', body);
-  }
+  // getFacetsResult(facetsFilter): Observable<any> {
+  //   facetsFilter = JSON.stringify(facetsFilter);
+  //   const body = {
+  //     searchProfileId: this.searchCriteria.searchProfileId,
+  //     pageSize: this.searchCriteria.pageSize,
+  //     fromPage: this.searchCriteria.wantedPage,
+  //     dataSourcesId: this.searchCriteria.dataSourcesId,
+  //     searchKeyWords: this.searchCriteria.searchKeyWords,
+  //     facetsFilter: [facetsFilter],
+  //     keywWordsOrderBy: [
+  //       {
+  //         keywWordId: 'df6c3d06-b99b-4d80-ab25-22b7b638fc81',
+  //         keywWordType: '4',
+  //         keywWordValue: 'value',
+  //         isAcendening: true
+  //       }
+  //     ]
+  //   };
+  //   return this.http.post<any>(this.Url + 'MakeNewSearch', body);
+  // }
 
   getNextPage(): Observable<any> {
     this.nextPageCriteria.searchProfileId = this.userProfile.searchProfile_id;
@@ -149,6 +126,7 @@ export class SearchService {
       })
     );
   }
+
   getQuery(getSerachCriteriaData): Observable<any> {
     return this.http.post<any>(this.Url + 'GetQuery', getSerachCriteriaData).pipe(
       map((data: any) => {
@@ -167,6 +145,7 @@ export class SearchService {
       })
     );
   }
+
   deleteQuery(deleteSerachCriteriaData): Observable<any> {
     const options = {
       headers: new HttpHeaders({
@@ -209,5 +188,12 @@ export class SearchService {
     return this.http.post<any>(this.Url + 'BorrowRequest', body);
   }
 
+  emitfavBadgeEvent(msg: any) {
+    this.childClickedEvent.next(msg);
+  }
+
+  favEventListner() {
+    return this.childClickedEvent.asObservable();
+  }
 
 }

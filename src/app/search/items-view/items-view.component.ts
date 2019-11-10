@@ -63,14 +63,14 @@ export class ItemsViewComponent implements OnInit {
         const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
         if (Array.isArray(materialTypesResults)) {
           materialTypesResults.forEach(value => {
-            this.materialTypesConfiguration.find(materialType => {
+            const myVal = this.materialTypesConfiguration.find(materialType => {
               if (value.name === materialType.NameAr) {
                 const newEl = {name: value.name, totalItems: value.totalItems};
                 if (!this.checkItemInArray( newEl, this.materialTypes)) {
                   this.materialTypes.push(newEl);
                 }
               }
-              // return true;
+              return materialType;
             });
           });
           // console.log(data);
@@ -105,10 +105,8 @@ export class ItemsViewComponent implements OnInit {
   }
 
   getNextPageResults(): void {
-    console.log(this.CriteriaSearch);
     this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
       this.$searchService.results$.next(data);
-      console.log(data);
     });
   }
 

@@ -1,4 +1,4 @@
-import { NavigationMode, PlatformMode } from "./enums";
+import { NavigationMode, PlatformMode } from './enums';
 
 export interface IAppConfig {
   apiUrl: string;

@@ -15,11 +15,12 @@ export class AppConfigService {
   private _deployUrl: string;
   private _isLoaded: boolean;
   configdata: IAppConfig;
-  nameurl: string = "";
+  nameurl: string = '';
 
   //#endregion attributes
 
   // ---------------------------------------------------------------------------------------------------------------------------------- //
+  // tslint:disable-next-line: variable-name
   constructor(private _httpClient: HttpClient, private router: Router) {
     this._language = 'NA';
     this._deployUrl = 'NA';
