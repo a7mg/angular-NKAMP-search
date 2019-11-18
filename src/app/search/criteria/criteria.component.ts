@@ -131,6 +131,7 @@ export class CriteriaComponent implements OnInit {
 
   onSubmit() {
     this.setSearchObject();
+    this.$searchService.materialFilterActive = false; // disable material type tabs filter
     this.$searchService.currentCriteria$.next(this.CriteriaSearch);
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
       this.$searchService.results$.next(data);

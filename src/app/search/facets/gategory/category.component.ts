@@ -155,6 +155,7 @@ export class CategoryComponent implements OnInit {
 
 
   onSubmit(): void {
+    this.$searchService.materialFilterActive = false; // disable material type tabs filter
     let criteria;
     this.$searchService.currentCriteria$.subscribe(data => {
       criteria = data;
