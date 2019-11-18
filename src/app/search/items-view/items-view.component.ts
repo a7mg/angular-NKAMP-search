@@ -4,6 +4,7 @@ import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.ser
 import { ContentChild } from '@angular/core';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { SearchCriteria } from '../services/SearchCriteria.Model';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-items-view',
   templateUrl: './items-view.component.html',
@@ -63,14 +64,13 @@ export class ItemsViewComponent implements OnInit {
         const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
         if (Array.isArray(materialTypesResults)) {
           materialTypesResults.forEach(value => {
-            const myVal = this.materialTypesConfiguration.find(materialType => {
-              if (value.name === materialType.NameAr) {
-                const newEl = {name: value.name, totalItems: value.totalItems};
-                if (!this.checkItemInArray( newEl, this.materialTypes)) {
+            this.materialTypesConfiguration.forEach(materialType => {
+              if (value.id === materialType.NameAr) {
+                const newEl = { id: materialType.Id, name: value.id, totalItems: value.totalItems };
+                if (!this.checkItemInArray(newEl, this.materialTypes)) {
                   this.materialTypes.push(newEl);
                 }
               }
-              return materialType;
             });
           });
           // console.log(data);
@@ -82,6 +82,17 @@ export class ItemsViewComponent implements OnInit {
           this.materialTypes = [materialTypesResults];
         }
       }
+    });
+  }
+
+  makeSearchByMaterial(event, materialId): void {
+    // $('.ui-tabview-nav li').removeClass('ui-state-active');
+    // $(event.target).parent().addClass('ui-state-active');
+    this.$searchService.searchCriteria.searchKeyWords[0].materialTypeId = materialId;
+    this.CriteriaSearch = this.$searchService.searchCriteria;
+    console.log(this.CriteriaSearch);
+    this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
+      this.$searchService.results$.next(data);
     });
   }
 

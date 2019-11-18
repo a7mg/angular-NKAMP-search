@@ -174,7 +174,7 @@ export class CriteriaComponent implements OnInit {
             const { facetFC, searchTextFC, searchOperationFC, operator } = control.value;
             searchKeyWord = {
               searchKeyWordId: (facetFC !== null ? facetFC : 'd112835b-3b56-4295-aa62-7842dee627d0'),
-              materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
+              materialTypeId: '',
               keyWordValue: searchTextFC,
               searchOperationId: ((searchOperationFC !== null && searchOperationFC !== undefined) ?
                 searchOperationFC : 'aad2c592-dc0d-4ed5-a5c7-6f0259c0498b'),
