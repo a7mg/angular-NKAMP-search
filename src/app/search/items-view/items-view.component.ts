@@ -33,7 +33,9 @@ export class ItemsViewComponent implements OnInit {
   collectionSizeT: any;
   searchKeywords: Array<any>;
   materialTypes: Array<any>;
+  materialTypesFilters: Array<any>;
   materialTypesConfiguration: Array<any>;
+  searchLoading: boolean;
 
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService) {
     this.lang = this.$globalsService.UILanguage;
@@ -47,6 +49,8 @@ export class ItemsViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchLoading = this.$searchService.searchLoading;
+
     this.$searchService.searchConfiguration$.subscribe(data => {
       if (data !== null) {
         this.searchKeywords = data.SearchKeywords;
@@ -59,6 +63,10 @@ export class ItemsViewComponent implements OnInit {
       this.materialTypes = [];
       if (data !== null) {
         this.itemsArr = data.items[0];
+        if (!Array.isArray(this.itemsArr)) {
+          this.itemsArr = [this.itemsArr];
+        }
+
         this.collectionSizeT = Math.round(data.totalNumberOfItems);
 
         const materialTypesResults = data.materialTypesSearcQueryStatistic.MaterialType;
@@ -67,7 +75,7 @@ export class ItemsViewComponent implements OnInit {
             this.materialTypesConfiguration.forEach(materialType => {
               if (value.id === materialType.NameAr) {
                 const newEl = { id: materialType.Id, name: value.id, totalItems: value.totalItems };
-                if (!this.checkItemInArray(newEl, this.materialTypes)) {
+                if (!this.$searchService.checkItemInArray(newEl, this.materialTypes)) {
                   this.materialTypes.push(newEl);
                 }
               }
@@ -78,6 +86,9 @@ export class ItemsViewComponent implements OnInit {
           // console.log(this.materialTypes);
           // console.log(this.itemsArr);
 
+          if (!this.$searchService.materialFilterActive) {
+            this.materialTypesFilters = this.materialTypes;
+          }
         } else {
           this.materialTypes = [materialTypesResults];
         }
@@ -86,26 +97,15 @@ export class ItemsViewComponent implements OnInit {
   }
 
   makeSearchByMaterial(event, materialId): void {
-    // $('.ui-tabview-nav li').removeClass('ui-state-active');
-    // $(event.target).parent().addClass('ui-state-active');
+    this.$searchService.materialFilterActive = true; // active material type tabs filter
+    document.querySelectorAll('.ui-tabview-nav li.ui-state-active')[0].classList.remove('ui-state-active');
+    event.currentTarget.parentNode.classList.add('ui-state-active');
+    /***********/
     this.$searchService.searchCriteria.searchKeyWords[0].materialTypeId = materialId;
     this.CriteriaSearch = this.$searchService.searchCriteria;
-    console.log(this.CriteriaSearch);
     this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
       this.$searchService.results$.next(data);
     });
-  }
-
-  checkItemInArray( obj, array) {
-    let exists = false;
-    array.forEach(el => {
-      if (JSON.stringify(el) === JSON.stringify(obj)) {
-        exists = true;
-      } else {
-        exists = false;
-      }
-    });
-    return exists;
   }
 
   paginate(pageNumber): void {

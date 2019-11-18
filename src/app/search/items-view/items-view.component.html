@@ -112,7 +112,7 @@
             <span class="ui-tabview-title ng-star-inserted">{{generalTXT}}</span>
           </a>
         </li>
-        <li *ngFor="let singleMaterialType of materialTypes" class="ui-state-default ui-corner-top ng-star-inserted">
+        <li *ngFor="let singleMaterialType of materialTypesFilters" class="ui-state-default ui-corner-top ng-star-inserted">
           <a href="javascript:void(0);" (click)="makeSearchByMaterial($event, singleMaterialType.id)" id="{{singleMaterialType.id}}">
             <span class="ui-tabview-title ng-star-inserted">{{singleMaterialType.name}} (
               {{singleMaterialType.totalItems}} )</span>
@@ -138,7 +138,6 @@
 
 </div>
 <!------------- End New tabs structure ---------------->
-
 
 <!-- <p-tabView class="search-tabs">
   <p-tabPanel [header]="generalTXT" [selected]="true">
@@ -168,3 +167,11 @@
     [boundaryLinks]="true">
   </ngb-pagination>
 </div>
+
+<div class="search-loading-overlay" *ngIf="searchLoading">
+  <div class="container">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" class="d-block my-5 py-5 text-center">
+    </p-progressSpinner>
+  </div>
+</div>
+
