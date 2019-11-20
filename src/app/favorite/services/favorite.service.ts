@@ -24,7 +24,9 @@ export class FavoriteService {
   }
 
   getFavoriteList(requestBody): Observable<any> {
-    requestBody.wantedPage = this.nextPageCriteria.wantedPage;
+
+    // requestBody.wantedPage = this.nextPageCriteria.wantedPage;
+    // return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions);
     return this.http.post<any>(this.Url + 'GetFavoritesList', requestBody, this.bookDetailsService.httpOptions).pipe(
       map((data: any) => {
         return data;
