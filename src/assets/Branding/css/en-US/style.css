@@ -10914,6 +10914,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .Favorite-table-delete {
   text-align: center;
+  cursor: pointer;
 }
 
 .Favorite-pagination {
