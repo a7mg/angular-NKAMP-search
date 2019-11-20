@@ -99,6 +99,7 @@ export class ItemsViewComponent implements OnInit {
     this.$searchService.searchCriteria.searchKeyWords[0].materialTypeId = this.currentMaterialTypeId = materialId;
     this.CriteriaSearch = this.$searchService.searchCriteria;
     this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
+      this.searchLoading = false;
       if (data === 'nodatafound') {
         console.log('Something bad happened; please try again later.');
       } else {
@@ -117,6 +118,7 @@ export class ItemsViewComponent implements OnInit {
 
   getNextPageResults(): void {
     this.$searchService.getResults(this.CriteriaSearch).subscribe(data => {
+      this.searchLoading = false;
       if (data === 'nodatafound') {
         console.log('Something bad happened; please try again later.');
       } else {
