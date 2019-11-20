@@ -18,6 +18,7 @@ export class CriteriaComponent implements OnInit {
   DataSources: Criteria[];
   dataSourceId = '10f05e71-c6d2-4de3-a0df-e910bbb3942b';
   materialTypeId = '7cb61ddc-9927-4b5e-b6b1-0855de3bb75f';
+  generalMaterialTypeId = 'f1b94474-82df-4e46-b1df-4cbb61aaee85'; // General Material Type ID used as default search value
   searchOperationId = 'e58fb0bc-744c-4136-a4ce-a9a3736914fe';
   myOperations: Criteria[];
   AllFields: Criteria[];
@@ -33,6 +34,7 @@ export class CriteriaComponent implements OnInit {
   keywords = [];
   kw = '';
   isShown = true;
+  searchLoading = false;  // For criteria search loader
 
   constructor(private $searchService: SearchService, private $globalsService: GlobalsService,
               private $eventEmitterService: EventEmitterService, private fb: FormBuilder) {
@@ -130,11 +132,17 @@ export class CriteriaComponent implements OnInit {
   //  ----------------------------------------------------------------------------------------------------------------------- //
 
   onSubmit() {
+    this.searchLoading = true;
     this.setSearchObject();
     this.$searchService.materialFilterActive = false; // disable material type tabs filter
     this.$searchService.currentCriteria$.next(this.CriteriaSearch);
     this.$searchService.getResults(this.CriteriaSearch).subscribe((data) => {
-      this.$searchService.results$.next(data);
+      this.searchLoading = false;
+      if (data === 'nodatafound') {
+        console.log('Something bad happened; please try again later.');
+      } else {
+        this.$searchService.results$.next(data);
+      }
     });
   }
 
@@ -175,7 +183,7 @@ export class CriteriaComponent implements OnInit {
             const { facetFC, searchTextFC, searchOperationFC, operator } = control.value;
             searchKeyWord = {
               searchKeyWordId: (facetFC !== null ? facetFC : 'd112835b-3b56-4295-aa62-7842dee627d0'),
-              materialTypeId: '',
+              materialTypeId: this.generalMaterialTypeId,
               keyWordValue: searchTextFC,
               searchOperationId: ((searchOperationFC !== null && searchOperationFC !== undefined) ?
                 searchOperationFC : 'aad2c592-dc0d-4ed5-a5c7-6f0259c0498b'),

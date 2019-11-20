@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, BehaviorSubject, Subject, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-config.service';
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
@@ -40,8 +40,7 @@ export class SearchService {
   clearFacetFilters = false;
   private childClickedEvent = new BehaviorSubject<string>('');
 
-  public materialFilterActive = false; // To check material type tabs filter
-  public searchLoading = false; // For search loader
+  public materialFilterActive = false; // To check material type tabs filter click
 
   constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
               private errorLogging: ErrorLoggingService) {
@@ -69,16 +68,16 @@ export class SearchService {
   }
 
   getResults(searchCriteria): Observable<any> {
-    this.searchLoading = true;
     searchCriteria.fromPage = searchCriteria.wantedPage;
     // console.log(JSON.stringify(searchCriteria));
+
     return this.http.post<any>(this.Url + 'MakeNewSearch', searchCriteria)
       .pipe(
         catchError(this.handleError)
       );
   }
-
   private handleError(error: HttpErrorResponse) {
+    return ['nodatafound'];
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);

@@ -170,7 +170,11 @@ export class CategoryComponent implements OnInit {
     });
     this.$searchService.currentCriteria$.next(criteria);
     this.$searchService.getResults(criteria).subscribe((data) => {
-      this.$searchService.results$.next(data);
+      if (data === 'nodatafound') {
+        console.log('Something bad happened; please try again later.');
+      } else {
+        this.$searchService.results$.next(data);
+      }
     });
     this.applyFlag = false;
   }

@@ -107,12 +107,12 @@
     <div class="ui-tabview ui-widget ui-widget-content ui-corner-all ui-tabview-top">
 
       <ul class="ui-tabview-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all ng-star-inserted">
-        <li class="ui-state-default ui-state-active ui-corner-top ng-star-inserted">
+        <li class="ui-state-default ui-corner-top ng-star-inserted" [ngClass]="{'ui-state-active' : (currentMaterialTypeId == 'f1b94474-82df-4e46-b1df-4cbb61aaee85')}">
           <a href="javascript:void(0);" (click)="makeSearchByMaterial($event, 'f1b94474-82df-4e46-b1df-4cbb61aaee85')" id="f1b94474-82df-4e46-b1df-4cbb61aaee85">
             <span class="ui-tabview-title ng-star-inserted">{{generalTXT}}</span>
           </a>
         </li>
-        <li *ngFor="let singleMaterialType of materialTypesFilters" class="ui-state-default ui-corner-top ng-star-inserted">
+        <li *ngFor="let singleMaterialType of materialTypesFilters" class="ui-state-default ui-corner-top ng-star-inserted" [ngClass]="{'ui-state-active' : (currentMaterialTypeId == singleMaterialType.id)}">
           <a href="javascript:void(0);" (click)="makeSearchByMaterial($event, singleMaterialType.id)" id="{{singleMaterialType.id}}">
             <span class="ui-tabview-title ng-star-inserted">{{singleMaterialType.name}} (
               {{singleMaterialType.totalItems}} )</span>
