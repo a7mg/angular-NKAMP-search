@@ -17,6 +17,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
 import { RatingModule, TabViewModule, BlockUIModule } from 'primeng/primeng';
+
 import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { ReviewRatingComponent } from './review-rating/review-rating.component';
@@ -75,7 +76,7 @@ const SearchRoutes = [
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
     },
-    EventEmitterService
+    EventEmitterService,
   ],
   imports: [
     RouterModule.forChild(SearchRoutes),

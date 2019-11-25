@@ -6,6 +6,7 @@ import { AppConfigService } from 'src/app/NKAMP-Search-shared/services/app-confi
 import { ErrorLoggingService } from 'src/app/Naseej-error-handling/services/error-logging.service';
 import { GlobalsService } from 'src/app/NKAMP-Search-shared/services/globals.service';
 import { SearchService } from '../services/search.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -35,9 +36,14 @@ export class BookDetailsService {
   }
 
 
-  constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService,
+  constructor(private http: HttpClient, appConfig: AppConfigService, public globals: GlobalsService, private route: ActivatedRoute,
               private errorLogging: ErrorLoggingService) {
-    this.Url = appConfig.configdata.apiUrl;
+    this.Url = '';
+    this.route.queryParams.subscribe(params => {
+      console.log(this.route);
+
+    });
+
   }
 
   addCommntsTest(comment) {
@@ -60,70 +66,70 @@ export class BookDetailsService {
   }
 
 
-  getComment(requestBody): Observable<any> {
-    return this.http.post<any>(this.Url + 'ItemOperation/GetItemOperationDetails', requestBody, this.httpOptions);
-  }
+  // getComment(requestBody): Observable<any> {
+  //   return this.http.post<any>(this.Url + 'ItemOperation/GetItemOperationDetails', requestBody, this.httpOptions);
+  // }
 
-  getBookDetails(requestBody): Observable<any> {
-    return this.http.post<any>(this.Url + 'ItemOperation/GetItemOperationDetails', requestBody);
-  }
+  // getBookDetails(requestBody): Observable<any> {
+  //   return this.http.post<any>(this.Url + 'ItemOperation/GetItemOperationDetails', requestBody);
+  // }
 
-  addFavorite(requestBody): Observable<any> {
-    return this.http.post<any>(this.Url + 'AddItemToFavorites', requestBody, this.httpOptions).pipe(
-      map((data: any) => {
-        return data;
-      }),
-      catchError((error: Error) => {
-        const errParams: any[] = [];
-        errParams.push(`API_URL = ${this.Url}`);
-        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
-        this.errorLogging.error(
-          'ItemOperation/GetItemOperationDetails',
-          `${error.name} --> ${error.message} --> ${error.stack}` ||
-          `${error.name} --> ${error.message}`,
-          errParams
-        );
-        return of([] as any[]);
-      })
-    );
-  }
-  addNewComment(requestBody): Observable<any> {
-    return this.http.post<any>(this.Url + 'ItemOperation/AddComment', requestBody).pipe(
-      map((data: any) => {
-        return data;
-      }),
-      catchError((error: Error) => {
-        const errParams: any[] = [];
-        errParams.push(`API_URL = ${this.Url}`);
-        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
-        this.errorLogging.error(
-          'ItemOperation/GetItemOperationDetails',
-          `${error.name} --> ${error.message} --> ${error.stack}` ||
-          `${error.name} --> ${error.message}`,
-          errParams
-        );
-        return of([] as any[]);
-      })
-    );
-  }
-  addNewRating(requestBody): Observable<any> {
-    return this.http.post<any>(this.Url + 'ItemOperation/RateItem', requestBody).pipe(
-      map((data: any) => {
+  // addFavorite(requestBody): Observable<any> {
+  //   return this.http.post<any>(this.Url + 'AddItemToFavorites', requestBody, this.httpOptions).pipe(
+  //     map((data: any) => {
+  //       return data;
+  //     }),
+  //     catchError((error: Error) => {
+  //       const errParams: any[] = [];
+  //       errParams.push(`API_URL = ${this.Url}`);
+  //       errParams.push(`UILanguage = ${this.globals.UILanguage}`);
+  //       this.errorLogging.error(
+  //         'ItemOperation/GetItemOperationDetails',
+  //         `${error.name} --> ${error.message} --> ${error.stack}` ||
+  //         `${error.name} --> ${error.message}`,
+  //         errParams
+  //       );
+  //       return of([] as any[]);
+  //     })
+  //   );
+  // }
+  // addNewComment(requestBody): Observable<any> {
+  //   return this.http.post<any>(this.Url + 'ItemOperation/AddComment', requestBody).pipe(
+  //     map((data: any) => {
+  //       return data;
+  //     }),
+  //     catchError((error: Error) => {
+  //       const errParams: any[] = [];
+  //       errParams.push(`API_URL = ${this.Url}`);
+  //       errParams.push(`UILanguage = ${this.globals.UILanguage}`);
+  //       this.errorLogging.error(
+  //         'ItemOperation/GetItemOperationDetails',
+  //         `${error.name} --> ${error.message} --> ${error.stack}` ||
+  //         `${error.name} --> ${error.message}`,
+  //         errParams
+  //       );
+  //       return of([] as any[]);
+  //     })
+  //   );
+  // }
+  // addNewRating(requestBody): Observable<any> {
+  //   return this.http.post<any>(this.Url + 'ItemOperation/RateItem', requestBody).pipe(
+  //     map((data: any) => {
 
-        return data;
-      }),
-      catchError((error: Error) => {
-        const errParams: any[] = [];
-        errParams.push(`API_URL = ${this.Url}`);
-        errParams.push(`UILanguage = ${this.globals.UILanguage}`);
-        this.errorLogging.error(
-          'ItemOperation/GetItemOperationDetails',
-          `${error.name} --> ${error.message} --> ${error.stack}` ||
-          `${error.name} --> ${error.message}`,
-          errParams
-        );
-        return of([] as any[]);
-      })
-    );
-  }
+  //       return data;
+  //     }),
+  //     catchError((error: Error) => {
+  //       const errParams: any[] = [];
+  //       errParams.push(`API_URL = ${this.Url}`);
+  //       errParams.push(`UILanguage = ${this.globals.UILanguage}`);
+  //       this.errorLogging.error(
+  //         'ItemOperation/GetItemOperationDetails',
+  //         `${error.name} --> ${error.message} --> ${error.stack}` ||
+  //         `${error.name} --> ${error.message}`,
+  //         errParams
+  //       );
+  //       return of([] as any[]);
+  //     })
+  //   );
+  // }
 }

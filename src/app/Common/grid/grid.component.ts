@@ -39,27 +39,27 @@ export class GridComponent implements OnInit {
     this.$bookAction.mainAddToMyFav(data);
   }
 
-  public onTap() {
-    const bdy = {
-      searchProfileId: '996ac773-2701-44ec-a377-bd52838de4dc',
-      searchKeyWords: [
-        {
-          primaryItemSourceId: this.bookData.itemSourceId,
-          itemIndexId: this.bookData.itemSourceId,
-          dataSourceName: 'aruc_index',
-          dataSourceId: '783c969a-cebb-4b0c-8a25-f524ec479cfc',
-          materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
-          materialTypeName: 'كتب'
-        }
-      ]
-    };
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        details: JSON.stringify(bdy)
-      }
-    };
-    this.router.navigate(['book'], navigationExtras);
-  }
+  // public onTap() {
+  //   const bdy = {
+  //     searchProfileId: '996ac773-2701-44ec-a377-bd52838de4dc',
+  //     searchKeyWords: [
+  //       {
+  //         primaryItemSourceId: this.bookData.itemSourceId,
+  //         itemIndexId: this.bookData.itemSourceId,
+  //         dataSourceName: 'aruc_index',
+  //         dataSourceId: '783c969a-cebb-4b0c-8a25-f524ec479cfc',
+  //         materialTypeId: 'f1b94474-82df-4e46-b1df-4cbb61aaee85',
+  //         materialTypeName: 'كتب'
+  //       }
+  //     ]
+  //   };
+  //   const navigationExtras: NavigationExtras = {
+  //     queryParams: {
+  //       bookId: bdy.searchKeyWords[0].itemIndexId
+  //     }
+  //   };
+  //   this.router.navigate([`book/${bdy.searchKeyWords[0].itemIndexId}`], navigationExtras);
+  // }
 
 
 

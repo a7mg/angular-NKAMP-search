@@ -19,13 +19,13 @@ export class ReviewRatingComponent implements OnInit {
   constructor(private bookDetailsService: BookDetailsService, config: NgbRatingConfig, private route: ActivatedRoute) {
     config.readonly = true;
 
-    this.route.queryParams.subscribe(params => {
-      const details = params.details;
-      this.requestBody = JSON.parse(details);
-      this.requestBodyForRating = JSON.stringify(this.requestBody.searchKeyWords[0]);
-      // const rateData =  JSON.stringify(this.requestBody.searchKeyWords);
-      // this.requestBodyForRating = rateData;
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   const details = params.details;
+    //   this.requestBody = JSON.parse(details);
+    //   this.requestBodyForRating = JSON.stringify(this.requestBody.searchKeyWords[0]);
+    //   // const rateData =  JSON.stringify(this.requestBody.searchKeyWords);
+    //   // this.requestBodyForRating = rateData;
+    // });
   }
   ngOnInit() {
     const commentsRequestBody = {
@@ -49,20 +49,20 @@ export class ReviewRatingComponent implements OnInit {
 
 
 
-    this.bookDetailsService.getComment(ratingRequestBody).subscribe(Data => {
-      this.commentsList = Data[0].comments;
-      this.ratingDegree = Data[0].views_count;
+    // this.bookDetailsService.getComment(ratingRequestBody).subscribe(Data => {
+    //   this.commentsList = Data[0].comments;
+    //   this.ratingDegree = Data[0].views_count;
 
-      // if (Data !== null) {
-      //     Data[0].forEach(currentElement => {
-      //       for (this.count = 0; this.count < currentElement.comments.length; this.count++){
-      //                 this.commentsList.push(currentElement.comments[this.count]);
-      //       }
-      //     });
+    //   // if (Data !== null) {
+    //   //     Data[0].forEach(currentElement => {
+    //   //       for (this.count = 0; this.count < currentElement.comments.length; this.count++){
+    //   //                 this.commentsList.push(currentElement.comments[this.count]);
+    //   //       }
+    //   //     });
 
-      //   } else {
-      //   }
-    });
+    //   //   } else {
+    //   //   }
+    // });
 
     // this.commentsList = this.bookDetailsService.getCommentsTest();
 
