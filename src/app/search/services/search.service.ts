@@ -76,7 +76,7 @@ export class SearchService {
   }
 
   getResults(searchCriteria): Observable<any> {
-    this.favoriteService.getFavoriteList(this.body).subscribe( res => this.favListArray = res.hits.hits);
+    // this.favoriteService.getFavoriteList(this.body).subscribe( res => this.favListArray = res.hits.hits);
     searchCriteria.fromPage = searchCriteria.wantedPage;
     // console.log(JSON.stringify(searchCriteria));
 

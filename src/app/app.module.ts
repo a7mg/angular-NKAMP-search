@@ -10,14 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NKAMPSearchSharedModule } from './NKAMP-Search-shared/NKAMP-Search-shared.module';
 // import { ShareButtonsModule } from '@ngx-share/buttons'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     OrderByPipe,
-
-
   ],
   imports: [
     BrowserModule,
@@ -34,7 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       provide: HTTP_INTERCEPTORS,
       useClass: NkampInterceptor,
       multi: true
-    }
+    },
+    MessageService
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

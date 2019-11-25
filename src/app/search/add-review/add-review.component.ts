@@ -58,28 +58,28 @@ addRatingRequestBody = {
   ngOnInit() {
 
   }
-  addComment(content) {
-    if (this.formElement.value.comment) {
-      // let comments = this.bookDetailsService.addCommntsTest(this.formElement.value.comment);
-      this.isAdded = true;
-      this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
-      this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  => {
-        if ( Data !== null) {
-           // this.modalService.open(content);
-        } else {
-        }
-      });
-    } else {
-      this.isAdded = false;
-      this.modalService.open(content);
-    }
-  }
-  addRating() {
-    this.addRatingRequestBody.Rate  = this.currentRate1.toString();
-    this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  => {
-      if ( Data !==  null) {
-      } else {
-      }
-    });
-  }
+  // addComment(content) {
+  //   if (this.formElement.value.comment) {
+  //     // let comments = this.bookDetailsService.addCommntsTest(this.formElement.value.comment);
+  //     this.isAdded = true;
+  //     this.addCommentRequestBody.comment.commentData = this.formElement.value.comment;
+  //     this.bookDetailsService.addNewComment(this.addCommentRequestBody).subscribe( Data  => {
+  //       if ( Data !== null) {
+  //          // this.modalService.open(content);
+  //       } else {
+  //       }
+  //     });
+  //   } else {
+  //     this.isAdded = false;
+  //     this.modalService.open(content);
+  //   }
+  // }
+  // addRating() {
+  //   this.addRatingRequestBody.Rate  = this.currentRate1.toString();
+  //   this.bookDetailsService.addNewRating(this.addRatingRequestBody).subscribe( Data  => {
+  //     if ( Data !==  null) {
+  //     } else {
+  //     }
+  //   });
+  // }
 }

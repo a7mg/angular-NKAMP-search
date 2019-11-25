@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { SearchService } from './services/search.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { EventEmitterService } from './services/event-emitter.service';
 import { FavoriteService } from '../favorite/services/favorite.service';
